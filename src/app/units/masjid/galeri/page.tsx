@@ -44,9 +44,58 @@ export default function GaleriPage() {
       description: 'Kegiatan tadarus rutin setiap hari Senin',
       date: '2024',
     },
+    {
+      src: '/images/masjid/sholat-malam-ramadhan.jpg',
+      alt: 'Sholat Malam Ramadhan',
+      category: 'Ibadah',
+      description: 'Sholat tarawih dan qiyamul lail di bulan Ramadhan',
+      date: '2024',
+    },
+    {
+      src: '/images/masjid/sholat-ied-putri.jpg',
+      alt: 'Sholat Ied Jamaah Putri',
+      category: 'Ibadah',
+      description: 'Pelaksanaan sholat Idul Fitri/Adha jamaah putri',
+      date: '2024',
+    },
+    {
+      src: '/images/masjid/sholat-ied-putra.jpg',
+      alt: 'Sholat Ied Jamaah Putra',
+      category: 'Ibadah',
+      description: 'Pelaksanaan sholat Idul Fitri/Adha jamaah putra',
+      date: '2024',
+    },
+    {
+      src: '/images/masjid/pembelajaran-kaligrafi.jpeg',
+      alt: 'Pembelajaran Kaligrafi',
+      category: 'Pelatihan',
+      description: 'Kelas pembelajaran seni kaligrafi Arab',
+      date: '2024',
+    },
+    {
+      src: '/images/masjid/pelatihan-perawatan-jenazah-muslimah.jpeg',
+      alt: 'Pelatihan Perawatan Jenazah Muslimah',
+      category: 'Pelatihan',
+      description: 'Pelatihan tata cara perawatan jenazah untuk muslimah',
+      date: '2024',
+    },
+    {
+      src: '/images/masjid/lomba-kaligrafi-anak.jpg',
+      alt: 'Lomba Kaligrafi Anak',
+      category: 'Event',
+      description: 'Lomba kaligrafi untuk anak-anak dalam rangka PHBI',
+      date: '2024',
+    },
+    {
+      src: '/images/masjid/aktivitas-tadarus-muhajirin-kids.jpeg',
+      alt: 'Tadarus Muhajirin Kids',
+      category: 'Kegiatan',
+      description: 'Aktivitas tadarus Al-Qur\'an untuk anak-anak Muhajirin Kids',
+      date: '2024',
+    },
   ];
 
-  const categories = ['Semua', 'Kajian', 'Event', 'Pelatihan', 'Kegiatan'];
+  const categories = ['Semua', 'Ibadah', 'Kajian', 'Pelatihan', 'Event', 'Kegiatan'];
   const [activeCategory, setActiveCategory] = useState('Semua');
 
   const filteredGallery = activeCategory === 'Semua'

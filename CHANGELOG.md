@@ -1,3 +1,9 @@
+## 2025-12-24 20:04:26
+
+feat: implement Yayasan Al Muhajirin landing page with themed navbar and footer
+
+---
+
 ## 2025-12-24 17:38:11
 
 feat(masjid): add complete Masjid Al Muhajirin website with pages and components

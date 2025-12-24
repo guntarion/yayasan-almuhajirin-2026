@@ -114,3 +114,20 @@ Pelajari src/middleware.ts
     }'
 
   Note: POST/PUT/DELETE require authentication session.
+  
+  
+  Sekarang buatkan web utama yang memampang home yayasan al muhajirin docs/profil/Unit-Yayasan-Al-Muhajirin.md
+  
+  Saat ini home mengarah ke http://localhost:3000/landingpage src/app/(WebsiteLayout)/landingpage.tsx
+  Buat agar landing page relevan dengan konteks yayasan al muhajirin.
+  Tidak perlu berisi banyak konten, overview profil (singkat) tiap unit saja
+  
+  dan Featuring 
+  - masjid src/app/units/masjid
+  - daycare src/app/units/daycare
+  - kbtk src/app/units/kbtk
+  - LAZ src/app/units/lazmu
+  
+  kita tetap gunakan theme docs/theme-guide-almuhajirin.md
+  Logo yayasan al muhajirin menggunakan ini public/images/Logo-YAMR.png
+  
