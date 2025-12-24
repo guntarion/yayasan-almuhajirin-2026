@@ -1,3 +1,9 @@
+## 2025-12-25 04:53:49
+
+feat(keuangan): add financial reports pages (neraca, aktivitas, arus kas)
+
+---
+
 ## 2025-12-25 04:39:40
 
 feat(keuangan): add CSV seed script for program kerja data
