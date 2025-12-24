@@ -10,7 +10,63 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// User model - main user table
+// ===========================================
+// ENUMS
+// ===========================================
+
+enum Role {
+  admin
+  member
+  moderator
+  editor
+  viewer
+  guest
+}
+
+enum Gender {
+  lelaki
+  perempuan
+}
+
+enum ArticleStatus {
+  DRAFT
+  IN_REVIEW
+  SCHEDULED
+  PUBLISHED
+  ARCHIVED
+  REJECTED
+}
+
+// ===========================================
+// UNIT MODEL
+// ===========================================
+
+model Unit {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  subdomain   String   @unique
+  logo        String?
+  color       String?  @default("#0ea5e9")
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  users       User[]
+  articles    Article[]
+  categories  Category[]
+  media       Media[]
+  galleries   Gallery[]
+
+  @@map("units")
+}
+
+// ===========================================
+// USER MODEL (Updated with blog relations)
+// ===========================================
+
 model User {
   id                String    @id @default(cuid())
   name              String
@@ -28,14 +84,28 @@ model User {
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt
 
+  // Unit relation
+  unitId            String?
+  unit              Unit?     @relation(fields: [unitId], references: [id])
+
   // NextAuth relations
   accounts          Account[]
   sessions          Session[]
 
+  // Blog relations
+  articles          Article[]
+  galleries         Gallery[]
+  media             Media[]
+  articleRevisions  ArticleRevision[]
+
+  @@index([unitId])
   @@map("users")
 }
 
-// NextAuth Account model
+// ===========================================
+// NEXTAUTH MODELS
+// ===========================================
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -56,7 +126,6 @@ model Account {
   @@map("accounts")
 }
 
-// NextAuth Session model
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
@@ -67,7 +136,6 @@ model Session {
   @@map("sessions")
 }
 
-// NextAuth VerificationToken model
 model VerificationToken {
   identifier String
   token      String   @unique
@@ -77,17 +145,236 @@ model VerificationToken {
   @@map("verification_tokens")
 }
 
-// Enums
-enum Role {
-  admin
-  member
-  moderator
-  editor
-  viewer
-  guest
+// ===========================================
+// BLOG: CATEGORY MODEL
+// ===========================================
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String
+  description String?
+  icon        String?
+  color       String?   @default("#6b7280")
+  order       Int       @default(0)
+  isGlobal    Boolean   @default(false)
+  unitId      String?
+  parentId    String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  unit        Unit?     @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  parent      Category? @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children    Category[] @relation("CategoryHierarchy")
+  articles    Article[]
+
+  @@unique([slug, unitId])
+  @@index([unitId])
+  @@index([parentId])
+  @@index([isGlobal])
+  @@map("categories")
 }
 
-enum Gender {
-  lelaki
-  perempuan
+// ===========================================
+// BLOG: TAG MODEL
+// ===========================================
+
+model Tag {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  articles  ArticleTag[]
+
+  @@map("tags")
+}
+
+// ===========================================
+// BLOG: ARTICLE MODEL
+// ===========================================
+
+model Article {
+  id            String        @id @default(cuid())
+  title         String
+  slug          String
+  content       String        @db.Text
+  excerpt       String?       @db.VarChar(500)
+  featuredImage String?
+  status        ArticleStatus @default(DRAFT)
+  viewCount     Int           @default(0)
+  readingTime   Int?
+  isPinned      Boolean       @default(false)
+  isFeatured    Boolean       @default(false)
+
+  // SEO fields
+  metaTitle       String?     @db.VarChar(70)
+  metaDescription String?     @db.VarChar(160)
+  metaKeywords    String?
+  canonicalUrl    String?
+
+  // Scheduling
+  publishedAt   DateTime?
+  scheduledAt   DateTime?
+
+  // Timestamps
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Foreign keys
+  authorId      String
+  categoryId    String
+  unitId        String
+
+  // Relations
+  author        User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  category      Category @relation(fields: [categoryId], references: [id])
+  unit          Unit     @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  tags          ArticleTag[]
+  galleries     ArticleGallery[]
+  revisions     ArticleRevision[]
+
+  @@unique([slug, unitId])
+  @@index([unitId])
+  @@index([authorId])
+  @@index([categoryId])
+  @@index([status])
+  @@index([publishedAt])
+  @@index([createdAt])
+  @@map("articles")
+}
+
+// ===========================================
+// BLOG: ARTICLE-TAG JUNCTION
+// ===========================================
+
+model ArticleTag {
+  articleId String
+  tagId     String
+
+  article   Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([articleId, tagId])
+  @@map("article_tags")
+}
+
+// ===========================================
+// BLOG: ARTICLE REVISION MODEL
+// ===========================================
+
+model ArticleRevision {
+  id        String   @id @default(cuid())
+  articleId String
+  title     String
+  content   String   @db.Text
+  excerpt   String?  @db.VarChar(500)
+  editedById String
+  createdAt DateTime @default(now())
+
+  // Relations
+  article   Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  editedBy  User    @relation(fields: [editedById], references: [id])
+
+  @@index([articleId])
+  @@map("article_revisions")
+}
+
+// ===========================================
+// BLOG: MEDIA MODEL
+// ===========================================
+
+model Media {
+  id           String   @id @default(cuid())
+  filename     String
+  originalName String
+  url          String
+  thumbnailUrl String?
+  mimeType     String
+  size         Int
+  width        Int?
+  height       Int?
+  alt          String?
+  caption      String?
+  folder       String?  @default("uploads")
+  uploadedById String
+  unitId       String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  uploadedBy   User     @relation(fields: [uploadedById], references: [id])
+  unit         Unit     @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  galleryMedia GalleryMedia[]
+
+  @@index([unitId])
+  @@index([uploadedById])
+  @@index([mimeType])
+  @@index([folder])
+  @@map("media")
+}
+
+// ===========================================
+// BLOG: GALLERY MODEL
+// ===========================================
+
+model Gallery {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String
+  description String?  @db.Text
+  coverImage  String?
+  eventDate   DateTime?
+  isPublished Boolean  @default(false)
+  authorId    String
+  unitId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  author      User     @relation(fields: [authorId], references: [id])
+  unit        Unit     @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  media       GalleryMedia[]
+  articles    ArticleGallery[]
+
+  @@unique([slug, unitId])
+  @@index([unitId])
+  @@index([authorId])
+  @@index([isPublished])
+  @@map("galleries")
+}
+
+// ===========================================
+// BLOG: GALLERY-MEDIA JUNCTION
+// ===========================================
+
+model GalleryMedia {
+  galleryId String
+  mediaId   String
+  order     Int    @default(0)
+  caption   String?
+
+  gallery   Gallery @relation(fields: [galleryId], references: [id], onDelete: Cascade)
+  media     Media   @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@id([galleryId, mediaId])
+  @@map("gallery_media")
+}
+
+// ===========================================
+// BLOG: ARTICLE-GALLERY JUNCTION
+// ===========================================
+
+model ArticleGallery {
+  articleId String
+  galleryId String
+
+  article   Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  gallery   Gallery @relation(fields: [galleryId], references: [id], onDelete: Cascade)
+
+  @@id([articleId, galleryId])
+  @@map("article_galleries")
 }
