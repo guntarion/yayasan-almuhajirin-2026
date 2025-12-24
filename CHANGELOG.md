@@ -1,3 +1,9 @@
+## 2025-12-25 04:39:40
+
+feat(keuangan): add CSV seed script for program kerja data
+
+---
+
 ## 2025-12-24 21:52:15
 
 feat(keuangan): add API routes and database seed for finance module
