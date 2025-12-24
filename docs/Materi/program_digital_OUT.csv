@@ -1,0 +1,302 @@
+IDUR,NO,BIDANG,KODE,KATEGORI,KETERANGAN,TOTAL,JANUARI,FEBRUARI,MARET,APRIL,MEI,JUNI,JULI,AGUSTUS,SEPTEMBER,OKTOBER,NOVEMBER,DESEMBER
+1,1,SEKRETARIAT,OT-01-01,ATK & Perlengkapan Kantor,ATK Fotocopy Kesekretariatan dan Unit,6.000.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000
+1,2,SEKRETARIAT,OT-01-02,ATK & Perlengkapan Kantor,Inventarisasi dan Appraisal Aset,2.000.000,,,,,,,,2.000.000,,,,
+1,3,SEKRETARIAT,OT-01-03,Konsumsi & Rapat,Konsumsi Rapat Pembina,2.800.000,,400.000,400.000,400.000,,400.000,,400.000,,400.000,,400.000
+1,4,SEKRETARIAT,OT-01-04,Konsumsi & Rapat,Konsumsi Rapat Pengawas,3.600.000,300.000,300.000,300.000,300.000,300.000,300.000,300.000,300.000,300.000,300.000,300.000,300.000
+1,5,SEKRETARIAT,OT-01-05,Konsumsi & Rapat,Konsumsi Rapat Pengurus,2.400.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000
+1,6,SEKRETARIAT,OT-01-06,Konsumsi & Rapat,Biaya Rapat Gabungan,8.000.000,,,,2.000.000,,,,2.000.000,,,2.000.000,2.000.000
+1,7,SEKRETARIAT,OT-01-07,Konsumsi & Rapat,Konsumsi Harian ,5.500.000,500.000,,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000
+1,8,SEKRETARIAT,OT-01-08,Kompensasi Pengurus,Transport Pengurus,36.000.000,3.000.000,3.000.000,3.000.000,3.000.000,3.000.000,3.000.000,3.000.000,3.000.000,3.000.000,3.000.000,3.000.000,3.000.000
+1,9,SEKRETARIAT,OT-01-09,Kompensasi Pengurus,Kinerja Pengurus,30.000.000,2.500.000,2.500.000,2.500.000,2.500.000,2.500.000,2.500.000,2.500.000,2.500.000,2.500.000,2.500.000,2.500.000,2.500.000
+1,10,SEKRETARIAT,OT-01-10,Kompensasi Pengurus,Lemburan Pekerjaan Kesekretariatan ,3.840.000,,,,,960.000,,960.000,,,960.000,,960.000
+1,11,SEKRETARIAT,OT-01-11,Transport Unit,Transport Unit Bidang,12.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000
+1,12,SEKRETARIAT,OT-01-12,Gaji Staff,THR staff sekretariatan,400.000,,,,400.000,,,,,,,,
+1,13,SEKRETARIAT,OT-01-13,Gaji Staff,THR staff keuangan,400.000,,,,400.000,,,,,,,,
+1,14,SEKRETARIAT,OT-01-14,Gaji Staff,THR staff koordinator unit,400.000,,,,400.000,,,,,,,,
+1,15,SEKRETARIAT,OT-01-15,Gaji Staff,HR staff sekretariat,20.400.000,1.700.000,1.700.000,1.700.000,1.700.000,1.700.000,1.700.000,1.700.000,1.700.000,1.700.000,1.700.000,1.700.000,1.700.000
+1,16,SEKRETARIAT,OT-01-16,Gaji Staff,HR staff keuangan,12.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000
+1,17,SEKRETARIAT,OT-01-17,Gaji Staff,HR staff koordinator unit,12.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000
+1,18,SEKRETARIAT,OT-01-18,Hampers & Gift,Hampers Pembina,1.000.000,,,1.000.000,,,,,,,,,
+1,19,SEKRETARIAT,OT-01-19,Hampers & Gift,Hampers Pengawas,800.000,,,800.000,,,,,,,,,
+1,20,SEKRETARIAT,OT-01-20,THR & Tunjangan,THR Pengurus,2.800.000,,,2.800.000,,,,,,,,,
+1,21,SEKRETARIAT,OT-01-21,THR & Tunjangan,THR Unit Bidang,1.000.000,,,1.000.000,,,,,,,,,
+1,22,SEKRETARIAT,OT-01-22,Seragam & Perlengkapan,Seragam staff sekretariat,2.000.000,,,2.000.000,,,,,,,,,
+1,23,SEKRETARIAT,OT-01-23,IT & Aplikasi,Develop Aplikasi & Biaya Hosting Aplikasi,4.500.000,,,,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000
+1,24,SEKRETARIAT,OT-01-24,Publikasi & Dokumentasi,Cetak buku AD ART,0,,,,,,,,,,,,
+1,25,SEKRETARIAT,OT-01-25,Publikasi & Dokumentasi,Penyusunan Sejarah Al Muhajirin,0,,,,,,,,,,,,
+1,26,SEKRETARIAT,OT-01-26,Event & Kegiatan,Family Gathering/Raker,10.000.000,,,,,,,,,,,10.000.000,
+1,27,SEKRETARIAT,OT-01-27,Event & Kegiatan,Pengurusan KBIH Depag,2.000.000,,,,,,,,,2.000.000,,,
+2,1,PEMELIHARAAN & PEMBANGUNAN,OT-02-01,Perbaikan Aset,Perbaikan Aset,7.200.000,600.000,600.000,600.000,600.000,600.000,600.000,600.000,600.000,600.000,600.000,600.000,600.000
+2,2,PEMELIHARAAN & PEMBANGUNAN,OT-02-02,Pemeliharaan Rutin,Pemeliharaan Aset,24.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000
+2,3,PEMELIHARAAN & PEMBANGUNAN,OT-02-03,Pengadaan & Kontrak,Pengadaan dan Pengelolaan Kontrak Vendor,0,,,,,,,,,,,,
+2,4,PEMELIHARAAN & PEMBANGUNAN,OT-02-04,Perencanaan & Pengembangan,"Pengembangan Perencanaan (Survei, Drawing, dst) Master Plan",1.000.000,,,,,,,,1.000.000,,,,
+2,5,PEMELIHARAAN & PEMBANGUNAN,OT-02-05,Koordinasi & Perencanaan,Koordinasi Proyek Pembangunan Baru,0,,,,,,,,,,,,
+2,6,PEMELIHARAAN & PEMBANGUNAN,OT-02-06,Koordinasi & Perencanaan,Penyusunan Rencana Anggaran Pembangunan,0,,,,,,,,,,,,
+2,7,PEMELIHARAAN & PEMBANGUNAN,OT-02-07,Proyek Renovasi,Pelaksanaan Renovasi Terencana (Poliklinik - Renov dan AC),0,,,,,,,,,,,,
+2,8,PEMELIHARAAN & PEMBANGUNAN,OT-02-08,Proyek Renovasi,Pelaksanaan Renovasi Terencana (Daycare - Renov Atas),0,,,,,,,,,,,,
+2,9,PEMELIHARAAN & PEMBANGUNAN,OT-02-09,Proyek Renovasi,Pelaksanaan Renovasi Terencana (KBTK - Tambah Daya),0,,,,,,,,,,,,
+2,10,PEMELIHARAAN & PEMBANGUNAN,OT-02-10,Proyek Renovasi,Pelaksanaan Renovasi Terencana (KBTK - Talang),0,,,,,,,,,,,,
+2,11,PEMELIHARAAN & PEMBANGUNAN,OT-02-11,Proyek Renovasi,Pelaksanaan Renovasi Terencana (Masjid - Renov KM),0,,,,,,,,,,,,
+2,12,PEMELIHARAAN & PEMBANGUNAN,OT-02-12,Proyek Renovasi,Pelaksanaan Renovasi Terencana (Masjid - Jalan Disabilitas),0,,,,,,,,,,,,
+2,13,PEMELIHARAAN & PEMBANGUNAN,OT-02-13,Proyek Renovasi,Pelaksanaan Renovasi Terencana (Masjid - Jembatan Pintu Barat),0,,,,,,,,,,,,
+2,14,PEMELIHARAAN & PEMBANGUNAN,OT-02-14,Proyek Renovasi,Pelaksanaan Renovasi Terencana (meninggikan kolam),20.000.000,,,,,,20.000.000,,,,,,
+2,15,PEMELIHARAAN & PEMBANGUNAN,OT-02-15,Proyek Renovasi,Pelaksanaan Renovasi Terencana (Gudang - Renov),0,,,,,,,,,,,,
+2,16,PEMELIHARAAN & PEMBANGUNAN,OT-02-16,Operasional,Penanganan Mendesak Perbaikan Fasilitas,0,,,,,,,,,,,,
+2,17,PEMELIHARAAN & PEMBANGUNAN,OT-02-17,Pemeliharaan Rutin,Program Pelatihan Keselamatan dan Pemeliharaan,0,,,,,,,,,,,,
+2,18,PEMELIHARAAN & PEMBANGUNAN,OT-02-18,Audit & Evaluasi,Audit dan Evaluasi Aset Yayasan,0,,,,,,,,,,,,
+2,19,PEMELIHARAAN & PEMBANGUNAN,OT-02-19,Audit & Evaluasi,Pembaruan Inventaris dan Penilaian Aset,0,,,,,,,,,,,,
+3,1,KEBERSIHAN KEAMANAN,OT-03-01,Pelatihan & Pengembangan,Pelatihan petugas kebersihan (semua),400.000,100.000,,,100.000,,,100.000,,,100.000,,
+3,2,KEBERSIHAN KEAMANAN,OT-03-02,Gaji & Kompensasi,Hire Petugas Umum,8.400.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000
+3,3,KEBERSIHAN KEAMANAN,OT-03-03,Rapat & Koordinasi,Rapat koordinasi dengan unit lain,0,,,,,,,,,,,,
+3,4,KEBERSIHAN KEAMANAN,OT-03-04,Alat & Bahan Kebersihan,Pengadaan alat dan bahan kebersihan,2.400.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000
+3,5,KEBERSIHAN KEAMANAN,OT-03-05,Alat & Bahan Kebersihan,Pembaruan sistem (alat/perangkat) keamanan,0,0,,,,,,,,,,,
+3,6,KEBERSIHAN KEAMANAN,OT-03-06,Operasional Kebersihan,Pembersihan berkala dan iuran sampah ,2.400.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000
+3,7,KEBERSIHAN KEAMANAN,OT-03-07,Operasional Kebersihan,Biaya Potong Rumput,1.200.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000
+3,8,KEBERSIHAN KEAMANAN,OT-03-08,Operasional Keamanan,Patroli keamanan,300.000,25.000,25.000,25.000,25.000,25.000,25.000,25.000,25.000,25.000,25.000,25.000,25.000
+3,9,KEBERSIHAN KEAMANAN,OT-03-09,Operasional Keamanan,CCTV Lapangan,0,,,,,,,,,,,,
+3,10,KEBERSIHAN KEAMANAN,OT-03-10,Operasional Keamanan,Keamanan Jum'at,5.400.000,400.000,500.000,500.000,500.000,400.000,400.000,500.000,500.000,400.000,400.000,500.000,400.000
+3,11,KEBERSIHAN KEAMANAN,OT-03-11,Operasional Keamanan,Buat Karcis Parkir dan Rambu Keamanan,300.000,50.000,,,50.000,,,50.000,,,50.000,50.000,50.000
+3,12,KEBERSIHAN KEAMANAN,OT-03-12,Operasional Keamanan,Seragam Petugas Keamanan/Kebersihan,500.000,500.000,,,,,,,,,,,
+4,1,KEHUMASAN,OT-04-01,Perangkat & Alat,Perangkat publikasi Kamera,5.000.000,5.000.000,,,,,,,,,,,
+4,2,KEHUMASAN,OT-04-02,Publikasi Unit,Kehumasan/Publikasi untuk Usaha,0,,,,,,,,,,,,
+4,3,KEHUMASAN,OT-04-03,Publikasi Unit,Kehumasan/Publikasi untuk Masjid,8.400.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000
+4,4,KEHUMASAN,OT-04-04,Publikasi Unit,Kehumasan/Publikasi untuk Remas MKidz,0,,,,,,,,,,,,
+4,5,KEHUMASAN,OT-04-05,Publikasi Unit,Kehumasan/Publikasi untuk Kemuslimahan,0,,,,,,,,,,,,
+4,6,KEHUMASAN,OT-04-06,Publikasi Unit,Kehumasan/Publikasi untuk DC,0,,,,,,,,,,,,
+4,7,KEHUMASAN,OT-04-07,Publikasi Unit,Kehumasan/Publikasi untuk KBTK,0,,,,,,,,,,,,
+4,8,KEHUMASAN,OT-04-08,Publikasi Unit,Kehumasan/Publikasi untuk TPQ,0,,,,,,,,,,,,
+4,9,KEHUMASAN,OT-04-09,Publikasi Unit,Kehumasan/Publikasi untuk Poliklinik & Kesehatan,0,,,,,,,,,,,,
+4,10,KEHUMASAN,OT-04-10,Publikasi Unit,"Kehumasan/Publikasi untuk Ambulans, Tanggap Bencana",0,,,,,,,,,,,,
+4,11,KEHUMASAN,OT-04-11,Publikasi Unit,Kehumasan/Publikasi untuk Sakit/Kematian,0,,,,,,,,,,,,
+4,12,KEHUMASAN,OT-04-12,Publikasi Unit,Kehumasan/Publikasi untuk LAZ,0,,,,,,,,,,,,
+4,19,KEHUMASAN,OT-04-19,Operasional,Publikasi 'pers' ke jama'ah,0,,,,,,,,,,,,
+4,13,KEHUMASAN,OT-04-13,Strategi Komunikasi,Susun strategi komunikasi yayasan,0,,,,,,,,,,,,
+4,20,KEHUMASAN,OT-04-20,Dokumentasi,Dokumentasi kegiatan,0,,,,,,,,,,,,
+4,14,KEHUMASAN,OT-04-14,Media Cetak,Desain dan Cetak kalender,7.000.000,7.000.000,,,,,,,,,,,
+4,15,KEHUMASAN,OT-04-15,Media Digital,Develop & Perbarui website,250.000,250.000,,,,,,,,,,,
+4,16,KEHUMASAN,OT-04-16,Media Digital,Kampanye media sosial,0,,,,,,,,,,,,
+4,18,KEHUMASAN,OT-04-18,Media Cetak,Produksi buletin Idul Fitri & Idul Adha,0,,,,,,,,,,,,
+4,17,KEHUMASAN,OT-04-17,Pelatihan & Pengembangan,Workshop keterampilan kehumasan,0,,,,,,,,,,,,
+4,21,KEHUMASAN,OT-04-21,Database & Sistem Informasi,Database Jama'ah,0,,,,,,,,,,,,
+4,21,KEHUMASAN,,Media Digital,Berlangganan CANVA tahunan,2.100.000,2.100.000,,,,,,,,,,,
+5,1,USAHA & PENGADAAN,OT-05-01,Identifikasi Sumber Dana,Identifikasi dan Penjajakan Sumber Dana Baru,0,,,,,,,,,,,,
+5,6,USAHA & PENGADAAN,OT-05-06,Pengembangan Usaha,Analisis Pasar untuk Pengembangan Usaha,0,,,,,,,,,,,,
+5,2,USAHA & PENGADAAN,OT-05-02,Pengembangan Usaha,Pengembangan Inisiatif Usaha,0,,,,,,,,,,,,
+5,3,USAHA & PENGADAAN,OT-05-03,Penggalangan Dana,Pembaruan Strategi Penggalangan Dana,0,,,,,,,,,,,,
+5,4,USAHA & PENGADAAN,OT-05-04,Monitoring & Pelaporan,Pengelolaan dan Pemantauan Usaha Berjalan,0,,,,,,,,,,,,
+5,5,USAHA & PENGADAAN,OT-05-05,Monitoring & Pelaporan,Pembuatan Laporan Keuangan Berkala,0,,,,,,,,,,,,
+5,7,USAHA & PENGADAAN,OT-05-07,Koordinasi,Koordinasi dengan Unit Lain untuk Sinergi Usaha,0,,,,,,,,,,,,
+5,8,USAHA & PENGADAAN,OT-05-08,Pengembangan Kapasitas,Peningkatan Kapasitas Usaha,0,,,,,,,,,,,,
+5,9,USAHA & PENGADAAN,OT-05-09,Koperasi,Pembentukan Koperasi,0,,,,,,,,,,,,
+5,10,USAHA & PENGADAAN,OT-05-10,Program Start-up,Start-up Program Usaha Umroh & Haji,0,,,,,,,,,,,,
+5,11,USAHA & PENGADAAN,OT-05-11,Program Start-up,Start-up Program Usaha Aqiqoh & Makanan,0,,,,,,,,,,,,
+5,12,USAHA & PENGADAAN,OT-05-12,Program Start-up,Start-up Program Usaha Analisa Bakat Sidik Jari,0,,,,,,,,,,,,
+5,13,USAHA & PENGADAAN,OT-05-13,Program Start-up,Start-up Program Wedding Organizer,0,,,,,,,,,,,,
+5,14,USAHA & PENGADAAN,OT-05-14,Program Start-up,Kajian Ulang Pendirian SD,0,,,,,,,,,,,,
+5,15,USAHA & PENGADAAN,OT-05-15,Program Qurban,Penyediaan Hewan Qurban,550.000.000,,,,,550.000.000,,,,,,,
+5,16,USAHA & PENGADAAN,OT-05-16,Program Zakat Fitrah,Penyediaan Beras Zakat Fitrah,0,,,,,,,,,,,,
+6,1,KEDAI,OT-06-01,Operasional Kedai,Perbaikan minor kedai,0,,,,,,,,,,,,
+6,2,KEDAI,OT-06-02,Kemitraan & Vendor,Kolaborasi dengan Vendor Makanan / Tenant,900.000,,300.000,300.000,300.000,,,,,,,,
+6,3,KEDAI,OT-06-03,Evaluasi & Survey,Survey Kepuasan Pelanggan,0,,,,,,,,,,,,
+7,1,KOLAM RENANG,OT-07-01,Pemeliharaan & Perbaikan,Pemeliharaan Rutin Kolam Renang,1.080.000,90.000,90.000,90.000,90.000,90.000,90.000,90.000,90.000,90.000,90.000,90.000,90.000
+7,2,KOLAM RENANG,OT-07-02,Pemeliharaan & Perbaikan,Pengadaan dan Pemeliharaan Peralatan Keselamatan,0,,,,,,,,,,,,
+7,3,KOLAM RENANG,OT-07-03,Pemeliharaan & Perbaikan,Pemeliharaan/Perbaikan Insidentil,1.000.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,,
+7,4,KOLAM RENANG,OT-07-04,Pemeliharaan & Perbaikan,Obat-Obatan Pembersih,3.000.000,,,,,,,1.500.000,,,,,1.500.000
+7,5,KOLAM RENANG,OT-07-05,Alat & Perlengkapan,Pelampung Karakter,0,0,,,,,,,,,,,
+7,6,KOLAM RENANG,OT-07-06,Administrasi,Penjadwalan Penggunaan Kolam Renang,0,,,,,,,,,,,,
+7,7,KOLAM RENANG,OT-07-07,Administrasi,Manajemen Administrasi Kolam Renang,0,,,,,,,,,,,,
+7,8,KOLAM RENANG,OT-07-08,Pelatihan & Keselamatan,Pelatihan Keselamatan dan P3K,0,,,,,,,,,,,,
+7,9,KOLAM RENANG,OT-07-09,Program & Kegiatan,Program Kelas Renang untuk KBTK,0,,,,,,,,,,,,
+7,10,KOLAM RENANG,OT-07-10,Koordinasi,Koordinasi dengan Unit KBTK,0,,,,,,,,,,,,
+7,11,KOLAM RENANG,OT-07-11,Utilities,PDAM,18.000.000,1.500.000,1.500.000,1.500.000,1.500.000,1.500.000,1.500.000,1.500.000,1.500.000,1.500.000,1.500.000,1.500.000,1.500.000
+7,12,KOLAM RENANG,OT-07-12,Gaji & Kompensasi,HR Petugas Kebersihan,12.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000
+7,13,KOLAM RENANG,OT-07-13,Gaji & Kompensasi,THR,0,,,,,,,,,,,,
+7,14,KOLAM RENANG,OT-07-14,Promosi & Marketing,Promosi (Banner/Brosur),240.000,20.000,20.000,20.000,20.000,20.000,20.000,20.000,20.000,20.000,20.000,20.000,20.000
+7,15,KOLAM RENANG,OT-07-15,Pengembangan & Perbaikan,Renovasi Kolam Renang,0,,,,,,,,,,,,
+8,1,KETAKMIRAN,OT-08-01,Alokasi Operasional,Alokasi Operasional Sekretariat,120.000.000,10.000.000,10.000.000,10.000.000,10.000.000,10.000.000,10.000.000,10.000.000,10.000.000,10.000.000,10.000.000,10.000.000,10.000.000
+8,2,KETAKMIRAN,OT-08-02,ATK & Percetakan,Fotocopy / percetakan / ATK,1.800.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000
+8,3,KETAKMIRAN,OT-08-03,Gaji & Honor,Gaji Marbot dan Muadzin,48.000.000,4.000.000,4.000.000,4.000.000,4.000.000,4.000.000,4.000.000,4.000.000,4.000.000,4.000.000,4.000.000,4.000.000,4.000.000
+8,4,KETAKMIRAN,OT-08-04,Gaji & Honor,Gaji Petugas Kebersihan,6.000.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000
+8,5,KETAKMIRAN,OT-08-05,Pengajian Rutin,Pengajian Ahad ba'da Magrib,15.300.000,1.500.000,1.200.000,1.200.000,1.200.000,1.200.000,1.500.000,1.200.000,1.200.000,1.200.000,1.200.000,1.200.000,1.500.000
+8,6,KETAKMIRAN,OT-08-06,Pengajian Rutin,Pengajian Ahad Subuh,16.500.000,1.600.000,1.300.000,1.300.000,1.300.000,1.300.000,1.600.000,1.300.000,1.300.000,1.300.000,1.300.000,1.300.000,1.600.000
+8,7,KETAKMIRAN,OT-08-07,Pengajian Rutin,Pengajian Rabu Maghrib,6.000.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000
+8,8,KETAKMIRAN,OT-08-08,Pengajian Rutin,"Pengajian Kamis, Subuh",12.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000
+8,9,KETAKMIRAN,OT-08-09,Pengajian Rutin,Pengajian Selasa ba'da Magrib,9.000.000,750.000,750.000,750.000,750.000,750.000,750.000,750.000,750.000,750.000,750.000,750.000,750.000
+8,10,KETAKMIRAN,OT-08-10,Pengajian Rutin,Pengajian Nur Muhajirin,4.000.000,800.000,,,,800.000,,800.000,,800.000,,800.000,
+8,11,KETAKMIRAN,OT-08-11,Pengajian Rutin,Pengajian Riyadush S & Siroh N,9.600.000,800.000,800.000,800.000,800.000,800.000,800.000,800.000,800.000,800.000,800.000,800.000,800.000
+8,12,KETAKMIRAN,OT-08-12,Program Hari Besar Islam,Peringatan Isra Mi’raj,0,,0,0,,,,,,,,,
+8,13,KETAKMIRAN,OT-08-13,Program Hari Besar Islam,Project Rangkaian Program Ramadhan,32.500.000,,,,32.500.000,,,,,,,,
+8,14,KETAKMIRAN,OT-08-14,Program Hari Besar Islam,Halal Bihalal Syawal,3.500.000,,,,3.500.000,,,,,,,,
+8,15,KETAKMIRAN,OT-08-15,Program Hari Besar Islam,Rangkaian Idul Adha (Sholat Idul Adha),2.500.000,,,,,,2.500.000,,,,,,
+8,16,KETAKMIRAN,OT-08-16,Program Hari Besar Islam,Peringatan Maulid,0,,,,,,,,,0,,,
+8,17,KETAKMIRAN,OT-08-17,Program Hari Besar Islam,Peringatan Tahun Baru Hijriyah,0,,,,,,,0,,,,,
+8,18,KETAKMIRAN,OT-08-18,Program Hari Besar Islam,Kegiatan Sholat Gerhana,1.500.000,500.000,500.000,500.000,,,,,,,,,
+8,19,KETAKMIRAN,OT-08-19,Kajian Akbar,Kajian Akbar/Tematik Narasumber Regional,1.500.000,,,,,,1.500.000,,,,,,
+8,20,KETAKMIRAN,OT-08-20,Kajian Akbar,Kajian Akbar/Tematik Narasumber Nasional,2.500.000,,,,,,,,2.500.000,,,,
+8,21,KETAKMIRAN,OT-08-21,Kegiatan Sosial,Kegiatan Sosial Komunitas,0,,,,,,,,,,,,
+8,22,KETAKMIRAN,OT-08-22,Konsumsi & Katering,Nasi bungkus jumat berkah,153.000.000,15.000.000,12.000.000,12.000.000,15.000.000,15.000.000,12.000.000,12.000.000,12.000.000,12.000.000,12.000.000,12.000.000,12.000.000
+8,23,KETAKMIRAN,OT-08-23,Konsumsi & Katering,Pengajian Ahad ke 5 + Konsumsi,3.000.000,1.000.000,,,,,1.000.000,,,,,,1.000.000
+8,24,KETAKMIRAN,OT-08-24,Konsumsi & Katering,Konsumsi kajian dan takjil,24.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000
+8,25,KETAKMIRAN,OT-08-25,Konsumsi & Katering,Makanan minuman tamu,2.400.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000
+8,26,KETAKMIRAN,OT-08-26,Konsumsi & Katering,Konsumsi rapat,2.400.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000
+8,27,KETAKMIRAN,OT-08-27,Konsumsi & Katering,Air minum Jumat dan Harian,16.800.000,1.400.000,1.400.000,1.400.000,1.400.000,1.400.000,1.400.000,1.400.000,1.400.000,1.400.000,1.400.000,1.400.000,1.400.000
+8,28,KETAKMIRAN,OT-08-28,Pembinaan & Pelatihan,Ikrar mua'alaf,0,,,,,,,,,,,,
+8,29,KETAKMIRAN,OT-08-29,Pembinaan & Pelatihan,Pelatihan Mualaf dan Penghijrah,0,,,,,,,,,,,,
+8,30,KETAKMIRAN,OT-08-30,Pemeliharaan & Kebersihan,Pembersihan kipas angin,2.400.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000
+8,31,KETAKMIRAN,OT-08-31,Pemeliharaan & Kebersihan,Pembersihan AC Standing Floor 6 Unit,1.600.000,,,,,,800.000,,,800.000,,,
+8,32,KETAKMIRAN,OT-08-32,Pemeliharaan & Kebersihan,Pembersihan AC Split 10 Unit,1.600.000,,,,,,800.000,,,800.000,,,
+8,33,KETAKMIRAN,OT-08-33,Pemeliharaan & Kebersihan,Pembersihan karpet 2 kali 483m x 11.000,10.626.000,5.313.000,,,,5.313.000,,,,,,,
+8,34,KETAKMIRAN,OT-08-34,Pemeliharaan & Kebersihan,Perlengkapan / kebersihan,9.000.000,750.000,750.000,750.000,750.000,750.000,750.000,750.000,750.000,750.000,750.000,750.000,750.000
+8,35,KETAKMIRAN,OT-08-35,Program Kesehatan,Program Kesehatan Jama'ah,0,0,0,0,0,0,0,0,0,0,0,0,0
+8,36,KETAKMIRAN,OT-08-36,Program Tahfidz,Program Tahfidz Al-Qur'an,0,0,0,0,0,0,0,0,0,0,0,0,0
+8,37,KETAKMIRAN,OT-08-37,Proyek Infrastruktur,Proyek Tempat Wudhu,200.000.000,200.000.000,,,,,,,,,,,
+8,38,KETAKMIRAN,OT-08-38,Proyek Infrastruktur,Proyek Karpet Masjid,50.000.000,50.000.000,,,,,,,,,,,
+8,39,KETAKMIRAN,OT-08-39,Proyek Infrastruktur,Proyek Akses Pintu Masuk Barat,20.000.000,20.000.000,,,,,,,,,,,
+8,40,KETAKMIRAN,OT-08-40,Proyek Infrastruktur,Pengadaan Loker Sepatu/Sandal,15.000.000,15.000.000,,,,,,,,,,,
+8,41,KETAKMIRAN,OT-08-41,Rihlah & Wisata,Program Rihlah Ketakmiran,0,,,,0,,,,,,,,
+8,42,KETAKMIRAN,OT-08-42,Seragam & Perlengkapan,Seragam/sarung Marbot,600.000,,,,600.000,,,,,,,,
+8,43,KETAKMIRAN,OT-08-43,Seragam & Perlengkapan,Seragam Takmir,0,,,,,,,,,,,,
+8,44,KETAKMIRAN,OT-08-44,Transport & Komunikasi,Transport petugas,1.200.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000
+8,45,KETAKMIRAN,OT-08-45,Transport & Komunikasi,Bantuan Pulsa Sekretariat,1.800.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000
+8,46,KETAKMIRAN,OT-08-46,Transport Khatib,Transport Khatib Jum'atan,20.400.000,1.600.000,1.600.000,1.600.000,1.600.000,2.000.000,1.600.000,1.600.000,2.000.000,1.600.000,1.600.000,2.000.000,1.600.000
+8,47,KETAKMIRAN,OT-08-47,Utilities,Rekening Listrik Masjid,60.000.000,5.000.000,5.000.000,5.000.000,5.000.000,5.000.000,5.000.000,5.000.000,5.000.000,5.000.000,5.000.000,5.000.000,5.000.000
+8,48,KETAKMIRAN,OT-08-48,Utilities,Rekening WIFI Masjid,7.200.000,600.000,600.000,600.000,600.000,600.000,600.000,600.000,600.000,600.000,600.000,600.000,600.000
+8,49,KETAKMIRAN,OT-08-49,Utilities,Rekening PDAM Masjid,4.200.000,350.000,350.000,350.000,350.000,350.000,350.000,350.000,350.000,350.000,350.000,350.000,350.000
+8,50,KETAKMIRAN,OT-08-50,Utilities,Honor Teknisi Listrik dan Sound,4.200.000,350.000,350.000,350.000,350.000,350.000,350.000,350.000,350.000,350.000,350.000,350.000,350.000
+9,1,REMASKIDZ,OT-09-01,Kegiatan & Program,Kegiatan Remas/Muhajirin Kidz,9.000.000,500.000,500.000,500.000,1.500.000,500.000,500.000,500.000,1.500.000,500.000,500.000,500.000,1.500.000
+9,2,REMASKIDZ,OT-09-02,Seragam & Perlengkapan,Seragam MKIDZ,0,,,,,,,,,,,,
+9,3,REMASKIDZ,OT-09-03,Event Khusus,Festival Anak Yatim,0,,,,,,,,,,,,
+9,4,REMASKIDZ,OT-09-04,Pelatihan & Pembinaan,Pelatihan Adzan,6.000.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000
+10,1,KEMUSLIMATAN,OT-10-01,Kajian & Pengajian,Kajian Kemuslimahan,5.400.000,450.000,450.000,450.000,450.000,450.000,450.000,450.000,450.000,450.000,450.000,450.000,450.000
+10,2,KEMUSLIMATAN,OT-10-02,Kegiatan & Rihlah,Tadabbur Alam,9.150.000,,,,,,4.575.000,,,,,4.575.000,
+10,3,KEMUSLIMATAN,OT-10-03,Olahraga,Sport Muslimah,4.800.000,400.000,400.000,400.000,400.000,400.000,400.000,400.000,400.000,400.000,400.000,400.000,400.000
+10,4,KEMUSLIMATAN,OT-10-04,Program Ramadhan,Pelayanan Ta'jil di Bulan Ramadhan,0,,,,,,,,,,,,
+11,1,DAYCARE,OT-11-01,Pemeliharaan & Prasarana,Perbaikan/Perawatan Sarana & Prasarana,9.720.000,810.000,810.000,810.000,810.000,810.000,810.000,810.000,810.000,810.000,810.000,810.000,810.000
+11,2,DAYCARE,OT-11-02,Gaji & Kesejahteraan,Kesejahteraan Ustadzah  Daycare,140.610.000,13.930.000,11.480.000,11.480.000,11.580.000,11.580.000,11.580.000,11.580.000,11.480.000,11.480.000,11.480.000,11.480.000,11.480.000
+11,3,DAYCARE,OT-11-03,Operasional,Operasional,44.496.000,3.708.000,3.708.000,3.708.000,3.708.000,3.708.000,3.708.000,3.708.000,3.708.000,3.708.000,3.708.000,3.708.000,3.708.000
+11,4,DAYCARE,OT-11-04,Pelatihan & Pengembangan,Pengembangan Keprofesian Pengasuh,200.000,,,,,,,,,200.000,,,
+11,5,DAYCARE,OT-11-05,Kegiatan & Program,Kegiatan Daycare,7.092.000,,1.182.000,1.182.000,1.182.000,,1.182.000,,1.182.000,,1.182.000,,
+11,6,DAYCARE,OT-11-06,Utilities,"Langganan Listrik, Wifi, Telp",10.200.000,850.000,850.000,850.000,850.000,850.000,850.000,850.000,850.000,850.000,850.000,850.000,850.000
+11,7,DAYCARE,OT-11-07,Alat & ATK,Biaya Penyediaan Alat Penunjang & ATK,20.150.000,2.000.000,3.000.000,3.000.000,1.000.000,1.500.000,2.000.000,3.000.000,1.000.000,1.000.000,1.000.000,650.000,1.000.000
+11,8,DAYCARE,OT-11-08,P3K & Kesehatan,P3K,250.000,,50.000,50.000,50.000,,50.000,,50.000,,,,
+11,9,DAYCARE,OT-11-09,Sewa Gedung,Sewa Gedung,48.000.000,4.000.000,4.000.000,4.000.000,4.000.000,4.000.000,4.000.000,4.000.000,4.000.000,4.000.000,4.000.000,4.000.000,4.000.000
+12,1,KBTK,OT-12-01,Alat Tulis & Perlengkapan,Alat-alat Tulis,4.015.000,,,,,,4.015.000,,,,,,
+12,2,KBTK,OT-12-02,Pemeliharaan & Prasarana,Perbaikan/Perawatan Sarana dan Prasarana,6.670.000,,2.230.000,2.230.000,,,2.210.000,,,,,,
+12,3,KBTK,OT-12-03,Gaji & Kesejahteraan,"Gaji Guru, Admin, Petugas",165.600.000,13.800.000,13.800.000,13.800.000,13.800.000,13.800.000,13.800.000,13.800.000,13.800.000,13.800.000,13.800.000,13.800.000,13.800.000
+12,4,KBTK,OT-12-04,Gaji & Kesejahteraan,Kesejahteraan Pendidik dan Tenaga Pendidik,42.790.000,4.279.000,4.279.000,4.279.000,4.279.000,4.279.000,4.279.000,4.279.000,4.279.000,4.279.000,4.279.000,,
+12,5,KBTK,OT-12-05,Seragam Siswa,Pembelian Seragam Siswa,14.400.000,,,14.400.000,,,,,,,,,
+12,6,KBTK,OT-12-06,Perlengkapan Sekolah,Perlengkapan Sekolah,29.690.000,,,,,,29.690.000,,,,,,
+12,7,KBTK,OT-12-07,Media Pembelajaran,Media Pembelajaran,8.000.000,1.000.000,,1.000.000,1.000.000,1.000.000,,1.000.000,1.000.000,1.000.000,,1.000.000,
+12,8,KBTK,OT-12-08,Kegiatan & Program,Penunjang Kegiatan,139.364.000,13.936.400,13.936.400,13.936.400,13.936.400,13.936.400,,13.936.400,13.936.400,13.936.400,13.936.400,13.936.400,
+12,9,KBTK,OT-12-09,Rapat & Administrasi,Rapat Dinas,5.254.000,437.800,437.800,437.800,437.800,437.800,437.800,438.200,437.800,437.800,437.800,437.800,437.800
+12,10,KBTK,OT-12-10,Rapat & Administrasi,Ketempatan Rapat,5.000.000,5.000.000,,,,,,,,,,,
+12,11,KBTK,OT-12-11,Pelatihan & Pengembangan,Pembinaan Ustadzah/Peningkatan SDM,6.400.000,,6.400.000,,,,,,,,,,
+12,12,KBTK,OT-12-12,Gaji & Kesejahteraan,Tunjangan Sosial Ustadzah,1.400.000,140.000,140.000,140.000,140.000,140.000,140.000,,140.000,140.000,140.000,140.000,
+12,13,KBTK,OT-12-13,Perlengkapan Sekolah,Pengadaan Barang,750.000,,150.000,,,150.000,,150.000,,150.000,,150.000,150.000
+12,14,KBTK,OT-12-14,Utilities,"Langganan Listrik, Wifi, Telp",22.842.000,1.903.500,1.903.500,1.903.500,1.903.500,1.903.500,1.903.500,1.903.500,1.903.500,1.903.500,1.903.500,1.903.500,1.903.500
+12,15,KBTK,OT-12-15,Publikasi & Promosi,Publikasi,6.000.000,6.000.000,,,,,,,,,,,
+12,16,KBTK,OT-12-16,Kegiatan & Program,Kegiatan Walimurid,8.910.000,,,4.455.000,,,,4.455.000,,,,,
+12,17,KBTK,OT-12-17,Konsumsi Tamu,"Snack Makan, Minum Tamu Dinas",600.000,,100.000,,100.000,,100.000,,100.000,,100.000,100.000,122.000
+12,18,KBTK,OT-12-18,P3K & Kesehatan,P3K,2.000.000,2.000.000,,,,,,,,,,,
+12,19,KBTK,OT-12-19,Akreditasi & Administrasi,Akreditasi,5.000.000,,5.000.000,,,,,,,,,,
+12,20,KBTK,OT-12-20,Kontribusi ke Yayasan,Kontribusi,100.000.000,,,,,,50.000.000,,50.000.000,,,,
+12,21,KBTK,OT-12-21,BOP,BOP,29.000.000,29.000.000,,,,,,,,,,,
+12,22,KBTK,OT-12-22,Diskon & Promosi,Program Diskon/Promosi,90.000.000,90.000.000,,,,,,,,,,,
+13,1,TPQ,OT-13-01,Gaji & Kompensasi,Gaji guru / staff TPQ,40.200.000,3.350.000,3.350.000,3.350.000,3.350.000,3.350.000,3.350.000,3.350.000,3.350.000,3.350.000,3.350.000,3.350.000,3.350.000
+13,2,TPQ,OT-13-02,THR & Pesangon,THR / Pesangon TPQ,2.600.000,,,,2.600.000,,,,,,,,
+13,3,TPQ,OT-13-03,Ekstrakurikuler,Ekstra Banjari TPQ,2.400.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000
+13,4,TPQ,OT-13-04,Ekstrakurikuler,Ekstra Kaligrafi TPQ,3.000.000,250.000,250.000,250.000,250.000,250.000,250.000,250.000,250.000,250.000,250.000,250.000,250.000
+13,5,TPQ,OT-13-05,Ekstrakurikuler,Ekstra Angklung TPQ,3.600.000,300.000,300.000,300.000,300.000,300.000,300.000,300.000,300.000,300.000,300.000,300.000,300.000
+13,6,TPQ,OT-13-06,Kegiatan & Program,Wisuda TPQ,2.000.000,2.000.000,,,,,,,,,,,
+13,7,TPQ,OT-13-07,Tunjangan Komunikasi,Tunjangan pulsa ustadzah TPQ,600.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000
+13,8,TPQ,OT-13-08,Kegiatan & Program,PHBI & Rihlah TPQ,6.000.000,,1.000.000,1.000.000,,2.000.000,,,1.000.000,,,1.000.000,
+13,9,TPQ,OT-13-09,Rapat & Koordinasi,Pertemuan guru/rapat TPQ,1.800.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000
+13,10,TPQ,OT-13-10,Operasional Kantor,Keperluan Kantor TPQ,1.200.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000
+13,11,TPQ,OT-13-11,Seragam,Seragam guru TPQ,750.000,750.000,,,,,,,,,,,
+13,12,TPQ,OT-13-12,Kebersihan,Kebersihan Kantor TPQ,2.400.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000
+13,13,TPQ,OT-13-13,Publikasi & Kehumasan,Publikasi & Kehumasan TPQ,1.800.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000
+14,1,LAZMU,OT-14-01,Gaji & Kompensasi,Hr Petugas Admin LAZ,7.800.000,650.000,650.000,650.000,650.000,650.000,650.000,650.000,650.000,650.000,650.000,650.000,650.000
+14,2,LAZMU,OT-14-02,Gaji & Kompensasi,Hr Petugas Pick Up LAZ,8.400.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000
+14,3,LAZMU,OT-14-03,Gaji & Kompensasi,Hr Petugas Fundraising,6.000.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000
+14,4,LAZMU,OT-14-04,THR & Tunjangan,THR Pengurus / Staff utk 2 orang,1.000.000,,,,1.000.000,,,,,,,,
+14,5,LAZMU,OT-14-05,Publikasi & Dokumentasi,Produksi LPJ Bulanan,600.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000
+14,6,LAZMU,OT-14-06,Rapat & Koordinasi,Konsumsi Rapat,1.200.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000
+14,7,LAZMU,OT-14-07,Transport,Bantuan Transport utk 2 orang,2.400.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000
+14,8,LAZMU,OT-14-08,Pelatihan & Pengembangan,Pelatihan Fundraising utk 5 orang,1.500.000,,,,,,,,,,,,1.500.000
+14,9,LAZMU,OT-14-09,Operasional Kantor,Fotocopy/ATK/Pulsa LAZ/Admin Bank,1.200.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000
+14,10,LAZMU,OT-14-10,Studi Banding,"Studi Banding dalam kota, 5 orang @ 100rb",1.000.000,,500.000,500.000,,,,,,,,,
+14,11,LAZMU,OT-14-11,Program Beasiswa,Penjaringan dan Seleksi Penerima Beasiswa,200.000,100.000,,,,,,100.000,,,,,
+14,12,LAZMU,OT-14-12,Program Beasiswa,Beasiswa Pendidikan 34 orang ➞ 40 orang @ 125 rb,50.400.000,4.200.000,4.200.000,4.200.000,4.200.000,4.200.000,4.200.000,4.200.000,4.200.000,4.200.000,4.200.000,4.200.000,4.200.000
+14,13,LAZMU,OT-14-13,Program Beasiswa,Pembekalan Penerima Beasiswa,4.000.000,2.000.000,,,,,,2.000.000,,,,,
+14,14,LAZMU,OT-14-14,Konsultasi & Edukasi,Konsultasi Zakat & Wakaf,4.000.000,,2.000.000,2.000.000,,,,,,,,,
+14,15,LAZMU,OT-14-15,Program Infaq,"Infaq Shubuh (Stiker QRIS) 200 x @2,000",400.000,400.000,,,,,,,,,,,
+14,16,LAZMU,OT-14-16,Publikasi & Dokumentasi,Produksi dan Cetak Buletin,4.200.000,350.000,350.000,350.000,350.000,350.000,350.000,350.000,350.000,350.000,350.000,350.000,350.000
+14,17,LAZMU,OT-14-17,Publikasi & Dokumentasi,Produksi Konten Edukasi & Kehumasan,24.600.000,2.000.000,2.000.000,2.300.000,2.300.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000
+14,18,LAZMU,OT-14-18,Penyaluran,Penyaluran Zakat Fitrah & Fidyah,30.000.000,,,,30.000.000,,,,,,,,
+14,19,LAZMU,OT-14-19,Sistem & Database,Pembuatan sheet khusus data lengkap donatur,0,,,,,,,,,,,,
+14,20,LAZMU,OT-14-20,Operasional,Pengalokasian hasil penggalangan dana,0,,,,,,,,,,,,
+14,21,LAZMU,OT-14-21,Sistem & Database,Pembuatan sistem rekap SI Zakat,0,,,,,,,,,,,,
+14,22,LAZMU,OT-14-22,Konsultasi & Edukasi,Layanan Konsultasi Zakat dan Wakaf,0,,,,,,,,,,,,
+14,23,LAZMU,OT-14-23,Rapat & Koordinasi,Rapat rutin koordinasi dg Unit Lain,0,,,,,,,,,,,,
+14,24,LAZMU,OT-14-24,Program Sosial,Makan gratis Ahad Pagi,0,,,,,,,,,,,,
+14,25,LAZMU,OT-14-25,Program Infaq Barang,Infaq pakaian bekas,0,,,,,,,,,,,,
+14,26,LAZMU,OT-14-26,Program Infaq Barang,Infaq botol plastik bekas,0,,,,,,,,,,,,
+14,27,LAZMU,OT-14-27,Infaq Terikat - Sekretaris,Infaq Terikat LAZ - Sekretaris Bendahara,2.000.000,150.000,150.000,150.000,200.000,150.000,200.000,150.000,200.000,150.000,200.000,150.000,150.000
+14,28,LAZMU,OT-14-28,Infaq Terikat - Pengadaan,Infaq Terikat LAZ - Pengadaan,0,,,,,,,,,,,,
+14,29,LAZMU,OT-14-29,Infaq Terikat - Teknik,Infaq Terikat LAZ - Teknik Maintenance Pengembangan,0,,,,,,,,,,,,
+14,30,LAZMU,OT-14-30,Infaq Terikat - Penjaminan Mutu,Infaq Terikat LAZ - Penjaminan Mutu,1.260.000,100.000,100.000,100.000,100.000,160.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000
+14,31,LAZMU,OT-14-31,Infaq Terikat - Personalia,Infaq Terikat LAZ - Personalia HRD,500.000,,50.000,50.000,50.000,,50.000,50.000,50.000,50.000,50.000,50.000,50.000
+14,32,LAZMU,OT-14-32,Infaq Terikat - Kebersihan,Infaq Terikat LAZ - Kebersihan Keamanan,0,,,,,,,,,,,,
+14,33,LAZMU,OT-14-33,Infaq Terikat - Humas,Infaq Terikat LAZ - Humas Publikasi,1.000.000,100.000,100.000,100.000,100.000,100.000,100.000,,100.000,100.000,100.000,100.000,
+14,34,LAZMU,OT-14-34,Infaq Terikat - Ibadah,Infaq Terikat LAZ - Ibadah dan Da'wah,0,,,,,,,,,,,,
+14,35,LAZMU,OT-14-35,Infaq Terikat - Kajian,Infaq Terikat LAZ - Kegiatan Kajian Masjid,0,,,,,,,,,,,,
+14,36,LAZMU,OT-14-36,Infaq Terikat - Masjid,Infaq Terikat LAZ - Operasional Masjid,0,,,,,,,,,,,,
+14,37,LAZMU,OT-14-37,Infaq Terikat - Remas,Infaq Terikat LAZ - Remas/MKidz,600.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000
+14,38,LAZMU,OT-14-38,Infaq Terikat - TPQ,Infaq Terikat LAZ - TPQ,30.000.000,2.500.000,2.500.000,2.500.000,2.500.000,2.500.000,2.500.000,2.500.000,2.500.000,2.500.000,2.500.000,2.500.000,2.500.000
+14,39,LAZMU,OT-14-39,Infaq Terikat - Muslimah,Infaq Terikat LAZ - Muslimah,600.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000
+14,40,LAZMU,OT-14-40,Infaq Terikat - Daycare,Infaq Terikat LAZ - DayCare,0,,,,,,,,,,,,
+14,41,LAZMU,OT-14-41,Infaq Terikat - KBTK,Infaq Terikat LAZ - KBTK Al Muhajirin,0,,,,,,,,,,,,
+14,42,LAZMU,OT-14-42,Infaq Terikat - Poliklinik,Infaq Terikat LAZ - Poliklinik,1.200.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000,100.000
+14,43,LAZMU,OT-14-43,Infaq Terikat - Kolam,Infaq Terikat LAZ - Kolam Renang,0,,,,,,,,,,,,
+14,44,LAZMU,OT-14-44,Infaq Terikat - Lainnya,Infaq Terikat LAZ - LAZ Muhajirin Rewwin,0,,,,,,,,,,,,
+14,45,LAZMU,OT-14-45,Infaq Terikat - Ambulance,Infaq Terikat LAZ - Ambulance,3.000.000,250.000,250.000,250.000,250.000,250.000,250.000,250.000,250.000,250.000,250.000,250.000,250.000
+14,46,LAZMU,OT-14-46,Infaq Terikat - Jenazah,Infaq Terikat LAZ - Perawatan Jenazah,600.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000
+14,47,LAZMU,OT-14-47,Support Ambulance,Support Ambulance,12.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000
+14,48,LAZMU,OT-14-48,Support Jenazah,Support Perawatan Jenazah,1.800.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000,150.000
+15,1,AMBULANS,OT-15-01,Gaji & Kompensasi,Biaya Sopir + Kernet,9.600.000,800.000,800.000,800.000,800.000,800.000,800.000,800.000,800.000,800.000,800.000,800.000,800.000
+15,2,AMBULANS,OT-15-02,Gaji & Kompensasi,Hr Petugas Ambulans,8.400.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000,700.000
+15,3,AMBULANS,OT-15-03,BBM,BBM Kendaraan Ambulans,3.000.000,250.000,250.000,250.000,250.000,250.000,250.000,250.000,250.000,250.000,250.000,250.000,250.000
+15,4,AMBULANS,OT-15-04,Pemeliharaan,Biaya Pemeliharaan Ambulans,1.500.000,,,,,,500.000,,,500.000,,,500.000
+15,5,AMBULANS,OT-15-05,Komunikasi,Pulsa Operasional Petugas Ambulans,0,,,,,,,,,,,,
+15,6,AMBULANS,OT-15-06,Pajak Kendaraan,Pajak Mobil Ambulans,3.000.000,,3.000.000,,,,,,,,,,
+15,7,AMBULANS,OT-15-07,Program Tanggap Bencana,Pengalokasian Infaq Tanggap Bencana,0,,,,,,,,,,,,
+15,8,AMBULANS,OT-15-08,Peralatan,Bed Ambulance,,,,,,,,,,,,,
+15,9,AMBULANS,OT-15-09,Peralatan,Tandu Pasien,2.000.000,2.000.000,,,,,,,,,,,
+16,1,SAKITJENAZAH,OT-16-01,Santunan Kesehatan,Santunan Kesehatan,2.400.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000,200.000
+16,2,SAKITJENAZAH,OT-16-02,Santunan Kematian,Santunan Kematian,7.200.000,600.000,600.000,600.000,600.000,600.000,600.000,600.000,600.000,600.000,600.000,600.000,600.000
+16,3,SAKITJENAZAH,OT-16-03,Perawatan Jenazah,"Perawatan Jenazah (Kain Kafan, Sabun, Shampo, dll)",1.500.000,1.500.000,,,,,,,,,,,
+16,4,SAKITJENAZAH,OT-16-04,Perawatan Jenazah,Pelatihan Perawatan jenazah,2.000.000,,,,,,,,,,2.000.000,,
+16,5,SAKITJENAZAH,OT-16-05,Kehumasan,Kehumasan Sakit/Kematian,0,,,,,,,,,,,,
+16,6,SAKITJENAZAH,OT-16-06,Santunan Kematian,Penyaluran Infaq Santunan Sakit/Kematian,0,,,,,,,,,,,,
+16,7,SAKITJENAZAH,OT-16-07,Pengadaan Peralatan,"Pengadaan ""dipan"" Jenazah",0,,,,,,,,,,,,
+17,1,POLIKLINIK,OT-17-01,Gaji & Kompensasi,Hr. Dokter dan Asisten Dokter Umum,36.000.000,3.000.000,3.000.000,3.000.000,3.000.000,3.000.000,3.000.000,3.000.000,3.000.000,3.000.000,3.000.000,3.000.000,3.000.000
+17,2,POLIKLINIK,OT-17-02,Obat & Farmasi,Pembelian Obat,24.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000,2.000.000
+17,3,POLIKLINIK,OT-17-03,Renovasi & Infrastruktur,Renovasi Poliklinik + AC,5.000.000,5.000.000,,,,,,,,,,,
+17,4,POLIKLINIK,OT-17-04,Perizinan & Administrasi,Pengurusan Izin Poliklinik,0,0,,,,,,,,,,,
+17,5,POLIKLINIK,OT-17-05,Alat Medis,Peralatan medis,5.000.000,5.000.000,,,,,,,,,,,
+17,6,POLIKLINIK,OT-17-06,Publikasi & Promosi,Pembuatan Brosur,0,,,,,,,,,,,,
+17,7,POLIKLINIK,OT-17-07,Pelatihan,Pelatihan Pertolongan Pertama,0,0,,,,,,,,,,,
+17,8,POLIKLINIK,OT-17-08,Operasional Kantor,"Pembelian ATK, Fotocopy, dan Rak",600.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000,50.000
+18,9,POLIGIGI,OT-18-09,Gaji & Kompensasi,Hr. Dokter Gigi & Asisten,16.500.000,1.500.000,1.500.000,0,1.500.000,1.500.000,1.500.000,1.500.000,1.500.000,1.500.000,1.500.000,1.500.000,1.500.000
+18,10,POLIGIGI,OT-18-10,Operasional,Operasional (pembelian obat),11.000.000,1.000.000,1.000.000,0,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000,1.000.000
+19,1,WAFMU,OT-19-01,Gaji & Kompensasi,HR Petugas Admin WAFMU,5.000.000,,500.000,,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000,500.000
+19,2,WAFMU,OT-19-02,Operasional Kantor,Operasional Kantor (ATK Fotocopy),0,0,0,0,0,0,0,0,0,0,0,0,0
+19,3,WAFMU,OT-19-03,Sosialisasi & Edukasi,Sosialisasi & Edukasi Wakaf,5.000.000,5.000.000,0,0,0,0,0,0,0,0,0,0,0
+19,4,WAFMU,OT-19-04,Administrasi Wakaf,Sertifikasi Aset Wakaf (AIW),0,0,0,0,0,0,0,0,0,0,0,0,0
+19,5,WAFMU,OT-19-05,Pemeliharaan Aset,Pemeliharaan Aset Wakaf,0,0,0,0,0,0,0,0,0,0,0,0,0
+19,6,WAFMU,OT-19-06,Wakaf Produktif,Pengembangan Wakaf Produktif,0,0,0,0,0,0,0,0,0,0,0,0,0
+19,7,WAFMU,OT-19-07,Konsultasi & Hukum,Konsultasi Hukum & Syariah,0,0,0,0,0,0,0,0,0,0,0,0,0
+19,8,WAFMU,OT-19-08,Penyaluran Manfaat,Penyaluran Manfaat Wakaf,0,0,0,0,0,0,0,0,0,0,0,0,0
+19,9,WAFMU,OT-19-09,Audit & Pelaporan,Audit & Pelaporan Wakaf,0,0,0,0,0,0,0,0,0,0,0,0,0
+19,10,WAFMU,OT-19-10,Rihlah & Studi Banding,Rihlah & Studi Banding Lembaga Wakaf,0,0,0,0,0,0,0,0,0,0,0,0,0
+19,11,WAFMU,OT-19-11,Gaji & Kompensasi,THR Petugas WAFMU,0,0,0,0,0,0,0,0,0,0,0,0,0

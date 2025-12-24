@@ -3,6 +3,60 @@ Project ini adalah website dari Yayasan Al Muhajirin yang menggunakan satu domai
 Baca ini CLAUDE.md, src/app/units/README.md
 Pelajari src/middleware.ts
 
+Bantu saya to re-create modul keuangan di folder src/app/keuangan untuk diakses di keuangan.localhost:3000
+Ini adalah modul yang difungsikan untuk pengelolaan pencatatan keuangan bagi seluruh unit.
+
+Modul ini sudah diimplementasikan di project berbeda, dan tugas Anda adalah re-create dari project reference ke project ini 
+
+Berikut project reference /Users/guntar/Codes/PROJECTS/almuhajirin/electron-yamr
+
+Pelajari yang berikut ini:
+/Users/guntar/Codes/PROJECTS/almuhajirin/electron-yamr/docs/plan-landasan/01-konsep-akuntansi-nirlaba.md
+/Users/guntar/Codes/PROJECTS/almuhajirin/electron-yamr/docs/plan-landasan/02-struktur-database-REVISED.md
+/Users/guntar/Codes/PROJECTS/almuhajirin/electron-yamr/docs/plan-landasan/02-struktur-database.md
+/Users/guntar/Codes/PROJECTS/almuhajirin/electron-yamr/docs/plan-landasan/03-alur-kerja-aplikasi.md
+/Users/guntar/Codes/PROJECTS/almuhajirin/electron-yamr/docs/plan-landasan/04-technical-architecture.md
+/Users/guntar/Codes/PROJECTS/almuhajirin/electron-yamr/docs/plan-landasan/05-pembelajaran-dari-sia-masjid.md
+
+dan gunakan data lookup ini:
+/Users/guntar/Codes/PROJECTS/almuhajirin/electron-yamr/docs/bulk-import-program-kerja/lookup_status.csv
+/Users/guntar/Codes/PROJECTS/almuhajirin/electron-yamr/docs/bulk-import-program-kerja/lookup_status_kreasi.csv
+/Users/guntar/Codes/PROJECTS/almuhajirin/electron-yamr/docs/bulk-import-program-kerja/lookup_sifat.csv
+/Users/guntar/Codes/PROJECTS/almuhajirin/electron-yamr/docs/bulk-import-program-kerja/lookup_jenis_program.csv
+/Users/guntar/Codes/PROJECTS/almuhajirin/electron-yamr/docs/bulk-import-program-kerja/lookup_frekuensi.csv
+/Users/guntar/Codes/PROJECTS/almuhajirin/electron-yamr/docs/bulk-import-program-kerja/lookup_bidang_unit.csv
+
+Kita masih menggunakan ini:
+/Users/guntar/Codes/PROJECTS/almuhajirin/electron-yamr/src/data/units.ts
+/Users/guntar/Codes/PROJECTS/almuhajirin/electron-yamr/src/data/kode-akun.ts
+
+dan Anda bisa telusuri sendiri bagaimana implementasinya, sesuai keperluan
+
+Sebagai catatan dan panduan PENTING:
+- kita TIDAK menggunakan sqlite. kita sepenuhnya menggunakan postgreSQL src/utils/prisma.ts
+- untuk tiap program kerja, tidak perlu ada detail. kita menggunakan data ini, untuk menjadi data seed: data program pendapatan 2026 docs/Materi/program_digital_IN.csv dan pengeluaran docs/Materi/program_digital_OUT.csv (untuk kode, Anda bisa buat sendiri, yang lebih baik, if possible)
+- untuk development awal, tidak perlu auth; seluruh user tanpa login bisa melakukan operasi. ini juga agar Anda claude code bisa leluasa melakukan testing
+- prioritaskan implementasi modul/fungsi keuangan, modul/fungsi seputar program kerja semisal untuk evaluasinya dikerjakan setelah keuangan beres
+- kita gunakan layout model website alih-alih ala dashboard (dg sidebar). Kita letakkan navigasi untuk fungsi-fungsi di bagian atas alih2 di samping.
+- fungsi2 di src/app/keuangan harus ditata dalam folder yang rapi dan logis, gunakan nested folder jika perlu untuk menunjukkan hierarki sebagaimana menu navigasi yang dilihat user. pembuatan route di src/app/api/keuangan/ juga sebisa mungkin mengikuti struktur frontend agar mudah dilacak
+
+Bagaimana bentuk/layout form-nya, Anda bisa recreate yang lebih baik, dan pastinya HARUS menggunakan theme guide berikut docs/theme-guide-almuhajirin.md
+
+Gunakan logo berikut public/images/Logo-YAMR.png
+
+Secara umum, Anda boleh melakukan improvement dari project reference. Create sub-agent untuk melakukan evaluasi atau pengkritisan xatas konsep/implementasi di project reference. Anda gunakan masukan2 dari sub-agent evaluator, yang tidak terlalu advanced (we are starting small - MVP) dan tidak terlalu rumit. Secara umum, masukan evaluator terkait flow penggunaan aplikasi dan apapun yg membuat aplikasi jadi mudah digunakan, perlu diterima.
+
+Anda bisa buat plan implementasinya, juga digunakan sebagai checklist implementasi yang terus Anda update seiring implementasi. Bagi dalam tahapan2, dan lakukan /checkbuild dan /commit setiap selesai menyelesaikan tahap. Sebelum melakukan /commit, jika ada catatan yg perlu ditambahkan di dokumen checklist, lakukan sebelum /commit
+
+Gunakan sub-agent jika memungkinkan, purely untuk menghemat context window.  Pastikan konteks dan instruksi yang tepat telah diberikan; dan periksa hasil kerja sub agent.
+Lakukan strategic /compact sesuai keperluan
+
+
+
+
+
+
+
 Saya sendiri baru kali ini menggunakan model seperti ini. Shg saya juga belum famiiar dg pengaturan untuk multi unit dalam satu project. Artinya, adalah tugas anda untuk memikirkannya.
 Kondisinya, kita sudah punya website untuk semisal Daycare. Saya minta Anda menduplikasi konten website Daycare, ke project ini, di lokasi yang sesuai. Jika ada kendala teknis, sampaikan, dan selesaikan. Anggap bahwa website unit bisa memiliki struktur yang berbeda satu sama lain.
 

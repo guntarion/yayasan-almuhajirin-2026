@@ -15,6 +15,7 @@ const SUBDOMAIN_ROUTES: Record<string, string> = {
   'wafmu': '/units/wafmu',
   'ambulans': '/units/ambulans',
   'poliklinik': '/units/poliklinik',
+  'keuangan': '/keuangan',
 };
 
 export function middleware(request: NextRequest) {

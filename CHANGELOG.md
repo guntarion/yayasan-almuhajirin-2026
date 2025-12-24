@@ -1,3 +1,9 @@
+## 2025-12-24 21:37:34
+
+feat(keuangan): add finance module foundation with schema, static data, and pages
+
+---
+
 ## 2025-12-24 20:04:26
 
 feat: implement Yayasan Al Muhajirin landing page with themed navbar and footer

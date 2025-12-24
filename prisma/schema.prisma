@@ -378,3 +378,291 @@ model ArticleGallery {
   @@id([articleId, galleryId])
   @@map("article_galleries")
 }
+
+// ===========================================
+// KEUANGAN: ENUMS
+// ===========================================
+
+enum JenisProgram {
+  pendapatan
+  pengeluaran
+}
+
+enum StatusProgram {
+  draft
+  aktif
+  selesai
+  ditunda
+  batal
+}
+
+enum SifatProgram {
+  rutin
+  proyek
+  insidental
+}
+
+enum TransactionType {
+  income
+  expense
+}
+
+enum PaymentMethod {
+  cash
+  bank
+  transfer
+}
+
+enum JournalEntryType {
+  debit
+  credit
+}
+
+enum AccountCategory {
+  aset
+  kewajiban
+  aset_bersih
+  pendapatan
+  beban
+}
+
+enum NormalBalance {
+  debit
+  credit
+}
+
+enum RestrictionType {
+  temporary
+  permanent
+}
+
+// ===========================================
+// KEUANGAN: FISCAL PERIOD (Periode Tahun Fiskal)
+// ===========================================
+
+model FiscalPeriod {
+  id        String   @id @default(cuid())
+  year      Int      @unique
+  name      String   // e.g., "Tahun Fiskal 2025"
+  startDate DateTime
+  endDate   DateTime
+  isActive  Boolean  @default(false)
+  isClosed  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  programs     ProgramKerja[]
+  transactions Transaction[]
+
+  @@map("fiscal_periods")
+}
+
+// ===========================================
+// KEUANGAN: KODE AKUN (Chart of Accounts)
+// ===========================================
+
+model KodeAkun {
+  kode            String          @id
+  nama            String
+  kategori        AccountCategory
+  subKategori     String?
+  normalBalance   NormalBalance
+  isContraAccount Boolean         @default(false)
+  isRestricted    Boolean         @default(false)
+  restrictionType RestrictionType?
+  deskripsi       String?
+  isActive        Boolean         @default(true)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  // Relations
+  programItems      ProgramItem[]   @relation("ProgramItemAccount")
+  pairedProgramItems ProgramItem[]  @relation("ProgramItemPairedAccount")
+  journalEntries    JournalEntry[]
+
+  @@index([kategori])
+  @@index([isActive])
+  @@map("kode_akun")
+}
+
+// ===========================================
+// KEUANGAN: BIDANG (Divisions)
+// ===========================================
+
+model Bidang {
+  kode      String   @id
+  nama      String
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  unitKerja UnitKerja[]
+  programs  ProgramKerja[]
+
+  @@map("bidang")
+}
+
+// ===========================================
+// KEUANGAN: UNIT KERJA (Sub-divisions)
+// ===========================================
+
+model UnitKerja {
+  kode       String   @id
+  nama       String
+  bidangKode String
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // Relations
+  bidang   Bidang         @relation(fields: [bidangKode], references: [kode])
+  programs ProgramKerja[]
+
+  @@index([bidangKode])
+  @@map("unit_kerja")
+}
+
+// ===========================================
+// KEUANGAN: PROGRAM KERJA
+// ===========================================
+
+model ProgramKerja {
+  id             String        @id @default(cuid())
+  kode           String        @unique
+  nama           String
+  bidangKode     String
+  unitKode       String
+  jenis          JenisProgram
+  status         StatusProgram @default(draft)
+  sifat          SifatProgram  @default(rutin)
+  kategori       String?       // e.g., "Gaji & Kompensasi", "Operasional", etc.
+  pic            String?
+  keterangan     String?       @db.Text
+  targetCapaian  String?       @db.Text
+  totalBudget    Decimal       @default(0) @db.Decimal(15, 2)
+  totalRealisasi Decimal       @default(0) @db.Decimal(15, 2)
+  fiscalPeriodId String
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  // Relations
+  bidang       Bidang        @relation(fields: [bidangKode], references: [kode])
+  unitKerja    UnitKerja     @relation(fields: [unitKode], references: [kode])
+  fiscalPeriod FiscalPeriod  @relation(fields: [fiscalPeriodId], references: [id])
+  items        ProgramItem[]
+
+  @@index([bidangKode])
+  @@index([unitKode])
+  @@index([fiscalPeriodId])
+  @@index([jenis])
+  @@index([status])
+  @@map("program_kerja")
+}
+
+// ===========================================
+// KEUANGAN: PROGRAM ITEMS (Detail Item Program)
+// ===========================================
+
+model ProgramItem {
+  id               String   @id @default(cuid())
+  programId        String
+  kodeItem         String   // e.g., "1.2.1", "OT-01-01"
+  namaItem         String
+  keterangan       String?  @db.Text
+  volume           Decimal  @default(1) @db.Decimal(10, 2)
+  satuan           String   @default("unit")
+  hargaSatuan      Decimal  @db.Decimal(15, 2)
+  jumlah           Decimal  @db.Decimal(15, 2) // volume x hargaSatuan
+  kodeAkun         String
+  kodeAkunPasangan String?  // For auto-journal
+  isRestricted     Boolean  @default(false)
+  restrictionType  RestrictionType?
+  realisasi        Decimal  @default(0) @db.Decimal(15, 2)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Monthly budget distribution (optional)
+  jan Decimal? @db.Decimal(15, 2)
+  feb Decimal? @db.Decimal(15, 2)
+  mar Decimal? @db.Decimal(15, 2)
+  apr Decimal? @db.Decimal(15, 2)
+  mei Decimal? @db.Decimal(15, 2)
+  jun Decimal? @db.Decimal(15, 2)
+  jul Decimal? @db.Decimal(15, 2)
+  agu Decimal? @db.Decimal(15, 2)
+  sep Decimal? @db.Decimal(15, 2)
+  okt Decimal? @db.Decimal(15, 2)
+  nov Decimal? @db.Decimal(15, 2)
+  des Decimal? @db.Decimal(15, 2)
+
+  // Relations
+  program      ProgramKerja  @relation(fields: [programId], references: [id], onDelete: Cascade)
+  akun         KodeAkun      @relation("ProgramItemAccount", fields: [kodeAkun], references: [kode])
+  akunPasangan KodeAkun?     @relation("ProgramItemPairedAccount", fields: [kodeAkunPasangan], references: [kode])
+  transactions Transaction[]
+
+  @@unique([programId, kodeItem])
+  @@index([programId])
+  @@index([kodeAkun])
+  @@map("program_items")
+}
+
+// ===========================================
+// KEUANGAN: TRANSACTIONS
+// ===========================================
+
+model Transaction {
+  id              String          @id @default(cuid())
+  transactionCode String          @unique
+  transactionDate DateTime
+  type            TransactionType
+  amount          Decimal         @db.Decimal(15, 2)
+  description     String
+  entityName      String?         // Supplier, donor, etc.
+  paymentMethod   PaymentMethod   @default(bank)
+  isRestricted    Boolean         @default(false)
+  restrictionType RestrictionType?
+  autoJournal     Boolean         @default(true)
+  attachmentPath  String?
+  notes           String?         @db.Text
+  createdBy       String?
+  fiscalPeriodId  String
+  programItemId   String?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  // Relations
+  fiscalPeriod   FiscalPeriod   @relation(fields: [fiscalPeriodId], references: [id])
+  programItem    ProgramItem?   @relation(fields: [programItemId], references: [id])
+  journalEntries JournalEntry[]
+
+  @@index([transactionDate])
+  @@index([fiscalPeriodId])
+  @@index([programItemId])
+  @@index([type])
+  @@map("transactions")
+}
+
+// ===========================================
+// KEUANGAN: JOURNAL ENTRIES (Double-Entry)
+// ===========================================
+
+model JournalEntry {
+  id            String           @id @default(cuid())
+  transactionId String
+  entryType     JournalEntryType
+  kodeAkun      String
+  amount        Decimal          @db.Decimal(15, 2)
+  description   String?
+  createdAt     DateTime         @default(now())
+
+  // Relations
+  transaction Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+  akun        KodeAkun    @relation(fields: [kodeAkun], references: [kode])
+
+  @@index([transactionId])
+  @@index([kodeAkun])
+  @@map("journal_entries")
+}
