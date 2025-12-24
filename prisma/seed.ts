@@ -1,4 +1,6 @@
 import { PrismaClient } from '@prisma/client';
+import { BIDANG_DATA } from '../src/data/keuangan/units';
+import { KODE_AKUN_DATA } from '../src/data/keuangan/kode-akun';
 
 const prisma = new PrismaClient();
 
@@ -58,6 +60,99 @@ const unitCategories = [
   { name: 'Kontak Darurat', slug: 'kontak-darurat', unitId: 'ambulans', icon: 'phone', color: '#ef4444' },
 ];
 
+// Seed Keuangan data
+async function seedKeuangan() {
+  console.log('💰 Seeding keuangan data...');
+
+  // 1. Seed Fiscal Period (2026)
+  console.log('📅 Seeding fiscal period...');
+  await prisma.fiscalPeriod.upsert({
+    where: { year: 2026 },
+    update: {
+      name: 'Tahun Anggaran 2026',
+      startDate: new Date('2026-01-01'),
+      endDate: new Date('2026-12-31'),
+      isActive: true,
+      isClosed: false,
+    },
+    create: {
+      year: 2026,
+      name: 'Tahun Anggaran 2026',
+      startDate: new Date('2026-01-01'),
+      endDate: new Date('2026-12-31'),
+      isActive: true,
+      isClosed: false,
+    },
+  });
+  console.log('✅ Seeded fiscal period 2026');
+
+  // 2. Seed Bidang
+  console.log('🏢 Seeding bidang...');
+  for (const bidang of BIDANG_DATA) {
+    await prisma.bidang.upsert({
+      where: { kode: bidang.kode },
+      update: {
+        nama: bidang.nama,
+      },
+      create: {
+        kode: bidang.kode,
+        nama: bidang.nama,
+      },
+    });
+
+    // 3. Seed UnitKerja for each bidang
+    for (const unit of bidang.units) {
+      await prisma.unitKerja.upsert({
+        where: { kode: unit.kode },
+        update: {
+          nama: unit.nama,
+          bidangKode: bidang.kode,
+        },
+        create: {
+          kode: unit.kode,
+          nama: unit.nama,
+          bidangKode: bidang.kode,
+        },
+      });
+    }
+  }
+  console.log(`✅ Seeded ${BIDANG_DATA.length} bidang with units`);
+
+  // 4. Seed Kode Akun
+  console.log('📒 Seeding kode akun...');
+  for (const akun of KODE_AKUN_DATA) {
+    await prisma.kodeAkun.upsert({
+      where: { kode: akun.kode },
+      update: {
+        nama: akun.nama,
+        kategori: akun.kategori,
+        subKategori: akun.subKategori || null,
+        normalBalance: akun.normalBalance,
+        isContraAccount: akun.isContraAccount || false,
+        isRestricted: akun.isRestricted || false,
+        restrictionType: akun.restrictionType || null,
+        deskripsi: akun.deskripsi || null,
+        isActive: akun.isActive,
+      },
+      create: {
+        kode: akun.kode,
+        nama: akun.nama,
+        kategori: akun.kategori,
+        subKategori: akun.subKategori || null,
+        normalBalance: akun.normalBalance,
+        isContraAccount: akun.isContraAccount || false,
+        isRestricted: akun.isRestricted || false,
+        restrictionType: akun.restrictionType || null,
+        deskripsi: akun.deskripsi || null,
+        isActive: akun.isActive,
+      },
+    });
+  }
+  console.log(`✅ Seeded ${KODE_AKUN_DATA.length} kode akun`);
+
+  console.log('💰 Keuangan seeding completed!');
+}
+
 async function main() {
   console.log('🌱 Starting seed...');
 
@@ -101,6 +196,9 @@ async function main() {
     });
   }
   console.log(`✅ Seeded ${unitCategories.length} unit categories`);
+
+  // Seed Keuangan
+  await seedKeuangan();
 
   console.log('🎉 Seed completed successfully!');
 }

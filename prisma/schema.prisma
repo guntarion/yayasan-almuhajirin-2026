@@ -498,8 +498,9 @@ model Bidang {
   updatedAt DateTime @updatedAt
 
   // Relations
-  unitKerja UnitKerja[]
-  programs  ProgramKerja[]
+  unitKerja    UnitKerja[]
+  programs     ProgramKerja[]
+  transactions Transaction[]
 
   @@map("bidang")
 }
@@ -517,8 +518,9 @@ model UnitKerja {
   updatedAt  DateTime @updatedAt
 
   // Relations
-  bidang   Bidang         @relation(fields: [bidangKode], references: [kode])
-  programs ProgramKerja[]
+  bidang       Bidang         @relation(fields: [bidangKode], references: [kode])
+  programs     ProgramKerja[]
+  transactions Transaction[]
 
   @@index([bidangKode])
   @@map("unit_kerja")
@@ -533,29 +535,30 @@ model ProgramKerja {
   kode           String        @unique
   nama           String
   bidangKode     String
-  unitKode       String
+  unitKerjaKode  String
   jenis          JenisProgram
   status         StatusProgram @default(draft)
   sifat          SifatProgram  @default(rutin)
   kategori       String?       // e.g., "Gaji & Kompensasi", "Operasional", etc.
   pic            String?
-  keterangan     String?       @db.Text
+  deskripsi      String?       @db.Text
   targetCapaian  String?       @db.Text
-  totalBudget    Decimal       @default(0) @db.Decimal(15, 2)
-  totalRealisasi Decimal       @default(0) @db.Decimal(15, 2)
+  fiscalYear     Int           // Year of the program e.g. 2026
   fiscalPeriodId String
   createdAt      DateTime      @default(now())
   updatedAt      DateTime      @updatedAt
 
   // Relations
   bidang       Bidang        @relation(fields: [bidangKode], references: [kode])
-  unitKerja    UnitKerja     @relation(fields: [unitKode], references: [kode])
+  unitKerja    UnitKerja     @relation(fields: [unitKerjaKode], references: [kode])
   fiscalPeriod FiscalPeriod  @relation(fields: [fiscalPeriodId], references: [id])
   items        ProgramItem[]
+  transactions Transaction[]
 
   @@index([bidangKode])
-  @@index([unitKode])
+  @@index([unitKerjaKode])
   @@index([fiscalPeriodId])
+  @@index([fiscalYear])
   @@index([jenis])
   @@index([status])
   @@map("program_kerja")
@@ -615,7 +618,7 @@ model ProgramItem {
 
 model Transaction {
   id              String          @id @default(cuid())
-  transactionCode String          @unique
+  code            String          @unique // Transaction code e.g. TRX-202601-001
   transactionDate DateTime
   type            TransactionType
   amount          Decimal         @db.Decimal(15, 2)
@@ -629,19 +632,32 @@ model Transaction {
   notes           String?         @db.Text
   createdBy       String?
   fiscalPeriodId  String
+  bidangKode      String?
+  unitKerjaKode   String?
+  programKerjaId  String?
   programItemId   String?
+  isVoided        Boolean         @default(false)
+  voidReason      String?
+  voidedAt        DateTime?
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
 
   // Relations
   fiscalPeriod   FiscalPeriod   @relation(fields: [fiscalPeriodId], references: [id])
+  bidang         Bidang?        @relation(fields: [bidangKode], references: [kode])
+  unitKerja      UnitKerja?     @relation(fields: [unitKerjaKode], references: [kode])
+  programKerja   ProgramKerja?  @relation(fields: [programKerjaId], references: [id])
   programItem    ProgramItem?   @relation(fields: [programItemId], references: [id])
   journalEntries JournalEntry[]
 
   @@index([transactionDate])
   @@index([fiscalPeriodId])
+  @@index([bidangKode])
+  @@index([unitKerjaKode])
+  @@index([programKerjaId])
   @@index([programItemId])
   @@index([type])
+  @@index([isVoided])
   @@map("transactions")
 }
 
