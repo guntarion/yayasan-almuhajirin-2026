@@ -1,3 +1,9 @@
+## 2025-12-25 05:32:11
+
+feat(keuangan): implement program kerja CRUD and pengaturan pages
+
+---
+
 ## 2025-12-25 05:02:56
 
 fix(keuangan): fix navbar links, header size, and footer text

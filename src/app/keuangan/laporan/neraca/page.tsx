@@ -65,7 +65,7 @@ const formatCurrency = (value: number) => {
 };
 
 const months = [
-  { value: '', label: 'Tahunan (Semua Bulan)' },
+  { value: 'all', label: 'Tahunan (Semua Bulan)' },
   { value: '1', label: 'Januari' },
   { value: '2', label: 'Februari' },
   { value: '3', label: 'Maret' },
@@ -114,7 +114,7 @@ function AccountSection({ section, isNested = false }: { section: NeracaSection;
 
 export default function NeracaPage() {
   const [year, setYear] = useState(2026);
-  const [month, setMonth] = useState('');
+  const [month, setMonth] = useState('all');
   const [data, setData] = useState<NeracaData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -126,7 +126,7 @@ export default function NeracaPage() {
         setError(null);
 
         const params = new URLSearchParams({ year: year.toString() });
-        if (month) params.append('month', month);
+        if (month && month !== 'all') params.append('month', month);
 
         const response = await fetch(`/api/keuangan/reports/neraca?${params}`);
         const result = await response.json();
