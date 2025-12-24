@@ -1,0 +1,116 @@
+Project ini adalah website dari Yayasan Al Muhajirin yang menggunakan satu domain "master", dan menggunakan sub-domain untuk unit-unit di dalam yayasan tersebut. 
+
+Baca ini CLAUDE.md, src/app/units/README.md
+Pelajari src/middleware.ts
+
+Saya sendiri baru kali ini menggunakan model seperti ini. Shg saya juga belum famiiar dg pengaturan untuk multi unit dalam satu project. Artinya, adalah tugas anda untuk memikirkannya.
+Kondisinya, kita sudah punya website untuk semisal Daycare. Saya minta Anda menduplikasi konten website Daycare, ke project ini, di lokasi yang sesuai. Jika ada kendala teknis, sampaikan, dan selesaikan. Anggap bahwa website unit bisa memiliki struktur yang berbeda satu sama lain.
+
+Namun kita memiliki panduan tema berikut ini docs/theme-guide-almuhajirin.md
+
+Berikut adalah website Daycare Al Muhajirin /Users/guntar/Codes/PROJECTS/almuhajirin/almuhajirin-daycare
+Secara khusus, perhatikan pages yang ada di `/Users/guntar/Codes/PROJECTS/almuhajirin/almuhajirin-daycare/src/app/(WebsiteLayout)` - lalu buat salinannya di project ini: src/app/units/daycare 
+
+
+ Migrasi konten website Daycare telah selesai. Berikut ringkasannya:
+
+  Struktur yang Dibuat
+
+  src/app/units/daycare/
+  ├── layout.tsx                  # Layout dengan Navbar dan Footer khusus Daycare
+  ├── page.tsx                    # Halaman utama (landing page)
+  ├── tentang-kami/page.tsx       # Halaman Tentang Kami
+  ├── program-layanan/page.tsx    # Halaman Program & Layanan
+  ├── fasilitas/page.tsx          # Halaman Fasilitas
+  ├── tim-pengasuh/page.tsx       # Halaman Tim Pengasuh
+  ├── biaya-pendaftaran/page.tsx  # Halaman Biaya & Pendaftaran
+  ├── galeri/page.tsx             # Halaman Galeri
+  └── kontak/page.tsx             # Halaman Kontak
+
+  src/components/units/daycare/
+  ├── index.ts                    # Export file
+  ├── Navbar.tsx                  # Navbar khusus Daycare
+  └── Footer.tsx                  # Footer khusus Daycare
+
+  Cara Akses
+
+  - Lokal: http://daycare.localhost:3000
+  - Production: https://daycare.almuhajirin.or.id
+
+  Fitur
+
+  - Navbar dengan navigasi dropdown dan top contact bar
+  - Footer dengan informasi kontak dan CTA WhatsApp
+  - Semua halaman mengikuti tema dan branding Daycare Al Muhajirin Rewwin
+  - Responsive design untuk mobile dan desktop
+
+  Catatan Arsitektur
+
+  - Setiap unit dapat memiliki struktur dan komponen yang berbeda
+  - Middleware (src/middleware.ts) sudah dikonfigurasi untuk routing subdomain daycare
+  - Komponen Daycare terpisah di src/components/units/daycare/ untuk modularitas
+
+  Build dan type check berjalan sukses tanpa error.
+
+
+
+
+
+
+
+Bantu saya membuat  Product Requirements Document (PRD) dari website dengan kemampuan untuk web dengan fitur blog (galeri, bisa posting, SEO focused, etc). Buat di folder docs/PRD sebagai file .md - buat penomoran untuk membuat file yang terurut
+
+Ini diperuntukkan untuk project ini, Yayasan Al Muhajirin, yang memiliki banyak unit, yang dirancang menggunakan satu domain, dan satu project ini untuk seluruh unit. 
+Baca ini src/app/units/README.md
+Pelajari src/middleware.ts
+
+
+
+1. Public Article Pages (Frontend)
+
+  Via subdomain (production):
+  https://masjid.almuhajirin.or.id/artikel
+  https://masjid.almuhajirin.or.id/artikel/[slug]
+
+  Via localhost (development):
+  http://masjid.localhost:3000/artikel
+  http://localhost:3000/units/masjid/artikel
+  http://localhost:3000/units/masjid/artikel/[slug]
+
+  2. API Endpoints
+
+  | Endpoint                | Method         | Description                    |
+  |-------------------------|----------------|--------------------------------|
+  | /api/blog/articles      | GET            | List articles (with filters)   |
+  | /api/blog/articles      | POST           | Create article (auth required) |
+  | /api/blog/articles/[id] | GET/PUT/DELETE | Single article operations      |
+  | /api/blog/categories    | GET/POST       | List/create categories         |
+  | /api/blog/tags          | GET/POST       | List/create tags               |
+  | /api/blog/units         | GET            | List all units                 |
+
+  3. Before Testing - Database Setup Required
+
+  You need to run the database migration and seed first:
+
+  # Apply schema changes to database
+  npx prisma db push
+
+  # Seed units and categories
+  npm run db:seed
+
+  # Optional: View data in Prisma Studio
+  npx prisma studio
+
+  4. Create Test Article via API
+
+  curl -X POST http://localhost:3000/api/blog/articles \
+    -H "Content-Type: application/json" \
+    -d '{
+      "title": "Test Artikel Pertama",
+      "content": "<p>Ini adalah konten artikel...</p>",
+      "categoryId": "<category-id-from-db>",
+      "unitId": "masjid",
+      "status": "PUBLISHED"
+    }'
+
+  Note: POST/PUT/DELETE require authentication session.
