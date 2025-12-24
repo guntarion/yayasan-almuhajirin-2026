@@ -40,7 +40,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   {
     label: 'Dashboard',
-    href: '/keuangan',
+    href: '/',
     icon: <LayoutDashboard className="h-4 w-4" />,
   },
   {
@@ -49,19 +49,19 @@ const navItems: NavItem[] = [
     children: [
       {
         label: 'Input Transaksi',
-        href: '/keuangan/transaksi/input',
+        href: '/transaksi/input',
         icon: <ArrowUpCircle className="h-4 w-4" />,
       },
       {
         label: 'Daftar Transaksi',
-        href: '/keuangan/transaksi',
+        href: '/transaksi',
         icon: <FileText className="h-4 w-4" />,
       },
     ],
   },
   {
-    label: 'Program Kerja',
-    href: '/keuangan/program',
+    label: 'Proker',
+    href: '/program',
     icon: <Wallet className="h-4 w-4" />,
   },
   {
@@ -70,17 +70,17 @@ const navItems: NavItem[] = [
     children: [
       {
         label: 'Neraca',
-        href: '/keuangan/laporan/neraca',
+        href: '/laporan/neraca',
         icon: <PieChart className="h-4 w-4" />,
       },
       {
         label: 'Laporan Aktivitas',
-        href: '/keuangan/laporan/aktivitas',
+        href: '/laporan/aktivitas',
         icon: <TrendingUp className="h-4 w-4" />,
       },
       {
         label: 'Arus Kas',
-        href: '/keuangan/laporan/arus-kas',
+        href: '/laporan/arus-kas',
         icon: <ArrowDownCircle className="h-4 w-4" />,
       },
     ],
@@ -91,12 +91,12 @@ const navItems: NavItem[] = [
     children: [
       {
         label: 'Daftar Akun',
-        href: '/keuangan/pengaturan/akun',
+        href: '/pengaturan/akun',
         icon: <BookOpen className="h-4 w-4" />,
       },
       {
         label: 'Pengaturan',
-        href: '/keuangan/pengaturan',
+        href: '/pengaturan',
         icon: <Settings className="h-4 w-4" />,
       },
     ],
@@ -108,10 +108,10 @@ export default function KeuanganNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const isActive = (href: string) => {
-    if (href === '/keuangan') {
-      return pathname === '/keuangan';
+    if (href === '/') {
+      return pathname === '/' || pathname === '/keuangan';
     }
-    return pathname.startsWith(href);
+    return pathname.startsWith(href) || pathname.startsWith('/keuangan' + href);
   };
 
   const isParentActive = (item: NavItem) => {
@@ -127,16 +127,16 @@ export default function KeuanganNavbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/keuangan" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-2">
             <Image
               src="/images/Logo-YAMR.png"
               alt="YAMR"
-              width={40}
-              height={40}
+              width={36}
+              height={36}
               className="rounded-lg"
             />
             <div className="hidden sm:block">
-              <h1 className="text-lg font-bold text-[#006064]">Keuangan YAMR</h1>
+              <h1 className="text-sm font-bold text-[#006064]">Keuangan YAMR</h1>
               <p className="text-xs text-gray-500">Yayasan Al Muhajirin</p>
             </div>
           </Link>
@@ -198,8 +198,7 @@ export default function KeuanganNavbar() {
           </div>
 
           {/* Year Selector */}
-          <div className="hidden md:flex items-center gap-2">
-            <span className="text-sm text-gray-500">Tahun Fiskal:</span>
+          <div className="hidden md:flex items-center">
             <Button
               variant="outline"
               size="sm"
@@ -267,8 +266,7 @@ export default function KeuanganNavbar() {
               )
             )}
             <div className="pt-2 border-t border-gray-200">
-              <div className="flex items-center gap-2 px-3 py-2">
-                <span className="text-sm text-gray-500">Tahun Fiskal:</span>
+              <div className="flex items-center px-3 py-2">
                 <Button
                   variant="outline"
                   size="sm"

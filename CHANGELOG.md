@@ -1,3 +1,9 @@
+## 2025-12-25 05:02:56
+
+fix(keuangan): fix navbar links, header size, and footer text
+
+---
+
 ## 2025-12-25 04:53:49
 
 feat(keuangan): add financial reports pages (neraca, aktivitas, arus kas)
