@@ -1,0 +1,224 @@
+.
+├── README.md
+├── docs
+│   ├── Login Auth Google.md
+│   ├── Voltaic Proposal.md
+│   ├── authentication-guide.md
+│   └── nextjs-google-auth-implementation.md
+├── folder_structure.txt
+├── netlify.toml
+├── next-env.d.ts
+├── next.config.mjs
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── public
+│   ├── avatars
+│   │   ├── dewi.png
+│   │   ├── joko.png
+│   │   ├── rudi.png
+│   │   └── waskito.png
+│   ├── favicon.svg
+│   └── images
+│       ├── backgrounds
+│       │   └── errorimg.svg
+│       ├── blog
+│       │   ├── blog-img1.jpg
+│       │   ├── blog-img2.jpg
+│       │   └── blog-img3.jpg
+│       ├── dewasta-dashboard.jpg
+│       ├── dewasta-featured.jpg
+│       ├── dewasta-implementation.jpg
+│       ├── dewasta-mobile-app.jpg
+│       ├── innovator-ahmad.jpg
+│       ├── innovator-budi.jpg
+│       ├── innovator-rini.jpg
+│       ├── innovator-siti.jpg
+│       ├── logos
+│       │   ├── dark-logo.svg
+│       │   ├── light-logo.svg
+│       │   ├── logo-icon.svg
+│       │   ├── logo-voltaic.png
+│       │   ├── logo-wrappixel.svg
+│       │   └── plnnps.png
+│       ├── mentors
+│       │   ├── hendra-wijaya.jpg
+│       │   ├── rini-kusuma.jpg
+│       │   └── sutrisno-pratama.jpg
+│       ├── powermonitor-featured.jpg
+│       ├── products
+│       │   ├── s1.jpg
+│       │   ├── s2.jpg
+│       │   ├── s3.jpg
+│       │   ├── s4.jpg
+│       │   └── s5.jpg
+│       ├── profile
+│       │   ├── user-1.jpg
+│       │   ├── user-2.jpg
+│       │   ├── user-3.jpg
+│       │   └── user-6.jpg
+│       ├── programs
+│       │   ├── business-model.jpg
+│       │   ├── design-thinking.jpg
+│       │   ├── implementation.jpg
+│       │   ├── innovation-basics.jpg
+│       │   └── technical-innovation.jpg
+│       └── turboclean-featured.jpg
+├── src
+│   ├── app
+│   │   ├── (DashboardLayout)
+│   │   │   ├── dashboard
+│   │   │   │   └── page.tsx
+│   │   │   ├── icons
+│   │   │   │   └── solar
+│   │   │   │       └── page.tsx
+│   │   │   ├── innovation-identification
+│   │   │   ├── innovation-paper
+│   │   │   ├── layout.tsx
+│   │   │   ├── profile
+│   │   │   │   └── page.tsx
+│   │   │   ├── sample-page
+│   │   │   │   └── page.tsx
+│   │   │   ├── testing-page
+│   │   │   │   └── qwen-ai
+│   │   │   │       └── page.tsx
+│   │   │   ├── ui
+│   │   │   │   ├── form
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── shadow
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── table
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── typography
+│   │   │   │       └── page.tsx
+│   │   │   └── users
+│   │   │       └── page.tsx
+│   │   ├── api
+│   │   │   ├── aiApi
+│   │   │   │   ├── anthropicAi
+│   │   │   │   │   └── route.ts
+│   │   │   │   └── qwenAIApi
+│   │   │   │       └── route.ts
+│   │   │   ├── auth
+│   │   │   │   ├── [...nextauth]
+│   │   │   │   │   ├── options.ts
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── forgot-password
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── register
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── reset-password
+│   │   │   │   │   └── route.ts
+│   │   │   │   └── validate-reset-token
+│   │   │   │       └── route.ts
+│   │   │   ├── markdown
+│   │   │   │   ├── case-studies
+│   │   │   │   │   └── [id]
+│   │   │   │   │       └── route.ts
+│   │   │   │   ├── contoh-komparasi
+│   │   │   │   │   └── route.ts
+│   │   │   │   └── route.ts
+│   │   │   └── users
+│   │   │       ├── [id]
+│   │   │       │   ├── role
+│   │   │       │   │   └── route.ts
+│   │   │       │   └── route.ts
+│   │   │       └── route.ts
+│   │   ├── auth
+│   │   │   ├── authforms
+│   │   │   │   ├── AuthLogin.tsx
+│   │   │   │   └── AuthRegister.tsx
+│   │   │   ├── error
+│   │   │   │   └── page.tsx
+│   │   │   ├── forgot-password
+│   │   │   │   └── page.tsx
+│   │   │   ├── login
+│   │   │   │   └── page.tsx
+│   │   │   ├── register
+│   │   │   │   └── page.tsx
+│   │   │   ├── reset-password
+│   │   │   │   └── [token]
+│   │   │   │       └── page.tsx
+│   │   │   └── unauthorized
+│   │   │       └── page.tsx
+│   │   ├── client-layout.tsx
+│   │   ├── css
+│   │   │   ├── globals.css
+│   │   │   ├── layouts
+│   │   │   │   ├── header.css
+│   │   │   │   └── sidebar.css
+│   │   │   ├── override
+│   │   │   │   └── reboot.css
+│   │   │   └── theme
+│   │   │       └── default-colors.css
+│   │   ├── layout.tsx
+│   │   ├── metadata.tsx
+│   │   ├── not-found.tsx
+│   │   └── page.tsx
+│   ├── components
+│   │   ├── IdeaGraph
+│   │   │   ├── ForceGraph.tsx
+│   │   │   ├── GraphControls.tsx
+│   │   │   ├── GraphStatistics.tsx
+│   │   │   └── IdeaDetails.tsx
+│   │   ├── auth
+│   │   │   └── RoleGuard.tsx
+│   │   ├── dashboard
+│   │   │   ├── BlogCards.tsx
+│   │   │   ├── EarningReports.tsx
+│   │   │   ├── PopularProducts.tsx
+│   │   │   ├── SalesProfit.tsx
+│   │   │   ├── TotalFollowers.tsx
+│   │   │   └── TotalIncome.tsx
+│   │   ├── layout
+│   │   │   ├── shared
+│   │   │   │   └── logo
+│   │   │   │       ├── FullLogo.tsx
+│   │   │   │       └── Logo.tsx
+│   │   │   └── vertical
+│   │   │       ├── header
+│   │   │       │   ├── Header.tsx
+│   │   │       │   ├── Profile.tsx
+│   │   │       │   └── Topbar.tsx
+│   │   │       └── sidebar
+│   │   │           ├── MobileSidebar.tsx
+│   │   │           ├── NavCollapse
+│   │   │           │   └── index.tsx
+│   │   │           ├── NavItems
+│   │   │           │   ├── RoleAwareNavItem.tsx
+│   │   │           │   └── index.tsx
+│   │   │           ├── Sidebar.tsx
+│   │   │           └── Sidebaritems.ts
+│   │   ├── shared
+│   │   │   ├── CommonBreadcrumb.tsx
+│   │   │   ├── CommonCardHeader.tsx
+│   │   │   └── LoadingScreen.tsx
+│   │   ├── viewContent
+│   │   │   └── MarkdownRenderer.tsx
+│   │   ├── viewForDesktop
+│   │   └── viewForMobile
+│   ├── data
+│   │   └── IdeInovasi
+│   │       ├── contohIdeInovasi.ts
+│   │       └── pertanyaan-insightful.ts
+│   ├── hooks
+│   │   └── useAuth.ts
+│   ├── models
+│   │   ├── IdeInovasi.ts
+│   │   └── User.ts
+│   ├── providers
+│   │   └── SessionProvider.tsx
+│   ├── types
+│   │   └── next-auth.d.ts
+│   └── utils
+│       ├── database.ts
+│       ├── email.ts
+│       ├── ideaRelationshipUtils.ts
+│       ├── mongodb.ts
+│       ├── mysql.ts
+│       └── theme
+│           └── custom-theme.tsx
+├── tailwind.config.ts
+└── tsconfig.json
+
+84 directories, 138 files
