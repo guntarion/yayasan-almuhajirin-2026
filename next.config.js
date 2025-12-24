@@ -18,8 +18,26 @@ const nextConfig = {
   experimental: {
     // Keep these experimental features enabled if needed
     serverActions: {
-      allowedOrigins: ['localhost:3000', '127.0.0.1:3000'],
+      // Izinkan semua subdomain untuk development
+      allowedOrigins: [
+        'localhost:3000', 
+        '127.0.0.1:3000',
+        '*.localhost:3000', // subdomain development
+        '*.almuhajirin.or.id', // subdomain production
+        'almuhajirin.or.id',
+      ],
     },
+  },
+
+  // Rewrites untuk development subdomain testing
+  // Gunakan format: http://subdomain.localhost:3000
+  async rewrites() {
+    return {
+      beforeFiles: [
+        // Rewrites ini akan dihandle oleh middleware
+        // Tapi kita definisikan di sini untuk dokumentasi
+      ],
+    };
   },
 };
 

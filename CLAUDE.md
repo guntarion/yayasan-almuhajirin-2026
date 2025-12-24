@@ -16,7 +16,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Architecture Overview
 
-This is a Next.js 15 application with a dual-layout architecture supporting both dashboard and marketing website views. The application uses the App Router with TypeScript.
+This is a Next.js 15 application with a multi-subdomain architecture supporting:
+- Main website (almuhajirin.or.id)
+- Dashboard for admin/management
+- 12 unit-specific subdomains for organizational units
+
+The application uses the App Router with TypeScript and middleware-based subdomain routing.
 
 ### Core Technologies
 - **Frontend**: Next.js 15, React 18, TypeScript
@@ -29,7 +34,43 @@ This is a Next.js 15 application with a dual-layout architecture supporting both
 ### Layout Structure
 - `(DashboardLayout)` - Protected dashboard with sidebar navigation
 - `(WebsiteLayout)` - Public marketing pages
+- `units/` - Unit-specific pages accessible via subdomains
 - Dynamic routing with role-based access control
+
+### Multi-Subdomain Architecture
+
+The application supports 12 organizational units, each accessible via dedicated subdomain:
+
+| Unit | Subdomain | Path |
+|------|-----------|------|
+| Main Website | almuhajirin.or.id | / |
+| Usaha & Pengadaan | usaha.almuhajirin.or.id | /units/usaha |
+| Kolam Renang | pool.almuhajirin.or.id | /units/pool |
+| Ketakmiran Masjid | masjid.almuhajirin.or.id | /units/masjid |
+| Remaskidz | remas.almuhajirin.or.id | /units/remas |
+| Kemuslimatan | kemuslimatan.almuhajirin.or.id | /units/kemuslimatan |
+| Daycare | daycare.almuhajirin.or.id | /units/daycare |
+| KBTK | kbtk.almuhajirin.or.id | /units/kbtk |
+| TPQ | tpq.almuhajirin.or.id | /units/tpq |
+| LAZMU | lazmu.almuhajirin.or.id | /units/lazmu |
+| WAFMU | wafmu.almuhajirin.or.id | /units/wafmu |
+| Ambulans | ambulans.almuhajirin.or.id | /units/ambulans |
+| Poliklinik | poliklinik.almuhajirin.or.id | /units/poliklinik |
+
+**Routing Implementation:**
+- Middleware (`src/middleware.ts`) detects subdomain and rewrites to appropriate unit path
+- Works in both development (subdomain.localhost:3000) and production
+- Each unit has its own layout and page structure in `src/app/units/[unit-name]/`
+
+**Development Testing:**
+- Use format: `http://subdomain.localhost:3000`
+- Example: `http://masjid.localhost:3000`, `http://kbtk.localhost:3000`
+- Or edit `/etc/hosts` to add custom subdomain aliases
+
+**Deployment:**
+- Add all subdomains in Vercel project settings
+- Configure DNS records to point to Vercel
+- Middleware automatically handles routing
 
 ### Authentication System
 - Hybrid authentication: Google OAuth + email/password
@@ -68,7 +109,13 @@ For legacy MongoDB operations, use `getMongoClient()` or `getCurrentUserMongo()`
 
 ### File Organization
 - `src/app/` - App Router pages and layouts
+  - `(DashboardLayout)/` - Protected admin/management pages
+  - `(WebsiteLayout)/` - Public marketing pages
+  - `units/` - Unit-specific pages for subdomains (12 units)
+  - `api/` - API routes
+  - `auth/` - Authentication pages
 - `src/components/` - Reusable components
+- `src/middleware.ts` - Subdomain routing and request handling
 - `src/utils/` - Utility functions and database connections
   - `prisma.ts` - Prisma Client singleton (PostgreSQL)
   - `database.ts` - Database utilities with dual-database support
@@ -125,6 +172,56 @@ const client = await getMongoClient();
 const db = client.db();
 const collection = db.collection('collection_name');
 ```
+
+### Working with Subdomain Units
+
+**Creating New Unit:**
+1. Create folder in `src/app/units/[unit-name]/`
+2. Add `layout.tsx` and `page.tsx` files
+3. Update `SUBDOMAIN_ROUTES` in `src/middleware.ts`
+4. Add subdomain to Vercel project settings for deployment
+
+**Unit Structure Template:**
+```typescript
+// layout.tsx
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Unit Name - Al Muhajirin',
+  description: 'Description',
+};
+
+export default function UnitLayout({ children }: { children: React.ReactNode }) {
+  return <div className="min-h-screen bg-background">{children}</div>;
+}
+
+// page.tsx
+export default function UnitPage() {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      {/* Content */}
+    </div>
+  );
+}
+```
+
+**Testing Subdomains Locally:**
+```bash
+# Access via browser:
+http://masjid.localhost:3000
+http://kbtk.localhost:3000
+http://pool.localhost:3000
+
+# Or edit /etc/hosts (Mac/Linux):
+127.0.0.1 masjid.localhost
+127.0.0.1 kbtk.localhost
+```
+
+**Deployment Checklist:**
+- [ ] Add all subdomains in Vercel project settings
+- [ ] Configure DNS A/CNAME records
+- [ ] Test each subdomain after deployment
+- [ ] Verify SSL certificates for all subdomains
 
 ### Special Notes
 - **Dual-Database Architecture**: PostgreSQL (Prisma) is the primary database; MongoDB available for legacy operations
