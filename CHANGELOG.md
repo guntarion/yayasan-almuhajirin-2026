@@ -1,3 +1,9 @@
+## 2025-12-24 16:29:46
+
+feat(kbtk): add complete KBTK website with pages and components
+
+---
+
 ## 2025-12-24 12:52:27
 
 feat: integrate Daycare unit website with dedicated subdomain support
