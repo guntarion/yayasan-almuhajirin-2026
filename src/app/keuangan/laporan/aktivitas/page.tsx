@@ -170,7 +170,7 @@ export default function AktivitasPage() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="icon" asChild>
-            <Link href="/keuangan/laporan">
+            <Link href="/laporan">
               <ArrowLeft className="h-5 w-5" />
             </Link>
           </Button>

@@ -1,3 +1,9 @@
+## 2025-12-25 10:42:37
+
+fix(keuangan): remove /keuangan prefix from internal navigation links
+
+---
+
 ## 2025-12-25 10:32:37
 
 docs(keuangan): add user guide documentation for finance module

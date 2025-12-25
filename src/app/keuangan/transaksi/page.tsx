@@ -76,7 +76,7 @@ export default function TransaksiPage() {
           asChild
           className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white shadow-lg"
         >
-          <Link href="/keuangan/transaksi/input">
+          <Link href="/transaksi/input">
             <Plus className="h-4 w-4 mr-2" />
             Input Transaksi
           </Link>

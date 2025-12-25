@@ -41,7 +41,7 @@ export default function InputTransaksiPage() {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     setIsLoading(false);
-    router.push('/keuangan/transaksi');
+    router.push('/transaksi');
   };
 
   const bidangOptions = getBidangOptions();

@@ -149,7 +149,7 @@ export default function KeuanganDashboardPage() {
             asChild
             className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white shadow-lg"
           >
-            <Link href="/keuangan/transaksi/input">
+            <Link href="/transaksi/input">
               <Plus className="h-4 w-4 mr-2" />
               Input Transaksi
             </Link>
@@ -262,7 +262,7 @@ export default function KeuanganDashboardPage() {
               <CardDescription>5 transaksi terakhir</CardDescription>
             </div>
             <Button variant="ghost" size="sm" asChild>
-              <Link href="/keuangan/transaksi" className="text-[#00BCD4]">
+              <Link href="/transaksi" className="text-[#00BCD4]">
                 Lihat Semua
                 <ArrowRight className="h-4 w-4 ml-1" />
               </Link>
@@ -325,7 +325,7 @@ export default function KeuanganDashboardPage() {
               variant="outline"
               className="w-full justify-start border-[#00BCD4]/30 hover:bg-[#00BCD4]/5 hover:border-[#00BCD4]"
             >
-              <Link href="/keuangan/transaksi/input">
+              <Link href="/transaksi/input">
                 <Plus className="h-4 w-4 mr-2 text-[#00BCD4]" />
                 Input Transaksi Baru
               </Link>
@@ -335,7 +335,7 @@ export default function KeuanganDashboardPage() {
               variant="outline"
               className="w-full justify-start border-[#00BCD4]/30 hover:bg-[#00BCD4]/5 hover:border-[#00BCD4]"
             >
-              <Link href="/keuangan/laporan/neraca">
+              <Link href="/laporan/neraca">
                 <PieChart className="h-4 w-4 mr-2 text-[#00BCD4]" />
                 Lihat Neraca
               </Link>
@@ -345,7 +345,7 @@ export default function KeuanganDashboardPage() {
               variant="outline"
               className="w-full justify-start border-[#00BCD4]/30 hover:bg-[#00BCD4]/5 hover:border-[#00BCD4]"
             >
-              <Link href="/keuangan/laporan/aktivitas">
+              <Link href="/laporan/aktivitas">
                 <TrendingUp className="h-4 w-4 mr-2 text-[#00BCD4]" />
                 Laporan Aktivitas
               </Link>
@@ -355,7 +355,7 @@ export default function KeuanganDashboardPage() {
               variant="outline"
               className="w-full justify-start border-[#00BCD4]/30 hover:bg-[#00BCD4]/5 hover:border-[#00BCD4]"
             >
-              <Link href="/keuangan/program">
+              <Link href="/program">
                 <Wallet className="h-4 w-4 mr-2 text-[#00BCD4]" />
                 Daftar Program Kerja
               </Link>
