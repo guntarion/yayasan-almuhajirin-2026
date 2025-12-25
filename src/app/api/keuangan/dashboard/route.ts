@@ -120,18 +120,103 @@ export async function GET(request: NextRequest) {
     const ringkasanBidang = bidangSummary.map(bidang => {
       let bidangBudget = 0;
       let bidangRealisasi = 0;
+      let bidangPendapatan = 0;
+      let bidangPengeluaran = 0;
       bidang.programs.forEach(program => {
         program.items.forEach(item => {
-          bidangBudget += Number(item.jumlah);
+          const jumlah = Number(item.jumlah);
+          bidangBudget += jumlah;
           bidangRealisasi += Number(item.realisasi);
+          if (program.jenis === 'pendapatan') {
+            bidangPendapatan += jumlah;
+          } else {
+            bidangPengeluaran += jumlah;
+          }
         });
       });
       return {
         kode: bidang.kode,
         nama: bidang.nama,
-        realisasi: bidangBudget > 0 ? Math.round((bidangRealisasi / bidangBudget) * 100) : 0,
+        anggaran: bidangBudget,
+        realisasi: bidangRealisasi,
+        persenRealisasi: bidangBudget > 0 ? Math.round((bidangRealisasi / bidangBudget) * 100) : 0,
+        pendapatan: bidangPendapatan,
+        pengeluaran: bidangPengeluaran,
       };
     });
+
+    // Featured units summary: KETAKMIRAN, DAYCARE, KBTK, LAZMU
+    const featuredUnits = [
+      { kode: 'TKM', nama: 'Ketakmiran' },
+      { kode: 'DCR', nama: 'Daycare' },
+      { kode: 'KBT', nama: 'KBTK' },
+      { kode: 'LAZ', nama: 'LAZMU' },
+    ];
+
+    const unitSummaries = await Promise.all(
+      featuredUnits.map(async (unit) => {
+        const unitData = await prisma.unitKerja.findUnique({
+          where: { kode: unit.kode },
+          include: {
+            programs: {
+              where: {
+                fiscalYear: year,
+                status: { in: ['aktif', 'selesai'] },
+              },
+              include: {
+                items: true,
+              },
+            },
+          },
+        });
+
+        if (!unitData) {
+          return {
+            kode: unit.kode,
+            nama: unit.nama,
+            anggaranPendapatan: 0,
+            anggaranPengeluaran: 0,
+            realisasiPendapatan: 0,
+            realisasiPengeluaran: 0,
+            saldo: 0,
+            persenRealisasi: 0,
+          };
+        }
+
+        let anggaranPendapatan = 0;
+        let anggaranPengeluaran = 0;
+        let realisasiPendapatan = 0;
+        let realisasiPengeluaran = 0;
+
+        unitData.programs.forEach(program => {
+          program.items.forEach(item => {
+            const jumlah = Number(item.jumlah);
+            const realisasi = Number(item.realisasi);
+            if (program.jenis === 'pendapatan') {
+              anggaranPendapatan += jumlah;
+              realisasiPendapatan += realisasi;
+            } else {
+              anggaranPengeluaran += jumlah;
+              realisasiPengeluaran += realisasi;
+            }
+          });
+        });
+
+        const totalAnggaran = anggaranPendapatan + anggaranPengeluaran;
+        const totalRealisasi = realisasiPendapatan + realisasiPengeluaran;
+
+        return {
+          kode: unit.kode,
+          nama: unitData.nama || unit.nama,
+          anggaranPendapatan,
+          anggaranPengeluaran,
+          realisasiPendapatan,
+          realisasiPengeluaran,
+          saldo: anggaranPendapatan - anggaranPengeluaran,
+          persenRealisasi: totalAnggaran > 0 ? Math.round((totalRealisasi / totalAnggaran) * 100) : 0,
+        };
+      })
+    );
 
     return NextResponse.json({
       fiscalPeriod: {
@@ -159,6 +244,7 @@ export async function GET(request: NextRequest) {
         bidang: trx.bidang?.nama || '-',
       })),
       ringkasanBidang,
+      featuredUnitSummaries: unitSummaries,
     });
   } catch (error) {
     console.error('Dashboard API error:', error);

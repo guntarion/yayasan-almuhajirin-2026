@@ -177,28 +177,36 @@ export default function TransaksiPage() {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-[#006064]">Daftar Transaksi</h1>
-          <p className="text-sm text-gray-600 mt-1">Kelola transaksi keuangan yayasan</p>
+      <div className="relative overflow-hidden bg-gradient-to-r from-white via-[#B2EBF2]/20 to-[#80DEEA]/20 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-6 rounded-b-3xl border-b border-[#00BCD4]/10">
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-[#00BCD4]/20 to-[#80DEEA]/20 rounded-full blur-3xl" />
+        <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-1 h-8 bg-gradient-to-b from-[#00BCD4] to-[#006064] rounded-full" />
+              <h1 className="text-3xl font-bold text-[#006064]">Daftar Transaksi</h1>
+            </div>
+            <p className="text-sm text-gray-600 ml-4">Kelola transaksi keuangan yayasan</p>
+          </div>
+          <Button
+            asChild
+            className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
+          >
+            <Link href="/keuangan/transaksi/input">
+              <Plus className="h-4 w-4 mr-2" />
+              Input Transaksi
+            </Link>
+          </Button>
         </div>
-        <Button
-          asChild
-          className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white shadow-lg"
-        >
-          <Link href="/transaksi/input">
-            <Plus className="h-4 w-4 mr-2" />
-            Input Transaksi
-          </Link>
-        </Button>
       </div>
 
       {/* Filter Section */}
-      <Card className="border-2" style={{ borderColor: 'rgba(0, 188, 212, 0.1)' }}>
-        <CardHeader className="pb-3">
+      <Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg hover:border-[#00BCD4]/40 transition-all duration-300">
+        <CardHeader className="bg-gradient-to-r from-[#B2EBF2]/20 to-transparent border-b border-[#00BCD4]/10 pb-3">
           <CardTitle className="text-lg flex items-center gap-2">
-            <Filter className="h-5 w-5 text-[#00BCD4]" />
-            Filter & Pencarian
+            <div className="p-2 rounded-lg bg-[#B2EBF2]">
+              <Filter className="h-5 w-5 text-[#006064]" />
+            </div>
+            <span className="text-[#006064]">Filter & Pencarian</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -229,7 +237,7 @@ export default function TransaksiPage() {
             <div className="flex gap-2">
               <Button
                 variant="outline"
-                className="border-[#00BCD4] text-[#006064] flex-1"
+                className="border-2 border-[#00BCD4] text-[#006064] hover:bg-[#00BCD4] hover:text-white flex-1 rounded-xl transition-all duration-300"
                 onClick={handleFilter}
               >
                 Terapkan
@@ -239,6 +247,7 @@ export default function TransaksiPage() {
                 size="icon"
                 onClick={handleReset}
                 title="Reset filter"
+                className="rounded-xl hover:bg-[#B2EBF2]/30"
               >
                 <RefreshCw className="h-4 w-4" />
               </Button>
@@ -257,11 +266,13 @@ export default function TransaksiPage() {
       )}
 
       {/* Transactions List */}
-      <Card className="border border-gray-200">
-        <CardHeader>
+      <Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg hover:border-[#00BCD4]/40 transition-all duration-300">
+        <CardHeader className="bg-gradient-to-r from-[#B2EBF2]/20 to-transparent border-b border-[#00BCD4]/10">
           <CardTitle className="text-lg text-[#006064] flex items-center gap-2">
-            <FileText className="h-5 w-5 text-[#00BCD4]" />
-            Transaksi
+            <div className="p-2 rounded-lg bg-[#B2EBF2]">
+              <FileText className="h-5 w-5 text-[#006064]" />
+            </div>
+            <span>Transaksi</span>
           </CardTitle>
           <CardDescription>
             {loading ? 'Memuat...' : `${pagination.total} transaksi ditemukan`}
@@ -287,7 +298,7 @@ export default function TransaksiPage() {
                 <div
                   key={trx.id}
                   onClick={() => fetchTransactionDetail(trx.id)}
-                  className="flex items-center justify-between p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors border border-gray-200 cursor-pointer group"
+                  className="group flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-gray-50 to-white hover:from-[#B2EBF2]/20 hover:to-white border border-transparent hover:border-[#00BCD4]/20 transition-all duration-300 cursor-pointer"
                 >
                   <div className="flex items-center gap-4">
                     <div
@@ -350,6 +361,7 @@ export default function TransaksiPage() {
                     size="sm"
                     onClick={() => handlePageChange(pagination.page - 1)}
                     disabled={!pagination.hasPrev}
+                    className="rounded-xl border-2 hover:border-[#00BCD4] transition-all duration-300"
                   >
                     <ChevronLeft className="h-4 w-4 mr-1" />
                     Sebelumnya
@@ -359,6 +371,7 @@ export default function TransaksiPage() {
                     size="sm"
                     onClick={() => handlePageChange(pagination.page + 1)}
                     disabled={!pagination.hasNext}
+                    className="rounded-xl border-2 hover:border-[#00BCD4] transition-all duration-300"
                   >
                     Selanjutnya
                     <ChevronRight className="h-4 w-4 ml-1" />
@@ -373,11 +386,13 @@ export default function TransaksiPage() {
 
       {/* Transaction Detail Modal */}
       <Dialog open={detailOpen} onOpenChange={setDetailOpen}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl">
+          <DialogHeader className="bg-gradient-to-r from-[#B2EBF2]/20 to-transparent border-b border-[#00BCD4]/10 pb-4">
             <DialogTitle className="flex items-center gap-2 text-[#006064]">
-              <FileText className="h-5 w-5 text-[#00BCD4]" />
-              Detail Transaksi
+              <div className="p-2 rounded-lg bg-[#B2EBF2]">
+                <FileText className="h-5 w-5 text-[#006064]" />
+              </div>
+              <span>Detail Transaksi</span>
             </DialogTitle>
             <DialogDescription>
               {selectedTransaction?.code}
@@ -524,15 +539,15 @@ export default function TransaksiPage() {
 
               {/* Actions */}
               <div className="flex items-center justify-end gap-3 pt-4 border-t">
-                <Button variant="outline" onClick={() => setDetailOpen(false)}>
+                <Button variant="outline" onClick={() => setDetailOpen(false)} className="rounded-xl border-2 hover:border-[#00BCD4] transition-all duration-300">
                   Tutup
                 </Button>
                 {!selectedTransaction.isVoided && (
                   <Button
                     asChild
-                    className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white"
+                    className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
                   >
-                    <Link href={`/transaksi/edit/${selectedTransaction.id}`}>
+                    <Link href={`/keuangan/transaksi/edit/${selectedTransaction.id}`}>
                       <Edit className="h-4 w-4 mr-2" />
                       Edit Transaksi
                     </Link>

@@ -1112,9 +1112,363 @@ Panduan tema ini menyediakan pedoman gaya (*styling*) komprehensif berdasarkan i
 5. **Mode Gelap**: Sediakan varian mode gelap yang sesuai untuk semua komponen
 6. **Sensitivitas Budaya**: Pastikan penggunaan elemen islami yang tepat dan menghormati
 
+## 📄 Pola Header Halaman (v1.1)
+
+### Header Halaman dengan Efek Dekoratif
+
+Header halaman yang enhanced dengan gradient background, decorative blur elements, dan vertical accent bar.
+
+```jsx
+<div className="relative overflow-hidden bg-gradient-to-r from-white via-[#B2EBF2]/20 to-[#80DEEA]/20 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-6 rounded-b-3xl border-b border-[#00BCD4]/10">
+  {/* Decorative blur elements */}
+  <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-[#00BCD4]/20 to-[#80DEEA]/20 rounded-full blur-3xl" />
+  <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-gradient-to-tr from-[#B2EBF2]/30 to-[#00BCD4]/20 rounded-full blur-2xl" />
+
+  <div className="relative z-10">
+    <div className="flex items-center gap-3 mb-2">
+      {/* Vertical accent bar */}
+      <div className="w-1 h-8 bg-gradient-to-b from-[#00BCD4] to-[#006064] rounded-full" />
+      <h1 className="text-3xl font-bold text-[#006064]">Judul Halaman</h1>
+    </div>
+    <p className="text-sm text-gray-600 ml-4">Deskripsi halaman</p>
+  </div>
+</div>
+```
+
+### Header Halaman dengan Tombol Aksi
+
+```jsx
+<div className="relative overflow-hidden bg-gradient-to-r from-white via-[#B2EBF2]/20 to-[#80DEEA]/20 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-6 rounded-b-3xl border-b border-[#00BCD4]/10">
+  <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-[#00BCD4]/20 to-[#80DEEA]/20 rounded-full blur-3xl" />
+  <div className="relative z-10 flex items-center justify-between">
+    <div className="flex items-center gap-4">
+      <Button variant="ghost" size="icon" asChild className="hover:bg-[#B2EBF2]/50 rounded-xl">
+        <Link href="/back"><ArrowLeft className="h-5 w-5" /></Link>
+      </Button>
+      <div>
+        <div className="flex items-center gap-3 mb-1">
+          <div className="w-1 h-6 bg-gradient-to-b from-[#00BCD4] to-[#006064] rounded-full" />
+          <h1 className="text-2xl font-bold text-[#006064]">Judul Halaman</h1>
+        </div>
+        <p className="text-sm text-gray-600 ml-4">Deskripsi</p>
+      </div>
+    </div>
+    <div className="flex gap-2">
+      <Button className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white rounded-xl">
+        <Plus className="h-4 w-4 mr-2" /> Tambah
+      </Button>
+    </div>
+  </div>
+</div>
+```
+
+## 🃏 Pola Kartu Enhanced (v1.1)
+
+### Kartu dengan Border Enhanced
+
+```jsx
+<Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg hover:border-[#00BCD4]/40 transition-all duration-300">
+  <CardHeader className="bg-gradient-to-r from-[#B2EBF2]/20 to-transparent border-b border-[#00BCD4]/10">
+    <CardTitle className="text-lg flex items-center gap-2">
+      <div className="p-2 rounded-lg bg-[#B2EBF2]">
+        <Icon className="h-5 w-5 text-[#006064]" />
+      </div>
+      <span className="text-[#006064]">Judul Kartu</span>
+    </CardTitle>
+  </CardHeader>
+  <CardContent className="pt-4">
+    {/* Konten */}
+  </CardContent>
+</Card>
+```
+
+### Kartu Metrik/Statistik
+
+```jsx
+<Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg hover:border-[#00BCD4]/40 transition-all duration-300 overflow-hidden">
+  <div className="h-1 bg-gradient-to-r from-[#00BCD4] to-[#006064]" />
+  <CardContent className="pt-4">
+    <div className="flex items-center gap-3">
+      <div className="p-3 rounded-xl bg-gradient-to-br from-[#B2EBF2] to-[#80DEEA]/50">
+        <Icon className="h-6 w-6 text-[#006064]" />
+      </div>
+      <div>
+        <p className="text-sm text-gray-600">Label</p>
+        <p className="text-2xl font-bold text-[#006064]">Rp 1.000.000</p>
+      </div>
+    </div>
+  </CardContent>
+</Card>
+```
+
+### Kartu Ringkasan dengan Gradient Total
+
+```jsx
+<Card className="bg-gradient-to-r from-[#006064] to-[#00838F] text-white border-2 border-[#006064] rounded-2xl">
+  <CardContent className="py-5">
+    <div className="flex justify-between items-center font-bold">
+      <span>TOTAL</span>
+      <span className="tabular-nums text-lg">Rp 10.000.000</span>
+    </div>
+  </CardContent>
+</Card>
+```
+
+### Kartu dengan Status Positif/Negatif
+
+```jsx
+{/* Positif */}
+<div className="p-4 rounded-xl border-2 bg-gradient-to-br from-green-50 to-green-100/50 border-green-200">
+  <p className="text-sm font-semibold text-gray-600 mb-1">Label</p>
+  <p className="text-lg font-bold text-green-700">+ Rp 1.000.000</p>
+</div>
+
+{/* Negatif */}
+<div className="p-4 rounded-xl border-2 bg-gradient-to-br from-red-50 to-red-100/50 border-red-200">
+  <p className="text-sm font-semibold text-gray-600 mb-1">Label</p>
+  <p className="text-lg font-bold text-red-700">- Rp 500.000</p>
+</div>
+```
+
+## 📊 Pola Tabel Enhanced (v1.1)
+
+### Tabel dengan Gradient Header
+
+```jsx
+<table className="w-full text-sm">
+  <thead>
+    <tr className="bg-gradient-to-r from-[#00BCD4]/10 to-[#80DEEA]/10">
+      <th className="text-left py-3 px-3 text-[#006064] font-semibold">Kolom 1</th>
+      <th className="text-left py-3 px-3 text-[#006064] font-semibold">Kolom 2</th>
+      <th className="text-right py-3 px-3 text-[#006064] font-semibold">Nominal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr className="border-b hover:bg-[#B2EBF2]/20 transition-colors">
+      <td className="py-3 px-3 font-medium">Data 1</td>
+      <td className="py-3 px-3">Data 2</td>
+      <td className="py-3 px-3 text-right tabular-nums">Rp 1.000.000</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr className="bg-gradient-to-r from-[#006064] to-[#00838F] text-white font-bold">
+      <td colSpan={2} className="py-3 px-3">TOTAL</td>
+      <td className="py-3 px-3 text-right tabular-nums">Rp 10.000.000</td>
+    </tr>
+  </tfoot>
+</table>
+```
+
+### Tabel dengan Footer Subtle
+
+```jsx
+<tfoot>
+  <tr className="bg-gray-100 font-bold">
+    <td colSpan={4} className="py-3 px-2">TOTAL</td>
+    <td className="py-3 px-2 text-right tabular-nums">{formatCurrency(total)}</td>
+  </tr>
+</tfoot>
+```
+
+## 🔘 Pola Tombol Enhanced (v1.1)
+
+### Tombol Outline dengan Hover Themed
+
+```jsx
+<Button
+  variant="outline"
+  size="sm"
+  className="border-2 border-[#00BCD4]/30 hover:border-[#00BCD4] hover:bg-[#B2EBF2]/20 rounded-xl"
+>
+  <Download className="h-4 w-4 mr-2" />
+  Download
+</Button>
+```
+
+### Tombol Navigasi Kembali
+
+```jsx
+<Button
+  variant="ghost"
+  size="icon"
+  asChild
+  className="hover:bg-[#B2EBF2]/50 rounded-xl"
+>
+  <Link href="/back">
+    <ArrowLeft className="h-5 w-5 text-[#006064]" />
+  </Link>
+</Button>
+```
+
+### Tombol Link dengan Gradient
+
+```jsx
+<Button
+  asChild
+  variant="ghost"
+  className="w-full justify-between text-[#00BCD4] hover:text-[#006064] hover:bg-[#B2EBF2]/50 rounded-xl h-12 font-semibold"
+>
+  <Link href="/detail">
+    Lihat Detail
+    <ChevronRight className="h-5 w-5" />
+  </Link>
+</Button>
+```
+
+## 📝 Pola Form Enhanced (v1.1)
+
+### Input dengan Focus State Themed
+
+```jsx
+<Input
+  placeholder="Masukkan data..."
+  className="border-2 focus:border-[#00BCD4] rounded-xl"
+/>
+```
+
+### Select/Dropdown Themed
+
+```jsx
+<Select>
+  <SelectTrigger className="w-48 border-2 focus:border-[#00BCD4] rounded-xl">
+    <SelectValue placeholder="Pilih..." />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="option1">Opsi 1</SelectItem>
+    <SelectItem value="option2">Opsi 2</SelectItem>
+  </SelectContent>
+</Select>
+```
+
+### Filter Card
+
+```jsx
+<Card className="print:hidden border-2 border-[#00BCD4]/10 rounded-2xl">
+  <CardContent className="pt-4">
+    <div className="flex gap-4 items-center">
+      <div className="flex items-center gap-2">
+        <Calendar className="h-4 w-4 text-[#00BCD4]" />
+        <span className="text-sm font-semibold text-[#006064]">Periode:</span>
+      </div>
+      {/* Select inputs */}
+    </div>
+  </CardContent>
+</Card>
+```
+
+## ⏳ Status Loading Enhanced (v1.1)
+
+### Spinner dengan Gradient Glow
+
+```jsx
+<div className="flex items-center justify-center py-12">
+  <div className="relative">
+    <div className="absolute inset-0 bg-gradient-to-r from-[#00BCD4] to-[#006064] rounded-full blur-md opacity-30 animate-pulse" />
+    <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#00BCD4] relative"></div>
+  </div>
+</div>
+```
+
+### Loading Skeleton dengan Theme
+
+```jsx
+<div className="space-y-4 animate-pulse">
+  <div className="h-8 bg-gradient-to-r from-[#B2EBF2]/50 to-[#80DEEA]/30 rounded-xl w-1/3"></div>
+  <div className="h-4 bg-gradient-to-r from-[#B2EBF2]/30 to-[#80DEEA]/20 rounded-lg w-2/3"></div>
+  <div className="h-4 bg-gradient-to-r from-[#B2EBF2]/30 to-[#80DEEA]/20 rounded-lg w-1/2"></div>
+</div>
+```
+
+## 🎨 Kontainer Ikon (v1.1)
+
+### Kontainer Ikon Standar
+
+```jsx
+<div className="p-2 rounded-lg bg-[#B2EBF2]">
+  <Icon className="h-5 w-5 text-[#006064]" />
+</div>
+```
+
+### Kontainer Ikon dengan Gradient
+
+```jsx
+<div className="p-3 rounded-xl bg-gradient-to-br from-[#B2EBF2] to-[#80DEEA]/50">
+  <Icon className="h-6 w-6 text-[#006064]" />
+</div>
+```
+
+### Kontainer Ikon dengan Hover Scale
+
+```jsx
+<div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-gradient-to-br from-[#B2EBF2] to-[#80DEEA]/50 group-hover:scale-110 transition-transform duration-300">
+  <Icon className="h-7 w-7 text-[#006064]" />
+</div>
+```
+
+## 📑 Pola Tabs Enhanced (v1.1)
+
+### Tab List dengan Gradient Active
+
+```jsx
+<Tabs defaultValue="tab1">
+  <TabsList className="grid w-full grid-cols-3 mb-6 bg-gradient-to-r from-[#00BCD4]/10 to-[#80DEEA]/10 p-1 rounded-xl">
+    <TabsTrigger
+      value="tab1"
+      className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#00BCD4] data-[state=active]:to-[#006064] data-[state=active]:text-white font-semibold transition-all duration-300"
+    >
+      Tab 1
+    </TabsTrigger>
+    <TabsTrigger
+      value="tab2"
+      className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#00BCD4] data-[state=active]:to-[#006064] data-[state=active]:text-white font-semibold transition-all duration-300"
+    >
+      Tab 2
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="tab1">{/* Konten */}</TabsContent>
+  <TabsContent value="tab2">{/* Konten */}</TabsContent>
+</Tabs>
+```
+
+## 🚨 Pola Error State (v1.1)
+
+### Card Error dengan Ikon
+
+```jsx
+<Card className="border-2 border-red-200 bg-gradient-to-br from-red-50 to-red-100/50 rounded-2xl">
+  <CardContent className="pt-6 text-center">
+    <div className="mx-auto w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mb-4">
+      <AlertCircle className="h-6 w-6 text-red-600" />
+    </div>
+    <p className="text-red-600 font-medium">Terjadi kesalahan</p>
+    <p className="text-sm text-red-500 mt-1">Pesan error detail</p>
+  </CardContent>
+</Card>
+```
+
+### Inline Error Message
+
+```jsx
+<p className="text-sm text-red-500 flex items-center gap-1 mt-1">
+  <AlertCircle className="h-4 w-4" />
+  Pesan error
+</p>
+```
+
 ## 🔄 Pembaruan
 
-- **Versi 1.0** (Saat Ini): Panduan tema Al Muhajirin awal ditetapkan
+- **Versi 1.1** (Desember 2025): Pola Enhanced dari implementasi Modul Keuangan
+  - Pola header halaman dengan decorative blur elements
+  - Kartu enhanced dengan border-2 dan rounded-2xl
+  - Gradient card headers
+  - Tabel dengan gradient header dan footer
+  - Loading state dengan gradient glow
+  - Enhanced form inputs dan buttons
+  - Kontainer ikon dengan berbagai ukuran
+  - Pola tabs dengan gradient active state
+  - Error state patterns
+
+- **Versi 1.0**: Panduan tema Al Muhajirin awal ditetapkan
   - Palet warna berdasarkan logo yayasan
   - Gaya komponen lengkap
   - Pola tata letak responsif

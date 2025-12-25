@@ -242,26 +242,34 @@ export default function PengaturanAkunPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="/pengaturan">
-              <ArrowLeft className="h-5 w-5" />
-            </Link>
-          </Button>
-          <div>
-            <h1 className="text-2xl font-bold text-[#006064]">Chart of Accounts</h1>
-            <p className="text-sm text-gray-600 mt-1">Kelola kode akun keuangan yayasan</p>
+      <div className="relative overflow-hidden bg-gradient-to-r from-white via-[#B2EBF2]/20 to-[#80DEEA]/20 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-6 rounded-b-3xl border-b border-[#00BCD4]/10 mb-6">
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-[#00BCD4]/20 to-[#80DEEA]/20 rounded-full blur-3xl" />
+        <div className="relative">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <Button variant="ghost" size="icon" asChild className="rounded-xl hover:bg-white/50">
+                <Link href="/pengaturan">
+                  <ArrowLeft className="h-5 w-5 text-[#006064]" />
+                </Link>
+              </Button>
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-1 h-8 bg-gradient-to-b from-[#00BCD4] to-[#006064] rounded-full" />
+                  <h1 className="text-3xl font-bold text-[#006064]">Chart of Accounts</h1>
+                </div>
+                <p className="text-sm text-gray-600 ml-4">Kelola kode akun keuangan yayasan</p>
+              </div>
+            </div>
+            <Button onClick={handleNew} className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white rounded-xl">
+              <Plus className="h-4 w-4 mr-2" />
+              Tambah Akun
+            </Button>
           </div>
         </div>
-        <Button onClick={handleNew} className="bg-[#00BCD4] hover:bg-[#006064]">
-          <Plus className="h-4 w-4 mr-2" />
-          Tambah Akun
-        </Button>
       </div>
 
       {/* Filters */}
-      <Card>
+      <Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg transition-all duration-300">
         <CardHeader className="pb-3">
           <CardTitle className="text-lg flex items-center gap-2">
             <Filter className="h-5 w-5 text-[#00BCD4]" />
@@ -276,11 +284,11 @@ export default function PengaturanAkunPage() {
                 placeholder="Cari kode/nama..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="pl-10"
+                className="pl-10 border-2 focus:border-[#00BCD4] rounded-xl"
               />
             </div>
             <Select value={kategoriFilter} onValueChange={setKategoriFilter}>
-              <SelectTrigger>
+              <SelectTrigger className="border-2 focus:border-[#00BCD4] rounded-xl">
                 <SelectValue placeholder="Semua Kategori" />
               </SelectTrigger>
               <SelectContent>
@@ -293,7 +301,7 @@ export default function PengaturanAkunPage() {
               </SelectContent>
             </Select>
             <Select value={normalBalanceFilter} onValueChange={setNormalBalanceFilter}>
-              <SelectTrigger>
+              <SelectTrigger className="border-2 focus:border-[#00BCD4] rounded-xl">
                 <SelectValue placeholder="Semua Balance" />
               </SelectTrigger>
               <SelectContent>
@@ -313,7 +321,7 @@ export default function PengaturanAkunPage() {
                 />
                 <span className="text-sm">Tampilkan nonaktif</span>
               </label>
-              <Button variant="outline" size="sm" onClick={resetFilters}>
+              <Button variant="outline" size="sm" onClick={resetFilters} className="rounded-xl">
                 Reset
               </Button>
             </div>
@@ -322,7 +330,7 @@ export default function PengaturanAkunPage() {
       </Card>
 
       {/* Table */}
-      <Card>
+      <Card className="border-2 border-gray-100 rounded-2xl">
         <CardContent className="p-0">
           {loading ? (
             <div className="flex items-center justify-center py-12">
@@ -335,14 +343,14 @@ export default function PengaturanAkunPage() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gray-50 border-b">
+                <thead className="bg-gradient-to-r from-[#00BCD4]/10 to-[#80DEEA]/10">
                   <tr>
-                    <th className="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Kode</th>
-                    <th className="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Nama Akun</th>
-                    <th className="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Kategori</th>
-                    <th className="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Balance</th>
-                    <th className="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Status</th>
-                    <th className="text-right py-3 px-4 text-xs font-medium text-gray-500 uppercase">Aksi</th>
+                    <th className="text-left py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Kode</th>
+                    <th className="text-left py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Nama Akun</th>
+                    <th className="text-left py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Kategori</th>
+                    <th className="text-left py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Balance</th>
+                    <th className="text-left py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Status</th>
+                    <th className="text-right py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Aksi</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y">
@@ -431,9 +439,9 @@ export default function PengaturanAkunPage() {
 
       {/* Form Dialog */}
       <Dialog open={showForm} onOpenChange={setShowForm}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl">
+          <DialogHeader className="border-b border-[#00BCD4]/10 pb-4">
+            <DialogTitle className="text-[#006064]">
               {editingAccount ? 'Edit Akun' : 'Tambah Akun Baru'}
             </DialogTitle>
             <DialogDescription>
@@ -567,10 +575,10 @@ export default function PengaturanAkunPage() {
           </div>
 
           <DialogFooter>
-            <Button variant="outline" onClick={() => setShowForm(false)} disabled={saving}>
+            <Button variant="outline" onClick={() => setShowForm(false)} disabled={saving} className="rounded-xl">
               Batal
             </Button>
-            <Button onClick={handleSubmit} disabled={saving} className="bg-[#00BCD4] hover:bg-[#006064]">
+            <Button onClick={handleSubmit} disabled={saving} className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white rounded-xl">
               {saving ? 'Menyimpan...' : 'Simpan'}
             </Button>
           </DialogFooter>

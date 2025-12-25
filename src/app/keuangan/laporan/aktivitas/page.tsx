@@ -167,40 +167,61 @@ export default function AktivitasPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="/laporan">
-              <ArrowLeft className="h-5 w-5" />
-            </Link>
-          </Button>
-          <div>
-            <h1 className="text-2xl font-bold text-[#006064]">Laporan Aktivitas</h1>
-            <p className="text-sm text-gray-600 mt-1">Statement of Activities - PSAK 45 / ISAK 35</p>
+      <div className="relative overflow-hidden bg-gradient-to-r from-white via-[#B2EBF2]/20 to-[#80DEEA]/20 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-6 rounded-b-3xl border-b border-[#00BCD4]/10">
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-[#00BCD4]/20 to-[#80DEEA]/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-gradient-to-tr from-[#B2EBF2]/30 to-[#00BCD4]/20 rounded-full blur-2xl" />
+        <div className="relative z-10 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              asChild
+              className="hover:bg-[#B2EBF2]/50 rounded-xl"
+            >
+              <Link href="/laporan">
+                <ArrowLeft className="h-5 w-5" />
+              </Link>
+            </Button>
+            <div>
+              <div className="flex items-center gap-3 mb-1">
+                <div className="w-1 h-6 bg-gradient-to-b from-[#00BCD4] to-[#006064] rounded-full" />
+                <h1 className="text-2xl font-bold text-[#006064]">Laporan Aktivitas</h1>
+              </div>
+              <p className="text-sm text-gray-600 ml-4">Statement of Activities - PSAK 45 / ISAK 35</p>
+            </div>
           </div>
-        </div>
-        <div className="flex gap-2 print:hidden">
-          <Button variant="outline" size="sm" onClick={handlePrint}>
-            <Printer className="h-4 w-4 mr-2" />
-            Cetak
-          </Button>
-          <Button variant="outline" size="sm">
-            <Download className="h-4 w-4 mr-2" />
-            Export
-          </Button>
+          <div className="flex gap-2 print:hidden">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handlePrint}
+              className="border-2 border-[#00BCD4]/30 hover:border-[#00BCD4] hover:bg-[#B2EBF2]/20 rounded-xl"
+            >
+              <Printer className="h-4 w-4 mr-2" />
+              Cetak
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-2 border-[#00BCD4]/30 hover:border-[#00BCD4] hover:bg-[#B2EBF2]/20 rounded-xl"
+            >
+              <Download className="h-4 w-4 mr-2" />
+              Export
+            </Button>
+          </div>
         </div>
       </div>
 
       {/* Filters */}
-      <Card className="print:hidden">
+      <Card className="print:hidden border-2 border-[#00BCD4]/10 rounded-2xl">
         <CardContent className="pt-4">
           <div className="flex gap-4 items-center">
             <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-gray-500" />
-              <span className="text-sm font-medium">Periode:</span>
+              <Calendar className="h-4 w-4 text-[#00BCD4]" />
+              <span className="text-sm font-semibold text-[#006064]">Periode:</span>
             </div>
             <Select value={year.toString()} onValueChange={(v) => setYear(parseInt(v))}>
-              <SelectTrigger className="w-32">
+              <SelectTrigger className="w-32 border-2 focus:border-[#00BCD4] rounded-xl">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -210,7 +231,7 @@ export default function AktivitasPage() {
               </SelectContent>
             </Select>
             <Select value={month} onValueChange={setMonth}>
-              <SelectTrigger className="w-48">
+              <SelectTrigger className="w-48 border-2 focus:border-[#00BCD4] rounded-xl">
                 <SelectValue placeholder="Pilih Bulan" />
               </SelectTrigger>
               <SelectContent>
@@ -310,9 +331,9 @@ export default function AktivitasPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Pendapatan */}
-            <Card>
-              <CardHeader className="bg-green-100/50 border-b">
-                <CardTitle className="text-green-800 flex items-center gap-2">
+            <Card className="border-2 border-green-100 rounded-2xl">
+              <CardHeader className="bg-gradient-to-r from-green-50 to-green-100/50 border-b">
+                <CardTitle className="text-green-800 flex items-center gap-2 font-bold">
                   <TrendingUp className="h-5 w-5" />
                   PENDAPATAN
                 </CardTitle>
@@ -322,7 +343,7 @@ export default function AktivitasPage() {
                 <ActivityTable section={data.pendapatan.pembatasanTemporer} type="income" />
                 <ActivityTable section={data.pendapatan.pembatasanPermanen} type="income" />
 
-                <div className="flex justify-between items-center py-3 px-3 bg-green-100 rounded-lg font-bold text-green-800 mt-4">
+                <div className="flex justify-between items-center py-3 px-4 bg-gradient-to-r from-green-100/70 to-green-50 rounded-xl font-bold text-green-800 mt-4">
                   <span>TOTAL PENDAPATAN</span>
                   <span className="tabular-nums text-lg">{formatCurrency(data.pendapatan.totalPendapatan)}</span>
                 </div>
@@ -330,9 +351,9 @@ export default function AktivitasPage() {
             </Card>
 
             {/* Beban */}
-            <Card>
-              <CardHeader className="bg-red-100/50 border-b">
-                <CardTitle className="text-red-800 flex items-center gap-2">
+            <Card className="border-2 border-red-100 rounded-2xl">
+              <CardHeader className="bg-gradient-to-r from-red-50 to-red-100/50 border-b">
+                <CardTitle className="text-red-800 flex items-center gap-2 font-bold">
                   <TrendingDown className="h-5 w-5" />
                   BEBAN
                 </CardTitle>
@@ -341,7 +362,7 @@ export default function AktivitasPage() {
                 <ActivityTable section={data.beban.program} type="expense" />
                 <ActivityTable section={data.beban.operasional} type="expense" />
 
-                <div className="flex justify-between items-center py-3 px-3 bg-red-100 rounded-lg font-bold text-red-800 mt-4">
+                <div className="flex justify-between items-center py-3 px-4 bg-gradient-to-r from-red-100/70 to-red-50 rounded-xl font-bold text-red-800 mt-4">
                   <span>TOTAL BEBAN</span>
                   <span className="tabular-nums text-lg">{formatCurrency(data.beban.totalBeban)}</span>
                 </div>
@@ -350,33 +371,33 @@ export default function AktivitasPage() {
           </div>
 
           {/* Perubahan Aset Bersih */}
-          <Card>
-            <CardHeader className="bg-[#00BCD4]/10 border-b">
-              <CardTitle className="text-[#006064]">PERUBAHAN ASET BERSIH</CardTitle>
+          <Card className="border-2 border-[#00BCD4]/20 rounded-2xl">
+            <CardHeader className="bg-gradient-to-r from-[#00BCD4]/10 to-[#80DEEA]/10 border-b">
+              <CardTitle className="text-[#006064] font-bold">PERUBAHAN ASET BERSIH</CardTitle>
             </CardHeader>
             <CardContent className="pt-4">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="p-4 bg-gray-50 rounded-lg">
-                  <p className="text-sm text-gray-600">Tanpa Pembatasan</p>
+                <div className="p-4 bg-gradient-to-br from-gray-50 to-gray-100/50 rounded-xl border border-gray-200">
+                  <p className="text-sm font-semibold text-gray-600 mb-1">Tanpa Pembatasan</p>
                   <p className={`text-lg font-bold ${isPositive(data.perubahanAsetBersih.tanpaPembatasan) ? 'text-green-700' : 'text-red-700'}`}>
                     {formatCurrency(data.perubahanAsetBersih.tanpaPembatasan)}
                   </p>
                 </div>
-                <div className="p-4 bg-gray-50 rounded-lg">
-                  <p className="text-sm text-gray-600">Pembatasan Temporer</p>
+                <div className="p-4 bg-gradient-to-br from-gray-50 to-gray-100/50 rounded-xl border border-gray-200">
+                  <p className="text-sm font-semibold text-gray-600 mb-1">Pembatasan Temporer</p>
                   <p className={`text-lg font-bold ${isPositive(data.perubahanAsetBersih.pembatasanTemporer) ? 'text-green-700' : 'text-red-700'}`}>
                     {formatCurrency(data.perubahanAsetBersih.pembatasanTemporer)}
                   </p>
                 </div>
-                <div className="p-4 bg-gray-50 rounded-lg">
-                  <p className="text-sm text-gray-600">Pembatasan Permanen</p>
+                <div className="p-4 bg-gradient-to-br from-gray-50 to-gray-100/50 rounded-xl border border-gray-200">
+                  <p className="text-sm font-semibold text-gray-600 mb-1">Pembatasan Permanen</p>
                   <p className={`text-lg font-bold ${isPositive(data.perubahanAsetBersih.pembatasanPermanen) ? 'text-green-700' : 'text-red-700'}`}>
                     {formatCurrency(data.perubahanAsetBersih.pembatasanPermanen)}
                   </p>
                 </div>
               </div>
-              <div className={`flex justify-between items-center py-4 px-4 mt-4 rounded-lg font-bold text-white ${
-                isPositive(data.perubahanAsetBersih.total) ? 'bg-green-600' : 'bg-red-600'
+              <div className={`flex justify-between items-center py-4 px-4 mt-4 rounded-xl font-bold text-white ${
+                isPositive(data.perubahanAsetBersih.total) ? 'bg-gradient-to-r from-green-600 to-green-700' : 'bg-gradient-to-r from-red-600 to-red-700'
               }`}>
                 <span>TOTAL PERUBAHAN ASET BERSIH</span>
                 <span className="tabular-nums text-xl">{formatCurrency(data.perubahanAsetBersih.total)}</span>
@@ -386,38 +407,38 @@ export default function AktivitasPage() {
 
           {/* Program Summary */}
           {data.programSummary.length > 0 && (
-            <Card>
-              <CardHeader className="border-b">
-                <CardTitle className="text-[#006064]">Ringkasan Program Kerja</CardTitle>
+            <Card className="border-2 border-[#00BCD4]/10 rounded-2xl">
+              <CardHeader className="bg-gradient-to-r from-[#00BCD4]/10 to-[#80DEEA]/10 border-b">
+                <CardTitle className="text-[#006064] font-bold">Ringkasan Program Kerja</CardTitle>
               </CardHeader>
               <CardContent className="pt-4">
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="border-b">
-                        <th className="text-left py-2 px-2">Kode</th>
-                        <th className="text-left py-2 px-2">Program</th>
-                        <th className="text-left py-2 px-2">Unit</th>
-                        <th className="text-right py-2 px-2">Anggaran</th>
-                        <th className="text-right py-2 px-2">Realisasi</th>
-                        <th className="text-center py-2 px-2 w-32">Progress</th>
+                      <tr className="bg-gradient-to-r from-[#00BCD4]/10 to-[#80DEEA]/10">
+                        <th className="text-left py-3 px-3 text-[#006064] font-semibold">Kode</th>
+                        <th className="text-left py-3 px-3 text-[#006064] font-semibold">Program</th>
+                        <th className="text-left py-3 px-3 text-[#006064] font-semibold">Unit</th>
+                        <th className="text-right py-3 px-3 text-[#006064] font-semibold">Anggaran</th>
+                        <th className="text-right py-3 px-3 text-[#006064] font-semibold">Realisasi</th>
+                        <th className="text-center py-3 px-3 w-32 text-[#006064] font-semibold">Progress</th>
                       </tr>
                     </thead>
                     <tbody>
                       {data.programSummary.slice(0, 10).map((program) => (
-                        <tr key={program.kode} className="border-b hover:bg-gray-50">
-                          <td className="py-2 px-2 font-mono text-xs">{program.kode}</td>
-                          <td className="py-2 px-2">
-                            <div>{program.nama}</div>
+                        <tr key={program.kode} className="border-b hover:bg-[#B2EBF2]/20 transition-colors">
+                          <td className="py-3 px-3 font-mono text-xs">{program.kode}</td>
+                          <td className="py-3 px-3">
+                            <div className="font-medium">{program.nama}</div>
                             <div className="text-xs text-gray-500">{program.jenis}</div>
                           </td>
-                          <td className="py-2 px-2 text-gray-600">{program.unit}</td>
-                          <td className="py-2 px-2 text-right tabular-nums">{formatCurrency(program.anggaran)}</td>
-                          <td className="py-2 px-2 text-right tabular-nums">{formatCurrency(program.realisasi)}</td>
-                          <td className="py-2 px-2">
+                          <td className="py-3 px-3 text-gray-600">{program.unit}</td>
+                          <td className="py-3 px-3 text-right tabular-nums">{formatCurrency(program.anggaran)}</td>
+                          <td className="py-3 px-3 text-right tabular-nums">{formatCurrency(program.realisasi)}</td>
+                          <td className="py-3 px-3">
                             <div className="flex items-center gap-2">
                               <Progress value={program.progress} className="h-2" />
-                              <span className="text-xs w-10 text-right">{program.progress}%</span>
+                              <span className="text-xs w-10 text-right font-semibold">{program.progress}%</span>
                             </div>
                           </td>
                         </tr>

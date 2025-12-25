@@ -204,12 +204,7 @@ export default function MappingAkunPage() {
 
   // Filter akun options based on jenis
   // Currently showing all options, but preserved for future filtering logic
-  const _filteredAkunOptions = kodeAkunOptions.filter(_akun => {
-    // For pendapatan, show income accounts (4xxx)
-    // For pengeluaran, show expense accounts (5xxx)
-    // But also allow all for flexibility
-    return true; // Show all, let user decide
-  });
+  // Note: Future enhancement could filter by account category (4xxx for income, 5xxx for expense)
 
   // Group akun by category for easier selection
   const akunByCategory = kodeAkunOptions.reduce((acc, akun) => {
@@ -222,49 +217,57 @@ export default function MappingAkunPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center gap-4">
-        <Button variant="ghost" size="icon" asChild>
-          <Link href="/pengaturan">
-            <ArrowLeft className="h-5 w-5" />
-          </Link>
-        </Button>
-        <div className="flex-1">
-          <h1 className="text-2xl font-bold text-[#006064] flex items-center gap-2">
-            <BookOpen className="h-6 w-6" />
-            Mapping Akun Program
-          </h1>
-          <p className="text-sm text-gray-600 mt-1">
-            Kelola asosiasi antara item program kerja dengan kode akun
-          </p>
-        </div>
-        {editedItems.size > 0 && (
-          <Button
-            onClick={saveChanges}
-            disabled={saving}
-            className="bg-[#00BCD4] hover:bg-[#006064]"
-          >
-            {saving ? (
-              <>
-                <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
-                Menyimpan...
-              </>
-            ) : (
-              <>
-                <Save className="h-4 w-4 mr-2" />
-                Simpan ({editedItems.size} perubahan)
-              </>
+      <div className="relative overflow-hidden bg-gradient-to-r from-white via-[#B2EBF2]/20 to-[#80DEEA]/20 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-6 rounded-b-3xl border-b border-[#00BCD4]/10 mb-6">
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-[#00BCD4]/20 to-[#80DEEA]/20 rounded-full blur-3xl" />
+        <div className="relative">
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="icon" asChild className="rounded-xl hover:bg-white/50">
+              <Link href="/pengaturan">
+                <ArrowLeft className="h-5 w-5 text-[#006064]" />
+              </Link>
+            </Button>
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-1 h-8 bg-gradient-to-b from-[#00BCD4] to-[#006064] rounded-full" />
+                <h1 className="text-3xl font-bold text-[#006064] flex items-center gap-2">
+                  <BookOpen className="h-7 w-7" />
+                  Mapping Akun Program
+                </h1>
+              </div>
+              <p className="text-sm text-gray-600 ml-4">
+                Kelola asosiasi antara item program kerja dengan kode akun
+              </p>
+            </div>
+            {editedItems.size > 0 && (
+              <Button
+                onClick={saveChanges}
+                disabled={saving}
+                className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white rounded-xl"
+              >
+                {saving ? (
+                  <>
+                    <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+                    Menyimpan...
+                  </>
+                ) : (
+                  <>
+                    <Save className="h-4 w-4 mr-2" />
+                    Simpan ({editedItems.size} perubahan)
+                  </>
+                )}
+              </Button>
             )}
-          </Button>
-        )}
+          </div>
+        </div>
       </div>
 
       {/* Success Message */}
       {successMessage && (
-        <Card className="border-green-200 bg-green-50">
+        <Card className="border-2 border-green-200 bg-green-50 rounded-2xl">
           <CardContent className="pt-4">
             <div className="flex items-center gap-2 text-green-600">
               <Check className="h-5 w-5" />
-              <span>{successMessage}</span>
+              <span className="font-medium">{successMessage}</span>
             </div>
           </CardContent>
         </Card>
@@ -272,23 +275,25 @@ export default function MappingAkunPage() {
 
       {/* Error */}
       {error && (
-        <Card className="border-red-200 bg-red-50">
+        <Card className="border-2 border-red-200 bg-red-50 rounded-2xl">
           <CardContent className="pt-4">
             <div className="flex items-center gap-2 text-red-600">
               <AlertCircle className="h-5 w-5" />
-              <span>{error}</span>
+              <span className="font-medium">{error}</span>
             </div>
           </CardContent>
         </Card>
       )}
 
       {/* Info Card */}
-      <Card className="border-[#00BCD4]/30 bg-[#00BCD4]/5">
+      <Card className="border-2 border-[#00BCD4]/30 bg-gradient-to-r from-[#B2EBF2]/10 to-[#80DEEA]/10 rounded-2xl">
         <CardContent className="pt-4">
           <div className="flex items-start gap-3">
-            <AlertCircle className="h-5 w-5 text-[#00BCD4] mt-0.5" />
+            <div className="p-2 rounded-xl bg-gradient-to-br from-[#B2EBF2] to-[#80DEEA]/50">
+              <AlertCircle className="h-5 w-5 text-[#006064]" />
+            </div>
             <div className="text-sm">
-              <p className="font-medium text-[#006064]">Tentang Mapping Akun</p>
+              <p className="font-semibold text-[#006064]">Tentang Mapping Akun</p>
               <p className="text-gray-600 mt-1">
                 Setiap item program kerja perlu diasosiasikan dengan kode akun yang sesuai.
                 Saat transaksi dicatat menggunakan item tersebut, sistem akan otomatis menggunakan
@@ -304,10 +309,10 @@ export default function MappingAkunPage() {
       </Card>
 
       {/* Filters */}
-      <Card>
+      <Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg transition-all duration-300">
         <CardHeader className="pb-4">
           <CardTitle className="text-lg flex items-center gap-2">
-            <Filter className="h-5 w-5" />
+            <Filter className="h-5 w-5 text-[#00BCD4]" />
             Filter
           </CardTitle>
         </CardHeader>
@@ -321,6 +326,7 @@ export default function MappingAkunPage() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                  className="border-2 focus:border-[#00BCD4] rounded-xl"
                 />
               </div>
             </div>
@@ -328,7 +334,7 @@ export default function MappingAkunPage() {
             <div className="space-y-2">
               <Label>Jenis</Label>
               <Select value={selectedJenis} onValueChange={setSelectedJenis}>
-                <SelectTrigger>
+                <SelectTrigger className="border-2 focus:border-[#00BCD4] rounded-xl">
                   <SelectValue placeholder="Semua jenis" />
                 </SelectTrigger>
                 <SelectContent>
@@ -348,7 +354,7 @@ export default function MappingAkunPage() {
                   setSelectedUnit('');
                 }}
               >
-                <SelectTrigger>
+                <SelectTrigger className="border-2 focus:border-[#00BCD4] rounded-xl">
                   <SelectValue placeholder="Semua bidang" />
                 </SelectTrigger>
                 <SelectContent>
@@ -369,7 +375,7 @@ export default function MappingAkunPage() {
                 onValueChange={(v) => setSelectedUnit(v === 'all' ? '' : v)}
                 disabled={!selectedBidang}
               >
-                <SelectTrigger>
+                <SelectTrigger className="border-2 focus:border-[#00BCD4] rounded-xl">
                   <SelectValue placeholder="Semua unit" />
                 </SelectTrigger>
                 <SelectContent>
@@ -386,11 +392,11 @@ export default function MappingAkunPage() {
             <div className="space-y-2">
               <Label>&nbsp;</Label>
               <div className="flex gap-2">
-                <Button onClick={handleSearch} variant="outline" className="flex-1">
+                <Button onClick={handleSearch} variant="outline" className="flex-1 rounded-xl">
                   <Search className="h-4 w-4 mr-2" />
                   Cari
                 </Button>
-                <Button onClick={resetFilters} variant="ghost" size="icon">
+                <Button onClick={resetFilters} variant="ghost" size="icon" className="rounded-xl">
                   <RefreshCw className="h-4 w-4" />
                 </Button>
               </div>
@@ -400,15 +406,15 @@ export default function MappingAkunPage() {
       </Card>
 
       {/* Data Table */}
-      <Card>
+      <Card className="border-2 border-gray-100 rounded-2xl">
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="text-lg">Daftar Item Program</CardTitle>
+              <CardTitle className="text-lg text-[#006064]">Daftar Item Program</CardTitle>
               <CardDescription>
                 {items.length} item ditemukan
                 {editedItems.size > 0 && (
-                  <span className="text-orange-500 ml-2">
+                  <span className="text-orange-500 ml-2 font-medium">
                     ({editedItems.size} belum disimpan)
                   </span>
                 )}
@@ -430,13 +436,13 @@ export default function MappingAkunPage() {
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
-                  <TableRow className="bg-gray-50">
-                    <TableHead className="w-[100px]">Bidang</TableHead>
-                    <TableHead className="w-[100px]">Unit</TableHead>
-                    <TableHead className="w-[120px]">Kode Item</TableHead>
-                    <TableHead>Nama Item</TableHead>
-                    <TableHead className="w-[100px]">Jenis</TableHead>
-                    <TableHead className="w-[300px]">Kode Akun</TableHead>
+                  <TableRow className="bg-gradient-to-r from-[#00BCD4]/10 to-[#80DEEA]/10">
+                    <TableHead className="w-[100px] text-[#006064] font-semibold">Bidang</TableHead>
+                    <TableHead className="w-[100px] text-[#006064] font-semibold">Unit</TableHead>
+                    <TableHead className="w-[120px] text-[#006064] font-semibold">Kode Item</TableHead>
+                    <TableHead className="text-[#006064] font-semibold">Nama Item</TableHead>
+                    <TableHead className="w-[100px] text-[#006064] font-semibold">Jenis</TableHead>
+                    <TableHead className="w-[300px] text-[#006064] font-semibold">Kode Akun</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>

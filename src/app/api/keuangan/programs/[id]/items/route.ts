@@ -18,7 +18,6 @@ export async function POST(
       satuan,
       hargaSatuan,
       kodeAkun,
-      kodeAkunPasangan: _kodeAkunPasangan,
     } = body;
 
     // Validate required fields

@@ -130,25 +130,33 @@ export default function ProgramPage() {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-[#006064]">Program Kerja</h1>
-          <p className="text-sm text-gray-600 mt-1">Daftar program kerja tahun 2026</p>
+      <div className="relative overflow-hidden bg-gradient-to-r from-white via-[#B2EBF2]/20 to-[#80DEEA]/20 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-6 rounded-b-3xl border-b border-[#00BCD4]/10">
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-[#00BCD4]/20 to-[#80DEEA]/20 rounded-full blur-3xl" />
+        <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-1 h-8 bg-gradient-to-b from-[#00BCD4] to-[#006064] rounded-full" />
+              <h1 className="text-3xl font-bold text-[#006064]">Program Kerja</h1>
+            </div>
+            <p className="text-sm text-gray-600 ml-4">Daftar program kerja tahun 2026</p>
+          </div>
+          <Button asChild className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl">
+            <Link href="/program/new">
+              <Plus className="h-4 w-4 mr-2" />
+              Tambah Program
+            </Link>
+          </Button>
         </div>
-        <Button asChild className="bg-[#00BCD4] hover:bg-[#006064]">
-          <Link href="/program/new">
-            <Plus className="h-4 w-4 mr-2" />
-            Tambah Program
-          </Link>
-        </Button>
       </div>
 
       {/* Filter Section */}
-      <Card className="border-2" style={{ borderColor: 'rgba(0, 188, 212, 0.1)' }}>
-        <CardHeader className="pb-3">
+      <Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg hover:border-[#00BCD4]/40 transition-all duration-300">
+        <CardHeader className="bg-gradient-to-r from-[#B2EBF2]/20 to-transparent border-b border-[#00BCD4]/10 pb-3">
           <CardTitle className="text-lg flex items-center gap-2">
-            <Filter className="h-5 w-5 text-[#00BCD4]" />
-            Filter & Pencarian
+            <div className="p-2 rounded-lg bg-[#B2EBF2]">
+              <Filter className="h-5 w-5 text-[#006064]" />
+            </div>
+            <span className="text-[#006064]">Filter & Pencarian</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -163,7 +171,7 @@ export default function ProgramPage() {
               />
             </div>
             <Select value={bidangFilter} onValueChange={setBidangFilter}>
-              <SelectTrigger className="border-[#00BCD4]/30">
+              <SelectTrigger className="border-2 focus:border-[#00BCD4] rounded-xl">
                 <SelectValue placeholder="Semua Bidang" />
               </SelectTrigger>
               <SelectContent>
@@ -176,7 +184,7 @@ export default function ProgramPage() {
               </SelectContent>
             </Select>
             <Select value={jenisFilter} onValueChange={setJenisFilter}>
-              <SelectTrigger className="border-[#00BCD4]/30">
+              <SelectTrigger className="border-2 focus:border-[#00BCD4] rounded-xl">
                 <SelectValue placeholder="Semua Jenis" />
               </SelectTrigger>
               <SelectContent>
@@ -186,7 +194,7 @@ export default function ProgramPage() {
               </SelectContent>
             </Select>
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="border-[#00BCD4]/30">
+              <SelectTrigger className="border-2 focus:border-[#00BCD4] rounded-xl">
                 <SelectValue placeholder="Semua Status" />
               </SelectTrigger>
               <SelectContent>
@@ -203,7 +211,10 @@ export default function ProgramPage() {
       {/* Loading State */}
       {loading && (
         <div className="flex items-center justify-center py-12">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00BCD4]"></div>
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#00BCD4] to-[#006064] rounded-full blur-md opacity-30 animate-pulse" />
+            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#00BCD4] relative"></div>
+          </div>
         </div>
       )}
 
@@ -225,7 +236,7 @@ export default function ProgramPage() {
             return (
               <Card
                 key={program.id}
-                className="hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-[#00BCD4]/30"
+                className="border-2 border-gray-100 rounded-2xl hover:shadow-lg hover:border-[#00BCD4]/40 transition-all duration-300"
               >
                 <CardHeader className="pb-3">
                   <div className="flex items-start justify-between">
@@ -279,20 +290,20 @@ export default function ProgramPage() {
                       {isPendapatan ? 'Pendapatan' : 'Pengeluaran'}
                     </Badge>
                     <div className="flex items-center gap-1">
-                      <Button variant="ghost" size="icon" asChild className="h-8 w-8">
+                      <Button variant="ghost" size="icon" asChild className="h-8 w-8 hover:bg-[#00BCD4]/10 rounded-lg transition-colors">
                         <Link href={`/program/${program.id}`}>
-                          <Eye className="h-4 w-4 text-blue-600" />
+                          <Eye className="h-4 w-4 text-[#00BCD4]" />
                         </Link>
                       </Button>
-                      <Button variant="ghost" size="icon" asChild className="h-8 w-8">
+                      <Button variant="ghost" size="icon" asChild className="h-8 w-8 hover:bg-[#4CAF50]/10 rounded-lg transition-colors">
                         <Link href={`/program/${program.id}/edit`}>
-                          <Pencil className="h-4 w-4 text-gray-600" />
+                          <Pencil className="h-4 w-4 text-[#4CAF50]" />
                         </Link>
                       </Button>
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="h-8 w-8"
+                        className="h-8 w-8 hover:bg-red-50 rounded-lg transition-colors"
                         onClick={() => setDeleteDialog({ open: true, program })}
                       >
                         <Trash2 className="h-4 w-4 text-red-600" />

@@ -153,40 +153,61 @@ export default function NeracaPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="/laporan">
-              <ArrowLeft className="h-5 w-5" />
-            </Link>
-          </Button>
-          <div>
-            <h1 className="text-2xl font-bold text-[#006064]">Laporan Posisi Keuangan (Neraca)</h1>
-            <p className="text-sm text-gray-600 mt-1">Statement of Financial Position - PSAK 45 / ISAK 35</p>
+      <div className="relative overflow-hidden bg-gradient-to-r from-white via-[#B2EBF2]/20 to-[#80DEEA]/20 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-6 rounded-b-3xl border-b border-[#00BCD4]/10">
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-[#00BCD4]/20 to-[#80DEEA]/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-gradient-to-tr from-[#B2EBF2]/30 to-[#00BCD4]/20 rounded-full blur-2xl" />
+        <div className="relative z-10 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              asChild
+              className="hover:bg-[#B2EBF2]/50 rounded-xl"
+            >
+              <Link href="/laporan">
+                <ArrowLeft className="h-5 w-5" />
+              </Link>
+            </Button>
+            <div>
+              <div className="flex items-center gap-3 mb-1">
+                <div className="w-1 h-6 bg-gradient-to-b from-[#00BCD4] to-[#006064] rounded-full" />
+                <h1 className="text-2xl font-bold text-[#006064]">Laporan Posisi Keuangan (Neraca)</h1>
+              </div>
+              <p className="text-sm text-gray-600 ml-4">Statement of Financial Position - PSAK 45 / ISAK 35</p>
+            </div>
           </div>
-        </div>
-        <div className="flex gap-2 print:hidden">
-          <Button variant="outline" size="sm" onClick={handlePrint}>
-            <Printer className="h-4 w-4 mr-2" />
-            Cetak
-          </Button>
-          <Button variant="outline" size="sm">
-            <Download className="h-4 w-4 mr-2" />
-            Export
-          </Button>
+          <div className="flex gap-2 print:hidden">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handlePrint}
+              className="border-2 border-[#00BCD4]/30 hover:border-[#00BCD4] hover:bg-[#B2EBF2]/20 rounded-xl"
+            >
+              <Printer className="h-4 w-4 mr-2" />
+              Cetak
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-2 border-[#00BCD4]/30 hover:border-[#00BCD4] hover:bg-[#B2EBF2]/20 rounded-xl"
+            >
+              <Download className="h-4 w-4 mr-2" />
+              Export
+            </Button>
+          </div>
         </div>
       </div>
 
       {/* Filters */}
-      <Card className="print:hidden">
+      <Card className="print:hidden border-2 border-[#00BCD4]/10 rounded-2xl">
         <CardContent className="pt-4">
           <div className="flex gap-4 items-center">
             <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-gray-500" />
-              <span className="text-sm font-medium">Periode:</span>
+              <Calendar className="h-4 w-4 text-[#00BCD4]" />
+              <span className="text-sm font-semibold text-[#006064]">Periode:</span>
             </div>
             <Select value={year.toString()} onValueChange={(v) => setYear(parseInt(v))}>
-              <SelectTrigger className="w-32">
+              <SelectTrigger className="w-32 border-2 focus:border-[#00BCD4] rounded-xl">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -196,7 +217,7 @@ export default function NeracaPage() {
               </SelectContent>
             </Select>
             <Select value={month} onValueChange={setMonth}>
-              <SelectTrigger className="w-48">
+              <SelectTrigger className="w-48 border-2 focus:border-[#00BCD4] rounded-xl">
                 <SelectValue placeholder="Pilih Bulan" />
               </SelectTrigger>
               <SelectContent>
@@ -265,15 +286,15 @@ export default function NeracaPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Left Column - Aset */}
-            <Card>
-              <CardHeader className="bg-[#00BCD4]/10 border-b">
-                <CardTitle className="text-[#006064]">ASET</CardTitle>
+            <Card className="border-2 border-[#00BCD4]/10 rounded-2xl">
+              <CardHeader className="bg-gradient-to-r from-[#00BCD4]/10 to-[#80DEEA]/10 border-b">
+                <CardTitle className="text-[#006064] font-bold">ASET</CardTitle>
               </CardHeader>
               <CardContent className="pt-4 space-y-6">
                 <AccountSection section={data.aset.asetLancar} />
                 <AccountSection section={data.aset.asetTetap} />
 
-                <div className="flex justify-between items-center py-3 px-2 bg-[#00BCD4]/10 rounded-lg font-bold text-[#006064]">
+                <div className="flex justify-between items-center py-3 px-4 bg-gradient-to-r from-[#00BCD4]/20 to-[#80DEEA]/20 rounded-xl font-bold text-[#006064]">
                   <span>TOTAL ASET</span>
                   <span className="tabular-nums text-lg">{formatCurrency(data.aset.totalAset)}</span>
                 </div>
@@ -283,15 +304,15 @@ export default function NeracaPage() {
             {/* Right Column - Kewajiban & Aset Bersih */}
             <div className="space-y-6">
               {/* Kewajiban */}
-              <Card>
-                <CardHeader className="bg-orange-100/50 border-b">
-                  <CardTitle className="text-orange-800">KEWAJIBAN</CardTitle>
+              <Card className="border-2 border-orange-100 rounded-2xl">
+                <CardHeader className="bg-gradient-to-r from-orange-50 to-orange-100/50 border-b">
+                  <CardTitle className="text-orange-800 font-bold">KEWAJIBAN</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-4 space-y-6">
                   <AccountSection section={data.kewajiban.jangkaPendek} />
                   <AccountSection section={data.kewajiban.jangkaPanjang} />
 
-                  <div className="flex justify-between items-center py-3 px-2 bg-orange-100/50 rounded-lg font-bold text-orange-800">
+                  <div className="flex justify-between items-center py-3 px-4 bg-gradient-to-r from-orange-100/70 to-orange-50 rounded-xl font-bold text-orange-800">
                     <span>TOTAL KEWAJIBAN</span>
                     <span className="tabular-nums">{formatCurrency(data.kewajiban.totalKewajiban)}</span>
                   </div>
@@ -299,16 +320,16 @@ export default function NeracaPage() {
               </Card>
 
               {/* Aset Bersih */}
-              <Card>
-                <CardHeader className="bg-green-100/50 border-b">
-                  <CardTitle className="text-green-800">ASET BERSIH</CardTitle>
+              <Card className="border-2 border-green-100 rounded-2xl">
+                <CardHeader className="bg-gradient-to-r from-green-50 to-green-100/50 border-b">
+                  <CardTitle className="text-green-800 font-bold">ASET BERSIH</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-4 space-y-6">
                   <AccountSection section={data.asetBersih.tanpaPembatasan} />
                   <AccountSection section={data.asetBersih.pembatasanTemporer} />
                   <AccountSection section={data.asetBersih.pembatasanPermanen} />
 
-                  <div className="flex justify-between items-center py-3 px-2 bg-green-100/50 rounded-lg font-bold text-green-800">
+                  <div className="flex justify-between items-center py-3 px-4 bg-gradient-to-r from-green-100/70 to-green-50 rounded-xl font-bold text-green-800">
                     <span>TOTAL ASET BERSIH</span>
                     <span className="tabular-nums">{formatCurrency(data.asetBersih.totalAsetBersih)}</span>
                   </div>
@@ -316,8 +337,8 @@ export default function NeracaPage() {
               </Card>
 
               {/* Total Kewajiban + Aset Bersih */}
-              <Card className="bg-[#006064] text-white">
-                <CardContent className="py-4">
+              <Card className="bg-gradient-to-r from-[#006064] to-[#00838F] text-white border-2 border-[#006064] rounded-2xl">
+                <CardContent className="py-5">
                   <div className="flex justify-between items-center font-bold">
                     <span>TOTAL KEWAJIBAN + ASET BERSIH</span>
                     <span className="tabular-nums text-lg">{formatCurrency(data.totalKewajibanDanAsetBersih)}</span>

@@ -57,8 +57,6 @@ const formatCurrency = (value: number) => {
   }).format(value);
 };
 
-const _monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-
 export default function ProgramDetailPage() {
   const params = useParams();
   const [program, setProgram] = useState<ProgramDetail | null>(null);
@@ -93,7 +91,10 @@ export default function ProgramDetailPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00BCD4]"></div>
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#00BCD4] to-[#006064] rounded-full blur-md opacity-30 animate-pulse" />
+          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#00BCD4] relative"></div>
+        </div>
       </div>
     );
   }
@@ -121,29 +122,35 @@ export default function ProgramDetailPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="/program">
-              <ArrowLeft className="h-5 w-5" />
+      <div className="relative overflow-hidden bg-gradient-to-r from-white via-[#B2EBF2]/20 to-[#80DEEA]/20 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-6 rounded-b-3xl border-b border-[#00BCD4]/10">
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-[#00BCD4]/20 to-[#80DEEA]/20 rounded-full blur-3xl" />
+        <div className="relative flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="icon" asChild className="hover:bg-[#00BCD4]/10 rounded-xl">
+              <Link href="/program">
+                <ArrowLeft className="h-5 w-5 text-[#006064]" />
+              </Link>
+            </Button>
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-1 h-8 bg-gradient-to-b from-[#00BCD4] to-[#006064] rounded-full" />
+                <h1 className="text-3xl font-bold text-[#006064]">{program.nama}</h1>
+              </div>
+              <p className="text-sm text-gray-500 font-mono ml-4">{program.kode}</p>
+            </div>
+          </div>
+          <Button asChild className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl">
+            <Link href={`/program/${program.id}/edit`}>
+              <Pencil className="h-4 w-4 mr-2" />
+              Edit Program
             </Link>
           </Button>
-          <div>
-            <h1 className="text-2xl font-bold text-[#006064]">{program.nama}</h1>
-            <p className="text-sm text-gray-500 font-mono">{program.kode}</p>
-          </div>
         </div>
-        <Button asChild className="bg-[#00BCD4] hover:bg-[#006064]">
-          <Link href={`/program/${program.id}/edit`}>
-            <Pencil className="h-4 w-4 mr-2" />
-            Edit Program
-          </Link>
-        </Button>
       </div>
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card>
+        <Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg hover:border-[#00BCD4]/40 transition-all duration-300">
           <CardContent className="pt-4">
             <p className="text-sm text-gray-600">Total Anggaran</p>
             <p className="text-xl font-bold text-[#006064]">{formatCurrency(program.totalAnggaran)}</p>
@@ -157,7 +164,7 @@ export default function ProgramDetailPage() {
             </p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg hover:border-[#00BCD4]/40 transition-all duration-300">
           <CardContent className="pt-4">
             <p className="text-sm text-gray-600">Progress</p>
             <div className="flex items-center gap-2">
@@ -166,7 +173,7 @@ export default function ProgramDetailPage() {
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg hover:border-[#00BCD4]/40 transition-all duration-300">
           <CardContent className="pt-4">
             <p className="text-sm text-gray-600">Status</p>
             <div className="flex items-center gap-2 mt-1">
@@ -190,11 +197,13 @@ export default function ProgramDetailPage() {
       </div>
 
       {/* Program Info */}
-      <Card>
-        <CardHeader>
+      <Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg hover:border-[#00BCD4]/40 transition-all duration-300">
+        <CardHeader className="bg-gradient-to-r from-[#B2EBF2]/20 to-transparent border-b border-[#00BCD4]/10">
           <CardTitle className="text-lg flex items-center gap-2">
-            <FileText className="h-5 w-5 text-[#00BCD4]" />
-            Informasi Program
+            <div className="p-2 rounded-lg bg-[#B2EBF2]">
+              <FileText className="h-5 w-5 text-[#006064]" />
+            </div>
+            <span className="text-[#006064]">Informasi Program</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -226,25 +235,27 @@ export default function ProgramDetailPage() {
       </Card>
 
       {/* Program Items */}
-      <Card>
-        <CardHeader>
+      <Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg hover:border-[#00BCD4]/40 transition-all duration-300">
+        <CardHeader className="bg-gradient-to-r from-[#B2EBF2]/20 to-transparent border-b border-[#00BCD4]/10">
           <CardTitle className="text-lg flex items-center gap-2">
-            <Calendar className="h-5 w-5 text-[#00BCD4]" />
-            Rincian Anggaran ({program.items.length} item)
+            <div className="p-2 rounded-lg bg-[#B2EBF2]">
+              <Calendar className="h-5 w-5 text-[#006064]" />
+            </div>
+            <span className="text-[#006064]">Rincian Anggaran ({program.items.length} item)</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b bg-gray-50">
-                  <th className="text-left py-3 px-2">Kode</th>
-                  <th className="text-left py-3 px-2">Nama Item</th>
-                  <th className="text-center py-3 px-2">Vol</th>
-                  <th className="text-right py-3 px-2">Harga</th>
-                  <th className="text-right py-3 px-2">Jumlah</th>
-                  <th className="text-right py-3 px-2">Realisasi</th>
-                  <th className="text-center py-3 px-2">Progress</th>
+                <tr className="border-b bg-gradient-to-r from-[#00BCD4]/10 to-[#80DEEA]/10">
+                  <th className="text-left py-3 px-2 font-bold text-[#006064]">Kode</th>
+                  <th className="text-left py-3 px-2 font-bold text-[#006064]">Nama Item</th>
+                  <th className="text-center py-3 px-2 font-bold text-[#006064]">Vol</th>
+                  <th className="text-right py-3 px-2 font-bold text-[#006064]">Harga</th>
+                  <th className="text-right py-3 px-2 font-bold text-[#006064]">Jumlah</th>
+                  <th className="text-right py-3 px-2 font-bold text-[#006064]">Realisasi</th>
+                  <th className="text-center py-3 px-2 font-bold text-[#006064]">Progress</th>
                 </tr>
               </thead>
               <tbody>
@@ -296,9 +307,9 @@ export default function ProgramDetailPage() {
 
       {/* Recent Transactions */}
       {program.recentTransactions.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">Transaksi Terbaru</CardTitle>
+        <Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg hover:border-[#00BCD4]/40 transition-all duration-300">
+          <CardHeader className="bg-gradient-to-r from-[#B2EBF2]/20 to-transparent border-b border-[#00BCD4]/10">
+            <CardTitle className="text-lg text-[#006064]">Transaksi Terbaru</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">

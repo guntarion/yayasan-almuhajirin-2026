@@ -362,7 +362,10 @@ export default function EditProgramPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00BCD4]"></div>
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#00BCD4] to-[#006064] rounded-full blur-md opacity-30 animate-pulse" />
+          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#00BCD4] relative"></div>
+        </div>
       </div>
     );
   }
@@ -370,24 +373,32 @@ export default function EditProgramPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center gap-4">
-        <Button variant="ghost" size="icon" asChild>
-          <Link href={`/program/${programId}`}>
-            <ArrowLeft className="h-5 w-5" />
-          </Link>
-        </Button>
-        <div>
-          <h1 className="text-2xl font-bold text-[#006064]">Edit Program</h1>
-          <p className="text-sm text-gray-500 font-mono">{kode}</p>
+      <div className="relative overflow-hidden bg-gradient-to-r from-white via-[#B2EBF2]/20 to-[#80DEEA]/20 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-6 rounded-b-3xl border-b border-[#00BCD4]/10">
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-[#00BCD4]/20 to-[#80DEEA]/20 rounded-full blur-3xl" />
+        <div className="relative flex items-center gap-4">
+          <Button variant="ghost" size="icon" asChild className="hover:bg-[#00BCD4]/10 rounded-xl">
+            <Link href={`/program/${programId}`}>
+              <ArrowLeft className="h-5 w-5 text-[#006064]" />
+            </Link>
+          </Button>
+          <div>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-1 h-8 bg-gradient-to-b from-[#00BCD4] to-[#006064] rounded-full" />
+              <h1 className="text-3xl font-bold text-[#006064]">Edit Program</h1>
+            </div>
+            <p className="text-sm text-gray-500 font-mono ml-4">{kode}</p>
+          </div>
         </div>
       </div>
 
       {/* Error Alert */}
       {error && (
-        <Card className="border-red-200 bg-red-50">
+        <Card className="border-2 border-red-200 bg-red-50 rounded-2xl">
           <CardContent className="pt-4">
             <div className="flex items-center gap-2 text-red-600">
-              <AlertCircle className="h-5 w-5" />
+              <div className="p-2 rounded-lg bg-red-100">
+                <AlertCircle className="h-5 w-5" />
+              </div>
               <span>{error}</span>
             </div>
           </CardContent>
@@ -396,15 +407,20 @@ export default function EditProgramPage() {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Informasi Program */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">Informasi Program</CardTitle>
+        <Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg hover:border-[#00BCD4]/40 transition-all duration-300">
+          <CardHeader className="bg-gradient-to-r from-[#B2EBF2]/20 to-transparent border-b border-[#00BCD4]/10">
+            <CardTitle className="text-lg flex items-center gap-2">
+              <div className="p-2 rounded-lg bg-[#B2EBF2]">
+                <Edit2 className="h-5 w-5 text-[#006064]" />
+              </div>
+              <span className="text-[#006064]">Informasi Program</span>
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {/* Kode (read-only) */}
             <div className="space-y-2">
               <Label>Kode Program</Label>
-              <Input value={kode} disabled className="bg-gray-100 font-mono" />
+              <Input value={kode} disabled className="bg-gray-100 font-mono border-2 rounded-xl" />
             </div>
 
             {/* Row 1: Nama + Jenis */}
@@ -415,6 +431,7 @@ export default function EditProgramPage() {
                   id="nama"
                   value={nama}
                   onChange={(e) => setNama(e.target.value)}
+                  className="border-2 focus:border-[#00BCD4] rounded-xl"
                   required
                 />
               </div>
@@ -450,7 +467,7 @@ export default function EditProgramPage() {
               <div className="space-y-2">
                 <Label>Bidang *</Label>
                 <Select value={bidangKode} onValueChange={(v) => { setBidangKode(v); setUnitKerjaKode(''); }}>
-                  <SelectTrigger>
+                  <SelectTrigger className="border-2 focus:border-[#00BCD4] rounded-xl">
                     <SelectValue placeholder="Pilih Bidang" />
                   </SelectTrigger>
                   <SelectContent>
@@ -465,7 +482,7 @@ export default function EditProgramPage() {
               <div className="space-y-2">
                 <Label>Unit Kerja *</Label>
                 <Select value={unitKerjaKode} onValueChange={setUnitKerjaKode} disabled={!bidangKode}>
-                  <SelectTrigger>
+                  <SelectTrigger className="border-2 focus:border-[#00BCD4] rounded-xl">
                     <SelectValue placeholder="Pilih Unit" />
                   </SelectTrigger>
                   <SelectContent>
@@ -484,7 +501,7 @@ export default function EditProgramPage() {
               <div className="space-y-2">
                 <Label>Sifat Program</Label>
                 <Select value={sifat} onValueChange={setSifat}>
-                  <SelectTrigger>
+                  <SelectTrigger className="border-2 focus:border-[#00BCD4] rounded-xl">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -498,7 +515,7 @@ export default function EditProgramPage() {
               <div className="space-y-2">
                 <Label>Status</Label>
                 <Select value={status} onValueChange={setStatus}>
-                  <SelectTrigger>
+                  <SelectTrigger className="border-2 focus:border-[#00BCD4] rounded-xl">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -517,6 +534,7 @@ export default function EditProgramPage() {
                 value={deskripsi}
                 onChange={(e) => setDeskripsi(e.target.value)}
                 placeholder="Deskripsi program (opsional)"
+                className="border-2 focus:border-[#00BCD4] rounded-xl"
                 rows={3}
               />
             </div>
@@ -524,9 +542,9 @@ export default function EditProgramPage() {
         </Card>
 
         {/* Ringkasan Anggaran */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">Ringkasan Anggaran</CardTitle>
+        <Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg hover:border-[#00BCD4]/40 transition-all duration-300">
+          <CardHeader className="bg-gradient-to-r from-[#B2EBF2]/20 to-transparent border-b border-[#00BCD4]/10">
+            <CardTitle className="text-lg text-[#006064]">Ringkasan Anggaran</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -551,14 +569,14 @@ export default function EditProgramPage() {
         </Card>
 
         {/* Items Management */}
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="text-lg">Rincian Item Program</CardTitle>
+        <Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg hover:border-[#00BCD4]/40 transition-all duration-300">
+          <CardHeader className="flex flex-row items-center justify-between bg-gradient-to-r from-[#B2EBF2]/20 to-transparent border-b border-[#00BCD4]/10">
+            <CardTitle className="text-lg text-[#006064]">Rincian Item Program</CardTitle>
             <Button
               type="button"
               size="sm"
               onClick={openAddItemDialog}
-              className="bg-[#00BCD4] hover:bg-[#006064]"
+              className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
             >
               <Plus className="h-4 w-4 mr-2" />
               Tambah Item
@@ -579,17 +597,17 @@ export default function EditProgramPage() {
                 </Button>
               </div>
             ) : (
-              <div className="border rounded-lg overflow-hidden">
+              <div className="border-2 border-gray-100 rounded-xl overflow-hidden">
                 <table className="w-full text-sm">
-                  <thead className="bg-gray-50 border-b">
+                  <thead className="bg-gradient-to-r from-[#00BCD4]/10 to-[#80DEEA]/10 border-b">
                     <tr>
-                      <th className="text-left py-2 px-3 font-medium">Kode</th>
-                      <th className="text-left py-2 px-3 font-medium">Nama Item</th>
-                      <th className="text-center py-2 px-3 font-medium">Volume</th>
-                      <th className="text-right py-2 px-3 font-medium">Harga</th>
-                      <th className="text-right py-2 px-3 font-medium">Jumlah</th>
-                      <th className="text-right py-2 px-3 font-medium">Realisasi</th>
-                      <th className="text-center py-2 px-3 font-medium w-24">Aksi</th>
+                      <th className="text-left py-2 px-3 font-bold text-[#006064]">Kode</th>
+                      <th className="text-left py-2 px-3 font-bold text-[#006064]">Nama Item</th>
+                      <th className="text-center py-2 px-3 font-bold text-[#006064]">Volume</th>
+                      <th className="text-right py-2 px-3 font-bold text-[#006064]">Harga</th>
+                      <th className="text-right py-2 px-3 font-bold text-[#006064]">Jumlah</th>
+                      <th className="text-right py-2 px-3 font-bold text-[#006064]">Realisasi</th>
+                      <th className="text-center py-2 px-3 font-bold text-[#006064] w-24">Aksi</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y">
@@ -662,9 +680,14 @@ export default function EditProgramPage() {
           <Button type="button" variant="outline" asChild>
             <Link href={`/program/${programId}`}>Batal</Link>
           </Button>
-          <Button type="submit" disabled={saving} className="bg-[#00BCD4] hover:bg-[#006064]">
+          <Button type="submit" disabled={saving} className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl">
             {saving ? (
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+              <>
+                <div className="relative mr-2">
+                  <div className="absolute inset-0 bg-white/20 rounded-full blur-sm animate-pulse" />
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white relative"></div>
+                </div>
+              </>
             ) : (
               <Save className="h-4 w-4 mr-2" />
             )}
@@ -701,7 +724,7 @@ export default function EditProgramPage() {
                   value={itemForm.kodeItem}
                   onChange={(e) => setItemForm({ ...itemForm, kodeItem: e.target.value })}
                   placeholder="Contoh: 01.001"
-                  className="font-mono"
+                  className="font-mono border-2 focus:border-[#00BCD4] rounded-xl"
                 />
               </div>
               <div className="space-y-2">
@@ -711,6 +734,7 @@ export default function EditProgramPage() {
                   value={itemForm.satuan}
                   onChange={(e) => setItemForm({ ...itemForm, satuan: e.target.value })}
                   placeholder="Contoh: bulan, paket, unit"
+                  className="border-2 focus:border-[#00BCD4] rounded-xl"
                 />
               </div>
             </div>
@@ -722,6 +746,7 @@ export default function EditProgramPage() {
                 value={itemForm.namaItem}
                 onChange={(e) => setItemForm({ ...itemForm, namaItem: e.target.value })}
                 placeholder="Nama rincian anggaran"
+                className="border-2 focus:border-[#00BCD4] rounded-xl"
               />
             </div>
 
@@ -732,6 +757,7 @@ export default function EditProgramPage() {
                 value={itemForm.keterangan}
                 onChange={(e) => setItemForm({ ...itemForm, keterangan: e.target.value })}
                 placeholder="Keterangan tambahan (opsional)"
+                className="border-2 focus:border-[#00BCD4] rounded-xl"
                 rows={2}
               />
             </div>
@@ -747,6 +773,7 @@ export default function EditProgramPage() {
                   placeholder="1"
                   min="0"
                   step="0.01"
+                  className="border-2 focus:border-[#00BCD4] rounded-xl"
                 />
               </div>
               <div className="space-y-2">
@@ -758,6 +785,7 @@ export default function EditProgramPage() {
                   onChange={(e) => setItemForm({ ...itemForm, hargaSatuan: e.target.value })}
                   placeholder="0"
                   min="0"
+                  className="border-2 focus:border-[#00BCD4] rounded-xl"
                 />
               </div>
               <div className="space-y-2">
@@ -774,7 +802,7 @@ export default function EditProgramPage() {
                 value={itemForm.kodeAkun}
                 onValueChange={(v) => setItemForm({ ...itemForm, kodeAkun: v })}
               >
-                <SelectTrigger>
+                <SelectTrigger className="border-2 focus:border-[#00BCD4] rounded-xl">
                   <SelectValue placeholder="Pilih kode akun (opsional)" />
                 </SelectTrigger>
                 <SelectContent>
@@ -796,7 +824,7 @@ export default function EditProgramPage() {
               type="button"
               onClick={handleSaveItem}
               disabled={savingItem}
-              className="bg-[#00BCD4] hover:bg-[#006064]"
+              className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
             >
               {savingItem ? (
                 <>

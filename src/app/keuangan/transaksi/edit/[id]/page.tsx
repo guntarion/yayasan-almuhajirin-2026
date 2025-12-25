@@ -339,34 +339,39 @@ export default function EditTransaksiPage({ params }: { params: Promise<{ id: st
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => router.back()}
-            className="rounded-xl"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Kembali
-          </Button>
-          <div>
-            <h1 className="text-2xl font-bold text-[#006064]">Edit Transaksi</h1>
-            <p className="text-sm text-gray-600 mt-1">
-              {originalData?.code}
-            </p>
-          </div>
-        </div>
-
-        {/* Void Button */}
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button variant="destructive" size="sm">
-              <Ban className="h-4 w-4 mr-2" />
-              Batalkan Transaksi
+      <div className="relative overflow-hidden bg-gradient-to-r from-white via-[#B2EBF2]/20 to-[#80DEEA]/20 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-6 rounded-b-3xl border-b border-[#00BCD4]/10">
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-[#00BCD4]/20 to-[#80DEEA]/20 rounded-full blur-3xl" />
+        <div className="relative flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => router.back()}
+              className="rounded-xl border-2 hover:border-[#00BCD4] transition-all duration-300"
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Kembali
             </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-1 h-8 bg-gradient-to-b from-[#00BCD4] to-[#006064] rounded-full" />
+                <h1 className="text-3xl font-bold text-[#006064]">Edit Transaksi</h1>
+              </div>
+              <p className="text-sm text-gray-600 ml-4">
+                {originalData?.code}
+              </p>
+            </div>
+          </div>
+
+          {/* Void Button */}
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="destructive" size="sm" className="rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <Ban className="h-4 w-4 mr-2" />
+                Batalkan Transaksi
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent className="rounded-2xl">
             <AlertDialogHeader>
               <AlertDialogTitle>Batalkan Transaksi?</AlertDialogTitle>
               <AlertDialogDescription>
@@ -381,15 +386,15 @@ export default function EditTransaksiPage({ params }: { params: Promise<{ id: st
                 placeholder="Masukkan alasan pembatalan..."
                 value={voidReason}
                 onChange={(e) => setVoidReason(e.target.value)}
-                className="mt-2"
+                className="mt-2 border-2 focus:border-[#00BCD4] rounded-xl"
               />
             </div>
             <AlertDialogFooter>
-              <AlertDialogCancel>Batal</AlertDialogCancel>
+              <AlertDialogCancel className="rounded-xl border-2 hover:border-[#00BCD4] transition-all duration-300">Batal</AlertDialogCancel>
               <AlertDialogAction
                 onClick={handleVoid}
                 disabled={isVoiding}
-                className="bg-red-600 hover:bg-red-700"
+                className="bg-red-600 hover:bg-red-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 {isVoiding ? (
                   <>
@@ -402,7 +407,8 @@ export default function EditTransaksiPage({ params }: { params: Promise<{ id: st
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
-        </AlertDialog>
+          </AlertDialog>
+        </div>
       </div>
 
       {/* Error Alert */}
@@ -418,9 +424,14 @@ export default function EditTransaksiPage({ params }: { params: Promise<{ id: st
       )}
 
       {/* Form */}
-      <Card className="border-2" style={{ borderColor: 'rgba(0, 188, 212, 0.2)' }}>
-        <CardHeader>
-          <CardTitle className="text-lg text-[#006064]">Form Edit Transaksi</CardTitle>
+      <Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg hover:border-[#00BCD4]/40 transition-all duration-300">
+        <CardHeader className="bg-gradient-to-r from-[#B2EBF2]/20 to-transparent border-b border-[#00BCD4]/10">
+          <CardTitle className="text-lg text-[#006064] flex items-center gap-2">
+            <div className="p-2 rounded-lg bg-[#B2EBF2]">
+              <Save className="h-5 w-5 text-[#006064]" />
+            </div>
+            <span>Form Edit Transaksi</span>
+          </CardTitle>
           <CardDescription>
             Ubah data transaksi. Jurnal akan diperbarui secara otomatis.
           </CardDescription>
@@ -541,10 +552,12 @@ export default function EditTransaksiPage({ params }: { params: Promise<{ id: st
                 </Select>
 
                 {selectedProgramItem && (
-                  <Card className="border border-[#00BCD4]/30 bg-[#00BCD4]/5 mt-3">
+                  <Card className="border-2 border-[#00BCD4]/30 bg-gradient-to-r from-[#B2EBF2]/20 to-white rounded-xl mt-3">
                     <CardContent className="p-4">
                       <div className="flex items-start gap-3">
-                        <Info className="h-5 w-5 text-[#00BCD4] mt-0.5 flex-shrink-0" />
+                        <div className="p-2 rounded-lg bg-[#00BCD4]/20">
+                          <Info className="h-5 w-5 text-[#00BCD4] flex-shrink-0" />
+                        </div>
                         <div className="flex-1 space-y-3">
                           <div>
                             <p className="font-medium text-[#006064]">{selectedProgramItem.namaItem}</p>
@@ -705,13 +718,14 @@ export default function EditTransaksiPage({ params }: { params: Promise<{ id: st
                 variant="outline"
                 onClick={() => router.back()}
                 disabled={isLoading}
+                className="rounded-xl border-2 hover:border-[#00BCD4] transition-all duration-300"
               >
                 Batal
               </Button>
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white shadow-lg"
+                className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
               >
                 {isLoading ? (
                   <>

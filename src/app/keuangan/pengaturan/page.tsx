@@ -360,22 +360,28 @@ export default function PengaturanPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h1 className="text-2xl font-bold text-[#006064] flex items-center gap-2">
-          <Settings className="h-6 w-6" />
-          Pengaturan Sistem
-        </h1>
-        <p className="text-sm text-gray-600 mt-1">Kelola konfigurasi sistem keuangan</p>
+      <div className="relative overflow-hidden bg-gradient-to-r from-white via-[#B2EBF2]/20 to-[#80DEEA]/20 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-6 rounded-b-3xl border-b border-[#00BCD4]/10">
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-[#00BCD4]/20 to-[#80DEEA]/20 rounded-full blur-3xl" />
+        <div className="relative">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-1 h-8 bg-gradient-to-b from-[#00BCD4] to-[#006064] rounded-full" />
+            <h1 className="text-3xl font-bold text-[#006064] flex items-center gap-2">
+              <Settings className="h-7 w-7" />
+              Pengaturan Sistem
+            </h1>
+          </div>
+          <p className="text-sm text-gray-600 ml-4">Kelola konfigurasi sistem keuangan</p>
+        </div>
       </div>
 
       {/* Quick Links */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Link href="/pengaturan/akun">
-          <Card className="hover:shadow-md transition-shadow cursor-pointer border-2 hover:border-[#00BCD4]/30">
+          <Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg hover:border-[#00BCD4]/40 transition-all duration-300 hover:scale-105 cursor-pointer">
             <CardContent className="pt-6">
               <div className="flex items-center gap-4">
-                <div className="p-3 rounded-lg bg-[#00BCD4]/10">
-                  <BookOpen className="h-6 w-6 text-[#00BCD4]" />
+                <div className="p-3 rounded-xl bg-gradient-to-br from-[#B2EBF2] to-[#80DEEA]/50">
+                  <BookOpen className="h-6 w-6 text-[#006064]" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-[#006064]">Chart of Accounts</h3>
@@ -387,11 +393,11 @@ export default function PengaturanPage() {
         </Link>
 
         <Link href="/pengaturan/mapping-akun">
-          <Card className="hover:shadow-md transition-shadow cursor-pointer border-2 hover:border-[#00BCD4]/30">
+          <Card className="border-2 border-gray-100 rounded-2xl hover:shadow-lg hover:border-[#00BCD4]/40 transition-all duration-300 hover:scale-105 cursor-pointer">
             <CardContent className="pt-6">
               <div className="flex items-center gap-4">
-                <div className="p-3 rounded-lg bg-[#00BCD4]/10">
-                  <Link2 className="h-6 w-6 text-[#00BCD4]" />
+                <div className="p-3 rounded-xl bg-gradient-to-br from-[#B2EBF2] to-[#80DEEA]/50">
+                  <Link2 className="h-6 w-6 text-[#006064]" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-[#006064]">Mapping Akun Program</h3>
@@ -405,16 +411,16 @@ export default function PengaturanPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="bidang" className="space-y-4">
-        <TabsList>
-          <TabsTrigger value="bidang" className="flex items-center gap-2">
+        <TabsList className="bg-gradient-to-r from-[#00BCD4]/10 to-[#80DEEA]/10 p-1 rounded-xl">
+          <TabsTrigger value="bidang" className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#00BCD4] data-[state=active]:to-[#006064] data-[state=active]:text-white flex items-center gap-2">
             <Building2 className="h-4 w-4" />
             Kelola Bidang
           </TabsTrigger>
-          <TabsTrigger value="unit" className="flex items-center gap-2">
+          <TabsTrigger value="unit" className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#00BCD4] data-[state=active]:to-[#006064] data-[state=active]:text-white flex items-center gap-2">
             <Users className="h-4 w-4" />
             Kelola Unit
           </TabsTrigger>
-          <TabsTrigger value="period" className="flex items-center gap-2">
+          <TabsTrigger value="period" className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#00BCD4] data-[state=active]:to-[#006064] data-[state=active]:text-white flex items-center gap-2">
             <Calendar className="h-4 w-4" />
             Periode Fiskal
           </TabsTrigger>
@@ -426,23 +432,23 @@ export default function PengaturanPage() {
             <p className="text-sm text-gray-600">
               Kelola bidang/divisi dalam organisasi
             </p>
-            <Button onClick={() => openBidangForm()} className="bg-[#00BCD4] hover:bg-[#006064]">
+            <Button onClick={() => openBidangForm()} className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white rounded-xl">
               <Plus className="h-4 w-4 mr-2" />
               Tambah Bidang
             </Button>
           </div>
 
-          <Card>
+          <Card className="border-2 border-gray-100 rounded-2xl">
             <CardContent className="p-0">
               <div className="overflow-x-auto">
                 <table className="w-full">
-                  <thead className="bg-gray-50 border-b">
+                  <thead className="bg-gradient-to-r from-[#00BCD4]/10 to-[#80DEEA]/10">
                     <tr>
-                      <th className="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Kode</th>
-                      <th className="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Nama Bidang</th>
-                      <th className="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Kepala Bidang</th>
-                      <th className="text-center py-3 px-4 text-xs font-medium text-gray-500 uppercase">Status</th>
-                      <th className="text-right py-3 px-4 text-xs font-medium text-gray-500 uppercase">Aksi</th>
+                      <th className="text-left py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Kode</th>
+                      <th className="text-left py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Nama Bidang</th>
+                      <th className="text-left py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Kepala Bidang</th>
+                      <th className="text-center py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Status</th>
+                      <th className="text-right py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Aksi</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y">
@@ -493,24 +499,24 @@ export default function PengaturanPage() {
             <p className="text-sm text-gray-600">
               Kelola unit/sub-divisi di bawah bidang
             </p>
-            <Button onClick={() => openUnitForm()} className="bg-[#00BCD4] hover:bg-[#006064]">
+            <Button onClick={() => openUnitForm()} className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white rounded-xl">
               <Plus className="h-4 w-4 mr-2" />
               Tambah Unit
             </Button>
           </div>
 
-          <Card>
+          <Card className="border-2 border-gray-100 rounded-2xl">
             <CardContent className="p-0">
               <div className="overflow-x-auto">
                 <table className="w-full">
-                  <thead className="bg-gray-50 border-b">
+                  <thead className="bg-gradient-to-r from-[#00BCD4]/10 to-[#80DEEA]/10">
                     <tr>
-                      <th className="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Kode</th>
-                      <th className="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Nama Unit</th>
-                      <th className="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Bidang</th>
-                      <th className="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Kepala Unit</th>
-                      <th className="text-center py-3 px-4 text-xs font-medium text-gray-500 uppercase">Status</th>
-                      <th className="text-right py-3 px-4 text-xs font-medium text-gray-500 uppercase">Aksi</th>
+                      <th className="text-left py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Kode</th>
+                      <th className="text-left py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Nama Unit</th>
+                      <th className="text-left py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Bidang</th>
+                      <th className="text-left py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Kepala Unit</th>
+                      <th className="text-center py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Status</th>
+                      <th className="text-right py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Aksi</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y">
@@ -565,23 +571,23 @@ export default function PengaturanPage() {
             <p className="text-sm text-gray-600">
               Kelola periode tahun fiskal
             </p>
-            <Button onClick={() => openPeriodForm()} className="bg-[#00BCD4] hover:bg-[#006064]">
+            <Button onClick={() => openPeriodForm()} className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white rounded-xl">
               <Plus className="h-4 w-4 mr-2" />
               Tambah Periode
             </Button>
           </div>
 
-          <Card>
+          <Card className="border-2 border-gray-100 rounded-2xl">
             <CardContent className="p-0">
               <div className="overflow-x-auto">
                 <table className="w-full">
-                  <thead className="bg-gray-50 border-b">
+                  <thead className="bg-gradient-to-r from-[#00BCD4]/10 to-[#80DEEA]/10">
                     <tr>
-                      <th className="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Tahun</th>
-                      <th className="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Nama</th>
-                      <th className="text-left py-3 px-4 text-xs font-medium text-gray-500 uppercase">Periode</th>
-                      <th className="text-center py-3 px-4 text-xs font-medium text-gray-500 uppercase">Status</th>
-                      <th className="text-right py-3 px-4 text-xs font-medium text-gray-500 uppercase">Aksi</th>
+                      <th className="text-left py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Tahun</th>
+                      <th className="text-left py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Nama</th>
+                      <th className="text-left py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Periode</th>
+                      <th className="text-center py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Status</th>
+                      <th className="text-right py-3 px-4 text-xs font-semibold text-[#006064] uppercase">Aksi</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y">
@@ -630,9 +636,9 @@ export default function PengaturanPage() {
 
       {/* Bidang Form Dialog */}
       <Dialog open={showBidangForm} onOpenChange={setShowBidangForm}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>{editingBidang ? 'Edit Bidang' : 'Tambah Bidang Baru'}</DialogTitle>
+        <DialogContent className="rounded-2xl">
+          <DialogHeader className="border-b border-[#00BCD4]/10 pb-4">
+            <DialogTitle className="text-[#006064]">{editingBidang ? 'Edit Bidang' : 'Tambah Bidang Baru'}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="grid grid-cols-2 gap-4">
@@ -665,10 +671,10 @@ export default function PengaturanPage() {
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setShowBidangForm(false)} disabled={saving}>
+            <Button variant="outline" onClick={() => setShowBidangForm(false)} disabled={saving} className="rounded-xl">
               Batal
             </Button>
-            <Button onClick={saveBidang} disabled={saving} className="bg-[#00BCD4] hover:bg-[#006064]">
+            <Button onClick={saveBidang} disabled={saving} className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white rounded-xl">
               {saving ? 'Menyimpan...' : 'Simpan'}
             </Button>
           </DialogFooter>
@@ -677,9 +683,9 @@ export default function PengaturanPage() {
 
       {/* Unit Form Dialog */}
       <Dialog open={showUnitForm} onOpenChange={setShowUnitForm}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>{editingUnit ? 'Edit Unit' : 'Tambah Unit Baru'}</DialogTitle>
+        <DialogContent className="rounded-2xl">
+          <DialogHeader className="border-b border-[#00BCD4]/10 pb-4">
+            <DialogTitle className="text-[#006064]">{editingUnit ? 'Edit Unit' : 'Tambah Unit Baru'}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
@@ -730,10 +736,10 @@ export default function PengaturanPage() {
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setShowUnitForm(false)} disabled={saving}>
+            <Button variant="outline" onClick={() => setShowUnitForm(false)} disabled={saving} className="rounded-xl">
               Batal
             </Button>
-            <Button onClick={saveUnit} disabled={saving} className="bg-[#00BCD4] hover:bg-[#006064]">
+            <Button onClick={saveUnit} disabled={saving} className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white rounded-xl">
               {saving ? 'Menyimpan...' : 'Simpan'}
             </Button>
           </DialogFooter>
@@ -742,9 +748,9 @@ export default function PengaturanPage() {
 
       {/* Fiscal Period Form Dialog */}
       <Dialog open={showPeriodForm} onOpenChange={setShowPeriodForm}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>{editingPeriod ? 'Edit Periode Fiskal' : 'Tambah Periode Fiskal'}</DialogTitle>
+        <DialogContent className="rounded-2xl">
+          <DialogHeader className="border-b border-[#00BCD4]/10 pb-4">
+            <DialogTitle className="text-[#006064]">{editingPeriod ? 'Edit Periode Fiskal' : 'Tambah Periode Fiskal'}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="grid grid-cols-2 gap-4">
@@ -785,10 +791,10 @@ export default function PengaturanPage() {
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setShowPeriodForm(false)} disabled={saving}>
+            <Button variant="outline" onClick={() => setShowPeriodForm(false)} disabled={saving} className="rounded-xl">
               Batal
             </Button>
-            <Button onClick={savePeriod} disabled={saving} className="bg-[#00BCD4] hover:bg-[#006064]">
+            <Button onClick={savePeriod} disabled={saving} className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white rounded-xl">
               {saving ? 'Menyimpan...' : 'Simpan'}
             </Button>
           </DialogFooter>
