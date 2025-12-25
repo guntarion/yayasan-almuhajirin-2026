@@ -1,3 +1,9 @@
+## 2025-12-25 10:32:37
+
+docs(keuangan): add user guide documentation for finance module
+
+---
+
 ## 2025-12-25 05:32:11
 
 feat(keuangan): implement program kerja CRUD and pengaturan pages
