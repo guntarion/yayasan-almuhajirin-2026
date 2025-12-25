@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Save, Loader2, AlertCircle, Info, TrendingUp } from 'lucide-react';
+import { ArrowLeft, Save, Loader2, AlertCircle, Info, TrendingUp, Ban } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Progress } from '@/components/ui/progress';
+// Badge removed - not currently used
 import {
   Select,
   SelectContent,
@@ -17,6 +18,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 import { formatCurrency } from '@/utils/keuangan';
 
 interface LookupItem {
@@ -36,10 +48,6 @@ interface ProgramItem {
   programJenis: 'pendapatan' | 'pengeluaran';
   kodeItem: string;
   namaItem: string;
-  keterangan: string | null;
-  volume: number;
-  satuan: string;
-  hargaSatuan: number;
   jumlah: number;
   realisasi: number;
   sisaAnggaran: number;
@@ -48,11 +56,24 @@ interface ProgramItem {
   akun: {
     kode: string;
     nama: string;
-    kategori: string;
-    normalBalance: string;
   } | null;
-  bidang: string;
-  unit: string;
+}
+
+interface TransactionData {
+  id: string;
+  code: string;
+  transactionDate: string;
+  type: 'income' | 'expense';
+  amount: number;
+  description: string;
+  entityName: string | null;
+  paymentMethod: string;
+  notes: string | null;
+  isVoided: boolean;
+  voidReason: string | null;
+  bidang: { kode: string; nama: string } | null;
+  unitKerja: { kode: string; nama: string } | null;
+  programItem: { id: string; kodeItem: string; namaItem: string } | null;
 }
 
 const paymentMethodOptions = [
@@ -75,9 +96,11 @@ const formatDisplayAmount = (value: string, inThousands: boolean): string => {
   return new Intl.NumberFormat('id-ID').format(displayValue);
 };
 
-export default function InputTransaksiPage() {
+export default function EditTransaksiPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [isFetching, setIsFetching] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedBidang, setSelectedBidang] = useState('');
   const [inThousands, setInThousands] = useState(false);
@@ -85,9 +108,12 @@ export default function InputTransaksiPage() {
   const [programItems, setProgramItems] = useState<ProgramItem[]>([]);
   const [loadingItems, setLoadingItems] = useState(false);
   const [selectedProgramItem, setSelectedProgramItem] = useState<ProgramItem | null>(null);
+  const [originalData, setOriginalData] = useState<TransactionData | null>(null);
+  const [voidReason, setVoidReason] = useState('');
+  const [isVoiding, setIsVoiding] = useState(false);
 
   const [formData, setFormData] = useState({
-    transactionDate: new Date().toISOString().split('T')[0],
+    transactionDate: '',
     type: '',
     bidang: '',
     unit: '',
@@ -101,16 +127,13 @@ export default function InputTransaksiPage() {
 
   useEffect(() => {
     fetchLookups();
-  }, []);
+    fetchTransaction();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
-  // Fetch program items when unit is selected
   useEffect(() => {
     if (formData.unit && formData.type) {
       fetchProgramItems();
-    } else {
-      setProgramItems([]);
-      setSelectedProgramItem(null);
-      setFormData(prev => ({ ...prev, programItemId: '' }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData.unit, formData.type]);
@@ -124,6 +147,43 @@ export default function InputTransaksiPage() {
       }
     } catch (err) {
       console.error('Error fetching lookups:', err);
+    }
+  };
+
+  const fetchTransaction = async () => {
+    try {
+      setIsFetching(true);
+      const response = await fetch(`/api/keuangan/transaksi/${id}`);
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Gagal memuat data transaksi');
+      }
+
+      const data = result.data as TransactionData;
+      setOriginalData(data);
+
+      // Populate form
+      const bidangKode = data.bidang?.kode || '';
+      const unitKode = data.unitKerja?.kode || '';
+
+      setSelectedBidang(bidangKode);
+      setFormData({
+        transactionDate: data.transactionDate.split('T')[0],
+        type: data.type,
+        bidang: bidangKode,
+        unit: unitKode,
+        programItemId: data.programItem?.id || '',
+        amount: data.amount.toString(),
+        description: data.description,
+        paymentMethod: data.paymentMethod,
+        entityName: data.entityName || '',
+        notes: data.notes || '',
+      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Terjadi kesalahan');
+    } finally {
+      setIsFetching(false);
     }
   };
 
@@ -143,6 +203,12 @@ export default function InputTransaksiPage() {
 
       if (result.data) {
         setProgramItems(result.data);
+
+        // Select the current program item if it exists
+        if (formData.programItemId) {
+          const item = result.data.find((i: ProgramItem) => i.id === formData.programItemId);
+          setSelectedProgramItem(item || null);
+        }
       }
     } catch (err) {
       console.error('Error fetching program items:', err);
@@ -155,11 +221,6 @@ export default function InputTransaksiPage() {
     const item = programItems.find(i => i.id === itemId);
     setSelectedProgramItem(item || null);
     setFormData(prev => ({ ...prev, programItemId: itemId }));
-
-    // Auto-fill description if empty
-    if (item && !formData.description) {
-      setFormData(prev => ({ ...prev, description: item.namaItem }));
-    }
   };
 
   const selectedBidangData = bidangOptions.find(b => b.value === selectedBidang);
@@ -177,13 +238,12 @@ export default function InputTransaksiPage() {
     try {
       setIsLoading(true);
 
-      // Calculate actual amount (multiply by 1000 if in thousands mode)
       const actualAmount = inThousands
         ? parseFloat(formData.amount) * 1000
         : parseFloat(formData.amount);
 
-      const response = await fetch('/api/keuangan/transaksi', {
-        method: 'POST',
+      const response = await fetch(`/api/keuangan/transaksi/${id}`, {
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           transactionDate: formData.transactionDate,
@@ -196,7 +256,6 @@ export default function InputTransaksiPage() {
           entityName: formData.entityName || null,
           notes: formData.notes || null,
           programItemId: formData.programItemId || null,
-          // Account codes will be auto-determined by API based on programItem or defaults
         }),
       });
 
@@ -214,23 +273,136 @@ export default function InputTransaksiPage() {
     }
   };
 
+  const handleVoid = async () => {
+    try {
+      setIsVoiding(true);
+      const response = await fetch(`/api/keuangan/transaksi/${id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reason: voidReason || 'Dibatalkan' }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Gagal membatalkan transaksi');
+      }
+
+      router.push('/transaksi');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Terjadi kesalahan');
+    } finally {
+      setIsVoiding(false);
+    }
+  };
+
+  if (isFetching) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00BCD4]"></div>
+      </div>
+    );
+  }
+
+  if (originalData?.isVoided) {
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center gap-4">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => router.back()}
+            className="rounded-xl"
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Kembali
+          </Button>
+        </div>
+        <Card className="border-red-200 bg-red-50">
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-3 text-red-600">
+              <Ban className="h-6 w-6" />
+              <div>
+                <p className="font-semibold">Transaksi Sudah Dibatalkan</p>
+                <p className="text-sm">Transaksi yang sudah dibatalkan tidak dapat diedit.</p>
+                {originalData.voidReason && (
+                  <p className="text-sm mt-2">Alasan: {originalData.voidReason}</p>
+                )}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="flex items-center gap-4">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => router.back()}
-          className="rounded-xl"
-        >
-          <ArrowLeft className="h-4 w-4 mr-2" />
-          Kembali
-        </Button>
-        <div>
-          <h1 className="text-2xl font-bold text-[#006064]">Input Transaksi</h1>
-          <p className="text-sm text-gray-600 mt-1">Catat transaksi baru</p>
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => router.back()}
+            className="rounded-xl"
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Kembali
+          </Button>
+          <div>
+            <h1 className="text-2xl font-bold text-[#006064]">Edit Transaksi</h1>
+            <p className="text-sm text-gray-600 mt-1">
+              {originalData?.code}
+            </p>
+          </div>
         </div>
+
+        {/* Void Button */}
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button variant="destructive" size="sm">
+              <Ban className="h-4 w-4 mr-2" />
+              Batalkan Transaksi
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Batalkan Transaksi?</AlertDialogTitle>
+              <AlertDialogDescription>
+                Transaksi yang dibatalkan tidak dapat dikembalikan. Jurnal akan tetap ada
+                untuk keperluan audit, namun nilai realisasi akan dikurangi.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <div className="py-4">
+              <Label htmlFor="voidReason">Alasan Pembatalan</Label>
+              <Input
+                id="voidReason"
+                placeholder="Masukkan alasan pembatalan..."
+                value={voidReason}
+                onChange={(e) => setVoidReason(e.target.value)}
+                className="mt-2"
+              />
+            </div>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Batal</AlertDialogCancel>
+              <AlertDialogAction
+                onClick={handleVoid}
+                disabled={isVoiding}
+                className="bg-red-600 hover:bg-red-700"
+              >
+                {isVoiding ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Membatalkan...
+                  </>
+                ) : (
+                  'Ya, Batalkan'
+                )}
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
 
       {/* Error Alert */}
@@ -248,9 +420,9 @@ export default function InputTransaksiPage() {
       {/* Form */}
       <Card className="border-2" style={{ borderColor: 'rgba(0, 188, 212, 0.2)' }}>
         <CardHeader>
-          <CardTitle className="text-lg text-[#006064]">Form Transaksi</CardTitle>
+          <CardTitle className="text-lg text-[#006064]">Form Edit Transaksi</CardTitle>
           <CardDescription>
-            Isi data transaksi dengan lengkap. Jurnal akan dibuat secara otomatis.
+            Ubah data transaksi. Jurnal akan diperbarui secara otomatis.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -335,7 +507,7 @@ export default function InputTransaksiPage() {
                 </Select>
               </div>
 
-              {/* Rincian Anggaran / Program Item */}
+              {/* Rincian Anggaran */}
               <div className="space-y-2 md:col-span-2">
                 <Label htmlFor="programItem">Rincian Anggaran (Opsional)</Label>
                 <Select
@@ -368,7 +540,6 @@ export default function InputTransaksiPage() {
                   </SelectContent>
                 </Select>
 
-                {/* Selected Program Item Info */}
                 {selectedProgramItem && (
                   <Card className="border border-[#00BCD4]/30 bg-[#00BCD4]/5 mt-3">
                     <CardContent className="p-4">
@@ -414,12 +585,6 @@ export default function InputTransaksiPage() {
                               className="h-2"
                             />
                           </div>
-
-                          {selectedProgramItem.akun && (
-                            <p className="text-xs text-gray-500">
-                              Akun: {selectedProgramItem.akun.kode} - {selectedProgramItem.akun.nama}
-                            </p>
-                          )}
                         </div>
                       </div>
                     </CardContent>
@@ -490,52 +655,6 @@ export default function InputTransaksiPage() {
                 </Select>
               </div>
 
-              {/* Journal Entry Preview */}
-              {formData.type && (
-                <div className="space-y-2 md:col-span-2">
-                  <Label>Preview Jurnal Entry</Label>
-                  <Card className="border border-gray-200 bg-gray-50">
-                    <CardContent className="p-4">
-                      <div className="grid grid-cols-2 gap-4 text-sm">
-                        <div className="space-y-1">
-                          <p className="font-medium text-green-700">DEBIT:</p>
-                          {formData.type === 'income' ? (
-                            <p className="text-gray-700">
-                              {formData.paymentMethod === 'cash' ? '1101 - Kas' : '1102 - Bank Rekening Umum'}
-                            </p>
-                          ) : (
-                            <p className="text-gray-700">
-                              {selectedProgramItem?.akun
-                                ? `${selectedProgramItem.akun.kode} - ${selectedProgramItem.akun.nama}`
-                                : '5290 - Beban Lain-lain (default)'}
-                            </p>
-                          )}
-                        </div>
-                        <div className="space-y-1">
-                          <p className="font-medium text-red-700">KREDIT:</p>
-                          {formData.type === 'expense' ? (
-                            <p className="text-gray-700">
-                              {formData.paymentMethod === 'cash' ? '1101 - Kas' : '1102 - Bank Rekening Umum'}
-                            </p>
-                          ) : (
-                            <p className="text-gray-700">
-                              {selectedProgramItem?.akun
-                                ? `${selectedProgramItem.akun.kode} - ${selectedProgramItem.akun.nama}`
-                                : '4190 - Pendapatan Lain-lain (default)'}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                      {!selectedProgramItem && (
-                        <p className="text-xs text-gray-500 mt-3 border-t pt-2">
-                          💡 Pilih &quot;Rincian Anggaran&quot; untuk menggunakan kode akun spesifik dari program kerja
-                        </p>
-                      )}
-                    </CardContent>
-                  </Card>
-                </div>
-              )}
-
               {/* Deskripsi */}
               <div className="space-y-2 md:col-span-2">
                 <Label htmlFor="description">Deskripsi *</Label>
@@ -602,7 +721,7 @@ export default function InputTransaksiPage() {
                 ) : (
                   <>
                     <Save className="h-4 w-4 mr-2" />
-                    Simpan Transaksi
+                    Simpan Perubahan
                   </>
                 )}
               </Button>

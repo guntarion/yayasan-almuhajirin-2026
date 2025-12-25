@@ -57,7 +57,7 @@ Halaman utama menampilkan daftar program dalam format kartu (card) dengan inform
    - **Satuan**: Unit pengukuran (unit, paket, bulan, dll)
    - **Harga Satuan**: Harga per satuan
    - **Jumlah**: Dihitung otomatis (volume x harga satuan)
-   - **Kode Akun**: Pilih kode akun yang sesuai
+   - **Kode Akun**: Pilih kode akun yang sesuai (lihat [Mapping Akun](#mapping-akun-program))
 
 4. Klik tombol **+** untuk menambahkan item ke daftar
 5. Ulangi langkah 3-4 untuk item lainnya
@@ -153,8 +153,57 @@ Halaman detail menampilkan:
 | Aktif | Hijau | Program sedang berjalan |
 | Selesai | Biru | Program sudah selesai/ditutup |
 
+## Mapping Akun Program
+
+**URL**: `/pengaturan/mapping-akun`
+
+### Apa itu Mapping Akun?
+
+Mapping akun adalah fitur untuk menghubungkan item program kerja dengan kode akun pada Chart of Accounts. Asosiasi ini penting karena:
+
+1. **Jurnal Otomatis**: Saat transaksi dicatat menggunakan item program, sistem otomatis menggunakan kode akun yang sudah di-mapping untuk membuat jurnal entry (double-entry bookkeeping)
+2. **Pelaporan Akurat**: Laporan keuangan akan menampilkan data sesuai kategori akun yang benar
+3. **Konsistensi**: Memastikan semua transaksi dari item yang sama tercatat ke akun yang sama
+
+### Mengakses Mapping Akun
+
+1. Buka menu **Pengaturan**
+2. Klik kartu **Mapping Akun Program**
+3. Atau langsung ke URL `/pengaturan/mapping-akun`
+
+### Cara Mengatur Mapping
+
+1. Filter berdasarkan bidang, unit, atau jenis program
+2. Temukan item yang ingin di-mapping
+3. Klik dropdown **Kode Akun** pada baris item
+4. Pilih kode akun yang sesuai:
+   - **Pendapatan**: Pilih akun kategori Pendapatan (4xxx)
+   - **Pengeluaran**: Pilih akun kategori Beban (5xxx)
+5. Klik **Simpan** untuk menyimpan perubahan
+
+### Rekomendasi Pemilihan Akun
+
+| Jenis Item | Kategori Akun | Contoh |
+|------------|---------------|--------|
+| SPP/Uang Sekolah | Pendapatan Program (41xx) | 4101 - Pendapatan SPP |
+| Infaq Jumat | Sumbangan (42xx) | 4102 - Pendapatan Infaq Jumat |
+| Gaji/Honor | Beban Operasional (52xx) | 5201 - Beban Gaji |
+| Pembelian ATK | Beban Operasional (52xx) | 5203 - Beban ATK |
+| Kegiatan Program | Beban Program (51xx) | 5101 - Beban Program |
+
+### Efek pada Transaksi
+
+Ketika mapping sudah diatur, saat input transaksi:
+
+1. Pilih **Rincian Anggaran** (item program)
+2. **Preview Jurnal Entry** akan menampilkan kode akun yang akan digunakan
+3. Sistem otomatis membuat jurnal:
+   - **Pendapatan**: Debit Kas/Bank, Kredit akun dari mapping
+   - **Pengeluaran**: Debit akun dari mapping, Kredit Kas/Bank
+
 ## Navigasi
 
 - [Transaksi](./03-transaksi.md) - Input realisasi program
 - [Laporan](./04-laporan.md) - Lihat laporan keuangan
 - [Pengaturan](./05-pengaturan.md) - Kelola bidang dan unit
+- [Chart of Accounts](./06-chart-of-accounts.md) - Kelola kode akun

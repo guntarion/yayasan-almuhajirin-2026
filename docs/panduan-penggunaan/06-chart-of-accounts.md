@@ -292,8 +292,67 @@ Standar PSAK 45 telah dicabut dan diganti dengan ISAK 35, namun konsep klasifika
 
 ---
 
+## Penggunaan Akun dalam Program Kerja
+
+### Mapping Akun Program
+
+Setiap item dalam program kerja dapat dihubungkan (di-mapping) ke kode akun yang sesuai. Mapping ini penting karena:
+
+1. **Jurnal Otomatis**: Saat transaksi menggunakan item program, sistem otomatis menggunakan kode akun yang di-mapping
+2. **Pelaporan Akurat**: Laporan keuangan menampilkan data sesuai kategori akun
+3. **Konsistensi**: Transaksi dari item yang sama selalu tercatat ke akun yang sama
+
+### Cara Melakukan Mapping
+
+Ada dua cara untuk mengatur mapping akun:
+
+#### 1. Melalui Halaman Mapping Akun (Direkomendasikan)
+
+**URL**: `/pengaturan/mapping-akun`
+
+1. Buka menu **Pengaturan** > **Mapping Akun Program**
+2. Filter berdasarkan bidang, unit, atau jenis program
+3. Pilih kode akun dari dropdown untuk setiap item
+4. Klik **Simpan Perubahan**
+
+Lihat [Mapping Akun Program](./02-program-kerja.md#mapping-akun-program) untuk panduan lengkap.
+
+#### 2. Saat Membuat/Edit Item Program
+
+1. Buka halaman edit program kerja
+2. Pada setiap item RAB, pilih **Kode Akun** yang sesuai
+3. Simpan program
+
+### Rekomendasi Pemilihan Akun
+
+| Jenis Transaksi | Kategori Akun | Range Kode |
+|-----------------|---------------|------------|
+| Pendapatan SPP/Sekolah | Pendapatan Program | 41xxx |
+| Infaq/Sumbangan | Sumbangan | 42xxx |
+| Hasil Usaha | Pendapatan Lainnya | 43xxx |
+| Beban Kegiatan | Beban Program | 51xxx |
+| Gaji/Honor | Beban Operasional | 52xxx |
+| ATK/Pembelian | Beban Operasional | 52xxx |
+| Beban Lain-lain | Beban Lainnya | 53xxx |
+
+### Akun Default
+
+Jika item program tidak di-mapping ke akun tertentu, sistem menggunakan akun default:
+
+| Jenis | Kode Default | Nama Akun |
+|-------|--------------|-----------|
+| Pendapatan | 4190 | Pendapatan Lain-lain |
+| Pengeluaran | 5290 | Beban Lain-lain |
+| Kas | 1101 | Kas |
+| Bank | 1102 | Bank Rekening Umum |
+
+> **Tips**: Untuk pencatatan yang lebih akurat, selalu lakukan mapping akun untuk setiap item program kerja. Gunakan halaman Mapping Akun Program untuk mengelola semua mapping secara terpusat.
+
+---
+
 ## Navigasi
 
 - [Pengaturan](./05-pengaturan.md) - Kembali ke pengaturan
+- [Program Kerja](./02-program-kerja.md) - Kelola program dan mapping
 - [Transaksi](./03-transaksi.md) - Input transaksi
 - [Laporan](./04-laporan.md) - Lihat laporan keuangan

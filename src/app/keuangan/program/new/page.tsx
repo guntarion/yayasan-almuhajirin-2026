@@ -22,7 +22,7 @@ interface LookupItem {
   label: string;
 }
 
-interface LookupWithBidang extends LookupItem {
+interface _LookupWithBidang extends LookupItem {
   bidang: string;
 }
 

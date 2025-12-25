@@ -22,11 +22,13 @@ Ada beberapa cara untuk mengakses form input transaksi:
 |-------|-------|-----------|
 | Tanggal Transaksi | Ya | Tanggal terjadinya transaksi |
 | Jenis Transaksi | Ya | Jenis transaksi (Pendapatan/Pengeluaran) |
-| Bidang | Ya | Bidang terkait transaksi |
-| Unit | Ya | Unit kerja di bawah bidang |
+| Bidang | Tidak | Bidang terkait transaksi |
+| Unit | Tidak | Unit kerja di bawah bidang |
+| Rincian Anggaran | Tidak | Item program kerja yang terkait (lihat [di bawah](#rincian-anggaran)) |
 | Jumlah (Rp) | Ya | Nominal transaksi |
 | Metode Pembayaran | Ya | Kas, Bank, Transfer, dll |
 | Deskripsi | Ya | Keterangan singkat transaksi |
+| Nama Pihak Terkait | Tidak | Nama supplier, donatur, dll |
 | Catatan | Tidak | Informasi tambahan (opsional) |
 
 ### Langkah-langkah Input
@@ -106,14 +108,66 @@ Sistem akan memvalidasi input sebelum menyimpan:
 
 Jika ada validasi yang gagal, akan muncul pesan error dan form tidak akan tersimpan.
 
+## Rincian Anggaran
+
+**Rincian Anggaran** adalah fitur untuk menghubungkan transaksi dengan item program kerja. Fitur ini opsional namun sangat direkomendasikan karena:
+
+1. **Tracking Realisasi**: Realisasi anggaran per item program akan terupdate otomatis
+2. **Kode Akun Otomatis**: Sistem menggunakan kode akun dari item program untuk jurnal
+3. **Pelaporan**: Memudahkan analisis realisasi per program kerja
+
+### Cara Menggunakan Rincian Anggaran
+
+1. Pilih **Jenis Transaksi** terlebih dahulu
+2. Pilih **Bidang** kemudian **Unit**
+3. Dropdown **Rincian Anggaran** akan menampilkan item yang sesuai:
+   - Untuk Pendapatan: menampilkan item program pendapatan
+   - Untuk Pengeluaran: menampilkan item program pengeluaran
+4. Pilih item yang sesuai
+5. Informasi item akan ditampilkan:
+   - Anggaran total
+   - Realisasi saat ini
+   - Sisa anggaran
+   - Progress (%)
+   - **Kode Akun** yang akan digunakan
+
+## Preview Jurnal Entry
+
+Setelah memilih jenis transaksi, form akan menampilkan **Preview Jurnal Entry** yang menunjukkan:
+
+### Untuk Pendapatan (Kas Masuk)
+
+| Akun | Sisi |
+|------|------|
+| Kas/Bank (sesuai metode pembayaran) | **DEBIT** |
+| Akun Pendapatan (dari rincian anggaran atau default 4190) | **KREDIT** |
+
+### Untuk Pengeluaran (Kas Keluar)
+
+| Akun | Sisi |
+|------|------|
+| Akun Beban (dari rincian anggaran atau default 5290) | **DEBIT** |
+| Kas/Bank (sesuai metode pembayaran) | **KREDIT** |
+
+### Akun Default
+
+Jika tidak memilih Rincian Anggaran:
+- **Pendapatan**: 4190 - Pendapatan Lain-lain
+- **Pengeluaran**: 5290 - Beban Lain-lain
+- **Kas**: 1101 - Kas
+- **Bank**: 1102 - Bank Rekening Umum
+
+> **Tips**: Untuk pencatatan yang lebih akurat, selalu gunakan Rincian Anggaran dan pastikan item program sudah di-mapping ke kode akun yang tepat. Lihat [Mapping Akun Program](./02-program-kerja.md#mapping-akun-program).
+
 ## Setelah Transaksi Tersimpan
 
 Setelah transaksi berhasil disimpan:
 
-1. Jurnal akuntansi dibuat secara otomatis
-2. Saldo kas/bank diperbarui
-3. Laporan keuangan diperbarui
-4. User diarahkan ke daftar transaksi
+1. Jurnal akuntansi (double-entry) dibuat secara otomatis
+2. Saldo kas/bank diperbarui sesuai metode pembayaran
+3. Jika menggunakan Rincian Anggaran, realisasi item program diperbarui
+4. Laporan keuangan diperbarui
+5. User diarahkan ke daftar transaksi
 
 ## Daftar Transaksi
 

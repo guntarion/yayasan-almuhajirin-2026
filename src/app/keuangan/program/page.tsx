@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, Filter, ChevronRight, Plus, Eye, Pencil, Trash2 } from 'lucide-react';
+import { Search, Filter, Plus, Eye, Pencil, Trash2 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -312,7 +312,7 @@ export default function ProgramPage() {
           <AlertDialogHeader>
             <AlertDialogTitle>Hapus Program?</AlertDialogTitle>
             <AlertDialogDescription>
-              Apakah Anda yakin ingin menghapus program "{deleteDialog.program?.nama}"?
+              Apakah Anda yakin ingin menghapus program &quot;{deleteDialog.program?.nama}&quot;?
               Tindakan ini tidak dapat dibatalkan.
             </AlertDialogDescription>
           </AlertDialogHeader>

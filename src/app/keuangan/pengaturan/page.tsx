@@ -2,12 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Settings, Save, Plus, Pencil, Trash2, Building2, Users, BookOpen, Calendar } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Settings, Plus, Pencil, Trash2, Building2, Users, BookOpen, Calendar, Link2 } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
+// Textarea removed - not currently used
 import { Badge } from '@/components/ui/badge';
 import {
   Tabs,
@@ -18,7 +18,6 @@ import {
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -106,6 +105,7 @@ export default function PengaturanPage() {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchData = async () => {
@@ -380,6 +380,22 @@ export default function PengaturanPage() {
                 <div>
                   <h3 className="font-semibold text-[#006064]">Chart of Accounts</h3>
                   <p className="text-sm text-gray-500">Kelola kode akun keuangan</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </Link>
+
+        <Link href="/pengaturan/mapping-akun">
+          <Card className="hover:shadow-md transition-shadow cursor-pointer border-2 hover:border-[#00BCD4]/30">
+            <CardContent className="pt-6">
+              <div className="flex items-center gap-4">
+                <div className="p-3 rounded-lg bg-[#00BCD4]/10">
+                  <Link2 className="h-6 w-6 text-[#00BCD4]" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-[#006064]">Mapping Akun Program</h3>
+                  <p className="text-sm text-gray-500">Asosiasi item program ke akun</p>
                 </div>
               </div>
             </CardContent>

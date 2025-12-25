@@ -34,7 +34,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { kode, nama, bidangKode, kepalaUnit } = body;
+    const { kode, nama, bidangKode, kepalaUnit: _kepalaUnit } = body;
 
     if (!kode || !nama || !bidangKode) {
       return NextResponse.json(

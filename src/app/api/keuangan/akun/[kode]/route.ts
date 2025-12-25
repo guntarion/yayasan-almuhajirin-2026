@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/utils/prisma';
-import { AccountCategory, NormalBalance, RestrictionType } from '@prisma/client';
+import { AccountCategory, NormalBalance, RestrictionType, Prisma } from '@prisma/client';
 
 // GET /api/keuangan/akun/[kode] - Get single account
 export async function GET(
@@ -77,7 +77,7 @@ export async function PUT(
     }
 
     // Build update data
-    const updateData: any = {};
+    const updateData: Prisma.KodeAkunUpdateInput = {};
 
     if (nama !== undefined) updateData.nama = nama;
     if (subKategori !== undefined) updateData.subKategori = subKategori || null;

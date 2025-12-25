@@ -1,3 +1,9 @@
+## 2025-12-25 13:31:54
+
+feat(keuangan): add account mapping, transaction CRUD, and program item integration
+
+---
+
 ## 2025-12-25 10:42:37
 
 fix(keuangan): remove /keuangan prefix from internal navigation links
