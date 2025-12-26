@@ -1,3 +1,9 @@
+## 2025-12-26 10:50:14
+
+feat(lazmu): add LAZ Muhajirin website with complete pages and components
+
+---
+
 ## 2025-12-25 13:31:54
 
 feat(keuangan): add account mapping, transaction CRUD, and program item integration
