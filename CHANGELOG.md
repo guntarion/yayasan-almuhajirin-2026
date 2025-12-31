@@ -1,3 +1,9 @@
+## 2025-12-31 12:45:48
+
+feat: add KBTK, Daycare, Poliklinik, and Jamaah modules with full admin interfaces
+
+---
+
 ## 2025-12-26 10:50:14
 
 feat(lazmu): add LAZ Muhajirin website with complete pages and components

@@ -682,3 +682,1073 @@ model JournalEntry {
   @@index([kodeAkun])
   @@map("journal_entries")
 }
+
+// ===========================================
+// JAMAAH: ENUMS
+// ===========================================
+
+enum SebutanJamaah {
+  Pak
+  Bu
+  Mas
+  Mbak
+  Kel
+  Ustadz
+  Ustadzah
+  Haji
+  Hajah
+}
+
+enum AlamatRW {
+  RW6
+  RW8
+  RW9
+  RWLainnya
+}
+
+enum AlamatWilayah {
+  Rewwin
+  Lainnya
+}
+
+// ===========================================
+// JAMAAH: MODEL UTAMA
+// ===========================================
+
+model Jamaah {
+  id                String          @id @default(cuid())
+  nama              String
+  sebutan           SebutanJamaah?
+  anonymizeDisplay  Boolean         @default(false) // Jika true, tampilkan nama tersamarkan
+  nomerHandphone    String?
+  email             String?
+  alamatJalan       String?
+  alamatRW          AlamatRW?
+  alamatRT          String?         // RT 1-20, format bebas
+  alamatWilayah     AlamatWilayah?
+  alamatDetail      String?         // Detail alamat tambahan jika wilayah Lainnya
+  gender            Gender?
+  tanggalLahir      DateTime?
+  profesi           String?
+
+  // Status flags untuk berbagai unit
+  isJamaahAktif     Boolean         @default(true)  // Status aktif di masjid
+  isPengunjungKlinik Boolean        @default(false) // Pernah/sering ke poliklinik
+  isDonatur         Boolean         @default(false) // Donatur LAZMU
+
+  catatan           String?         @db.Text        // Catatan umum
+
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  // Relations untuk unit-specific data
+  riwayatKlinik     RiwayatKlinik[]
+  donasiLazmu       DonasiJamaah[]
+  pasienKlinik      PasienKlinik?     // Link ke data pasien klinik (jika terdaftar)
+
+  @@index([isJamaahAktif])
+  @@index([isPengunjungKlinik])
+  @@index([isDonatur])
+  @@index([alamatRW])
+  @@index([alamatWilayah])
+  @@map("jamaah")
+}
+
+// ===========================================
+// JAMAAH: RIWAYAT KLINIK (Legacy - untuk backward compatibility)
+// ===========================================
+
+model RiwayatKlinik {
+  id              String    @id @default(cuid())
+  jamaahId        String
+  tanggalKunjungan DateTime
+  keluhan         String?   @db.Text
+  diagnosa        String?   @db.Text
+  tindakan        String?   @db.Text
+  obat            String?   @db.Text
+  dokter          String?
+  catatan         String?   @db.Text
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  // Relations
+  jamaah          Jamaah    @relation(fields: [jamaahId], references: [id], onDelete: Cascade)
+
+  @@index([jamaahId])
+  @@index([tanggalKunjungan])
+  @@map("riwayat_klinik")
+}
+
+// ===========================================
+// POLIKLINIK: ENUMS
+// ===========================================
+
+enum StatusPernikahan {
+  belum_menikah
+  menikah
+  cerai_hidup
+  cerai_mati
+}
+
+enum StatusKunjungan {
+  menunggu
+  dalam_pemeriksaan
+  selesai
+  dirujuk
+  batal
+}
+
+enum JenisPelayanan {
+  umum
+  gigi
+  konsultasi
+}
+
+enum GolonganDarah {
+  A
+  B
+  AB
+  O
+  tidak_tahu
+}
+
+// ===========================================
+// POLIKLINIK: MASTER PASIEN
+// ===========================================
+
+model PasienKlinik {
+  id                      String            @id @default(cuid())
+  nomorRM                 String            @unique  // Auto-generated: RM-YYMM-XXXX
+
+  // Link to Jamaah (optional - for lookup)
+  jamaahId                String?           @unique
+
+  // Data Identitas Inti
+  namaLengkap             String
+  jenisKelamin            Gender
+  tanggalLahir            DateTime?
+  tempatLahir             String?
+  golonganDarah           GolonganDarah?
+
+  // Kontak
+  alamat                  String?           @db.Text
+  nomorHP                 String?
+  nomorHPDarurat          String?           // Nomor keluarga untuk keadaan darurat
+
+  // Data Tambahan
+  statusPernikahan        StatusPernikahan?
+  pekerjaan               String?
+
+  // Data Administratif
+  tanggalPertamaKunjungan DateTime          @default(now())
+  penanggungJawab         String?           // Nama penanggung jawab (untuk anak/lansia)
+  hubunganPenanggungJawab String?           // Hubungan dengan penanggung jawab
+
+  // Catatan Medis Penting
+  riwayatAlergi           String?           @db.Text  // WAJIB ditampilkan prominent
+  riwayatPenyakitKronis   String?           @db.Text  // Diabetes, hipertensi, dll
+  catatanKhusus           String?           @db.Text  // Disabilitas, kondisi khusus
+
+  // Status
+  isAktif                 Boolean           @default(true)
+
+  createdAt               DateTime          @default(now())
+  updatedAt               DateTime          @updatedAt
+  createdBy               String?           // User ID yang mendaftarkan
+
+  // Relations
+  jamaah                  Jamaah?           @relation(fields: [jamaahId], references: [id])
+  kunjungan               KunjunganKlinik[]
+
+  @@index([namaLengkap])
+  @@index([nomorHP])
+  @@index([isAktif])
+  @@index([tanggalPertamaKunjungan])
+  @@map("pasien_klinik")
+}
+
+// ===========================================
+// POLIKLINIK: KUNJUNGAN PASIEN (Visit/Encounter)
+// ===========================================
+
+model KunjunganKlinik {
+  id                  String          @id @default(cuid())
+  nomorKunjungan      String          @unique  // Auto: KJ-YYMMDD-XXX
+
+  pasienId            String
+  tanggalKunjungan    DateTime        @default(now())
+
+  // Info Kunjungan
+  jenisPelayanan      JenisPelayanan  @default(umum)
+  dokter              String?         // Nama dokter/tenaga medis
+
+  // Keluhan (quick entry at registration)
+  keluhanUtama        String?         @db.Text
+
+  // Status
+  statusKunjungan     StatusKunjungan @default(menunggu)
+  nomorAntrian        Int?            // Nomor antrian hari itu
+
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+
+  // Relations
+  pasien              PasienKlinik    @relation(fields: [pasienId], references: [id], onDelete: Cascade)
+  rekamMedis          RekamMedisKlinik?
+
+  @@index([pasienId])
+  @@index([tanggalKunjungan])
+  @@index([statusKunjungan])
+  @@index([dokter])
+  @@map("kunjungan_klinik")
+}
+
+// ===========================================
+// POLIKLINIK: REKAM MEDIS (Medical Record)
+// ===========================================
+
+model RekamMedisKlinik {
+  id                  String          @id @default(cuid())
+  kunjunganId         String          @unique
+
+  // === ANAMNESIS ===
+  keluhanUtama        String?         @db.Text  // Chief complaint (detail)
+  riwayatPenyakitSekarang String?     @db.Text  // History of present illness
+  riwayatPenyakitDahulu   String?     @db.Text  // Past medical history
+  riwayatAlergi       String?         @db.Text  // Allergies (HIGHLIGHTED)
+  riwayatObat         String?         @db.Text  // Current medications
+
+  // === PEMERIKSAAN FISIK ===
+  tekananDarahSistolik  Int?          // mmHg
+  tekananDarahDiastolik Int?          // mmHg
+  nadi                Int?            // bpm
+  suhu                Decimal?        @db.Decimal(4, 1)  // Celsius
+  pernapasan          Int?            // per minute
+  beratBadan          Decimal?        @db.Decimal(5, 2)  // kg
+  tinggiBadan         Decimal?        @db.Decimal(5, 2)  // cm
+  imt                 Decimal?        @db.Decimal(4, 1)  // Auto-calculated
+
+  // Pemeriksaan tambahan klinik
+  gulaDarah           Int?            // mg/dL
+  kolesterol          Int?            // mg/dL
+  asamUrat            Decimal?        @db.Decimal(4, 1)  // mg/dL
+
+  catatanPemeriksaan  String?         @db.Text  // Free text physical exam notes
+
+  // === DIAGNOSIS ===
+  diagnosisUtama      String?         @db.Text
+  diagnosisTambahan   String?         @db.Text
+  kodeICD10           String?         // ICD-10 code (optional but recommended)
+
+  // === TINDAKAN & TERAPI ===
+  tindakanMedis       String?         @db.Text
+  edukasiPasien       String?         @db.Text  // Patient education
+
+  // === RENCANA ===
+  rencanaSelanjutnya  String?         @db.Text  // Follow-up plan
+  tanggalKontrol      DateTime?       // Next appointment
+  rujukan             String?         @db.Text  // Referral notes
+
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+  updatedBy           String?         // User ID yang update terakhir
+
+  // Relations
+  kunjungan           KunjunganKlinik @relation(fields: [kunjunganId], references: [id], onDelete: Cascade)
+  resepObat           ResepObatKlinik[]
+
+  @@index([kunjunganId])
+  @@map("rekam_medis_klinik")
+}
+
+// ===========================================
+// POLIKLINIK: RESEP OBAT
+// ===========================================
+
+model ResepObatKlinik {
+  id              String          @id @default(cuid())
+  rekamMedisId    String
+
+  obatId          String?         // Optional link to MasterObat
+  namaObat        String          // Nama obat (free text or from master)
+
+  dosis           String?         // e.g., "500mg", "1 tablet"
+  aturanPakai     String?         // e.g., "3x sehari setelah makan"
+  lamaPemakaian   String?         // e.g., "5 hari", "sampai habis"
+  jumlahObat      Int             @default(1)  // Quantity
+  satuan          String          @default("tablet")  // Unit
+
+  keterangan      String?         @db.Text
+
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  // Relations
+  rekamMedis      RekamMedisKlinik @relation(fields: [rekamMedisId], references: [id], onDelete: Cascade)
+  obat            MasterObat?      @relation(fields: [obatId], references: [id])
+
+  @@index([rekamMedisId])
+  @@index([obatId])
+  @@map("resep_obat_klinik")
+}
+
+// ===========================================
+// POLIKLINIK: MASTER OBAT
+// ===========================================
+
+model MasterObat {
+  id              String          @id @default(cuid())
+  kode            String          @unique  // Kode obat internal
+  nama            String
+  namaGenerik     String?         // Generic name
+  satuan          String          @default("tablet")
+
+  // Stok
+  stokAwal        Int             @default(0)
+  stokMasuk       Int             @default(0)
+  stokKeluar      Int             @default(0)
+  stokSaatIni     Int             @default(0)  // Calculated
+  stokMinimum     Int             @default(10) // Warning threshold
+
+  // Info tambahan
+  kategori        String?         // e.g., "Antibiotik", "Analgesik"
+  keterangan      String?         @db.Text
+
+  isAktif         Boolean         @default(true)
+
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  // Relations
+  resep           ResepObatKlinik[]
+  stokMasukList   StokObatMasuk[]
+
+  @@index([nama])
+  @@index([kategori])
+  @@index([isAktif])
+  @@map("master_obat")
+}
+
+// ===========================================
+// POLIKLINIK: STOK OBAT MASUK
+// ===========================================
+
+model StokObatMasuk {
+  id              String          @id @default(cuid())
+  obatId          String
+
+  tanggal         DateTime        @default(now())
+  jumlah          Int
+  sumber          String?         // Sumber: Donasi, Pembelian, dll
+  keterangan      String?         @db.Text
+
+  createdAt       DateTime        @default(now())
+  createdBy       String?
+
+  // Relations
+  obat            MasterObat      @relation(fields: [obatId], references: [id], onDelete: Cascade)
+
+  @@index([obatId])
+  @@index([tanggal])
+  @@map("stok_obat_masuk")
+}
+
+// ===========================================
+// JAMAAH: DONASI LAZMU (untuk LAZ Muhajirin)
+// ===========================================
+
+model DonasiJamaah {
+  id              String    @id @default(cuid())
+  jamaahId        String
+  tanggalDonasi   DateTime
+  jumlah          Decimal   @db.Decimal(15, 2)
+  jenisDonasi     String    // Zakat Mal, Infaq, Sedekah, Wakaf, dll
+  programDonasi   String?   // Program yang didukung
+  metodePembayaran String?  // Transfer, Cash, dll
+  buktiTransfer   String?   // URL bukti transfer
+  keterangan      String?   @db.Text
+  isVerified      Boolean   @default(false)
+  verifiedBy      String?
+  verifiedAt      DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  // Relations
+  jamaah          Jamaah    @relation(fields: [jamaahId], references: [id], onDelete: Cascade)
+
+  @@index([jamaahId])
+  @@index([tanggalDonasi])
+  @@index([jenisDonasi])
+  @@index([isVerified])
+  @@map("donasi_jamaah")
+}
+
+// ===========================================
+// KBTK: ENUMS
+// ===========================================
+
+enum KbtkKelompokLevel {
+  KB
+  TK
+}
+
+enum KbtkKelompokKelas {
+  A
+  B
+}
+
+enum KbtkStatusSiswa {
+  aktif
+  cuti
+  lulus
+  keluar
+}
+
+enum KbtkStatusPendaftaran {
+  daftar
+  diterima
+  batal
+}
+
+enum KbtkSchemaPembayaran {
+  lunas
+  angsuran
+}
+
+enum KbtkStatusTagihan {
+  belum_bayar
+  bayar_sebagian
+  lunas
+}
+
+enum KbtkMetodePembayaran {
+  cash
+  transfer
+}
+
+enum KbtkRelasi {
+  ayah
+  ibu
+  wali
+}
+
+// ===========================================
+// KBTK: MODEL SISWA
+// ===========================================
+
+model KbtkSiswa {
+  id              String              @id @default(cuid())
+  nomorInduk      String              @unique  // Auto-generated: KBTK-YYMM-XXXX
+  namaLengkap     String
+  namaPanggilan   String?
+  jenisKelamin    Gender
+  tanggalLahir    DateTime?
+  tempatLahir     String?
+  foto            String?             // URL foto siswa
+
+  // Kelompok & Kelas
+  kelompokLevel   KbtkKelompokLevel   // KB atau TK
+  kelompokKelas   KbtkKelompokKelas   @default(A)  // A atau B
+
+  // Tahun Ajaran & Status
+  tahunAjaran     String              // Format: "2025/2026"
+  tanggalMasuk    DateTime            @default(now())
+  status          KbtkStatusSiswa     @default(aktif)
+
+  // Alamat
+  alamat          String?             @db.Text
+
+  // Catatan
+  catatanKhusus   String?             @db.Text  // Alergi, kebutuhan khusus, dll
+
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+
+  // Relations
+  orangTua        KbtkOrangTua[]
+  pendaftaran     KbtkPendaftaran?
+  tagihanSpp      KbtkTagihanSpp[]
+
+  @@index([kelompokLevel])
+  @@index([kelompokKelas])
+  @@index([tahunAjaran])
+  @@index([status])
+  @@index([namaLengkap])
+  @@map("kbtk_siswa")
+}
+
+// ===========================================
+// KBTK: MODEL ORANG TUA / WALI
+// ===========================================
+
+model KbtkOrangTua {
+  id              String          @id @default(cuid())
+  siswaId         String
+
+  nama            String
+  relasi          KbtkRelasi      // ayah, ibu, wali
+  nomorHP         String?
+  email           String?
+  pekerjaan       String?
+  alamat          String?         @db.Text  // Bisa berbeda dari alamat siswa
+
+  isPrimary       Boolean         @default(false)  // Kontak utama untuk penagihan
+
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  // Relations
+  siswa           KbtkSiswa       @relation(fields: [siswaId], references: [id], onDelete: Cascade)
+
+  @@index([siswaId])
+  @@index([isPrimary])
+  @@map("kbtk_orang_tua")
+}
+
+// ===========================================
+// KBTK: MODEL PENDAFTARAN
+// ===========================================
+
+model KbtkPendaftaran {
+  id                  String              @id @default(cuid())
+  siswaId             String              @unique
+
+  tahunAjaran         String              // Format: "2025/2026"
+  tanggalDaftar       DateTime            @default(now())
+  program             KbtkKelompokLevel   // KB atau TK
+
+  // Biaya & Pembayaran
+  biayaPendaftaran    Decimal             @db.Decimal(15, 2)
+  schemaPembayaran    KbtkSchemaPembayaran @default(lunas)
+
+  // Status
+  status              KbtkStatusPendaftaran @default(daftar)
+  tanggalDiterima     DateTime?           // Tanggal siswa diterima/aktif
+
+  catatan             String?             @db.Text
+
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+
+  // Relations
+  siswa               KbtkSiswa           @relation(fields: [siswaId], references: [id], onDelete: Cascade)
+  pembayaran          KbtkPembayaranPendaftaran[]
+
+  @@index([tahunAjaran])
+  @@index([status])
+  @@map("kbtk_pendaftaran")
+}
+
+// ===========================================
+// KBTK: MODEL PEMBAYARAN PENDAFTARAN (CICILAN)
+// ===========================================
+
+model KbtkPembayaranPendaftaran {
+  id                  String              @id @default(cuid())
+  pendaftaranId       String
+
+  tanggalBayar        DateTime            @default(now())
+  nominal             Decimal             @db.Decimal(15, 2)
+  metodePembayaran    KbtkMetodePembayaran @default(cash)
+
+  buktiTransfer       String?             // URL bukti transfer (opsional)
+  catatan             String?             @db.Text
+
+  createdBy           String?             // User yang input
+
+  createdAt           DateTime            @default(now())
+
+  // Relations
+  pendaftaran         KbtkPendaftaran     @relation(fields: [pendaftaranId], references: [id], onDelete: Cascade)
+
+  @@index([pendaftaranId])
+  @@index([tanggalBayar])
+  @@map("kbtk_pembayaran_pendaftaran")
+}
+
+// ===========================================
+// KBTK: MODEL SETTING SPP
+// ===========================================
+
+model KbtkSettingSpp {
+  id              String              @id @default(cuid())
+  tahunAjaran     String              // Format: "2025/2026"
+  kelompokLevel   KbtkKelompokLevel   // KB atau TK
+
+  nominalSpp      Decimal             @db.Decimal(15, 2)
+  keterangan      String?
+
+  isActive        Boolean             @default(true)
+
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+
+  @@unique([tahunAjaran, kelompokLevel])
+  @@index([isActive])
+  @@map("kbtk_setting_spp")
+}
+
+// ===========================================
+// KBTK: MODEL TAGIHAN SPP BULANAN
+// ===========================================
+
+model KbtkTagihanSpp {
+  id              String              @id @default(cuid())
+  siswaId         String
+
+  bulan           Int                 // 1-12
+  tahun           Int                 // e.g., 2025
+
+  nominal         Decimal             @db.Decimal(15, 2)
+  diskon          Decimal             @default(0) @db.Decimal(15, 2)  // Untuk beasiswa/diskon khusus
+  totalTagihan    Decimal             @db.Decimal(15, 2)  // nominal - diskon
+
+  status          KbtkStatusTagihan   @default(belum_bayar)
+  tanggalJatuhTempo DateTime?         // Opsional, untuk reminder
+
+  catatan         String?             @db.Text
+
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+
+  // Relations
+  siswa           KbtkSiswa           @relation(fields: [siswaId], references: [id], onDelete: Cascade)
+  pembayaran      KbtkPembayaranSpp[]
+
+  @@unique([siswaId, bulan, tahun])
+  @@index([status])
+  @@index([bulan, tahun])
+  @@map("kbtk_tagihan_spp")
+}
+
+// ===========================================
+// KBTK: MODEL PEMBAYARAN SPP
+// ===========================================
+
+model KbtkPembayaranSpp {
+  id                  String              @id @default(cuid())
+  tagihanId           String
+
+  tanggalBayar        DateTime            @default(now())
+  nominal             Decimal             @db.Decimal(15, 2)
+  metodePembayaran    KbtkMetodePembayaran @default(cash)
+
+  buktiTransfer       String?             // URL bukti transfer (opsional)
+  catatan             String?             @db.Text
+
+  createdBy           String?             // User yang input
+
+  createdAt           DateTime            @default(now())
+
+  // Relations
+  tagihan             KbtkTagihanSpp      @relation(fields: [tagihanId], references: [id], onDelete: Cascade)
+
+  @@index([tagihanId])
+  @@index([tanggalBayar])
+  @@map("kbtk_pembayaran_spp")
+}
+
+// ===========================================
+// DAYCARE: ENUMS
+// ===========================================
+
+enum DaycarePaketLayanan {
+  FULLDAY       // 07.00 - 17.00 WIB
+  AFTER_SCHOOL  // Setelah sekolah - 17.00 WIB
+  HARIAN        // Pembayaran per hari
+}
+
+enum DaycareStatusAnak {
+  aktif
+  cuti
+  selesai
+  keluar
+}
+
+enum DaycareStatusPendaftaran {
+  terdaftar  // Baru mendaftar
+  aktif      // Sudah aktif (pembayaran lunas)
+  batal      // Pendaftaran dibatalkan
+}
+
+enum DaycareSchemaPembayaran {
+  lunas
+  angsuran
+}
+
+enum DaycareStatusTagihan {
+  belum_bayar
+  bayar_sebagian
+  lunas
+}
+
+enum DaycareMetodePembayaran {
+  cash
+  transfer
+}
+
+enum DaycareRelasi {
+  ayah
+  ibu
+  wali
+}
+
+// ===========================================
+// DAYCARE: MODEL ANAK
+// ===========================================
+
+model DaycareAnak {
+  id              String              @id @default(cuid())
+  nomorInduk      String              @unique  // Auto-generated: DC-YYMM-XXXX
+  namaLengkap     String
+  namaPanggilan   String?
+  jenisKelamin    Gender
+  tanggalLahir    DateTime
+  tempatLahir     String?
+  foto            String?             // URL foto anak
+
+  // Paket & Status
+  paketLayanan    DaycarePaketLayanan
+  tanggalMulai    DateTime            @default(now())
+  status          DaycareStatusAnak   @default(aktif)
+
+  // Alamat
+  alamat          String?             @db.Text
+
+  // Data Kesehatan Khusus Daycare (WAJIB)
+  alergiMakanan   String?             @db.Text  // Alergi makanan - wajib diisi
+  catatanKesehatan String?            @db.Text  // Catatan kesehatan ringan
+  kebiasaanTidur  String?             @db.Text  // Kebiasaan tidur
+
+  // Catatan Umum
+  catatanKhusus   String?             @db.Text  // Catatan khusus dari orang tua
+
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+
+  // Relations
+  orangTua            DaycareOrangTua[]
+  pendaftaran         DaycarePendaftaran?
+  tagihanBulanan      DaycareTagihanBulanan[]
+  kehadiranHarian     DaycareKehadiranHarian[]
+  dailyReports        DaycareDailyReport[]
+
+  @@index([paketLayanan])
+  @@index([status])
+  @@index([namaLengkap])
+  @@index([tanggalMulai])
+  @@map("daycare_anak")
+}
+
+// ===========================================
+// DAYCARE: MODEL ORANG TUA / WALI
+// ===========================================
+
+model DaycareOrangTua {
+  id              String          @id @default(cuid())
+  anakId          String
+
+  nama            String
+  relasi          DaycareRelasi   // ayah, ibu, wali
+  nomorHP         String?
+  nomorHPDarurat  String?         // Kontak darurat
+  email           String?
+  pekerjaan       String?
+  alamat          String?         @db.Text
+
+  isPrimary       Boolean         @default(false)  // Kontak utama
+
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  // Relations
+  anak            DaycareAnak     @relation(fields: [anakId], references: [id], onDelete: Cascade)
+
+  @@index([anakId])
+  @@index([isPrimary])
+  @@map("daycare_orang_tua")
+}
+
+// ===========================================
+// DAYCARE: MODEL MASTER PAKET LAYANAN
+// ===========================================
+
+model DaycarePaket {
+  id              String              @id @default(cuid())
+  nama            String              // FULLDAY, AFTER SCHOOL, HARIAN
+  tipePaket       DaycarePaketLayanan @unique
+  deskripsi       String?             @db.Text
+  rentangUsia     String?             // e.g., "3 bulan - 3 tahun"
+  jamLayanan      String?             // e.g., "07.00 - 17.00 WIB"
+  sistemPembayaran String?            // "Bulanan" atau "Harian"
+
+  // Harga
+  hargaDefault    Decimal             @db.Decimal(15, 2)
+
+  // Fitur layanan (JSON array)
+  fiturLayanan    String?             @db.Text  // JSON array of features
+
+  isActive        Boolean             @default(true)
+
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+
+  @@index([isActive])
+  @@map("daycare_paket")
+}
+
+// ===========================================
+// DAYCARE: MODEL PENDAFTARAN
+// ===========================================
+
+model DaycarePendaftaran {
+  id                  String                  @id @default(cuid())
+  anakId              String                  @unique
+
+  tanggalDaftar       DateTime                @default(now())
+  tanggalMulai        DateTime?               // Tanggal mulai layanan
+  paketDipilih        DaycarePaketLayanan
+
+  // Biaya & Pembayaran
+  biayaPendaftaran    Decimal                 @db.Decimal(15, 2)
+  schemaPembayaran    DaycareSchemaPembayaran @default(lunas)
+
+  // Status
+  status              DaycareStatusPendaftaran @default(terdaftar)
+  tanggalAktif        DateTime?               // Tanggal anak aktif
+
+  catatan             String?                 @db.Text
+
+  createdAt           DateTime                @default(now())
+  updatedAt           DateTime                @updatedAt
+
+  // Relations
+  anak                DaycareAnak             @relation(fields: [anakId], references: [id], onDelete: Cascade)
+  pembayaran          DaycarePembayaranPendaftaran[]
+
+  @@index([status])
+  @@index([paketDipilih])
+  @@map("daycare_pendaftaran")
+}
+
+// ===========================================
+// DAYCARE: MODEL PEMBAYARAN PENDAFTARAN
+// ===========================================
+
+model DaycarePembayaranPendaftaran {
+  id                  String                  @id @default(cuid())
+  pendaftaranId       String
+
+  tanggalBayar        DateTime                @default(now())
+  nominal             Decimal                 @db.Decimal(15, 2)
+  metodePembayaran    DaycareMetodePembayaran @default(cash)
+
+  buktiTransfer       String?                 // URL bukti transfer
+  catatan             String?                 @db.Text
+
+  createdBy           String?                 // User yang input
+
+  createdAt           DateTime                @default(now())
+
+  // Relations
+  pendaftaran         DaycarePendaftaran      @relation(fields: [pendaftaranId], references: [id], onDelete: Cascade)
+
+  @@index([pendaftaranId])
+  @@index([tanggalBayar])
+  @@map("daycare_pembayaran_pendaftaran")
+}
+
+// ===========================================
+// DAYCARE: MODEL TAGIHAN BULANAN (FULLDAY/AFTER_SCHOOL)
+// ===========================================
+
+model DaycareTagihanBulanan {
+  id              String                  @id @default(cuid())
+  anakId          String
+
+  bulan           Int                     // 1-12
+  tahun           Int                     // e.g., 2025
+  paket           DaycarePaketLayanan
+
+  nominal         Decimal                 @db.Decimal(15, 2)
+  diskon          Decimal                 @default(0) @db.Decimal(15, 2)
+  totalTagihan    Decimal                 @db.Decimal(15, 2)  // nominal - diskon
+
+  status          DaycareStatusTagihan    @default(belum_bayar)
+  tanggalJatuhTempo DateTime?
+
+  catatan         String?                 @db.Text
+
+  createdAt       DateTime                @default(now())
+  updatedAt       DateTime                @updatedAt
+
+  // Relations
+  anak            DaycareAnak             @relation(fields: [anakId], references: [id], onDelete: Cascade)
+  pembayaran      DaycarePembayaranBulanan[]
+
+  @@unique([anakId, bulan, tahun])
+  @@index([status])
+  @@index([bulan, tahun])
+  @@index([paket])
+  @@map("daycare_tagihan_bulanan")
+}
+
+// ===========================================
+// DAYCARE: MODEL PEMBAYARAN BULANAN
+// ===========================================
+
+model DaycarePembayaranBulanan {
+  id                  String                  @id @default(cuid())
+  tagihanId           String
+
+  tanggalBayar        DateTime                @default(now())
+  nominal             Decimal                 @db.Decimal(15, 2)
+  metodePembayaran    DaycareMetodePembayaran @default(cash)
+
+  buktiTransfer       String?
+  catatan             String?                 @db.Text
+
+  createdBy           String?
+
+  createdAt           DateTime                @default(now())
+
+  // Relations
+  tagihan             DaycareTagihanBulanan   @relation(fields: [tagihanId], references: [id], onDelete: Cascade)
+
+  @@index([tagihanId])
+  @@index([tanggalBayar])
+  @@map("daycare_pembayaran_bulanan")
+}
+
+// ===========================================
+// DAYCARE: MODEL KEHADIRAN HARIAN (untuk Paket HARIAN)
+// ===========================================
+
+model DaycareKehadiranHarian {
+  id              String          @id @default(cuid())
+  anakId          String
+  tanggal         DateTime
+
+  jamMasuk        DateTime?
+  jamPulang       DateTime?
+
+  isHadir         Boolean         @default(true)
+  catatan         String?         @db.Text
+
+  // Untuk billing
+  tagihanId       String?         // Link ke tagihan harian jika sudah di-generate
+
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  // Relations
+  anak            DaycareAnak     @relation(fields: [anakId], references: [id], onDelete: Cascade)
+  tagihan         DaycareTagihanHarian? @relation(fields: [tagihanId], references: [id])
+
+  @@unique([anakId, tanggal])
+  @@index([tanggal])
+  @@index([isHadir])
+  @@map("daycare_kehadiran_harian")
+}
+
+// ===========================================
+// DAYCARE: MODEL TAGIHAN HARIAN
+// ===========================================
+
+model DaycareTagihanHarian {
+  id              String                  @id @default(cuid())
+  anakId          String
+  tanggal         DateTime
+
+  nominal         Decimal                 @db.Decimal(15, 2)
+  status          DaycareStatusTagihan    @default(belum_bayar)
+
+  catatan         String?                 @db.Text
+
+  createdAt       DateTime                @default(now())
+  updatedAt       DateTime                @updatedAt
+
+  // Relations - anak relation removed since it's via kehadiran
+  kehadiran       DaycareKehadiranHarian[]
+  pembayaran      DaycarePembayaranHarian[]
+
+  @@unique([anakId, tanggal])
+  @@index([status])
+  @@index([tanggal])
+  @@map("daycare_tagihan_harian")
+}
+
+// ===========================================
+// DAYCARE: MODEL PEMBAYARAN HARIAN
+// ===========================================
+
+model DaycarePembayaranHarian {
+  id                  String                  @id @default(cuid())
+  tagihanId           String
+
+  tanggalBayar        DateTime                @default(now())
+  nominal             Decimal                 @db.Decimal(15, 2)
+  metodePembayaran    DaycareMetodePembayaran @default(cash)
+
+  buktiTransfer       String?
+  catatan             String?                 @db.Text
+
+  createdBy           String?
+
+  createdAt           DateTime                @default(now())
+
+  // Relations
+  tagihan             DaycareTagihanHarian    @relation(fields: [tagihanId], references: [id], onDelete: Cascade)
+
+  @@index([tagihanId])
+  @@index([tanggalBayar])
+  @@map("daycare_pembayaran_harian")
+}
+
+// ===========================================
+// DAYCARE: MODEL DAILY REPORT (Laporan Harian Perkembangan Anak)
+// ===========================================
+
+model DaycareDailyReport {
+  id              String          @id @default(cuid())
+  anakId          String
+  tanggal         DateTime
+  guruPengisi     String?         // Nama guru yang mengisi
+
+  // === PERILAKU (Skala 1-5: 1=Tidak Baik, 5=Sangat Baik) ===
+  moodSikap       Int?            // 1-5
+  interaksiTeman  Int?            // 1-5
+  catatanPerilaku String?         @db.Text
+
+  // === AKTIVITAS (Skala 1-5: 1=Sangat Pasif, 5=Sangat Aktif) ===
+  partisipasiBelajar Int?         // 1-5
+  responBermain   Int?            // 1-5
+  catatanAktivitas String?        @db.Text
+
+  // === MAKAN & NUTRISI (Skala 1-5: 1=Sangat Tidak Suka, 5=Sangat Suka) ===
+  makanSiang      Int?            // 1-5
+  snack           Int?            // 1-5
+  catatanMakan    String?         @db.Text
+
+  // === TIDUR SIANG (Skala 1-5: 1=Sangat Sulit, 5=Sangat Mudah) ===
+  tidurSiang      Int?            // 1-5
+  durasiTidur     String?         // e.g., "2 jam", "1.5 jam"
+  catatanTidur    String?         @db.Text
+
+  // === KEGIATAN HARI INI (Checklist - stored as JSON) ===
+  kegiatanHariIni String?         @db.Text  // JSON array: ["mengaji", "hafalan", "berenang", etc.]
+
+  // === CATATAN UMUM GURU ===
+  catatanGuru     String?         @db.Text
+
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  // Relations
+  anak            DaycareAnak     @relation(fields: [anakId], references: [id], onDelete: Cascade)
+
+  @@unique([anakId, tanggal])
+  @@index([tanggal])
+  @@index([anakId])
+  @@map("daycare_daily_report")
+}
