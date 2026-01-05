@@ -77,7 +77,20 @@ export const authOptions: NextAuthOptions = {
 
         if (existingUser && !existingUser.role) {
           // User exists but doesn't have a role, add default role
-          let role: 'admin' | 'member' | 'moderator' | 'editor' | 'viewer' | 'guest' = 'member';
+          let role:
+            | 'admin'
+            | 'pengurus'
+            | 'pengawas'
+            | 'pembina'
+            | 'kepalabidang'
+            | 'kepalaunit'
+            | 'operatorunit'
+            | 'sekretariat'
+            | 'member'
+            | 'moderator'
+            | 'editor'
+            | 'viewer'
+            | 'guest' = 'member';
 
           // Special case for your admin user
           if (user.email === 'guntarion@gmail.com') {
@@ -136,7 +149,20 @@ export const authOptions: NextAuthOptions = {
         if (!user.email) return;
 
         // Set default role for the new user
-        let role: 'admin' | 'member' | 'moderator' | 'editor' | 'viewer' | 'guest' = 'member';
+        let role:
+          | 'admin'
+          | 'pengurus'
+          | 'pengawas'
+          | 'pembina'
+          | 'kepalabidang'
+          | 'kepalaunit'
+          | 'operatorunit'
+          | 'sekretariat'
+          | 'member'
+          | 'moderator'
+          | 'editor'
+          | 'viewer'
+          | 'guest' = 'member';
 
         // Set admin role for your email
         if (user.email === 'guntarion@gmail.com') {

@@ -29,6 +29,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import UserProfile from '@/components/auth/UserProfile';
 
 interface NavItem {
   label: string;
@@ -197,8 +198,8 @@ export default function KeuanganNavbar() {
             )}
           </div>
 
-          {/* Year Selector */}
-          <div className="hidden md:flex items-center">
+          {/* Year Selector & User Profile */}
+          <div className="hidden md:flex items-center gap-3">
             <Button
               variant="outline"
               size="sm"
@@ -206,6 +207,7 @@ export default function KeuanganNavbar() {
             >
               2026
             </Button>
+            <UserProfile variant="dropdown" />
           </div>
 
           {/* Mobile Menu Button */}
@@ -265,7 +267,7 @@ export default function KeuanganNavbar() {
                 </Link>
               )
             )}
-            <div className="pt-2 border-t border-gray-200">
+            <div className="pt-2 border-t border-gray-200 space-y-2">
               <div className="flex items-center px-3 py-2">
                 <Button
                   variant="outline"
@@ -274,6 +276,9 @@ export default function KeuanganNavbar() {
                 >
                   2026
                 </Button>
+              </div>
+              <div className="px-3 py-2">
+                <UserProfile variant="card" />
               </div>
             </div>
           </div>

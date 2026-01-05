@@ -16,6 +16,13 @@ datasource db {
 
 enum Role {
   admin
+  pengurus
+  pengawas
+  pembina
+  kepalabidang
+  kepalaunit
+  operatorunit
+  sekretariat
   member
   moderator
   editor

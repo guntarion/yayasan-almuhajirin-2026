@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { useAuth } from '@/hooks/useAuth';
 import { FcGoogle } from 'react-icons/fc';
 import { useSearchParams } from 'next/navigation';
@@ -9,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
 /**
- * Enhanced login component with Google sign-in only
+ * Login component with Google sign-in for Yayasan Al Muhajirin
  */
 const AuthLogin = () => {
   const [loading, setLoading] = useState(false);
@@ -29,7 +28,7 @@ const AuthLogin = () => {
       await loginWithGoogle(callbackUrl);
     } catch (err) {
       console.error('Google auth error:', err);
-      setError('An error occurred during login. Please try again.');
+      setError('Terjadi kesalahan saat masuk. Silakan coba lagi.');
     } finally {
       setLoading(false);
     }
@@ -43,37 +42,33 @@ const AuthLogin = () => {
         </Alert>
       )}
 
-      <div className="space-y-4 text-center">
-        <h2 className="text-2xl font-bold text-blue-800">Login to Guntar-NextJS</h2>
-        <p className="text-gray-600">Modern web application platform built with Next.js</p>
-      </div>
-
-      <div className="relative my-8">
+      <div className="relative my-4">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-300"></div>
+          <div className="w-full border-t border-gray-200"></div>
         </div>
         <div className="relative flex justify-center text-sm">
-          <span className="px-2 text-gray-500 bg-white">Masuk dengan</span>
+          <span className="px-4 text-gray-500 bg-white">Masuk dengan akun Google</span>
         </div>
       </div>
 
       <Button
         onClick={handleGoogleLogin}
         variant="outline"
-        className="w-full py-6 border-2 hover:bg-gray-50 transition-colors"
+        className="w-full py-6 border-2 border-[#00BCD4]/30 hover:bg-[#B2EBF2]/20 hover:border-[#00BCD4] transition-all duration-300 rounded-xl"
         type="button"
         disabled={loading}
       >
         <div className="flex items-center justify-center w-full">
           <FcGoogle className="h-6 w-6 mr-3" />
-          <span className="text-base font-medium">{loading ? 'Memproses...' : 'Masuk dengan Google'}</span>
+          <span className="text-base font-medium text-[#006064]">
+            {loading ? 'Memproses...' : 'Masuk dengan Google'}
+          </span>
         </div>
       </Button>
 
       <div className="pt-4 text-center">
-        <p className="text-sm text-gray-600">
-          Dengan masuk, Anda menyetujui <Link href="/terms" className="text-blue-600 hover:underline">Ketentuan Layanan</Link> dan {' '}
-          <Link href="/privacy" className="text-blue-600 hover:underline">Kebijakan Privasi</Link> kami
+        <p className="text-xs text-gray-500">
+          Dengan masuk, Anda dapat mengakses sistem informasi Yayasan Al Muhajirin
         </p>
       </div>
     </div>

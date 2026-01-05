@@ -15,11 +15,13 @@ import {
   ArrowRight,
   Loader2,
   Building2,
+  Eye,
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { formatCurrency, formatCurrencyShort, formatDate } from '@/utils/keuangan';
+import { useKeuanganPermissions } from '@/hooks/useKeuanganPermissions';
 
 interface DashboardData {
   fiscalPeriod: {
@@ -140,6 +142,7 @@ export default function KeuanganDashboardPage() {
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { canWrite, hasReadOnlyAccess } = useKeuanganPermissions();
 
   useEffect(() => {
     async function fetchDashboard() {
@@ -219,15 +222,23 @@ export default function KeuanganDashboardPage() {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <Button
-              asChild
-              className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl px-6 h-11 font-semibold"
-            >
-              <Link href="/transaksi/input">
-                <Plus className="h-5 w-5 mr-2" />
-                Input Transaksi
-              </Link>
-            </Button>
+            {hasReadOnlyAccess && (
+              <Badge variant="secondary" className="px-3 py-1.5 text-xs font-semibold flex items-center gap-1.5">
+                <Eye className="h-3.5 w-3.5" />
+                Read-Only Access
+              </Badge>
+            )}
+            {canWrite && (
+              <Button
+                asChild
+                className="bg-gradient-to-r from-[#00BCD4] to-[#006064] hover:from-[#006064] hover:to-[#00BCD4] text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl px-6 h-11 font-semibold"
+              >
+                <Link href="/keuangan/transaksi/input">
+                  <Plus className="h-5 w-5 mr-2" />
+                  Input Transaksi
+                </Link>
+              </Button>
+            )}
           </div>
         </div>
       </div>
@@ -416,22 +427,24 @@ export default function KeuanganDashboardPage() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 pt-4">
+            {canWrite && (
+              <Button
+                asChild
+                variant="outline"
+                className="w-full justify-start border-2 border-[#00BCD4]/20 hover:bg-gradient-to-r hover:from-[#00BCD4]/10 hover:to-transparent hover:border-[#00BCD4]/50 rounded-xl h-12 transition-all duration-300"
+              >
+                <Link href="/keuangan/transaksi/input">
+                  <Plus className="h-5 w-5 mr-3 text-[#00BCD4]" />
+                  <span className="font-medium">Input Transaksi Baru</span>
+                </Link>
+              </Button>
+            )}
             <Button
               asChild
               variant="outline"
               className="w-full justify-start border-2 border-[#00BCD4]/20 hover:bg-gradient-to-r hover:from-[#00BCD4]/10 hover:to-transparent hover:border-[#00BCD4]/50 rounded-xl h-12 transition-all duration-300"
             >
-              <Link href="/transaksi/input">
-                <Plus className="h-5 w-5 mr-3 text-[#00BCD4]" />
-                <span className="font-medium">Input Transaksi Baru</span>
-              </Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              className="w-full justify-start border-2 border-[#00BCD4]/20 hover:bg-gradient-to-r hover:from-[#00BCD4]/10 hover:to-transparent hover:border-[#00BCD4]/50 rounded-xl h-12 transition-all duration-300"
-            >
-              <Link href="/laporan/neraca">
+              <Link href="/keuangan/laporan/neraca">
                 <PieChart className="h-5 w-5 mr-3 text-[#00BCD4]" />
                 <span className="font-medium">Lihat Neraca</span>
               </Link>
@@ -441,7 +454,7 @@ export default function KeuanganDashboardPage() {
               variant="outline"
               className="w-full justify-start border-2 border-[#00BCD4]/20 hover:bg-gradient-to-r hover:from-[#00BCD4]/10 hover:to-transparent hover:border-[#00BCD4]/50 rounded-xl h-12 transition-all duration-300"
             >
-              <Link href="/laporan/aktivitas">
+              <Link href="/keuangan/laporan/aktivitas">
                 <TrendingUp className="h-5 w-5 mr-3 text-[#00BCD4]" />
                 <span className="font-medium">Laporan Aktivitas</span>
               </Link>
@@ -451,7 +464,7 @@ export default function KeuanganDashboardPage() {
               variant="outline"
               className="w-full justify-start border-2 border-[#00BCD4]/20 hover:bg-gradient-to-r hover:from-[#00BCD4]/10 hover:to-transparent hover:border-[#00BCD4]/50 rounded-xl h-12 transition-all duration-300"
             >
-              <Link href="/program">
+              <Link href="/keuangan/program">
                 <Wallet className="h-5 w-5 mr-3 text-[#00BCD4]" />
                 <span className="font-medium">Daftar Program Kerja</span>
               </Link>

@@ -74,11 +74,47 @@ The application supports 12 organizational units, each accessible via dedicated 
 
 ### Authentication System
 - Hybrid authentication: Google OAuth + email/password
-- Role-based access control (admin, moderator, editor, member, viewer, guest)
+- **Role-based access control** with organizational hierarchy:
+  - **Leadership**: admin, pengurus, pengawas, pembina
+  - **Management**: kepalabidang, kepalaunit, operatorunit, sekretariat
+  - **General**: member, moderator, editor, viewer, guest
 - Password reset functionality with email tokens
 - Prisma adapter for session storage (PostgreSQL)
 - JWT session strategy for improved performance
 - Custom user roles with admin hardcoded for guntarion@gmail.com
+
+### Keuangan Module Access Control (IMPORTANT)
+The keuangan module at `keuangan.muhajirinrewwin.or.id` is protected with role-based access:
+
+**Access Levels:**
+- **Full Access (Read & Write)**: admin, sekretariat
+- **Read-Only Access**: pembina, pengawas, pengurus, kepalabidang, kepalaunit
+- **No Access**: All other roles (redirected to unauthorized page)
+
+**Implementation:**
+- Layout protected by `RoleGuard` component at `src/app/keuangan/layout.tsx`
+- Use `useKeuanganPermissions()` hook to check permissions in components
+- Auth routes (`/auth/*`) bypass middleware rewriting and work on all subdomains
+- Unauthenticated users → redirected to login with callback URL
+- Authenticated users without role → redirected to `/auth/unauthorized`
+
+**Example Usage:**
+```typescript
+import { useKeuanganPermissions } from '@/hooks/useKeuanganPermissions';
+
+function MyPage() {
+  const { canWrite, hasReadOnlyAccess } = useKeuanganPermissions();
+
+  return (
+    <>
+      {canWrite && <CreateButton />}
+      {hasReadOnlyAccess && <ReadOnlyBadge />}
+    </>
+  );
+}
+```
+
+See `KEUANGAN_PERMISSIONS.md` and `AUTH_FLOW_SUMMARY.md` for detailed documentation.
 
 ### Key Components
 - **Sidebar Navigation**: Role-aware menu items in `Sidebaritems.ts`

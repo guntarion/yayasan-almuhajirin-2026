@@ -21,7 +21,13 @@ const SUBDOMAIN_ROUTES: Record<string, string> = {
 export function middleware(request: NextRequest) {
   const url = request.nextUrl;
   const hostname = request.headers.get('host') || '';
-  
+  const pathname = url.pathname;
+
+  // Skip middleware for auth routes - these should work on any subdomain
+  if (pathname.startsWith('/auth')) {
+    return NextResponse.next();
+  }
+
   // Ekstrak subdomain dari hostname
   // Format: subdomain.muhajirinrewwin.or.id atau subdomain.localhost:3000
   const hostParts = hostname.split('.');
@@ -41,18 +47,18 @@ export function middleware(request: NextRequest) {
       subdomain = hostParts[0];
     }
   }
-  
+
   // Jika ada subdomain yang valid, rewrite ke path unit
   if (subdomain && SUBDOMAIN_ROUTES[subdomain]) {
     const targetPath = SUBDOMAIN_ROUTES[subdomain];
-    
+
     // Rewrite URL ke path unit sambil mempertahankan pathname dan query
-    const newUrl = new URL(`${targetPath}${url.pathname}`, request.url);
+    const newUrl = new URL(`${targetPath}${pathname}`, request.url);
     newUrl.search = url.search;
-    
+
     return NextResponse.rewrite(newUrl);
   }
-  
+
   // Jika bukan subdomain unit, lanjutkan normal (domain utama atau dashboard)
   return NextResponse.next();
 }

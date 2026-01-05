@@ -1,3 +1,9 @@
+## 2026-01-05 22:38:42
+
+feat(auth): implement RBAC with YAMR-themed authentication and user profile display
+
+---
+
 ## 2026-01-05 20:45:31
 
 refactor: migrate domain from almuhajirin.or.id to muhajirinrewwin.or.id
