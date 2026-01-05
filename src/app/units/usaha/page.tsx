@@ -23,7 +23,7 @@ export default function UsahaPage() {
             </p>
             <div className="mt-6 space-y-2">
               <h3 className="text-xl font-semibold">Informasi Kontak</h3>
-              <p>Website: usaha.almuhajirin.or.id</p>
+              <p>Website: usaha.muhajirinrewwin.or.id</p>
             </div>
           </div>
         </div>

@@ -63,19 +63,19 @@ Di Vercel Dashboard → Project Settings → Domains:
 
 Tambahkan semua domain:
 ```
-almuhajirin.or.id
-masjid.almuhajirin.or.id
-kbtk.almuhajirin.or.id
-pool.almuhajirin.or.id
-usaha.almuhajirin.or.id
-remas.almuhajirin.or.id
-kemuslimatan.almuhajirin.or.id
-daycare.almuhajirin.or.id
-tpq.almuhajirin.or.id
-lazmu.almuhajirin.or.id
-wafmu.almuhajirin.or.id
-ambulans.almuhajirin.or.id
-poliklinik.almuhajirin.or.id
+muhajirinrewwin.or.id
+masjid.muhajirinrewwin.or.id
+kbtk.muhajirinrewwin.or.id
+pool.muhajirinrewwin.or.id
+usaha.muhajirinrewwin.or.id
+remas.muhajirinrewwin.or.id
+kemuslimatan.muhajirinrewwin.or.id
+daycare.muhajirinrewwin.or.id
+tpq.muhajirinrewwin.or.id
+lazmu.muhajirinrewwin.or.id
+wafmu.muhajirinrewwin.or.id
+ambulans.muhajirinrewwin.or.id
+poliklinik.muhajirinrewwin.or.id
 ```
 
 ### 3. Configure DNS

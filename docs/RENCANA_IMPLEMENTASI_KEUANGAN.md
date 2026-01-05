@@ -2,7 +2,7 @@
 
 ## Overview
 
-Modul keuangan untuk Yayasan Al Muhajirin yang diakses via subdomain `keuangan.almuhajirin.or.id` (development: `keuangan.localhost:3000`).
+Modul keuangan untuk Yayasan Al Muhajirin yang diakses via subdomain `keuangan.muhajirinrewwin.or.id` (development: `keuangan.localhost:3000`).
 
 **Prinsip Utama:**
 - MVP-focused: fitur minimal yang berfungsi penuh

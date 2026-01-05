@@ -20,11 +20,11 @@ const nextConfig = {
     serverActions: {
       // Izinkan semua subdomain untuk development
       allowedOrigins: [
-        'localhost:3000', 
+        'localhost:3000',
         '127.0.0.1:3000',
         '*.localhost:3000', // subdomain development
-        '*.almuhajirin.or.id', // subdomain production
-        'almuhajirin.or.id',
+        '*.muhajirinrewwin.or.id', // subdomain production
+        'muhajirinrewwin.or.id',
       ],
     },
   },

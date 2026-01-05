@@ -23,7 +23,7 @@ export default function PoolPage() {
             </p>
             <div className="mt-6 space-y-2">
               <h3 className="text-xl font-semibold">Informasi Kontak</h3>
-              <p>Website: pool.almuhajirin.or.id</p>
+              <p>Website: pool.muhajirinrewwin.or.id</p>
             </div>
           </div>
         </div>

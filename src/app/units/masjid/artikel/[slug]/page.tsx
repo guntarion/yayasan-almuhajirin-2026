@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const article = await getArticleBySlug(slug, unit.id);
   if (!article) return { title: 'Artikel tidak ditemukan' };
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://almuhajirin.or.id';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://muhajirinrewwin.or.id';
 
   return {
     title: article.metaTitle || `${article.title} - Masjid Al Muhajirin`,
@@ -75,7 +75,7 @@ export default async function ArtikelDetailPage({ params }: PageProps) {
     3
   );
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://almuhajirin.or.id';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://muhajirinrewwin.or.id';
   const articleUrl = `${siteUrl}/units/masjid/artikel/${slug}`;
 
   // JSON-LD structured data

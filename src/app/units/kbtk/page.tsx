@@ -32,7 +32,7 @@ export default function KBTKPage() {
       age: '1-3 Tahun',
       description: 'Program penitipan anak dengan pengasuhan penuh kasih sayang dan stimulasi perkembangan optimal.',
       color: 'from-pink-500 to-rose-500',
-      href: 'https://daycare.almuhajirin.or.id',
+      href: 'https://daycare.muhajirinrewwin.or.id',
       isExternal: true,
     },
     {

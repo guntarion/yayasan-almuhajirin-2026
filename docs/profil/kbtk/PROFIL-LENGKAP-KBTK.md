@@ -10,8 +10,8 @@
 | **Metode Pembelajaran** | Beyond Centra and Circle Time (BCCT) dengan pendekatan Islami Montessori |
 | **Naungan** | Yayasan Al Muhajirin Rewwin |
 | **WhatsApp** | 0813-1466-1918 |
-| **Email** | kbtk@almuhajirin.or.id |
-| **Website** | kbtk.almuhajirin.or.id |
+| **Email** | kbtk@muhajirinrewwin.or.id |
+| **Website** | kbtk.muhajirinrewwin.or.id |
 
 ---
 
@@ -309,8 +309,8 @@ Jl. Rajawali No. 207 Kepuhkiriman, Waru, Sidoarjo, Jawa Timur 61256
 
 ### Kontak
 - **WhatsApp**: 0813-1466-1918
-- **Email**: kbtk@almuhajirin.or.id
-- **Website**: kbtk.almuhajirin.or.id
+- **Email**: kbtk@muhajirinrewwin.or.id
+- **Website**: kbtk.muhajirinrewwin.or.id
 - **Instagram**: @kbtk_almuhajirin_rewwin
 
 ### Jam Operasional

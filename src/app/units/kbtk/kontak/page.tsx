@@ -37,8 +37,8 @@ export default function KontakPage() {
     {
       icon: Mail,
       title: 'Email',
-      value: 'kbtk@almuhajirin.or.id',
-      action: () => window.location.href = 'mailto:kbtk@almuhajirin.or.id',
+      value: 'kbtk@muhajirinrewwin.or.id',
+      action: () => window.location.href = 'mailto:kbtk@muhajirinrewwin.or.id',
       actionText: 'Kirim Email',
       color: 'from-[#00BCD4] to-[#006064]',
     },

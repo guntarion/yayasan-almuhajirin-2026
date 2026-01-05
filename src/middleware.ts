@@ -23,20 +23,20 @@ export function middleware(request: NextRequest) {
   const hostname = request.headers.get('host') || '';
   
   // Ekstrak subdomain dari hostname
-  // Format: subdomain.almuhajirin.or.id atau subdomain.localhost:3000
+  // Format: subdomain.muhajirinrewwin.or.id atau subdomain.localhost:3000
   const hostParts = hostname.split('.');
-  
+
   // Jika di localhost, ambil bagian pertama sebelum .localhost
-  // Jika di production, ambil bagian pertama sebelum .almuhajirin
+  // Jika di production, ambil bagian pertama sebelum .muhajirinrewwin
   let subdomain = '';
-  
+
   if (hostname.includes('localhost')) {
     // localhost:3000 atau subdomain.localhost:3000
     if (hostParts.length >= 2 && hostParts[0] !== 'localhost') {
       subdomain = hostParts[0];
     }
   } else {
-    // almuhajirin.or.id atau subdomain.almuhajirin.or.id
+    // muhajirinrewwin.or.id atau subdomain.muhajirinrewwin.or.id
     if (hostParts.length >= 4) {
       subdomain = hostParts[0];
     }

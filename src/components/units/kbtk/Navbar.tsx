@@ -67,7 +67,7 @@ export function KBTKNavbar() {
             </div>
             <div className="flex items-center space-x-2">
               <Mail className="h-4 w-4" />
-              <span>kbtk@almuhajirin.or.id</span>
+              <span>kbtk@muhajirinrewwin.or.id</span>
             </div>
           </div>
           <div className="flex items-center space-x-2">

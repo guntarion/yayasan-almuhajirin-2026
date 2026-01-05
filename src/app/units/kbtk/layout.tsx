@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'KBTK Al Muhajirin Rewwin',
     description: 'Lembaga pendidikan anak usia dini dengan metode BCCT dan pendekatan Islami Montessori',
-    url: 'https://kbtk.almuhajirin.or.id',
+    url: 'https://kbtk.muhajirinrewwin.or.id',
     siteName: 'KBTK Al Muhajirin Rewwin',
     locale: 'id_ID',
     type: 'website',

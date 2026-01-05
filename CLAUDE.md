@@ -17,7 +17,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Architecture Overview
 
 This is a Next.js 15 application with a multi-subdomain architecture supporting:
-- Main website (almuhajirin.or.id)
+- Main website (muhajirinrewwin.or.id)
 - Dashboard for admin/management
 - 12 unit-specific subdomains for organizational units
 
@@ -43,19 +43,19 @@ The application supports 12 organizational units, each accessible via dedicated 
 
 | Unit | Subdomain | Path |
 |------|-----------|------|
-| Main Website | almuhajirin.or.id | / |
-| Usaha & Pengadaan | usaha.almuhajirin.or.id | /units/usaha |
-| Kolam Renang | pool.almuhajirin.or.id | /units/pool |
-| Ketakmiran Masjid | masjid.almuhajirin.or.id | /units/masjid |
-| Remaskidz | remas.almuhajirin.or.id | /units/remas |
-| Kemuslimatan | kemuslimatan.almuhajirin.or.id | /units/kemuslimatan |
-| Daycare | daycare.almuhajirin.or.id | /units/daycare |
-| KBTK | kbtk.almuhajirin.or.id | /units/kbtk |
-| TPQ | tpq.almuhajirin.or.id | /units/tpq |
-| LAZMU | lazmu.almuhajirin.or.id | /units/lazmu |
-| WAFMU | wafmu.almuhajirin.or.id | /units/wafmu |
-| Ambulans | ambulans.almuhajirin.or.id | /units/ambulans |
-| Poliklinik | poliklinik.almuhajirin.or.id | /units/poliklinik |
+| Main Website | muhajirinrewwin.or.id | / |
+| Usaha & Pengadaan | usaha.muhajirinrewwin.or.id | /units/usaha |
+| Kolam Renang | pool.muhajirinrewwin.or.id | /units/pool |
+| Ketakmiran Masjid | masjid.muhajirinrewwin.or.id | /units/masjid |
+| Remaskidz | remas.muhajirinrewwin.or.id | /units/remas |
+| Kemuslimatan | kemuslimatan.muhajirinrewwin.or.id | /units/kemuslimatan |
+| Daycare | daycare.muhajirinrewwin.or.id | /units/daycare |
+| KBTK | kbtk.muhajirinrewwin.or.id | /units/kbtk |
+| TPQ | tpq.muhajirinrewwin.or.id | /units/tpq |
+| LAZMU | lazmu.muhajirinrewwin.or.id | /units/lazmu |
+| WAFMU | wafmu.muhajirinrewwin.or.id | /units/wafmu |
+| Ambulans | ambulans.muhajirinrewwin.or.id | /units/ambulans |
+| Poliklinik | poliklinik.muhajirinrewwin.or.id | /units/poliklinik |
 
 **Routing Implementation:**
 - Middleware (`src/middleware.ts`) detects subdomain and rewrites to appropriate unit path

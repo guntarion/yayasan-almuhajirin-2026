@@ -23,7 +23,7 @@ export default function TpqPage() {
             </p>
             <div className="mt-6 space-y-2">
               <h3 className="text-xl font-semibold">Informasi Kontak</h3>
-              <p>Website: tpq.almuhajirin.or.id</p>
+              <p>Website: tpq.muhajirinrewwin.or.id</p>
             </div>
           </div>
         </div>

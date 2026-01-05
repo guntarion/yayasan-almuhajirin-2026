@@ -61,10 +61,10 @@ export default function KontakPage() {
     {
       icon: Mail,
       title: 'Email',
-      content: 'masjid@almuhajirin.or.id',
+      content: 'masjid@muhajirinrewwin.or.id',
       action: {
         label: 'Kirim Email',
-        href: 'mailto:masjid@almuhajirin.or.id',
+        href: 'mailto:masjid@muhajirinrewwin.or.id',
       },
       color: 'from-[#4CAF50] to-[#2E7D32]',
     },

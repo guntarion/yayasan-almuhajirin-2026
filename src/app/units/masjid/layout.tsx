@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Masjid Al Muhajirin Rewwin',
     description: 'Pusat ibadah dan kegiatan keagamaan di Waru, Sidoarjo. Memakmurkan masjid melalui kajian rutin, program dakwah, dan pelayanan umat.',
-    url: 'https://masjid.almuhajirin.or.id',
+    url: 'https://masjid.muhajirinrewwin.or.id',
     siteName: 'Masjid Al Muhajirin Rewwin',
     locale: 'id_ID',
     type: 'website',

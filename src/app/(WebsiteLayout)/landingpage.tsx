@@ -34,7 +34,7 @@ export default function LandingPage() {
       features: ['Kajian Rutin', 'Sholat Berjamaah', 'Jumat Berkah', 'Poliklinik Gratis'],
       color: 'from-[#00BCD4] to-[#006064]',
       bgColor: 'bg-[#00BCD4]/10',
-      href: 'https://masjid.almuhajirin.or.id',
+      href: 'https://masjid.muhajirinrewwin.or.id',
       contact: '0821-2638-0665',
     },
     {
@@ -45,7 +45,7 @@ export default function LandingPage() {
       features: ['Fullday Care', 'After School', 'Harian', 'Program Islami'],
       color: 'from-[#4CAF50] to-[#2E7D32]',
       bgColor: 'bg-[#4CAF50]/10',
-      href: 'https://daycare.almuhajirin.or.id',
+      href: 'https://daycare.muhajirinrewwin.or.id',
       contact: '0813-1466-1918',
     },
     {
@@ -56,7 +56,7 @@ export default function LandingPage() {
       features: ['Kelompok Bermain', 'TK A & TK B', 'Hafalan Juz 30', '7 Sentra'],
       color: 'from-[#9C27B0] to-[#6A1B9A]',
       bgColor: 'bg-[#9C27B0]/10',
-      href: 'https://kbtk.almuhajirin.or.id',
+      href: 'https://kbtk.muhajirinrewwin.or.id',
       contact: '0813-1466-1918',
     },
     {
@@ -67,7 +67,7 @@ export default function LandingPage() {
       features: ['Zakat', 'Infaq', 'Sedekah', 'Pemberdayaan'],
       color: 'from-[#FFB300] to-[#FF8F00]',
       bgColor: 'bg-[#FFB300]/10',
-      href: 'https://lazmu.almuhajirin.or.id',
+      href: 'https://lazmu.muhajirinrewwin.or.id',
       contact: '0821-2638-0665',
     },
   ];
@@ -170,7 +170,7 @@ export default function LandingPage() {
             <div className="hidden md:block w-px h-6 bg-[#006064]/30"></div>
             <div className="flex items-center space-x-2">
               <Mail className="h-5 w-5" />
-              <span className="font-medium">info@almuhajirin.or.id</span>
+              <span className="font-medium">info@muhajirinrewwin.or.id</span>
             </div>
           </div>
         </div>

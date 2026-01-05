@@ -80,7 +80,7 @@ Dokumen ini menjelaskan spesifikasi teknis untuk implementasi fitur blog pada we
 ### 3.2 Subdomain Routing Flow
 
 ```
-Request: https://masjid.almuhajirin.or.id/artikel/slug
+Request: https://masjid.muhajirinrewwin.or.id/artikel/slug
                             │
                             ▼
                     ┌───────────────┐
@@ -715,8 +715,8 @@ const rateLimit = {
 
 ```env
 # Blog-specific
-NEXT_PUBLIC_SITE_URL=https://almuhajirin.or.id
-NEXT_PUBLIC_CDN_URL=https://cdn.almuhajirin.or.id
+NEXT_PUBLIC_SITE_URL=https://muhajirinrewwin.or.id
+NEXT_PUBLIC_CDN_URL=https://cdn.muhajirinrewwin.or.id
 
 # Storage
 S3_BUCKET=almuhajirin-media

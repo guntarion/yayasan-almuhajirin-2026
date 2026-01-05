@@ -30,21 +30,21 @@ Membangun platform web terpadu yang memungkinkan seluruh unit Yayasan Al Muhajir
 
 | Bidang | Unit | Subdomain | Status |
 |--------|------|-----------|--------|
-| **Bidang Keagamaan** | Ketakmiran Masjid | masjid.almuhajirin.or.id | Selesai |
-| | Remaskidz (Remas Cilik) | remas.almuhajirin.or.id | Selesai |
-| | TPQ (Taman Pendidikan Qur'an) | tpq.almuhajirin.or.id | Template siap |
-| | Kemuslimatan | kemuslimatan.almuhajirin.or.id | Template siap |
-| **Bidang Sosial** | Daycare & KBTK | daycare.almuhajirin.or.id | Template siap |
-| | KBTK | kbtk.almuhajirin.or.id | Selesai |
-| | Poliklinik | poliklinik.almuhajirin.or.id | Template siap |
-| | Kolam Renang | pool.almuhajirin.or.id | Selesai |
-| **Bidang Kemanusiaan** | LAZ Muhajirin | lazmu.almuhajirin.or.id | Template siap |
-| | WAFMU (Wakaf) | wafmu.almuhajirin.or.id | Template siap |
-| | Ambulans | ambulans.almuhajirin.or.id | Template siap |
-| **Usaha** | Usaha & Pengadaan | usaha.almuhajirin.or.id | Selesai |
+| **Bidang Keagamaan** | Ketakmiran Masjid | masjid.muhajirinrewwin.or.id | Selesai |
+| | Remaskidz (Remas Cilik) | remas.muhajirinrewwin.or.id | Selesai |
+| | TPQ (Taman Pendidikan Qur'an) | tpq.muhajirinrewwin.or.id | Template siap |
+| | Kemuslimatan | kemuslimatan.muhajirinrewwin.or.id | Template siap |
+| **Bidang Sosial** | Daycare & KBTK | daycare.muhajirinrewwin.or.id | Template siap |
+| | KBTK | kbtk.muhajirinrewwin.or.id | Selesai |
+| | Poliklinik | poliklinik.muhajirinrewwin.or.id | Template siap |
+| | Kolam Renang | pool.muhajirinrewwin.or.id | Selesai |
+| **Bidang Kemanusiaan** | LAZ Muhajirin | lazmu.muhajirinrewwin.or.id | Template siap |
+| | WAFMU (Wakaf) | wafmu.muhajirinrewwin.or.id | Template siap |
+| | Ambulans | ambulans.muhajirinrewwin.or.id | Template siap |
+| **Usaha** | Usaha & Pengadaan | usaha.muhajirinrewwin.or.id | Selesai |
 
 ### 2.2 Domain Utama
-- **almuhajirin.or.id** - Website utama yayasan
+- **muhajirinrewwin.or.id** - Website utama yayasan
 
 ---
 

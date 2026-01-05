@@ -6,18 +6,18 @@ Folder ini berisi halaman-halaman untuk setiap unit di bawah Yayasan Al Muhajiri
 
 | Unit | Sub-domain | Status |
 |------|-----------|--------|
-| Ketakmiran Masjid | masjid.almuhajirin.or.id | ✅ Selesai |
-| Usaha & Pengadaan | usaha.almuhajirin.or.id | ✅ Selesai |
-| Kolam Renang | pool.almuhajirin.or.id | ✅ Selesai |
-| Remaskidz | remas.almuhajirin.or.id | ✅ Selesai |
-| Kemuslimatan | kemuslimatan.almuhajirin.or.id | 🔄 Template siap |
-| Daycare | daycare.almuhajirin.or.id | 🔄 Template siap |
-| KBTK | kbtk.almuhajirin.or.id | ✅ Selesai |
-| TPQ | tpq.almuhajirin.or.id | 🔄 Template siap |
-| LAZMU | lazmu.almuhajirin.or.id | 🔄 Template siap |
-| WAFMU | wafmu.almuhajirin.or.id | 🔄 Template siap |
-| Ambulans | ambulans.almuhajirin.or.id | 🔄 Template siap |
-| Poliklinik | poliklinik.almuhajirin.or.id | 🔄 Template siap |
+| Ketakmiran Masjid | masjid.muhajirinrewwin.or.id | ✅ Selesai |
+| Usaha & Pengadaan | usaha.muhajirinrewwin.or.id | ✅ Selesai |
+| Kolam Renang | pool.muhajirinrewwin.or.id | ✅ Selesai |
+| Remaskidz | remas.muhajirinrewwin.or.id | ✅ Selesai |
+| Kemuslimatan | kemuslimatan.muhajirinrewwin.or.id | 🔄 Template siap |
+| Daycare | daycare.muhajirinrewwin.or.id | 🔄 Template siap |
+| KBTK | kbtk.muhajirinrewwin.or.id | ✅ Selesai |
+| TPQ | tpq.muhajirinrewwin.or.id | 🔄 Template siap |
+| LAZMU | lazmu.muhajirinrewwin.or.id | 🔄 Template siap |
+| WAFMU | wafmu.muhajirinrewwin.or.id | 🔄 Template siap |
+| Ambulans | ambulans.muhajirinrewwin.or.id | 🔄 Template siap |
+| Poliklinik | poliklinik.muhajirinrewwin.or.id | 🔄 Template siap |
 
 ## Struktur Folder Unit
 
@@ -83,7 +83,7 @@ export default function NamaUnitPage() {
             </p>
             <div className="mt-6 space-y-2">
               <h3 className="text-xl font-semibold">Informasi Kontak</h3>
-              <p>Website: subdomain.almuhajirin.or.id</p>
+              <p>Website: subdomain.muhajirinrewwin.or.id</p>
             </div>
           </div>
         </div>

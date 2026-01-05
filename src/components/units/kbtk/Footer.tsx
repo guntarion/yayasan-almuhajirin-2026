@@ -158,10 +158,10 @@ export function KBTKFooter() {
                 <div>
                   <p className="text-[#B2EBF2]">Email:</p>
                   <a
-                    href="mailto:kbtk@almuhajirin.or.id"
+                    href="mailto:kbtk@muhajirinrewwin.or.id"
                     className="text-white hover:text-[#80DEEA] transition-colors"
                   >
-                    kbtk@almuhajirin.or.id
+                    kbtk@muhajirinrewwin.or.id
                   </a>
                 </div>
               </li>

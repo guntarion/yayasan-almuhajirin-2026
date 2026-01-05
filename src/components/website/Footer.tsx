@@ -14,10 +14,10 @@ export function Footer() {
   };
 
   const unitLinks = [
-    { name: 'Masjid Al Muhajirin', href: 'https://masjid.almuhajirin.or.id', external: true },
-    { name: 'Daycare', href: 'https://daycare.almuhajirin.or.id', external: true },
-    { name: 'KBTK', href: 'https://kbtk.almuhajirin.or.id', external: true },
-    { name: 'LAZMU', href: 'https://lazmu.almuhajirin.or.id', external: true },
+    { name: 'Masjid Al Muhajirin', href: 'https://masjid.muhajirinrewwin.or.id', external: true },
+    { name: 'Daycare', href: 'https://daycare.muhajirinrewwin.or.id', external: true },
+    { name: 'KBTK', href: 'https://kbtk.muhajirinrewwin.or.id', external: true },
+    { name: 'LAZMU', href: 'https://lazmu.muhajirinrewwin.or.id', external: true },
   ];
 
   const quickLinks = [
@@ -141,10 +141,10 @@ export function Footer() {
                 <div>
                   <p className="text-[#B2EBF2]">Email:</p>
                   <a
-                    href="mailto:info@almuhajirin.or.id"
+                    href="mailto:info@muhajirinrewwin.or.id"
                     className="text-white hover:text-[#80DEEA] transition-colors"
                   >
-                    info@almuhajirin.or.id
+                    info@muhajirinrewwin.or.id
                   </a>
                 </div>
               </li>

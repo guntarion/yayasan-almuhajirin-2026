@@ -89,7 +89,7 @@ Secara khusus, perhatikan pages yang ada di `/Users/guntar/Codes/PROJECTS/almuha
   Cara Akses
 
   - Lokal: http://daycare.localhost:3000
-  - Production: https://daycare.almuhajirin.or.id
+  - Production: https://daycare.muhajirinrewwin.or.id
 
   Fitur
 
@@ -123,8 +123,8 @@ Pelajari src/middleware.ts
 1. Public Article Pages (Frontend)
 
   Via subdomain (production):
-  https://masjid.almuhajirin.or.id/artikel
-  https://masjid.almuhajirin.or.id/artikel/[slug]
+  https://masjid.muhajirinrewwin.or.id/artikel
+  https://masjid.muhajirinrewwin.or.id/artikel/[slug]
 
   Via localhost (development):
   http://masjid.localhost:3000/artikel

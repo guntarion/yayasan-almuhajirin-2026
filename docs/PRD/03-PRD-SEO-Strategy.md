@@ -23,7 +23,7 @@ Dokumen ini menjelaskan strategi Search Engine Optimization (SEO) untuk website 
 
 ### 2.2 Target Keywords
 
-#### Domain Utama (almuhajirin.or.id)
+#### Domain Utama (muhajirinrewwin.or.id)
 
 | Kategori | Keywords | Volume Est. | Difficulty |
 |----------|----------|-------------|------------|
@@ -104,8 +104,8 @@ kajian Islam bersama ustadz pilihan. Masjid Al Muhajirin Rewwin Sidoarjo.
 ```html
 <meta property="og:title" content="Judul Artikel">
 <meta property="og:description" content="Deskripsi artikel">
-<meta property="og:image" content="https://almuhajirin.or.id/images/og-image.jpg">
-<meta property="og:url" content="https://almuhajirin.or.id/artikel/slug">
+<meta property="og:image" content="https://muhajirinrewwin.or.id/images/og-image.jpg">
+<meta property="og:url" content="https://muhajirinrewwin.or.id/artikel/slug">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Al Muhajirin Rewwin">
 <meta property="og:locale" content="id_ID">
@@ -125,13 +125,13 @@ kajian Islam bersama ustadz pilihan. Masjid Al Muhajirin Rewwin Sidoarjo.
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Judul Artikel">
 <meta name="twitter:description" content="Deskripsi artikel">
-<meta name="twitter:image" content="https://almuhajirin.or.id/images/twitter-card.jpg">
+<meta name="twitter:image" content="https://muhajirinrewwin.or.id/images/twitter-card.jpg">
 ```
 
 ### 3.4 Canonical URLs
 
 ```html
-<link rel="canonical" href="https://almuhajirin.or.id/artikel/slug">
+<link rel="canonical" href="https://muhajirinrewwin.or.id/artikel/slug">
 ```
 
 **Rules**:
@@ -149,8 +149,8 @@ kajian Islam bersama ustadz pilihan. Masjid Al Muhajirin Rewwin Sidoarjo.
   "@type": "Organization",
   "name": "Yayasan Al Muhajirin Rewwin",
   "alternateName": "Al Muhajirin",
-  "url": "https://almuhajirin.or.id",
-  "logo": "https://almuhajirin.or.id/logo.png",
+  "url": "https://muhajirinrewwin.or.id",
+  "logo": "https://muhajirinrewwin.or.id/logo.png",
   "sameAs": [
     "https://facebook.com/almuhajirin",
     "https://instagram.com/almuhajirin"
@@ -174,7 +174,7 @@ kajian Islam bersama ustadz pilihan. Masjid Al Muhajirin Rewwin Sidoarjo.
   "@type": "Article",
   "headline": "Judul Artikel",
   "description": "Deskripsi artikel",
-  "image": "https://almuhajirin.or.id/images/article-image.jpg",
+  "image": "https://muhajirinrewwin.or.id/images/article-image.jpg",
   "author": {
     "@type": "Organization",
     "name": "Unit Name - Al Muhajirin"
@@ -184,7 +184,7 @@ kajian Islam bersama ustadz pilihan. Masjid Al Muhajirin Rewwin Sidoarjo.
     "name": "Yayasan Al Muhajirin",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://almuhajirin.or.id/logo.png"
+      "url": "https://muhajirinrewwin.or.id/logo.png"
     }
   },
   "datePublished": "2024-12-24",
@@ -203,13 +203,13 @@ kajian Islam bersama ustadz pilihan. Masjid Al Muhajirin Rewwin Sidoarjo.
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://almuhajirin.or.id"
+      "item": "https://muhajirinrewwin.or.id"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Masjid",
-      "item": "https://masjid.almuhajirin.or.id"
+      "item": "https://masjid.muhajirinrewwin.or.id"
     },
     {
       "@type": "ListItem",
@@ -227,7 +227,7 @@ kajian Islam bersama ustadz pilihan. Masjid Al Muhajirin Rewwin Sidoarjo.
   "@context": "https://schema.org",
   "@type": "Mosque",
   "name": "Masjid Al Muhajirin Rewwin",
-  "image": "https://masjid.almuhajirin.or.id/images/masjid.jpg",
+  "image": "https://masjid.muhajirinrewwin.or.id/images/masjid.jpg",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Jl. Rajawali No. 207",
@@ -247,13 +247,13 @@ kajian Islam bersama ustadz pilihan. Masjid Al Muhajirin Rewwin Sidoarjo.
 
 | Halaman | Format URL |
 |---------|------------|
-| Homepage | https://almuhajirin.or.id/ |
-| Unit Homepage | https://[unit].almuhajirin.or.id/ |
-| Article | https://[unit].almuhajirin.or.id/artikel/[slug] |
-| Category | https://[unit].almuhajirin.or.id/kategori/[slug] |
-| Tag | https://[unit].almuhajirin.or.id/tag/[slug] |
-| Archive | https://[unit].almuhajirin.or.id/arsip/[tahun]/[bulan] |
-| Author | https://[unit].almuhajirin.or.id/penulis/[username] |
+| Homepage | https://muhajirinrewwin.or.id/ |
+| Unit Homepage | https://[unit].muhajirinrewwin.or.id/ |
+| Article | https://[unit].muhajirinrewwin.or.id/artikel/[slug] |
+| Category | https://[unit].muhajirinrewwin.or.id/kategori/[slug] |
+| Tag | https://[unit].muhajirinrewwin.or.id/tag/[slug] |
+| Archive | https://[unit].muhajirinrewwin.or.id/arsip/[tahun]/[bulan] |
+| Author | https://[unit].muhajirinrewwin.or.id/penulis/[username] |
 
 ### 4.2 Slug Rules
 
@@ -335,7 +335,7 @@ H1: Judul Utama (1 per halaman)
 
 ### 6.1 XML Sitemap
 
-**Location**: https://almuhajirin.or.id/sitemap.xml
+**Location**: https://muhajirinrewwin.or.id/sitemap.xml
 
 **Structure**:
 ```
@@ -370,7 +370,7 @@ Disallow: /*?preview=
 Disallow: /*?draft=
 
 # Sitemap location
-Sitemap: https://almuhajirin.or.id/sitemap.xml
+Sitemap: https://muhajirinrewwin.or.id/sitemap.xml
 ```
 
 ---
@@ -425,7 +425,7 @@ Sitemap: https://almuhajirin.or.id/sitemap.xml
 | Category | Religious Organization |
 | Address | Jl. Rajawali No. 207, Rewwin, Sidoarjo |
 | Phone | [Nomor Telepon] |
-| Website | https://almuhajirin.or.id |
+| Website | https://muhajirinrewwin.or.id |
 | Hours | Sesuai jadwal unit |
 
 ### 8.2 Local Citations

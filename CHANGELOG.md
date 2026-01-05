@@ -1,3 +1,9 @@
+## 2026-01-05 20:45:31
+
+refactor: migrate domain from almuhajirin.or.id to muhajirinrewwin.or.id
+
+---
+
 ## 2025-12-31 12:45:48
 
 feat: add KBTK, Daycare, Poliklinik, and Jamaah modules with full admin interfaces

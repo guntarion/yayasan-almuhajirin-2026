@@ -88,7 +88,7 @@ export default function Navbar() {
               <span>0812-2334-3416</span>
             </a>
             <a
-              href="https://almuhajirin.or.id"
+              href="https://muhajirinrewwin.or.id"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-1 hover:text-[#C8E6C9]"

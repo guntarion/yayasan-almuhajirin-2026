@@ -6,7 +6,7 @@ Modul Administratif Daycare Al Muhajirin adalah sistem manajemen terpadu untuk l
 
 **Tanggal Implementasi:** 2025-12-31
 **Status:** Selesai
-**Akses:** `daycare.localhost:3000/kelola` (development) | `daycare.almuhajirin.or.id/kelola` (production)
+**Akses:** `daycare.localhost:3000/kelola` (development) | `daycare.muhajirinrewwin.or.id/kelola` (production)
 
 ---
 
@@ -350,7 +350,7 @@ http://daycare.localhost:3000/kelola
    ```
 
 4. Konfigurasi subdomain di Vercel:
-   - Tambahkan `daycare.almuhajirin.or.id`
+   - Tambahkan `daycare.muhajirinrewwin.or.id`
    - Pastikan DNS record mengarah ke Vercel
 
 ---

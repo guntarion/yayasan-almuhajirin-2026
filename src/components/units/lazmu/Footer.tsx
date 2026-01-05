@@ -195,7 +195,7 @@ export default function Footer() {
             <p className="text-[#A5D6A7] text-sm flex items-center">
               Dibuat dengan <Heart className="h-4 w-4 text-red-400 mx-1" /> oleh{' '}
               <a
-                href="https://almuhajirin.or.id"
+                href="https://muhajirinrewwin.or.id"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ml-1 text-white hover:text-[#FFB300]"

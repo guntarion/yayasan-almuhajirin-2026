@@ -23,7 +23,7 @@ Modul Administratif KBTK Al Muhajirin adalah sistem manajemen komprehensif untuk
 - **Frontend:** Next.js 15, React 18, TypeScript
 - **UI Library:** Shadcn/ui, Tailwind CSS, Radix UI
 - **Database:** PostgreSQL dengan Prisma ORM
-- **Routing:** Multi-subdomain (kbtk.almuhajirin.or.id atau kbtk.localhost:3000)
+- **Routing:** Multi-subdomain (kbtk.muhajirinrewwin.or.id atau kbtk.localhost:3000)
 - **Theme:** Al Muhajirin Official (Cyan #00BCD4, Teal #006064)
 
 ---
@@ -1283,7 +1283,7 @@ getTahunAjaranSekarang()
 ### Production Deployment
 
 1. **Vercel Configuration:**
-   - Add domain: `kbtk.almuhajirin.or.id`
+   - Add domain: `kbtk.muhajirinrewwin.or.id`
    - Add subdomain to Vercel project settings
    - Configure DNS A/CNAME records
 
@@ -1300,7 +1300,7 @@ getTahunAjaranSekarang()
    ```
 
 4. **Post-Deployment:**
-   - Test akses `https://kbtk.almuhajirin.or.id/kelola`
+   - Test akses `https://kbtk.muhajirinrewwin.or.id/kelola`
    - Verify SSL certificate
    - Test all critical flows
 

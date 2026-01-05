@@ -2,7 +2,7 @@
 
 ## Pendahuluan
 
-Modul Keuangan Yayasan Al Muhajirin adalah sistem manajemen keuangan berbasis web yang dirancang sesuai dengan standar akuntansi nirlaba Indonesia (PSAK 45 / ISAK 35). Modul ini dapat diakses melalui subdomain `keuangan.almuhajirin.or.id`.
+Modul Keuangan Yayasan Al Muhajirin adalah sistem manajemen keuangan berbasis web yang dirancang sesuai dengan standar akuntansi nirlaba Indonesia (PSAK 45 / ISAK 35). Modul ini dapat diakses melalui subdomain `keuangan.muhajirinrewwin.or.id`.
 
 ## Fitur Utama
 
@@ -45,7 +45,7 @@ http://keuangan.localhost:3000
 
 ### Production
 ```
-https://keuangan.almuhajirin.or.id
+https://keuangan.muhajirinrewwin.or.id
 ```
 
 ## Standar Akuntansi
@@ -91,4 +91,4 @@ Modul ini mengikuti standar akuntansi yang berlaku untuk organisasi nirlaba di I
 
 Jika mengalami kendala, silakan hubungi:
 - Tim IT Yayasan Al Muhajirin
-- Email: it@almuhajirin.or.id
+- Email: it@muhajirinrewwin.or.id
