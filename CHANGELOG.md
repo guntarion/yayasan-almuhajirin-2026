@@ -1,3 +1,9 @@
+## 2026-01-06 15:54:27
+
+feat(masjid): enhance Run-Madan page with health services introduction and programs
+
+---
+
 ## 2026-01-06 15:40:09
 
 feat(masjid): add Run-Madan 2026 event page with Ramadhan program

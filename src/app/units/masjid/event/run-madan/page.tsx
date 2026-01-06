@@ -77,7 +77,7 @@ export default function RunMadanPage() {
     if (navigator.share) {
       navigator.share({
         title: 'Run-Madan 2026',
-        text: 'Yuk ikutan Run-Madan 2026! Event lari amal menyambut Ramadhan 1447H',
+        text: 'Yuk ikutan Run-Madan 2026! Lari amal menyambut Ramadhan & kenali layanan kesehatan gratis Al Muhajirin',
         url: window.location.href,
       });
     }
@@ -157,19 +157,19 @@ export default function RunMadanPage() {
     {
       icon: Ambulance,
       title: 'Layanan Ambulans 24/7',
-      description: 'Dana pendaftaran membantu operasional ambulans gratis untuk masyarakat',
+      description: 'Ambulans gratis 24 jam untuk warga. Dana pendaftaran membantu operasional agar layanan tetap berjalan.',
       color: 'from-[#043e75] to-[#4e8fc0]',
     },
     {
       icon: Building2,
       title: 'Poliklinik Al Muhajirin',
-      description: 'Mendukung layanan kesehatan gratis/terjangkau untuk warga sekitar',
+      description: 'Layanan kesehatan gratis untuk semua. Dana pendaftaran mendukung keberlanjutan program ini.',
       color: 'from-[#4e8fc0] to-[#72b4d7]',
     },
     {
       icon: Heart,
-      title: 'Donasi LAZMU',
-      description: 'Sebagian dana disalurkan untuk program sosial LAZ Muhajirin',
+      title: 'Program Sosial LAZMU',
+      description: 'Sebagian dana mendukung program sosial LAZ Muhajirin untuk masyarakat yang membutuhkan.',
       color: 'from-[#72b4d7] to-[#addbf2]',
     },
   ];
@@ -202,7 +202,7 @@ export default function RunMadanPage() {
     },
     {
       question: 'Untuk apa dana pendaftaran digunakan?',
-      answer: 'Dana pendaftaran digunakan untuk operasional event (jersey, medali, dan konsumsi) serta sebagian disalurkan untuk mendukung layanan ambulans, poliklinik Al Muhajirin, dan program sosial LAZMU. Uang pendaftaran TIDAK digunakan untuk pengadaan hadiah atau doorprize.',
+      answer: 'Dana pendaftaran digunakan untuk operasional event (jersey, medali, dan konsumsi) serta sebagian disalurkan untuk mendukung operasional layanan ambulans dan poliklinik Al Muhajirin yang GRATIS untuk masyarakat, juga program sosial LAZMU. Uang pendaftaran TIDAK digunakan untuk pengadaan hadiah atau doorprize. Layanan kesehatan tetap gratis - donasi sukarela diterima untuk keberlanjutan program.',
     },
   ];
 
@@ -226,15 +226,18 @@ export default function RunMadanPage() {
                 Tarhib Ramadhan 1447H
               </div>
 
-              <h1 className="text-5xl md:text-7xl font-black tracking-tight">
+              <h1 className="text-5xl md:text-7xl font-black tracking-tight text-[#addbf2]">
                 RUN-MADAN
-                <span className="block text-3xl md:text-4xl font-bold text-[#addbf2] mt-2">
+                <span className="block text-3xl md:text-4xl font-bold text-white mt-2">
                   2026
                 </span>
               </h1>
 
               <p className="text-xl md:text-2xl text-white/90 font-medium">
-                Lari Amal Menyambut Ramadhan
+                Berlari Sehat, Berbagi Peduli
+              </p>
+              <p className="text-lg text-white/80">
+                Lari Amal Menyambut Ramadhan & Memperkenalkan Layanan Kesehatan Gratis
               </p>
 
               <div className="flex flex-wrap gap-4 text-sm">
@@ -357,8 +360,12 @@ export default function RunMadanPage() {
             <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
               Tentang Run-Madan 2026
             </h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-8">
+            <p className="text-lg text-gray-700 leading-relaxed mb-4">
               Run-Madan adalah event lari amal yang diselenggarakan oleh <strong>Masjid Al Muhajirin Rewwin</strong> untuk menyambut bulan suci Ramadhan 1447H. Event ini bukan hanya tentang berlari, tetapi juga tentang <strong>solidaritas, kesehatan, dan berbagi kebaikan</strong>.
+            </p>
+            <p className="text-lg text-gray-700 leading-relaxed mb-8 bg-[#addbf2]/20 p-6 rounded-xl border-2 border-[#043e75]">
+              <strong className="text-[#043e75] text-xl">Lebih dari Sekadar Lari:</strong><br />
+              Run-Madan 2026 juga menjadi momentum untuk <strong>memperkenalkan layanan kesehatan gratis</strong> kami kepada seluruh warga Rewwin dan sekitarnya: <strong>Poliklinik Al Muhajirin</strong> dan <strong>Layanan Ambulans 24/7</strong>. Melalui event ini, kami ingin lebih banyak warga mengenal dan memanfaatkan layanan kesehatan yang telah kami sediakan untuk kesejahteraan bersama.
             </p>
 
             {/* Featured Image */}
@@ -379,9 +386,9 @@ export default function RunMadanPage() {
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
               {
-                icon: Heart,
-                title: 'Berbagi Kebaikan',
-                description: 'Seluruh dana pendaftaran disalurkan untuk mendukung layanan ambulans gratis, poliklinik, dan program sosial LAZMU.',
+                icon: HeartPulse,
+                title: 'Layanan Kesehatan Gratis',
+                description: 'Memperkenalkan Poliklinik Al Muhajirin dan Ambulans 24/7 yang gratis untuk seluruh warga Rewwin dan sekitarnya.',
                 color: 'from-[#043e75] to-[#4e8fc0]',
               },
               {
@@ -391,9 +398,9 @@ export default function RunMadanPage() {
                 color: 'from-[#4e8fc0] to-[#72b4d7]',
               },
               {
-                icon: Users,
-                title: 'Membangun Komunitas',
-                description: 'Mempererat silaturahmi antar warga dan komunitas lari di Rewwin dalam suasana yang positif.',
+                icon: Heart,
+                title: 'Berbagi Kebaikan',
+                description: 'Dana pendaftaran mendukung operasional layanan kesehatan dan program sosial LAZMU untuk kesejahteraan bersama.',
                 color: 'from-[#72b4d7] to-[#addbf2]',
               },
             ].map((item, index) => (
@@ -408,6 +415,228 @@ export default function RunMadanPage() {
                 <p className="text-gray-600 leading-relaxed">{item.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Health Services Programs */}
+      <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-[#addbf2] text-[#043e75] px-4 py-2 rounded-full font-semibold mb-4">
+              <HeartPulse className="h-5 w-5" />
+              Program Layanan Kesehatan
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+              Kenali Layanan Kesehatan Kami
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Run-Madan 2026 adalah kesempatan untuk mengenal lebih dekat layanan kesehatan gratis yang telah kami sediakan untuk warga Rewwin dan sekitarnya
+            </p>
+          </div>
+
+          {/* Main Health Services */}
+          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 mb-12">
+            {/* Poliklinik */}
+            <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-[#043e75]">
+              <div className="w-16 h-16 rounded-xl bg-gradient-to-r from-[#043e75] to-[#4e8fc0] flex items-center justify-center mb-6">
+                <Building2 className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-black text-[#043e75] mb-4">Poliklinik Al Muhajirin</h3>
+              <p className="text-gray-700 mb-4">
+                Layanan kesehatan umum yang <strong>GRATIS</strong> untuk seluruh warga Rewwin dan sekitarnya.
+              </p>
+              <ul className="space-y-2 text-gray-600">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span>Pemeriksaan kesehatan umum</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span>Konsultasi kesehatan dengan dokter</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span>Pelayanan ramah dan profesional</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span><strong>Gratis - Donasi Sukarela Diterima</strong></span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Ambulans */}
+            <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-[#043e75]">
+              <div className="w-16 h-16 rounded-xl bg-gradient-to-r from-[#4e8fc0] to-[#72b4d7] flex items-center justify-center mb-6">
+                <Ambulance className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-black text-[#043e75] mb-4">Layanan Ambulans 24/7</h3>
+              <p className="text-gray-700 mb-4">
+                Ambulans siaga <strong>24 jam</strong> untuk keadaan darurat warga Rewwin - <strong>GRATIS</strong>.
+              </p>
+              <ul className="space-y-2 text-gray-600">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span>Siaga 24 jam setiap hari</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span>Respons cepat untuk keadaan darurat</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span>Petugas terlatih dan berpengalaman</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span><strong>Gratis - Donasi Sukarela Diterima</strong></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Special Programs */}
+          <div className="max-w-5xl mx-auto space-y-8">
+            {/* Data Registration */}
+            <div className="bg-gradient-to-br from-[#addbf2] to-white rounded-2xl p-8 border-2 border-[#043e75] shadow-lg">
+              <div className="flex items-start gap-6">
+                <div className="w-16 h-16 rounded-xl bg-[#043e75] flex items-center justify-center flex-shrink-0">
+                  <Users className="h-8 w-8 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-black text-[#043e75] mb-3">Pendataan Peserta untuk Layanan Kesehatan</h3>
+                  <p className="text-gray-700 mb-4">
+                    <strong>Setelah event lari selesai</strong>, peserta akan mendapat kesempatan untuk mendaftar dan mendata informasi diri agar lebih mudah dikenali saat menggunakan layanan Poliklinik dan Ambulans di masa mendatang.
+                  </p>
+                  <div className="bg-white rounded-xl p-4 border border-[#043e75]">
+                    <p className="text-sm text-gray-600 mb-2"><strong>Manfaat Pendataan:</strong></p>
+                    <ul className="space-y-2 text-sm text-gray-600">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                        <span>Rekam medis lebih terorganisir</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                        <span>Pelayanan lebih cepat saat keadaan darurat</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                        <span>Notifikasi program kesehatan khusus (lansia, ibu hamil, dll)</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Elderly Check-up Program */}
+            <div className="bg-gradient-to-br from-white to-[#addbf2]/30 rounded-2xl p-8 border-2 border-[#4e8fc0] shadow-lg">
+              <div className="flex items-start gap-6">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-r from-[#4e8fc0] to-[#043e75] flex items-center justify-center flex-shrink-0">
+                  <HeartPulse className="h-8 w-8 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-black text-[#043e75] mb-3">Program Check-Up Lansia</h3>
+                  <p className="text-gray-700 mb-4">
+                    Bagi lansia yang bersedia, kami menawarkan <strong>jadwal kunjungan check-up dan konsultasi kesehatan</strong> rutin di Poliklinik Al Muhajirin.
+                  </p>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="bg-white rounded-xl p-4 border border-[#043e75]">
+                      <p className="font-bold text-[#043e75] mb-2">Jadwal Layanan:</p>
+                      <ul className="space-y-1 text-sm text-gray-600">
+                        <li className="flex items-center gap-2">
+                          <Calendar className="h-4 w-4 text-[#043e75]" />
+                          <span>Selasa & Kamis</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <Clock className="h-4 w-4 text-[#043e75]" />
+                          <span>Setiap 3 bulan sekali</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="bg-white rounded-xl p-4 border border-[#043e75]">
+                      <p className="font-bold text-[#043e75] mb-2">Layanan Meliputi:</p>
+                      <ul className="space-y-1 text-sm text-gray-600">
+                        <li>• Pemeriksaan tekanan darah</li>
+                        <li>• Pemeriksaan gula darah</li>
+                        <li>• Konsultasi kesehatan</li>
+                        <li>• Edukasi pola hidup sehat</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="mt-4 bg-[#addbf2] rounded-lg p-3 text-center">
+                    <p className="text-sm font-bold text-[#043e75]">✨ Gratis - Donasi Sukarela Diterima ✨</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Aquatic Exercise Program */}
+            <div className="bg-gradient-to-br from-[#72b4d7]/20 to-white rounded-2xl p-8 border-2 border-[#72b4d7] shadow-lg">
+              <div className="flex items-start gap-6">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-r from-[#72b4d7] to-[#4e8fc0] flex items-center justify-center flex-shrink-0">
+                  <Activity className="h-8 w-8 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-black text-[#043e75] mb-3">Senam Air untuk Ibu-Ibu Lansia</h3>
+                  <p className="text-gray-700 mb-4">
+                    Program <strong>senam kesehatan di kolam renang</strong> (aqua aerobics/terapi air) khusus untuk ibu-ibu lansia. Aktivitas ini sangat baik untuk melatih dan mempertahankan kekuatan tulang tanpa membebani sendi.
+                  </p>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="bg-white rounded-xl p-4 border border-[#72b4d7]">
+                      <p className="font-bold text-[#043e75] mb-2">Detail Program:</p>
+                      <ul className="space-y-1 text-sm text-gray-600">
+                        <li className="flex items-start gap-2">
+                          <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                          <span>Kolam kedalaman maksimal 90 cm</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                          <span>Lokasi: Kolam Renang Al Muhajirin</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                          <span>Dipandu instruktur berpengalaman</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="bg-white rounded-xl p-4 border border-[#72b4d7]">
+                      <p className="font-bold text-[#043e75] mb-2">Manfaat Senam Air:</p>
+                      <ul className="space-y-1 text-sm text-gray-600">
+                        <li>• Melatih kekuatan tulang</li>
+                        <li>• Tidak membebani sendi</li>
+                        <li>• Meningkatkan fleksibilitas</li>
+                        <li>• Terapi relaksasi</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="mt-4 bg-[#72b4d7]/30 rounded-lg p-3 text-center">
+                    <p className="text-sm font-bold text-[#043e75]">📋 Pendaftaran Setelah Event Lari Selesai</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Call to Action */}
+          <div className="max-w-4xl mx-auto mt-12 bg-gradient-to-br from-[#043e75] to-[#4e8fc0] rounded-2xl p-8 text-white text-center">
+            <h3 className="text-2xl md:text-3xl font-black mb-4 text-[#addbf2]">Layanan Gratis, Donasi Sukarela Diterima</h3>
+            <p className="text-lg text-white/90 mb-6">
+              Semua layanan kesehatan kami bersifat <strong>GRATIS</strong> untuk masyarakat. Di sisi lain, kami juga membuka kesempatan bagi siapa saja yang ingin menjadi <strong>donatur tetap</strong> untuk mendukung keberlanjutan program layanan kesehatan ini.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <a
+                href="https://lazmu.muhajirinrewwin.or.id"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white text-[#043e75] px-8 py-3 rounded-xl font-bold hover:bg-[#addbf2] transition-all duration-300 inline-flex items-center gap-2"
+              >
+                <Heart className="h-5 w-5" />
+                Jadi Donatur Tetap
+                <ArrowRight className="h-5 w-5" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -656,8 +885,8 @@ export default function RunMadanPage() {
             <h2 className="text-4xl md:text-5xl font-black mb-4 text-[#addbf2]">
               Dana untuk Kebaikan
             </h2>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto">
-              50% dana pendaftaran disalurkan untuk mendukung layanan sosial dan kesehatan masyarakat
+            <p className="text-xl text-white/90 max-w-3xl mx-auto">
+              50% dana pendaftaran disalurkan untuk mendukung operasional layanan kesehatan <strong>GRATIS</strong> dan program sosial masyarakat. Layanan ambulans dan poliklinik tetap gratis - donasi sukarela sangat dihargai untuk keberlanjutan program.
             </p>
           </div>
 
@@ -680,17 +909,19 @@ export default function RunMadanPage() {
           <div className="max-w-3xl mx-auto bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 text-center">
             <h3 className="text-2xl font-bold mb-4 text-white">Partnership dengan LAZMU</h3>
             <p className="text-white/90 mb-6">
-              Run-Madan 2026 didukung oleh <strong>LAZ Muhajirin (LAZMU)</strong>, lembaga zakat terpercaya yang telah berpengalaman dalam penyaluran dana amal untuk masyarakat.
+              Run-Madan 2026 didukung oleh <strong>LAZ Muhajirin (LAZMU)</strong>, lembaga zakat terpercaya yang telah berpengalaman dalam penyaluran dana amal untuk masyarakat. Semua layanan kesehatan kami bersifat <strong>GRATIS</strong> - kami sangat menghargai donasi sukarela untuk keberlanjutan program.
             </p>
-            <a
-              href="https://lazmu.muhajirinrewwin.or.id"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white text-[#043e75] px-6 py-3 rounded-xl font-bold hover:bg-[#addbf2] transition-all duration-300"
-            >
-              Pelajari Lebih Lanjut tentang LAZMU
-              <ArrowRight className="h-5 w-5" />
-            </a>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <a
+                href="https://lazmu.muhajirinrewwin.or.id"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-white text-[#043e75] px-6 py-3 rounded-xl font-bold hover:bg-[#addbf2] transition-all duration-300"
+              >
+                Pelajari Lebih Lanjut tentang LAZMU
+                <ArrowRight className="h-5 w-5" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -876,8 +1107,11 @@ export default function RunMadanPage() {
           <h2 className="text-4xl md:text-6xl font-black mb-6 text-[#addbf2]">
             Siap Berlari untuk Kebaikan?
           </h2>
-          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-white/90 mb-4 max-w-3xl mx-auto">
             Daftarkan dirimu sekarang dan jadilah bagian dari Run-Madan 2026!
+          </p>
+          <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+            Berlari sehat, berbagi kebaikan, dan kenali layanan kesehatan gratis untuk warga Rewwin
           </p>
 
           <div className="flex flex-wrap gap-6 justify-center items-center">
