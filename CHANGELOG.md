@@ -1,3 +1,9 @@
+## 2026-01-06 15:59:46
+
+fix(masjid): correct shirt image file extension from .jpeg to .png
+
+---
+
 ## 2026-01-06 15:54:27
 
 feat(masjid): enhance Run-Madan page with health services introduction and programs

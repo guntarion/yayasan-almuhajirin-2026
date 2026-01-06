@@ -705,7 +705,7 @@ export default function RunMadanPage() {
                   {/* T-Shirt Image */}
                   <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 mb-6">
                     <Image
-                      src="/images/masjid/kaos-ranmadan.jpeg"
+                      src="/images/masjid/kaos-ranmadan.png"
                       alt="Jersey Run-Madan"
                       width={300}
                       height={300}
