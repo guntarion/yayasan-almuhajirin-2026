@@ -1,3 +1,9 @@
+## 2026-01-06 15:40:09
+
+feat(masjid): add Run-Madan 2026 event page with Ramadhan program
+
+---
+
 ## 2026-01-05 22:38:42
 
 feat(auth): implement RBAC with YAMR-themed authentication and user profile display

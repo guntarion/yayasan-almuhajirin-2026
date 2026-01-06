@@ -1,17 +1,17 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Guntar-NextJS | Modern Web Application Platform',
-  description: 'Guntar-NextJS is a modern web application platform built with Next.js, designed to help you build powerful applications with ease.',
-  keywords: 'nextjs, web application, modern platform, javascript, typescript, react',
-  authors: [{ name: 'Guntar-NextJS Team' }],
-  creator: 'Guntar-NextJS',
+  title: 'Al Muhajirin Rewwin',
+  description: '',
+  keywords: '',
+  authors: [{ name: 'Al Muhajirin Rewwin' }],
+  creator: 'Al Muhajirin Rewwin',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://guntar-nextjs.com',
-    title: 'Guntar-NextJS | Modern Web Application Platform',
-    description: 'Guntar-NextJS is a modern web application platform built with Next.js, designed to help you build powerful applications with ease.',
-    siteName: 'Guntar-NextJS',
+    url: 'https://muhajirinrewwin.or.id',
+    title: 'Al Muhajirin Rewwin',
+    description: '',
+    siteName: 'Al Muhajirin Rewwin',
   },
 };
