@@ -125,7 +125,7 @@ export default function RunMadanPage() {
   }, []);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText('7070007500');
+    navigator.clipboard.writeText('021101004859536');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -1254,7 +1254,7 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                 {
                   step: 2,
                   title: 'Transfer Biaya Pendaftaran',
-                  description: 'Transfer Rp 100.000 ke rekening Bank Muamalat 707.000.7500 a.n. LAZ Muhajirin Rewwin',
+                  description: 'Transfer Rp 100.000 ke rekening BRI 0211.01.004859.53.6 a.n. Al Muhajirin Rewwin',
                   icon: Wallet,
                 },
                 {
@@ -1298,15 +1298,15 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                 <div className='grid md:grid-cols-3 gap-4 text-center mb-4'>
                   <div>
                     <div className='text-sm text-gray-600 mb-1'>Bank</div>
-                    <div className='text-xl font-black text-[#043e75]'>Bank Muamalat</div>
+                    <div className='text-xl font-black text-[#043e75]'>BRI</div>
                   </div>
                   <div>
                     <div className='text-sm text-gray-600 mb-1'>Nomor Rekening</div>
-                    <div className='text-xl font-black text-[#043e75]'>707.000.7500</div>
+                    <div className='text-xl font-black text-[#043e75]'>0211.01.004859.53.6</div>
                   </div>
                   <div>
                     <div className='text-sm text-gray-600 mb-1'>Atas Nama</div>
-                    <div className='text-xl font-black text-[#043e75]'>LAZ Muhajirin Rewwin</div>
+                    <div className='text-xl font-black text-[#043e75]'>Al Muhajirin Rewwin</div>
                   </div>
                 </div>
                 <div className='flex justify-center'>
@@ -1323,12 +1323,12 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
               {/* QRIS */}
               <div className='bg-white rounded-xl p-6 border-2 border-[#043e75] mb-6 shadow-lg'>
                 <h4 className='text-lg font-bold text-center text-[#043e75] mb-4'>Scan QRIS</h4>
-                <div className='max-w-xs mx-auto'>
+                <div className='max-w-md mx-auto'>
                   <Image
-                    src='/images/laz/q-ris-lazmu.jpeg'
-                    alt='QRIS LAZMU'
-                    width={300}
-                    height={300}
+                    src='/images/QRIS-BRI-AlMuhajirin.jpeg'
+                    alt='QRIS BRI Al Muhajirin'
+                    width={400}
+                    height={400}
                     className='w-full h-auto rounded-lg'
                   />
                   <p className='text-center text-sm text-gray-600 mt-3'>Scan untuk pembayaran via QRIS</p>
@@ -1734,9 +1734,9 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                   <div>
                     <div className='text-sm font-semibold'>Transfer ke:</div>
                     <div className='text-lg font-bold text-[#043e75]'>
-                      Bank Muamalat - 707.000.7500
+                      BRI - 0211.01.004859.53.6
                     </div>
-                    <div className='text-sm'>a.n. LAZ Muhajirin Rewwin</div>
+                    <div className='text-sm'>a.n. Al Muhajirin Rewwin</div>
                   </div>
                   <div>
                     <div className='text-sm font-semibold'>Total yang harus dibayar:</div>

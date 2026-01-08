@@ -1,3 +1,9 @@
+## 2026-01-08 19:14:55
+
+fix(masjid): update Run-Madan payment to BRI account and new QRIS image
+
+---
+
 ## 2026-01-08 19:00:29
 
 feat(masjid): add complete Run-Madan 2026 registration system with multi-participant support

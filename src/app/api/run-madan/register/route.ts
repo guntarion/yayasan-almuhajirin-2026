@@ -147,9 +147,9 @@ export async function POST(request: NextRequest) {
           ukuranKaos: p.ukuranKaos,
         })),
         instruksiPembayaran: {
-          bank: 'Bank Muamalat',
-          nomorRekening: '707.000.7500',
-          atasNama: 'LAZ Muhajirin Rewwin',
+          bank: 'BRI',
+          nomorRekening: '0211.01.004859.53.6',
+          atasNama: 'Al Muhajirin Rewwin',
           nominal: totalBiaya,
           whatsapp: '+62 812-5906-069',
         },
