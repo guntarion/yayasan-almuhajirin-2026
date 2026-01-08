@@ -1759,3 +1759,101 @@ model DaycareDailyReport {
   @@index([anakId])
   @@map("daycare_daily_report")
 }
+
+// ===========================================
+// RUN-MADAN 2026: ENUMS
+// ===========================================
+
+enum UkuranKaos {
+  S
+  M
+  L
+  XL
+  XXL
+}
+
+enum PreferensiAktivitas {
+  FULL_LARI      // Lari penuh
+  LARI_JALAN     // Kombinasi lari + jalan
+  JALAN          // Jalan saja
+}
+
+enum StatusPembayaran {
+  belum_bayar
+  menunggu_konfirmasi
+  lunas
+  ditolak
+}
+
+// ===========================================
+// RUN-MADAN 2026: MODEL PENDAFTAR (Contact Person)
+// ===========================================
+
+model RunMadanRegistrant {
+  id              String          @id @default(cuid())
+  nomorRegistrasi String          @unique  // Auto-generated: RM-2026-XXXX
+
+  // Contact Information
+  nama            String
+  nomorHP         String
+  email           String?
+  alamat          String          @db.Text
+
+  // Payment Status
+  statusPembayaran StatusPembayaran @default(belum_bayar)
+  tanggalBayar    DateTime?
+  buktiPembayaran String?         // URL/notes dari WhatsApp
+
+  // Admin notes
+  catatan         String?         @db.Text
+
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  // Relations
+  participants    RunMadanParticipant[]
+
+  @@index([nomorHP])
+  @@index([statusPembayaran])
+  @@index([createdAt])
+  @@map("run_madan_registrants")
+}
+
+// ===========================================
+// RUN-MADAN 2026: MODEL PESERTA (Runners)
+// ===========================================
+
+model RunMadanParticipant {
+  id                  String              @id @default(cuid())
+  registrantId        String
+  nomorBib            String?             @unique  // Nomor BIB, assigned after payment confirmed
+
+  // Participant Information
+  namaLengkap         String
+  jenisKelamin        Gender
+  tanggalLahir        DateTime
+  ukuranKaos          UkuranKaos
+  preferensiAktivitas PreferensiAktivitas
+
+  // Calculated fields
+  usia                Int?                // Calculated from tanggalLahir
+
+  // Event participation
+  sudahAmbilRaceKit   Boolean             @default(false)
+  sudahFinish         Boolean             @default(false)
+  waktuFinish         DateTime?
+
+  // Notes
+  catatan             String?             @db.Text
+
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+
+  // Relations
+  registrant          RunMadanRegistrant  @relation(fields: [registrantId], references: [id], onDelete: Cascade)
+
+  @@index([registrantId])
+  @@index([namaLengkap])
+  @@index([nomorBib])
+  @@map("run_madan_participants")
+}

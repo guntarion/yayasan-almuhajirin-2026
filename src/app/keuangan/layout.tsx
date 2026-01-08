@@ -1,6 +1,5 @@
 'use client';
 
-import type { Metadata } from 'next';
 import KeuanganNavbar from '@/components/keuangan/KeuanganNavbar';
 import RoleGuard from '@/components/auth/RoleGuard';
 

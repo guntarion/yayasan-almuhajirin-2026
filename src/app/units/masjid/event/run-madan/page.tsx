@@ -7,7 +7,6 @@ import {
   Clock,
   MapPin,
   Users,
-  Trophy,
   Heart,
   Zap,
   Gift,
@@ -22,9 +21,7 @@ import {
   Wallet,
   Copy,
   Check,
-  Baby,
   User,
-  Timer,
   Route,
   Sunrise,
   DumbbellIcon,
@@ -35,9 +32,73 @@ import {
   ChevronRight,
 } from 'lucide-react';
 
+// Form types
+interface Participant {
+  id: string;
+  namaLengkap: string;
+  jenisKelamin: 'lelaki' | 'perempuan';
+  tanggalLahir: string;
+  ukuranKaos: 'S' | 'M' | 'L' | 'XL' | 'XXL';
+  preferensiAktivitas: 'FULL_LARI' | 'LARI_JALAN' | 'JALAN';
+}
+
+interface Registrant {
+  nama: string;
+  nomorHP: string;
+  email: string;
+  alamat: string;
+}
+
+interface ParticipantData {
+  namaLengkap: string;
+  usia: number;
+  ukuranKaos: string;
+}
+
+interface RegistrationData {
+  nomorRegistrasi: string;
+  nama: string;
+  nomorHP: string;
+  email?: string;
+  jumlahPeserta: number;
+  totalBiaya: number;
+  participants: ParticipantData[];
+  instruksiPembayaran: {
+    bank: string;
+    nomorRekening: string;
+    atasNama: string;
+    nominal: number;
+    whatsapp: string;
+  };
+}
+
 export default function RunMadanPage() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [copied, setCopied] = useState(false);
+
+  // Registration form state
+  const [registrant, setRegistrant] = useState<Registrant>({
+    nama: '',
+    nomorHP: '',
+    email: '',
+    alamat: '',
+  });
+
+  const [participants, setParticipants] = useState<Participant[]>([
+    {
+      id: '1',
+      namaLengkap: '',
+      jenisKelamin: 'lelaki',
+      tanggalLahir: '',
+      ukuranKaos: 'M',
+      preferensiAktivitas: 'LARI_JALAN',
+    },
+  ]);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [registrationData, setRegistrationData] = useState<RegistrationData | null>(null);
+  const [formErrors, setFormErrors] = useState<string[]>([]);
 
   // Countdown timer
   useEffect(() => {
@@ -70,7 +131,7 @@ export default function RunMadanPage() {
   };
 
   const handleWhatsApp = () => {
-    window.open('https://wa.me/6281259060690?text=Halo,%20saya%20ingin%20mendaftar%20Run-Madan%202026', '_blank');
+    window.open('https://wa.me/628125906069?text=Halo,%20saya%20ingin%20mendaftar%20Run-Madan%202026', '_blank');
   };
 
   const handleShare = () => {
@@ -83,20 +144,154 @@ export default function RunMadanPage() {
     }
   };
 
-  // Event categories data
-  const categories = [
-    {
-      id: '3K',
-      name: '3K Fun Run',
-      distance: '3 Kilometer',
-      icon: Users,
-      participants: 'Semua Usia - Anak-anak, Dewasa, Keluarga',
-      price: 100000,
-      cot: '60 Menit',
-      color: 'from-[#72b4d7] to-[#4e8fc0]',
-      note: 'Anak-anak wajib didampingi orang tua/wali',
-    },
-  ];
+  // Scroll to registration form
+  const scrollToRegistration = () => {
+    const element = document.getElementById('registration-form');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // Add participant
+  const addParticipant = () => {
+    const newId = (participants.length + 1).toString();
+    setParticipants([
+      ...participants,
+      {
+        id: newId,
+        namaLengkap: '',
+        jenisKelamin: 'lelaki',
+        tanggalLahir: '',
+        ukuranKaos: 'M',
+        preferensiAktivitas: 'LARI_JALAN',
+      },
+    ]);
+  };
+
+  // Remove participant
+  const removeParticipant = (id: string) => {
+    if (participants.length > 1) {
+      setParticipants(participants.filter((p) => p.id !== id));
+    }
+  };
+
+  // Update participant
+  const updateParticipant = (id: string, field: keyof Participant, value: string) => {
+    setParticipants(participants.map((p) => (p.id === id ? { ...p, [field]: value } : p)));
+  };
+
+  // Validate form
+  const validateForm = (): boolean => {
+    const errors: string[] = [];
+
+    // Validate registrant
+    if (!registrant.nama.trim()) errors.push('Nama pendaftar harus diisi');
+    if (!registrant.nomorHP.trim()) errors.push('Nomor HP pendaftar harus diisi');
+    if (!registrant.alamat.trim()) errors.push('Alamat pendaftar harus diisi');
+
+    // Validate participants
+    participants.forEach((p, index) => {
+      if (!p.namaLengkap.trim()) errors.push(`Nama peserta ${index + 1} harus diisi`);
+      if (!p.tanggalLahir) errors.push(`Tanggal lahir peserta ${index + 1} harus diisi`);
+    });
+
+    setFormErrors(errors);
+    return errors.length === 0;
+  };
+
+  // Submit form
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setFormErrors([]);
+
+    try {
+      const response = await fetch('/api/run-madan/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          registrant,
+          participants: participants.map((p) => ({
+            namaLengkap: p.namaLengkap,
+            jenisKelamin: p.jenisKelamin,
+            tanggalLahir: p.tanggalLahir,
+            ukuranKaos: p.ukuranKaos,
+            preferensiAktivitas: p.preferensiAktivitas,
+          })),
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Terjadi kesalahan');
+      }
+
+      // Success - show modal with payment instructions
+      setRegistrationData(data.data);
+      setShowSuccessModal(true);
+
+      // Scroll to top to see the modal
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Reset form
+      setRegistrant({ nama: '', nomorHP: '', email: '', alamat: '' });
+      setParticipants([
+        {
+          id: '1',
+          namaLengkap: '',
+          jenisKelamin: 'lelaki',
+          tanggalLahir: '',
+          ukuranKaos: 'M',
+          preferensiAktivitas: 'LARI_JALAN',
+        },
+      ]);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Terjadi kesalahan saat mendaftar';
+      setFormErrors([message]);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Send payment confirmation via WhatsApp
+  const sendWhatsAppConfirmation = () => {
+    if (!registrationData) return;
+
+    const message = `Halo, saya ingin konfirmasi pendaftaran Run-Madan 2026
+
+Nomor Registrasi: ${registrationData.nomorRegistrasi}
+Nama: ${registrationData.nama}
+Jumlah Peserta: ${registrationData.jumlahPeserta}
+Total Biaya: Rp ${registrationData.totalBiaya.toLocaleString('id-ID')}
+
+Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
+
+    const whatsappUrl = `https://wa.me/628125906069?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  // Event categories data (currently not used in UI)
+  // const categories = [
+  //   {
+  //     id: '3K',
+  //     name: '3K Fun Run',
+  //     distance: '3 Kilometer',
+  //     icon: Users,
+  //     participants: 'Semua Usia - Anak-anak, Dewasa, Keluarga',
+  //     price: 100000,
+  //     cot: '60 Menit',
+  //     color: 'from-[#72b4d7] to-[#4e8fc0]',
+  //     note: 'Anak-anak wajib didampingi orang tua/wali',
+  //   },
+  // ];
 
   // Unified benefits for all participants
   const allBenefits = [
@@ -258,10 +453,10 @@ export default function RunMadanPage() {
               {/* CTA Buttons */}
               <div className='flex flex-wrap gap-4 pt-4'>
                 <button
-                  onClick={handleWhatsApp}
+                  onClick={scrollToRegistration}
                   className='bg-white text-[#043e75] px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#addbf2] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center gap-2'
                 >
-                  <Phone className='h-5 w-5' />
+                  <Users className='h-5 w-5' />
                   Daftar Sekarang
                   <ArrowRight className='h-5 w-5' />
                 </button>
@@ -691,10 +886,10 @@ export default function RunMadanPage() {
               </div>
 
               <button
-                onClick={handleWhatsApp}
+                onClick={scrollToRegistration}
                 className='w-full bg-white text-[#043e75] px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/90 transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3'
               >
-                <Phone className='h-5 w-5' />
+                <Users className='h-5 w-5' />
                 Daftar Sekarang
                 <ArrowRight className='h-5 w-5' />
               </button>
@@ -767,6 +962,27 @@ export default function RunMadanPage() {
                     <span className='bg-[#043e75] text-white px-4 py-2 rounded-lg text-sm font-semibold'>Berlangsung selama event</span>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Beginner Runners Community Image Section */}
+      <section className='py-16 bg-gradient-to-b from-white to-gray-50'>
+        <div className='container mx-auto px-4'>
+          <div className='max-w-5xl mx-auto'>
+            <div className='relative aspect-[16/9] w-full rounded-3xl overflow-hidden shadow-2xl'>
+              <Image src='/images/events/sahabat-berlari.jpg' alt='Komunitas pelari pemula berlari bersama' fill className='object-cover' />
+              <div className='absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent' />
+              <div className='absolute bottom-0 left-0 right-0 p-8 md:p-12'>
+                <h3 className='text-3xl md:text-5xl font-black text-white mb-4 drop-shadow-xl'>
+                  Membangun Motivasi Lari Bersama Komunitas
+                </h3>
+                <p className='text-lg md:text-xl text-white/95 font-semibold drop-shadow-lg max-w-3xl'>
+                  Run-Madan adalah ruang aman bagi pelari pemula untuk menemukan motivasi, belajar teknik berlari yang benar, dan membangun kebiasaan
+                  sehat bersama komunitas yang suportif. Tidak ada tekanan, hanya semangat untuk berkembang bersama!
+                </p>
               </div>
             </div>
           </div>
@@ -1044,7 +1260,7 @@ export default function RunMadanPage() {
                 {
                   step: 3,
                   title: 'Konfirmasi via WhatsApp',
-                  description: 'Kirim bukti transfer + data peserta (nama, usia, ukuran jersey) ke WhatsApp +62 812-5906-0690',
+                  description: 'Kirim bukti transfer + data peserta (nama, usia, ukuran jersey) ke WhatsApp +62 812-5906-069',
                   icon: Phone,
                 },
                 {
@@ -1125,7 +1341,7 @@ export default function RunMadanPage() {
                   className='bg-[#043e75] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#4e8fc0] transition-all duration-300 flex items-center gap-3 shadow-md'
                 >
                   <Phone className='h-5 w-5' />
-                  Konfirmasi & Informasi: +62 812-5906-0690
+                  Konfirmasi & Informasi: +62 812-5906-069
                   <ArrowRight className='h-5 w-5' />
                 </button>
               </div>
@@ -1187,6 +1403,386 @@ export default function RunMadanPage() {
         </div>
       </section>
 
+      {/* Registration Form Section */}
+      <section id='registration-form' className='py-20 bg-gradient-to-b from-white to-gray-50'>
+        <div className='container mx-auto px-4'>
+          <div className='max-w-5xl mx-auto'>
+            {/* Header */}
+            <div className='text-center mb-12'>
+              <div className='inline-flex items-center gap-2 bg-[#043e75] text-white px-4 py-2 rounded-full font-semibold mb-4'>
+                <Users className='h-5 w-5' />
+                Formulir Pendaftaran Online
+              </div>
+              <h2 className='text-4xl md:text-5xl font-black text-gray-900 mb-4'>Daftar Run-Madan 2026</h2>
+              <p className='text-lg text-gray-600 max-w-3xl mx-auto'>
+                Isi formulir di bawah ini untuk mendaftar. Anda dapat mendaftarkan beberapa peserta sekaligus (diri sendiri, keluarga, atau teman).
+              </p>
+            </div>
+
+            {/* Form Errors */}
+            {formErrors.length > 0 && (
+              <div className='mb-8 bg-red-50 border-2 border-red-500 rounded-xl p-6'>
+                <div className='flex items-start gap-3'>
+                  <AlertCircle className='h-6 w-6 text-red-600 flex-shrink-0 mt-0.5' />
+                  <div className='flex-1'>
+                    <h3 className='text-lg font-bold text-red-900 mb-2'>Mohon lengkapi data berikut:</h3>
+                    <ul className='space-y-1'>
+                      {formErrors.map((error, index) => (
+                        <li key={index} className='text-red-700'>
+                          • {error}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className='space-y-8'>
+              {/* Registrant Information */}
+              <div className='bg-white rounded-2xl p-8 shadow-lg border-2 border-[#043e75]'>
+                <h3 className='text-2xl font-black text-[#043e75] mb-6 flex items-center gap-3'>
+                  <User className='h-6 w-6' />
+                  Data Pendaftar (Orang Tua/Wali/Penanggung Jawab)
+                </h3>
+                <div className='grid md:grid-cols-2 gap-6'>
+                  <div className='md:col-span-2'>
+                    <label className='block text-sm font-bold text-gray-700 mb-2'>
+                      Nama Lengkap <span className='text-red-500'>*</span>
+                    </label>
+                    <input
+                      type='text'
+                      value={registrant.nama}
+                      onChange={(e) => setRegistrant({ ...registrant, nama: e.target.value })}
+                      className='w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none'
+                      placeholder='Masukkan nama lengkap pendaftar'
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className='block text-sm font-bold text-gray-700 mb-2'>
+                      Nomor HP (WhatsApp) <span className='text-red-500'>*</span>
+                    </label>
+                    <input
+                      type='tel'
+                      value={registrant.nomorHP}
+                      onChange={(e) => setRegistrant({ ...registrant, nomorHP: e.target.value })}
+                      className='w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none'
+                      placeholder='08123456789'
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className='block text-sm font-bold text-gray-700 mb-2'>Email (Opsional)</label>
+                    <input
+                      type='email'
+                      value={registrant.email}
+                      onChange={(e) => setRegistrant({ ...registrant, email: e.target.value })}
+                      className='w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none'
+                      placeholder='email@example.com'
+                    />
+                  </div>
+
+                  <div className='md:col-span-2'>
+                    <label className='block text-sm font-bold text-gray-700 mb-2'>
+                      Alamat Lengkap <span className='text-red-500'>*</span>
+                    </label>
+                    <textarea
+                      value={registrant.alamat}
+                      onChange={(e) => setRegistrant({ ...registrant, alamat: e.target.value })}
+                      className='w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none'
+                      placeholder='Alamat lengkap termasuk RT/RW, Kelurahan, Kecamatan'
+                      rows={3}
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Participants */}
+              <div className='space-y-6'>
+                <div className='flex items-center justify-between'>
+                  <h3 className='text-2xl font-black text-gray-900 flex items-center gap-3'>
+                    <Activity className='h-6 w-6 text-[#043e75]' />
+                    Data Peserta Lari
+                  </h3>
+                  <span className='text-sm font-bold text-gray-600'>
+                    {participants.length} Peserta × Rp 100.000 = Rp {(participants.length * 100000).toLocaleString('id-ID')}
+                  </span>
+                </div>
+
+                {participants.map((participant, index) => (
+                  <div key={participant.id} className='bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-300 relative'>
+                    {/* Remove button */}
+                    {participants.length > 1 && (
+                      <button
+                        type='button'
+                        onClick={() => removeParticipant(participant.id)}
+                        className='absolute top-4 right-4 px-4 py-2 bg-red-100 text-red-700 hover:bg-red-200 rounded-lg transition-colors font-bold text-sm flex items-center gap-2 border-2 border-red-300'
+                        title='Hapus peserta ini'
+                      >
+                        <AlertCircle className='h-5 w-5' />
+                        Hapus
+                      </button>
+                    )}
+
+                    <h4 className='text-xl font-bold text-gray-900 mb-6'>
+                      Peserta #{index + 1}
+                      {participants.length > 1 && (
+                        <span className='text-sm font-normal text-gray-500 ml-2'>(Klik tombol &quot;Hapus&quot; untuk menghapus)</span>
+                      )}
+                    </h4>
+
+                    <div className='grid md:grid-cols-2 gap-6'>
+                      <div className='md:col-span-2'>
+                        <label className='block text-sm font-bold text-gray-700 mb-2'>
+                          Nama Lengkap Peserta <span className='text-red-500'>*</span>
+                        </label>
+                        <input
+                          type='text'
+                          value={participant.namaLengkap}
+                          onChange={(e) => updateParticipant(participant.id, 'namaLengkap', e.target.value)}
+                          className='w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none'
+                          placeholder='Masukkan nama lengkap peserta'
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <label className='block text-sm font-bold text-gray-700 mb-2'>
+                          Jenis Kelamin <span className='text-red-500'>*</span>
+                        </label>
+                        <select
+                          value={participant.jenisKelamin}
+                          onChange={(e) => updateParticipant(participant.id, 'jenisKelamin', e.target.value)}
+                          className='w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none'
+                          required
+                        >
+                          <option value='lelaki'>Laki-laki</option>
+                          <option value='perempuan'>Perempuan</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className='block text-sm font-bold text-gray-700 mb-2'>
+                          Tanggal Lahir <span className='text-red-500'>*</span>
+                        </label>
+                        <input
+                          type='date'
+                          value={participant.tanggalLahir}
+                          onChange={(e) => updateParticipant(participant.id, 'tanggalLahir', e.target.value)}
+                          className='w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none'
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <label className='block text-sm font-bold text-gray-700 mb-2'>
+                          Ukuran Kaos <span className='text-red-500'>*</span>
+                        </label>
+                        <select
+                          value={participant.ukuranKaos}
+                          onChange={(e) => updateParticipant(participant.id, 'ukuranKaos', e.target.value)}
+                          className='w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none'
+                          required
+                        >
+                          <option value='S'>S (Small)</option>
+                          <option value='M'>M (Medium)</option>
+                          <option value='L'>L (Large)</option>
+                          <option value='XL'>XL (Extra Large)</option>
+                          <option value='XXL'>XXL (Double XL)</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className='block text-sm font-bold text-gray-700 mb-2'>
+                          Preferensi Aktivitas <span className='text-red-500'>*</span>
+                        </label>
+                        <select
+                          value={participant.preferensiAktivitas}
+                          onChange={(e) => updateParticipant(participant.id, 'preferensiAktivitas', e.target.value)}
+                          className='w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none'
+                          required
+                        >
+                          <option value='FULL_LARI'>Full Lari</option>
+                          <option value='LARI_JALAN'>Lari + Jalan</option>
+                          <option value='JALAN'>Jalan Saja</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+                {/* Add Participant Button */}
+                <button
+                  type='button'
+                  onClick={addParticipant}
+                  className='w-full bg-[#addbf2] text-[#043e75] px-6 py-4 rounded-xl font-bold hover:bg-[#72b4d7] transition-all duration-300 flex items-center justify-center gap-3 border-2 border-[#043e75] border-dashed'
+                >
+                  <Users className='h-5 w-5' />
+                  Tambah Peserta Lagi
+                </button>
+              </div>
+
+              {/* Submit Button */}
+              <div className='bg-gradient-to-br from-[#043e75] to-[#4e8fc0] rounded-2xl p-8 text-center'>
+                <div className='mb-6'>
+                  <div className='text-white/90 text-lg font-semibold mb-2'>Total Biaya Pendaftaran:</div>
+                  <div className='text-5xl font-black text-[#addbf2]'>
+                    Rp {(participants.length * 100000).toLocaleString('id-ID')}
+                  </div>
+                  <div className='text-white/80 text-sm mt-2'>{participants.length} Peserta × Rp 100.000</div>
+                </div>
+
+                <button
+                  type='submit'
+                  disabled={isSubmitting}
+                  className='bg-white text-[#043e75] px-12 py-5 rounded-xl font-black text-xl hover:bg-[#addbf2] transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 mx-auto'
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Activity className='h-6 w-6 animate-spin' />
+                      Memproses...
+                    </>
+                  ) : (
+                    <>
+                      <CheckCircle2 className='h-6 w-6' />
+                      Daftar Sekarang
+                      <ArrowRight className='h-6 w-6' />
+                    </>
+                  )}
+                </button>
+
+                <p className='text-white/80 text-sm mt-4'>
+                  Setelah mendaftar, Anda akan mendapatkan nomor registrasi dan instruksi pembayaran
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Success Modal */}
+      {showSuccessModal && registrationData && (
+        <div className='fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in duration-300'>
+          <div className='bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-in zoom-in-95 duration-300'>
+            <div className='bg-gradient-to-br from-[#043e75] to-[#4e8fc0] text-white p-8 rounded-t-3xl'>
+              <div className='text-center'>
+                <div className='w-20 h-20 mx-auto mb-4 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center animate-pulse'>
+                  <CheckCircle2 className='h-10 w-10 text-[#addbf2] animate-bounce' />
+                </div>
+                <h3 className='text-3xl font-black mb-2 text-[#addbf2]'>✅ Pendaftaran Berhasil!</h3>
+                <p className='text-white/90 text-lg font-semibold'>Terima kasih telah mendaftar Run-Madan 2026</p>
+                <div className='mt-4 bg-white/10 backdrop-blur-sm rounded-lg p-3 inline-block'>
+                  <p className='text-sm text-[#addbf2] font-bold'>📱 Segera lakukan pembayaran dan konfirmasi via WhatsApp</p>
+                </div>
+              </div>
+            </div>
+
+            <div className='p-8 space-y-6'>
+              {/* Registration Number */}
+              <div className='bg-[#addbf2]/20 rounded-xl p-6 border-2 border-[#043e75]'>
+                <div className='text-sm font-bold text-gray-600 mb-2'>Nomor Registrasi:</div>
+                <div className='text-3xl font-black text-[#043e75]'>{registrationData.nomorRegistrasi}</div>
+                <div className='text-sm text-gray-600 mt-2'>
+                  Simpan nomor ini untuk konfirmasi pembayaran
+                </div>
+              </div>
+
+              {/* Registrant Info */}
+              <div>
+                <h4 className='font-bold text-gray-900 mb-3'>Data Pendaftar:</h4>
+                <div className='space-y-2 text-gray-700'>
+                  <div>
+                    <span className='font-semibold'>Nama:</span> {registrationData.nama}
+                  </div>
+                  <div>
+                    <span className='font-semibold'>Nomor HP:</span> {registrationData.nomorHP}
+                  </div>
+                  {registrationData.email && (
+                    <div>
+                      <span className='font-semibold'>Email:</span> {registrationData.email}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Participants */}
+              <div>
+                <h4 className='font-bold text-gray-900 mb-3'>Peserta yang Terdaftar:</h4>
+                <div className='space-y-2'>
+                  {registrationData.participants.map((p, index) => (
+                    <div key={index} className='flex justify-between items-center bg-gray-50 p-3 rounded-lg'>
+                      <span className='font-medium text-gray-900'>
+                        {index + 1}. {p.namaLengkap} ({p.usia} tahun)
+                      </span>
+                      <span className='text-sm font-bold text-[#043e75]'>{p.ukuranKaos}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Payment Instructions */}
+              <div className='bg-yellow-50 rounded-xl p-6 border-2 border-yellow-400'>
+                <h4 className='font-black text-gray-900 mb-4 flex items-center gap-2'>
+                  <Wallet className='h-5 w-5 text-yellow-600' />
+                  Instruksi Pembayaran:
+                </h4>
+                <div className='space-y-3 text-gray-700'>
+                  <div>
+                    <div className='text-sm font-semibold'>Transfer ke:</div>
+                    <div className='text-lg font-bold text-[#043e75]'>
+                      Bank Muamalat - 707.000.7500
+                    </div>
+                    <div className='text-sm'>a.n. LAZ Muhajirin Rewwin</div>
+                  </div>
+                  <div>
+                    <div className='text-sm font-semibold'>Total yang harus dibayar:</div>
+                    <div className='text-2xl font-black text-[#043e75]'>
+                      Rp {registrationData.totalBiaya.toLocaleString('id-ID')}
+                    </div>
+                  </div>
+                  <div className='bg-white rounded-lg p-4 border border-yellow-300'>
+                    <div className='text-sm font-semibold text-yellow-800 mb-2'>
+                      Atau scan QRIS:
+                    </div>
+                    <div className='text-xs text-gray-600'>
+                      Lihat QR Code QRIS di bagian &quot;Cara Pendaftaran&quot; di atas
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* WhatsApp Confirmation */}
+              <div className='bg-gradient-to-br from-[#043e75] to-[#4e8fc0] rounded-xl p-6 text-white text-center'>
+                <h4 className='font-bold mb-3'>Langkah Selanjutnya:</h4>
+                <p className='text-white/90 mb-4 text-sm'>
+                  Setelah transfer, konfirmasi pembayaran melalui WhatsApp dengan klik tombol di bawah:
+                </p>
+                <button
+                  onClick={sendWhatsAppConfirmation}
+                  className='bg-white text-[#043e75] px-8 py-4 rounded-xl font-bold hover:bg-[#addbf2] transition-all duration-300 flex items-center justify-center gap-3 w-full'
+                >
+                  <Phone className='h-5 w-5' />
+                  Konfirmasi via WhatsApp
+                  <ArrowRight className='h-5 w-5' />
+                </button>
+              </div>
+
+              {/* Close Button */}
+              <button
+                onClick={() => setShowSuccessModal(false)}
+                className='w-full bg-gray-200 text-gray-900 px-6 py-3 rounded-xl font-bold hover:bg-gray-300 transition-all duration-300'
+              >
+                Tutup
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* FAQ Section */}
       <section className='py-16 bg-gray-50'>
         <div className='container mx-auto px-4'>
@@ -1246,10 +1842,10 @@ export default function RunMadanPage() {
 
           <div className='flex flex-wrap gap-6 justify-center items-center'>
             <button
-              onClick={handleWhatsApp}
+              onClick={scrollToRegistration}
               className='bg-white text-[#043e75] px-10 py-5 rounded-xl font-black text-xl hover:bg-[#addbf2] transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 flex items-center gap-3'
             >
-              <Phone className='h-6 w-6' />
+              <Users className='h-6 w-6' />
               Daftar Sekarang
               <ArrowRight className='h-6 w-6' />
             </button>
@@ -1266,7 +1862,7 @@ export default function RunMadanPage() {
           <div className='mt-12 flex flex-wrap justify-center gap-8 text-white/80'>
             <div className='flex items-center gap-2'>
               <Phone className='h-5 w-5' />
-              <span className='font-semibold'>WhatsApp Only: +62 812-5906-0690</span>
+              <span className='font-semibold'>WhatsApp Only: +62 812-5906-069</span>
             </div>
             <div className='flex items-center gap-2'>
               <MapPin className='h-5 w-5' />

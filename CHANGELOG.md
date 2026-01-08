@@ -1,3 +1,9 @@
+## 2026-01-08 19:00:29
+
+feat(masjid): add complete Run-Madan 2026 registration system with multi-participant support
+
+---
+
 ## 2026-01-08 17:28:04
 
 feat(masjid): update Run-Madan 2026 event with new schedule, pricing, and payment methods

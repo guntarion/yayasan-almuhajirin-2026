@@ -4,6 +4,12 @@
 import { useAuth } from './useAuth';
 import { useMemo } from 'react';
 
+// Roles with full access (can create, edit, delete)
+const FULL_ACCESS_ROLES = ['admin', 'sekretariat'];
+
+// Roles with read-only access (can only view)
+const READ_ONLY_ROLES = ['pembina', 'pengawas', 'pengurus', 'kepalabidang', 'kepalaunit'];
+
 /**
  * Hook to check keuangan module permissions
  *
@@ -12,12 +18,6 @@ import { useMemo } from 'react';
  */
 export function useKeuanganPermissions() {
   const { user, isAuthenticated } = useAuth();
-
-  // Roles with full access (can create, edit, delete)
-  const FULL_ACCESS_ROLES = ['admin', 'sekretariat'];
-
-  // Roles with read-only access (can only view)
-  const READ_ONLY_ROLES = ['pembina', 'pengawas', 'pengurus', 'kepalabidang', 'kepalaunit'];
 
   // Check if user has full access
   const hasFullAccess = useMemo(() => {
