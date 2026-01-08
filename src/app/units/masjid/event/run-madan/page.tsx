@@ -934,6 +934,71 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
         </div>
       </section>
 
+      {/* Dress Code Section - PROMINENT */}
+      <section className='py-16 bg-gradient-to-br from-[#addbf2] to-white'>
+        <div className='container mx-auto px-4'>
+          <div className='max-w-4xl mx-auto'>
+            <div className='bg-white rounded-3xl p-6 md:p-10 shadow-2xl border-4 border-[#043e75]'>
+              <div className='text-center mb-6'>
+                <div className='w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-[#043e75] to-[#4e8fc0] flex items-center justify-center'>
+                  <AlertCircle className='h-10 w-10 text-white' />
+                </div>
+                <h2 className='text-3xl md:text-4xl font-black text-[#043e75] mb-3'>Ketentuan Pakaian Peserta</h2>
+                <p className='text-lg text-gray-700 font-semibold'>Wajib Dipatuhi oleh Seluruh Peserta</p>
+              </div>
+
+              <div className='space-y-6'>
+                {/* Main requirement - Very prominent */}
+                <div className='bg-gradient-to-r from-[#043e75] to-[#4e8fc0] rounded-2xl p-6 md:p-8 text-white'>
+                  <div className='flex items-start gap-4'>
+                    <CheckCircle2 className='h-8 w-8 flex-shrink-0 mt-1' />
+                    <div>
+                      <h3 className='text-2xl font-black mb-3 text-[#addbf2]'>Pakaian Menutup Aurat Secara Layak</h3>
+                      <p className='text-lg leading-relaxed mb-4'>
+                        <strong>SELURUH PESERTA</strong> diwajibkan mengenakan pakaian yang menutup aurat secara Islami dan layak, sesuai dengan nilai-nilai kesopanan dan keislaman.
+                      </p>
+                      <div className='bg-white/20 backdrop-blur-sm rounded-xl p-4 border-2 border-white/40'>
+                        <p className='text-lg font-bold mb-2'>Khusus untuk Peserta Perempuan:</p>
+                        <ul className='space-y-2 text-base'>
+                          <li className='flex items-start gap-2'>
+                            <Star className='h-5 w-5 mt-0.5 flex-shrink-0 text-[#addbf2]' />
+                            <span>Wajib mengenakan <strong>jilbab/kerudung</strong> yang menutup kepala, leher, dan dada</span>
+                          </li>
+                          <li className='flex items-start gap-2'>
+                            <Star className='h-5 w-5 mt-0.5 flex-shrink-0 text-[#addbf2]' />
+                            <span>Pakaian <strong>tidak ketat</strong> dan menutup aurat dengan sempurna</span>
+                          </li>
+                          <li className='flex items-start gap-2'>
+                            <Star className='h-5 w-5 mt-0.5 flex-shrink-0 text-[#addbf2]' />
+                            <span>Celana/rok panjang yang <strong>longgar</strong> dan tidak transparan</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Additional notes */}
+                <div className='bg-[#addbf2]/30 rounded-xl p-6 border-2 border-[#043e75]'>
+                  <div className='flex items-start gap-3'>
+                    <Heart className='h-6 w-6 text-[#043e75] mt-0.5 flex-shrink-0' />
+                    <div>
+                      <p className='text-gray-800 leading-relaxed'>
+                        Ketentuan ini dibuat untuk menjaga nilai-nilai keislaman dan kenyamanan bersama. Peserta yang <strong>tidak memenuhi ketentuan pakaian</strong> akan diminta untuk memperbaiki terlebih dahulu sebelum mengikuti acara.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='text-center pt-2'>
+                  <p className='text-sm text-gray-600 italic'>Jazakumullah khairan atas perhatian dan kepatuhannya 🤲</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Race Day Schedule */}
       <section className='py-16 bg-gradient-to-b from-gray-50 to-white'>
         <div className='container mx-auto px-4'>
@@ -1382,7 +1447,14 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                 <AlertCircle className='h-6 w-6 text-yellow-600' />
                 Informasi Penting:
               </h3>
-              <ul className='space-y-2 text-gray-700'>
+              <ul className='space-y-3 text-gray-700'>
+                {/* Dress code - EMPHASIZED FIRST */}
+                <li className='flex items-start gap-2 bg-[#043e75]/10 p-4 rounded-xl border-2 border-[#043e75]'>
+                  <AlertCircle className='h-6 w-6 text-[#043e75] mt-0.5 flex-shrink-0' />
+                  <span className='font-bold text-[#043e75]'>
+                    <strong className='text-lg'>WAJIB:</strong> Seluruh peserta harus mengenakan pakaian yang <strong>menutup aurat secara layak dan Islami</strong>. Khususnya untuk peserta perempuan, wajib mengenakan jilbab/kerudung dan pakaian yang tidak ketat. Peserta yang tidak memenuhi ketentuan akan diminta memperbaiki pakaian terlebih dahulu.
+                  </span>
+                </li>
                 <li className='flex items-start gap-2'>
                   <Star className='h-5 w-5 text-yellow-600 mt-0.5 flex-shrink-0' />
                   <span>

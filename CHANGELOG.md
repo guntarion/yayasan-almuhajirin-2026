@@ -1,3 +1,9 @@
+## 2026-01-08 21:39:41
+
+feat(masjid): add prominent Islamic dress code requirements for Run-Madan event
+
+---
+
 ## 2026-01-08 20:15:33
 
 feat(masjid): enhance Run-Madan page with mobile responsiveness and Vercel Analytics
