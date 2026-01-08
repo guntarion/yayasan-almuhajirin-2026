@@ -5,6 +5,7 @@ import './css/globals.css';
 import ClientLayout from './client-layout';
 import { metadata } from './metadata';
 import { Toaster } from '@/components/ui/toaster';
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.className}`}>
         <ClientLayout>{children}</ClientLayout>
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );

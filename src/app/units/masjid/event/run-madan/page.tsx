@@ -425,9 +425,9 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                 Tarhib Ramadhan 1447H
               </div>
 
-              <h1 className='text-5xl md:text-7xl font-black tracking-tight text-[#addbf2]'>
+              <h1 className='text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black tracking-tight text-[#addbf2] transition-all duration-300'>
                 RUN-MADAN
-                <span className='block text-3xl md:text-4xl font-bold text-white mt-2'>2026</span>
+                <span className='block text-xl sm:text-2xl md:text-4xl font-bold text-white mt-2'>2026</span>
               </h1>
 
               <p className='text-xl md:text-2xl text-white/90 font-medium'>Lari Santai Ramah Pemula, Edukasi Kesehatan</p>
@@ -451,10 +451,10 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
               </div>
 
               {/* CTA Buttons */}
-              <div className='flex flex-wrap gap-4 pt-4'>
+              <div className='flex flex-col sm:flex-row sm:flex-wrap gap-3 md:gap-4 pt-4'>
                 <button
                   onClick={scrollToRegistration}
-                  className='bg-white text-[#043e75] px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#addbf2] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center gap-2'
+                  className='bg-white text-[#043e75] px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-base md:text-lg hover:bg-[#addbf2] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2 min-h-[48px]'
                 >
                   <Users className='h-5 w-5' />
                   Daftar Sekarang
@@ -462,7 +462,7 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                 </button>
                 <button
                   onClick={handleShare}
-                  className='bg-white/10 backdrop-blur-sm border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-2'
+                  className='bg-white/10 backdrop-blur-sm border-2 border-white text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-base md:text-lg hover:bg-white/20 transition-all duration-300 flex items-center justify-center gap-2 min-h-[48px]'
                 >
                   <Share2 className='h-5 w-5' />
                   Share Event
@@ -480,10 +480,10 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                     { label: 'Detik', value: timeLeft.seconds },
                   ].map((item) => (
                     <div key={item.label} className='text-center'>
-                      <div className='bg-white/10 backdrop-blur-sm rounded-xl p-3 mb-2'>
-                        <div className='text-3xl md:text-4xl font-black'>{item.value}</div>
+                      <div className='bg-white/10 backdrop-blur-sm rounded-xl p-2 md:p-3 mb-2 transition-all duration-300'>
+                        <div className='text-2xl sm:text-3xl md:text-4xl font-black'>{item.value}</div>
                       </div>
-                      <div className='text-xs font-medium text-white/80'>{item.label}</div>
+                      <div className='text-xs md:text-sm font-medium text-white/80'>{item.label}</div>
                     </div>
                   ))}
                 </div>
@@ -540,7 +540,7 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
       {/* Quick Stats */}
       <section className='py-12 bg-white border-b border-gray-200'>
         <div className='container mx-auto px-4'>
-          <div className='grid grid-cols-2 md:grid-cols-4 gap-6'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6'>
             {[
               { icon: Users, label: '3K Fun Run', value: 'Semua Usia', color: 'from-[#72b4d7] to-[#4e8fc0]' },
               { icon: Activity, label: 'Non-Kompetitif', value: 'Santai Saja', color: 'from-[#4e8fc0] to-[#043e75]' },
@@ -612,9 +612,9 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                 color: 'from-[#72b4d7] to-[#addbf2]',
               },
             ].map((item, index) => (
-              <div key={index} className='bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100'>
-                <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${item.color} flex items-center justify-center mb-6`}>
-                  <item.icon className='h-8 w-8 text-white' />
+              <div key={index} className='bg-white rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-1 group'>
+                <div className={`w-14 h-14 md:w-16 md:h-16 rounded-xl bg-gradient-to-r ${item.color} flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+                  <item.icon className='h-7 w-7 md:h-8 md:w-8 text-white' />
                 </div>
                 <h3 className='text-xl font-bold text-gray-900 mb-3'>{item.title}</h3>
                 <p className='text-gray-600 leading-relaxed'>{item.description}</p>
@@ -865,34 +865,39 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
 
           {/* Simplified Registration Info */}
           <div className='max-w-3xl mx-auto mb-12'>
-            <div className='bg-gradient-to-br from-[#72b4d7] to-[#4e8fc0] rounded-3xl p-8 shadow-xl text-white text-center'>
-              <div className='w-20 h-20 mx-auto mb-6 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center'>
-                <Users className='h-10 w-10 text-white' />
-              </div>
+            <div className='bg-gradient-to-br from-[#72b4d7] via-[#4e8fc0] to-[#043e75] rounded-3xl p-6 md:p-8 shadow-2xl text-white text-center relative overflow-hidden group'>
+              {/* Animated gradient overlay */}
+              <div className='absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
 
-              <h3 className='text-3xl font-black mb-2'>3K Fun Run</h3>
-              <p className='text-xl text-white/90 mb-8'>Semua Usia - Anak-anak, Dewasa, Keluarga</p>
-
-              <div className='bg-white/10 backdrop-blur-sm rounded-xl p-6 mb-6 border border-white/20'>
-                <div className='text-sm font-bold text-white/80 mb-2'>Biaya Pendaftaran:</div>
-                <div className='text-5xl font-black text-white'>Rp 100.000</div>
-              </div>
-
-              <div className='bg-yellow-400/20 backdrop-blur-sm rounded-xl p-4 border-2 border-yellow-300 mb-6'>
-                <div className='flex items-start gap-3 justify-center'>
-                  <AlertCircle className='h-5 w-5 text-yellow-100 mt-0.5 flex-shrink-0' />
-                  <p className='text-sm font-bold text-yellow-50'>Anak-anak wajib didampingi orang tua/wali</p>
+              <div className='relative z-10'>
+                <div className='w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center transition-transform duration-300 group-hover:scale-110'>
+                  <Users className='h-8 w-8 md:h-10 md:w-10 text-white' />
                 </div>
-              </div>
 
-              <button
-                onClick={scrollToRegistration}
-                className='w-full bg-white text-[#043e75] px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/90 transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3'
-              >
-                <Users className='h-5 w-5' />
-                Daftar Sekarang
-                <ArrowRight className='h-5 w-5' />
-              </button>
+                <h3 className='text-2xl md:text-3xl font-black mb-2'>3K Fun Run</h3>
+                <p className='text-lg md:text-xl text-white/90 mb-6 md:mb-8'>Semua Usia - Anak-anak, Dewasa, Keluarga</p>
+
+                <div className='bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-6 mb-6 border border-white/20 transition-all duration-300 group-hover:bg-white/15'>
+                  <div className='text-xs md:text-sm font-bold text-white/80 mb-2'>Biaya Pendaftaran:</div>
+                  <div className='text-4xl md:text-5xl font-black text-white'>Rp 100.000</div>
+                </div>
+
+                <div className='bg-yellow-400/20 backdrop-blur-sm rounded-xl p-3 md:p-4 border-2 border-yellow-300 mb-6'>
+                  <div className='flex items-start gap-3 justify-center'>
+                    <AlertCircle className='h-5 w-5 text-yellow-100 mt-0.5 flex-shrink-0' />
+                    <p className='text-xs md:text-sm font-bold text-yellow-50'>Anak-anak wajib didampingi orang tua/wali</p>
+                  </div>
+                </div>
+
+                <button
+                  onClick={scrollToRegistration}
+                  className='w-full bg-white text-[#043e75] px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-base md:text-lg hover:bg-[#addbf2] transition-all duration-300 hover:scale-105 hover:shadow-2xl flex items-center justify-center gap-3 min-h-[48px]'
+                >
+                  <Users className='h-5 w-5' />
+                  Daftar Sekarang
+                  <ArrowRight className='h-5 w-5' />
+                </button>
+              </div>
             </div>
           </div>
 
@@ -1454,7 +1459,7 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                       type='text'
                       value={registrant.nama}
                       onChange={(e) => setRegistrant({ ...registrant, nama: e.target.value })}
-                      className='w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none'
+                      className='w-full px-3 md:px-4 py-3 text-sm md:text-base rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none min-h-[48px] transition-colors duration-200'
                       placeholder='Masukkan nama lengkap pendaftar'
                       required
                     />
@@ -1468,7 +1473,7 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                       type='tel'
                       value={registrant.nomorHP}
                       onChange={(e) => setRegistrant({ ...registrant, nomorHP: e.target.value })}
-                      className='w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none'
+                      className='w-full px-3 md:px-4 py-3 text-sm md:text-base rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none min-h-[48px] transition-colors duration-200'
                       placeholder='08123456789'
                       required
                     />
@@ -1480,7 +1485,7 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                       type='email'
                       value={registrant.email}
                       onChange={(e) => setRegistrant({ ...registrant, email: e.target.value })}
-                      className='w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none'
+                      className='w-full px-3 md:px-4 py-3 text-sm md:text-base rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none min-h-[48px] transition-colors duration-200'
                       placeholder='email@example.com'
                     />
                   </div>
@@ -1492,7 +1497,7 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                     <textarea
                       value={registrant.alamat}
                       onChange={(e) => setRegistrant({ ...registrant, alamat: e.target.value })}
-                      className='w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none'
+                      className='w-full px-3 md:px-4 py-3 text-sm md:text-base rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none min-h-[48px] transition-colors duration-200'
                       placeholder='Alamat lengkap termasuk RT/RW, Kelurahan, Kecamatan'
                       rows={3}
                       required
@@ -1514,13 +1519,13 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                 </div>
 
                 {participants.map((participant, index) => (
-                  <div key={participant.id} className='bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-300 relative'>
+                  <div key={participant.id} className='bg-white rounded-2xl p-4 md:p-8 shadow-lg border-2 border-gray-300 relative transition-all duration-300 hover:shadow-xl'>
                     {/* Remove button */}
                     {participants.length > 1 && (
                       <button
                         type='button'
                         onClick={() => removeParticipant(participant.id)}
-                        className='absolute top-4 right-4 px-4 py-2 bg-red-100 text-red-700 hover:bg-red-200 rounded-lg transition-colors font-bold text-sm flex items-center gap-2 border-2 border-red-300'
+                        className='w-full md:w-auto md:absolute top-0 md:top-4 right-0 md:right-4 mb-4 md:mb-0 px-4 py-2 bg-red-100 text-red-700 hover:bg-red-200 rounded-lg transition-all duration-200 font-bold text-sm flex items-center justify-center gap-2 border-2 border-red-300 min-h-[44px]'
                         title='Hapus peserta ini'
                       >
                         <AlertCircle className='h-5 w-5' />
@@ -1544,7 +1549,7 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                           type='text'
                           value={participant.namaLengkap}
                           onChange={(e) => updateParticipant(participant.id, 'namaLengkap', e.target.value)}
-                          className='w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none'
+                          className='w-full px-3 md:px-4 py-3 text-sm md:text-base rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none min-h-[48px] transition-colors duration-200'
                           placeholder='Masukkan nama lengkap peserta'
                           required
                         />
@@ -1557,7 +1562,7 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                         <select
                           value={participant.jenisKelamin}
                           onChange={(e) => updateParticipant(participant.id, 'jenisKelamin', e.target.value)}
-                          className='w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none'
+                          className='w-full px-3 md:px-4 py-3 text-sm md:text-base rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none min-h-[48px] transition-colors duration-200'
                           required
                         >
                           <option value='lelaki'>Laki-laki</option>
@@ -1573,7 +1578,7 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                           type='date'
                           value={participant.tanggalLahir}
                           onChange={(e) => updateParticipant(participant.id, 'tanggalLahir', e.target.value)}
-                          className='w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none'
+                          className='w-full px-3 md:px-4 py-3 text-sm md:text-base rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none min-h-[48px] transition-colors duration-200'
                           required
                         />
                       </div>
@@ -1585,7 +1590,7 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                         <select
                           value={participant.ukuranKaos}
                           onChange={(e) => updateParticipant(participant.id, 'ukuranKaos', e.target.value)}
-                          className='w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none'
+                          className='w-full px-3 md:px-4 py-3 text-sm md:text-base rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none min-h-[48px] transition-colors duration-200'
                           required
                         >
                           <option value='S'>S (Small)</option>
@@ -1603,7 +1608,7 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                         <select
                           value={participant.preferensiAktivitas}
                           onChange={(e) => updateParticipant(participant.id, 'preferensiAktivitas', e.target.value)}
-                          className='w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none'
+                          className='w-full px-3 md:px-4 py-3 text-sm md:text-base rounded-lg border-2 border-gray-300 focus:border-[#043e75] focus:outline-none min-h-[48px] transition-colors duration-200'
                           required
                         >
                           <option value='FULL_LARI'>Full Lari</option>
@@ -1667,21 +1672,21 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
       {/* Success Modal */}
       {showSuccessModal && registrationData && (
         <div className='fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in duration-300'>
-          <div className='bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-in zoom-in-95 duration-300'>
-            <div className='bg-gradient-to-br from-[#043e75] to-[#4e8fc0] text-white p-8 rounded-t-3xl'>
+          <div className='bg-white rounded-2xl md:rounded-3xl max-w-2xl w-full max-h-[85vh] md:max-h-[90vh] overflow-y-auto shadow-2xl animate-in zoom-in-95 duration-300'>
+            <div className='bg-gradient-to-br from-[#043e75] to-[#4e8fc0] text-white p-4 md:p-8 rounded-t-2xl md:rounded-t-3xl'>
               <div className='text-center'>
-                <div className='w-20 h-20 mx-auto mb-4 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center animate-pulse'>
-                  <CheckCircle2 className='h-10 w-10 text-[#addbf2] animate-bounce' />
+                <div className='w-16 h-16 md:w-20 md:h-20 mx-auto mb-3 md:mb-4 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center animate-pulse'>
+                  <CheckCircle2 className='h-8 w-8 md:h-10 md:w-10 text-[#addbf2] animate-bounce' />
                 </div>
-                <h3 className='text-3xl font-black mb-2 text-[#addbf2]'>✅ Pendaftaran Berhasil!</h3>
-                <p className='text-white/90 text-lg font-semibold'>Terima kasih telah mendaftar Run-Madan 2026</p>
-                <div className='mt-4 bg-white/10 backdrop-blur-sm rounded-lg p-3 inline-block'>
-                  <p className='text-sm text-[#addbf2] font-bold'>📱 Segera lakukan pembayaran dan konfirmasi via WhatsApp</p>
+                <h3 className='text-2xl md:text-3xl font-black mb-2 text-[#addbf2]'>✅ Pendaftaran Berhasil!</h3>
+                <p className='text-white/90 text-base md:text-lg font-semibold'>Terima kasih telah mendaftar Run-Madan 2026</p>
+                <div className='mt-3 md:mt-4 bg-white/10 backdrop-blur-sm rounded-lg p-2 md:p-3 inline-block'>
+                  <p className='text-xs md:text-sm text-[#addbf2] font-bold'>📱 Segera lakukan pembayaran dan konfirmasi via WhatsApp</p>
                 </div>
               </div>
             </div>
 
-            <div className='p-8 space-y-6'>
+            <div className='p-4 md:p-8 space-y-4 md:space-y-6'>
               {/* Registration Number */}
               <div className='bg-[#addbf2]/20 rounded-xl p-6 border-2 border-[#043e75]'>
                 <div className='text-sm font-bold text-gray-600 mb-2'>Nomor Registrasi:</div>
