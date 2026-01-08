@@ -64,13 +64,13 @@ export default function RunMadanPage() {
   }, []);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText('1150014682682');
+    navigator.clipboard.writeText('7070007500');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   const handleWhatsApp = () => {
-    window.open('https://wa.me/6281314073434?text=Halo,%20saya%20ingin%20mendaftar%20Run-Madan%202026', '_blank');
+    window.open('https://wa.me/6281259060690?text=Halo,%20saya%20ingin%20mendaftar%20Run-Madan%202026', '_blank');
   };
 
   const handleShare = () => {
@@ -91,7 +91,7 @@ export default function RunMadanPage() {
       distance: '3 Kilometer',
       icon: Users,
       participants: 'Semua Usia - Anak-anak, Dewasa, Keluarga',
-      price: 50000,
+      price: 100000,
       cot: '60 Menit',
       color: 'from-[#72b4d7] to-[#4e8fc0]',
       note: 'Anak-anak wajib didampingi orang tua/wali',
@@ -112,13 +112,12 @@ export default function RunMadanPage() {
 
   // Race day schedule
   const schedule = [
-    { time: '04:30 - 05:15', activity: 'Registrasi Ulang & Pengambilan Race Kit', icon: CheckCircle2 },
-    { time: '05:15 - 05:25', activity: 'Senam Pemanasan Bersama', icon: DumbbellIcon },
-    { time: '05:15 - 06:00', activity: 'Senam Terapi Kesehatan (Ibu-ibu & Lansia)', icon: HeartPulse },
-    { time: '05:30', activity: 'Start 3K Fun Run', icon: Zap },
-    { time: '06:30 - 08:00', activity: 'Finisher Area & Refreshment', icon: Gift },
-    { time: '08:00 - 08:30', activity: 'Pengumuman & Doorprize', icon: Trophy },
-    { time: '08:30 - 09:00', activity: 'Foto Bersama & Closing', icon: Award },
+    { time: '05:30 - 05:45', activity: 'Edukasi Kesehatan: Olahraga Sehat Menyambut Ramadhan', icon: HeartPulse },
+    { time: '06:00 - 06:10', activity: 'Pemanasan Bersama', icon: DumbbellIcon },
+    { time: '06:10 - 07:10', activity: 'Lari & Jalan Sehat 3K', icon: Zap },
+    { time: '07:10 - 07:30', activity: 'Finish & Refreshment', icon: Gift },
+    { time: '07:30 - 07:50', activity: 'Edukasi & Donasi Sosial', icon: HeartPulse },
+    { time: '07:50 - 08:00', activity: 'Penutup & Foto Bersama', icon: Award },
   ];
 
   // Route information
@@ -132,7 +131,7 @@ export default function RunMadanPage() {
     {
       icon: Route,
       title: 'Rute Lari',
-      description: 'Perumahan Rewwin - Jalur beraspal, aman & nyaman',
+      description: 'Perumahan Rewwin - Jalur aman & nyaman',
       color: 'from-[#4e8fc0] to-[#043e75]',
     },
     {
@@ -146,22 +145,25 @@ export default function RunMadanPage() {
   // Charity impact
   const charityImpacts = [
     {
-      icon: Ambulance,
-      title: 'Layanan Ambulans 24/7',
-      description: 'Ambulans gratis 24 jam untuk warga. Dana pendaftaran membantu operasional agar layanan tetap berjalan.',
-      color: 'from-[#043e75] to-[#4e8fc0]',
-    },
-    {
       icon: Building2,
       title: 'Poliklinik Al Muhajirin',
       description: 'Layanan kesehatan gratis untuk semua. Dana pendaftaran mendukung keberlanjutan program ini.',
       color: 'from-[#4e8fc0] to-[#72b4d7]',
+      image: '/images/poliklinik/pengecekan-tekanan-darah.jpg',
+    },
+    {
+      icon: Ambulance,
+      title: 'Layanan Ambulans 24/7',
+      description: 'Ambulans gratis 24 jam untuk warga. Dana pendaftaran membantu operasional agar layanan tetap berjalan.',
+      color: 'from-[#043e75] to-[#4e8fc0]',
+      image: '/images/laz/ambulance-almuhajirin.png',
     },
     {
       icon: Heart,
       title: 'Program Sosial LAZMU',
       description: 'Sebagian dana mendukung program sosial LAZ Muhajirin untuk masyarakat yang membutuhkan.',
       color: 'from-[#72b4d7] to-[#addbf2]',
+      image: '/images/laz/berbagi-paket-ramadhan.png',
     },
   ];
 
@@ -181,17 +183,7 @@ export default function RunMadanPage() {
       question: 'Apakah ada batas usia untuk mengikuti Run-Madan?',
       answer:
         'Semua usia boleh ikut! Dari anak-anak hingga lansia. Tidak ada batas usia maksimal, namun peserta harus dalam kondisi sehat dan fit. Anak-anak wajib didampingi orang tua/wali. Lansia sangat dipersilakan ikut - bahkan ada senam terapi kesehatan khusus untuk ibu-ibu dan lansia!',
-    },
-    {
-      question: 'Apa yang saya dapatkan setelah mendaftar?',
-      answer:
-        'Peserta akan mendapatkan jersey eksklusif, race bib, medali (jika finish di bawah COT), sertifikat digital, snack, air mineral, PLUS bonus sesi edukasi kesehatan GRATIS tentang "From Couch to 5K" dan "Terapi Running", serta kesempatan memenangkan doorprize.',
-    },
-    {
-      question: 'Bagaimana cara pendaftaran?',
-      answer:
-        'Pendaftaran dilakukan dengan transfer ke rekening BCA 1150014682682 a.n. Masjid Al Muhajirin. Setelah transfer, konfirmasi via WhatsApp ke 0813-1407-3434 dengan melampirkan bukti transfer dan data peserta.',
-    },
+    },    
     {
       question: 'Apakah ada COT (Cut Off Time)?',
       answer:
@@ -334,6 +326,22 @@ export default function RunMadanPage() {
         </div>
       </section>
 
+      {/* Family Jogging Banner */}
+      <section className='relative py-0 bg-white'>
+        <div className='relative aspect-[21/9] w-full overflow-hidden'>
+          <Image src='/images/events/keluarga-jogging.jpg' alt='Keluarga jogging bersama' fill className='object-cover' />
+          <div className='absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent' />
+          <div className='absolute inset-0 flex items-center'>
+            <div className='container mx-auto px-4'>
+              <div className='max-w-2xl'>
+                <h3 className='text-3xl md:text-5xl font-black text-white mb-3 drop-shadow-xl'>Run-Madan 2026</h3>
+                <p className='text-xl md:text-2xl text-white/95 font-bold drop-shadow-lg'>Keluarga Sehat, Ramadhan Berkah</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Quick Stats */}
       <section className='py-12 bg-white border-b border-gray-200'>
         <div className='container mx-auto px-4'>
@@ -342,7 +350,7 @@ export default function RunMadanPage() {
               { icon: Users, label: '3K Fun Run', value: 'Semua Usia', color: 'from-[#72b4d7] to-[#4e8fc0]' },
               { icon: Activity, label: 'Non-Kompetitif', value: 'Santai Saja', color: 'from-[#4e8fc0] to-[#043e75]' },
               { icon: HeartPulse, label: 'Edukasi', value: 'Gratis!', color: 'from-[#addbf2] to-[#72b4d7]' },
-              { icon: Heart, label: 'Amal Sosial', value: '50%', color: 'from-[#043e75] to-[#4e8fc0]' },
+              { icon: Heart, label: 'Amal Sosial', value: 'Kontribusi', color: 'from-[#043e75] to-[#4e8fc0]' },
             ].map((stat, index) => (
               <div
                 key={index}
@@ -380,10 +388,10 @@ export default function RunMadanPage() {
 
             {/* Featured Image */}
             <div className='relative aspect-[16/9] max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-2xl mb-12'>
-              <Image src='/images/masjid/pasangan-lari.jpg' alt='Pasangan berlari bersama di Run-Madan' fill className='object-cover' />
+              <Image src='/images/events/senior-berlari.jpg' alt='Senior aktif berlari di Run-Madan' fill className='object-cover' />
               <div className='absolute inset-0 bg-gradient-to-t from-black/40 to-transparent' />
               <div className='absolute bottom-6 left-6 right-6 text-white'>
-                <p className='text-xl font-bold drop-shadow-lg'>Berlari Bersama, Berbagi Kebaikan</p>
+                <p className='text-xl font-bold drop-shadow-lg'>Aktif di Segala Usia, Berlari Bersama</p>
               </div>
             </div>
           </div>
@@ -660,87 +668,37 @@ export default function RunMadanPage() {
             <p className='text-lg text-gray-600'>Run-Madan 2026 - Lari santai 3K untuk semua usia!</p>
           </div>
 
-          {/* Category Card */}
-          <div className='max-w-2xl mx-auto mb-12'>
-            {categories.map((category) => {
-              const IconComponent = category.icon;
-              return (
-                <div
-                  key={category.id}
-                  className={`bg-gradient-to-br ${category.color} rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300`}
-                >
-                  {/* Category Header */}
-                  <div className='flex items-center gap-4 mb-6'>
-                    <div className='w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0'>
-                      <IconComponent className='h-8 w-8 text-white' />
-                    </div>
-                    <div>
-                      <h3 className='text-2xl font-black text-white'>{category.name}</h3>
-                      <p className='text-lg text-white/90'>{category.distance}</p>
-                    </div>
-                  </div>
+          {/* Simplified Registration Info */}
+          <div className='max-w-3xl mx-auto mb-12'>
+            <div className='bg-gradient-to-br from-[#72b4d7] to-[#4e8fc0] rounded-3xl p-8 shadow-xl text-white text-center'>
+              <div className='w-20 h-20 mx-auto mb-6 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center'>
+                <Users className='h-10 w-10 text-white' />
+              </div>
 
-                  {/* Category Details */}
-                  <div className='space-y-4 mb-6'>
-                    <div className='flex items-start gap-3'>
-                      <Users className='h-5 w-5 text-white mt-1 flex-shrink-0' />
-                      <div>
-                        <div className='font-bold text-white text-sm'>Peserta:</div>
-                        <div className='text-white/90 text-sm'>{category.participants}</div>
-                      </div>
-                    </div>
+              <h3 className='text-3xl font-black mb-2'>3K Fun Run</h3>
+              <p className='text-xl text-white/90 mb-8'>Semua Usia - Anak-anak, Dewasa, Keluarga</p>
 
-                    <div className='flex items-start gap-3'>
-                      <Wallet className='h-5 w-5 text-white mt-1 flex-shrink-0' />
-                      <div>
-                        <div className='font-bold text-white text-sm'>Biaya Pendaftaran:</div>
-                        <div className='text-3xl font-black text-white'>Rp {category.price.toLocaleString('id-ID')}</div>
-                      </div>
-                    </div>
+              <div className='bg-white/10 backdrop-blur-sm rounded-xl p-6 mb-6 border border-white/20'>
+                <div className='text-sm font-bold text-white/80 mb-2'>Biaya Pendaftaran:</div>
+                <div className='text-5xl font-black text-white'>Rp 100.000</div>
+              </div>
 
-                    <div className='flex items-start gap-3'>
-                      <Timer className='h-5 w-5 text-white mt-1 flex-shrink-0' />
-                      <div>
-                        <div className='font-bold text-white text-sm'>Cut Off Time (COT):</div>
-                        <div className='text-white/90 text-sm'>{category.cot}</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Important Note for Kids */}
-                  {category.note && (
-                    <div className='bg-yellow-400/20 backdrop-blur-sm rounded-xl p-4 border-2 border-yellow-300 mb-6'>
-                      <div className='flex items-start gap-3'>
-                        <AlertCircle className='h-5 w-5 text-yellow-100 mt-0.5 flex-shrink-0' />
-                        <p className='text-sm font-bold text-yellow-50'>{category.note}</p>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* T-Shirt Image */}
-                  <div className='bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 mb-6'>
-                    <Image
-                      src='/images/masjid/kaos-ranmadan.png'
-                      alt='Jersey Run-Madan'
-                      width={300}
-                      height={300}
-                      className='w-full h-auto rounded-lg'
-                    />
-                    <p className='text-center text-sm font-semibold text-white mt-2'>Jersey Run-Madan Eksklusif</p>
-                  </div>
-
-                  {/* CTA Button */}
-                  <button
-                    onClick={handleWhatsApp}
-                    className='w-full bg-white text-[#043e75] px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/90 transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3'
-                  >
-                    <Phone className='h-5 w-5' />
-                    Daftar Sekarang
-                    <ArrowRight className='h-5 w-5' />
-                  </button>
+              <div className='bg-yellow-400/20 backdrop-blur-sm rounded-xl p-4 border-2 border-yellow-300 mb-6'>
+                <div className='flex items-start gap-3 justify-center'>
+                  <AlertCircle className='h-5 w-5 text-yellow-100 mt-0.5 flex-shrink-0' />
+                  <p className='text-sm font-bold text-yellow-50'>Anak-anak wajib didampingi orang tua/wali</p>
                 </div>
-              );
-            })}
+              </div>
+
+              <button
+                onClick={handleWhatsApp}
+                className='w-full bg-white text-[#043e75] px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/90 transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3'
+              >
+                <Phone className='h-5 w-5' />
+                Daftar Sekarang
+                <ArrowRight className='h-5 w-5' />
+              </button>
+            </div>
           </div>
 
           {/* Unified Benefits Section */}
@@ -770,7 +728,7 @@ export default function RunMadanPage() {
               Race Day Schedule
             </div>
             <h2 className='text-4xl md:text-5xl font-black text-gray-900 mb-4'>Jadwal Hari H</h2>
-            <p className='text-lg text-gray-600'>Minggu, 8 Februari 2026 - Mulai pukul 04:30 WIB</p>
+            <p className='text-lg text-gray-600'>Minggu, 8 Februari 2026 - Mulai pukul 05:30 WIB</p>
           </div>
 
           <div className='max-w-4xl mx-auto'>
@@ -991,44 +949,7 @@ export default function RunMadanPage() {
             ))}
           </div>
 
-          <div className='max-w-3xl mx-auto bg-[#addbf2]/20 rounded-2xl p-8 border border-[#72b4d7]'>
-            <h3 className='text-xl font-bold text-gray-900 mb-4 flex items-center gap-2'>
-              <AlertCircle className='h-6 w-6 text-[#043e75]' />
-              Detail Rute:
-            </h3>
-            <ul className='space-y-3 text-gray-700'>
-              <li className='flex items-start gap-3'>
-                <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
-                <span>
-                  <strong>Permukaan:</strong> Jalan beraspal halus dan rata
-                </span>
-              </li>
-              <li className='flex items-start gap-3'>
-                <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
-                <span>
-                  <strong>Kontur:</strong> Relatif datar dengan beberapa tanjakan ringan
-                </span>
-              </li>
-              <li className='flex items-start gap-3'>
-                <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
-                <span>
-                  <strong>Keamanan:</strong> Jalur ditutup untuk kendaraan selama event, dijaga petugas
-                </span>
-              </li>
-              <li className='flex items-start gap-3'>
-                <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
-                <span>
-                  <strong>Pos Air:</strong> Tersedia di beberapa titik sepanjang rute
-                </span>
-              </li>
-              <li className='flex items-start gap-3'>
-                <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
-                <span>
-                  <strong>Marshal:</strong> Petugas penunjuk arah di setiap simpang
-                </span>
-              </li>
-            </ul>
-          </div>
+
         </div>
       </section>
 
@@ -1048,7 +969,7 @@ export default function RunMadanPage() {
             </div>
             <h2 className='text-4xl md:text-5xl font-black mb-4 text-[#addbf2]'>Dana untuk Kebaikan</h2>
             <p className='text-xl text-white/90 max-w-3xl mx-auto'>
-              50% dana pendaftaran disalurkan untuk mendukung operasional layanan kesehatan <strong>GRATIS</strong> dan program sosial masyarakat.
+              Sebagian dana pendaftaran disalurkan untuk mendukung operasional layanan kesehatan <strong>GRATIS</strong> dan program sosial masyarakat.
               Layanan ambulans dan poliklinik tetap gratis - donasi sukarela sangat dihargai untuk keberlanjutan program.
             </p>
           </div>
@@ -1057,13 +978,18 @@ export default function RunMadanPage() {
             {charityImpacts.map((impact, index) => (
               <div
                 key={index}
-                className='bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300'
+                className='bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden border border-white/20 hover:bg-white/20 transition-all duration-300'
               >
-                <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${impact.color} flex items-center justify-center mb-6`}>
-                  <impact.icon className='h-8 w-8 text-white' />
+                <div className='relative aspect-video w-full'>
+                  <Image src={impact.image} alt={impact.title} fill className='object-cover' />
                 </div>
-                <h3 className='text-xl font-bold mb-3 text-white'>{impact.title}</h3>
-                <p className='text-white/90'>{impact.description}</p>
+                <div className='p-6'>
+                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${impact.color} flex items-center justify-center mb-4`}>
+                    <impact.icon className='h-8 w-8 text-white' />
+                  </div>
+                  <h3 className='text-xl font-bold mb-3 text-white'>{impact.title}</h3>
+                  <p className='text-white/90'>{impact.description}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -1112,13 +1038,13 @@ export default function RunMadanPage() {
                 {
                   step: 2,
                   title: 'Transfer Biaya Pendaftaran',
-                  description: 'Transfer Rp 50.000 ke rekening BCA 1150014682682 a.n. Masjid Al Muhajirin',
+                  description: 'Transfer Rp 100.000 ke rekening Bank Muamalat 707.000.7500 a.n. LAZ Muhajirin Rewwin',
                   icon: Wallet,
                 },
                 {
                   step: 3,
                   title: 'Konfirmasi via WhatsApp',
-                  description: 'Kirim bukti transfer + data peserta (nama, usia, ukuran jersey) ke WhatsApp 0813-1407-3434',
+                  description: 'Kirim bukti transfer + data peserta (nama, usia, ukuran jersey) ke WhatsApp +62 812-5906-0690',
                   icon: Phone,
                 },
                 {
@@ -1146,39 +1072,61 @@ export default function RunMadanPage() {
               ))}
             </div>
 
-            {/* Bank Account */}
+            {/* Bank Account & Payment Methods */}
             <div className='bg-[#addbf2] rounded-2xl p-8'>
-              <h3 className='text-2xl font-bold mb-6 text-center text-[#043e75]'>Rekening Pendaftaran</h3>
+              <h3 className='text-2xl font-bold mb-6 text-center text-[#043e75]'>Metode Pembayaran</h3>
+
+              {/* Bank Transfer */}
               <div className='bg-white rounded-xl p-6 border-2 border-[#043e75] mb-6 shadow-lg'>
-                <div className='grid md:grid-cols-3 gap-4 text-center'>
+                <h4 className='text-lg font-bold text-center text-[#043e75] mb-4'>Transfer Bank</h4>
+                <div className='grid md:grid-cols-3 gap-4 text-center mb-4'>
                   <div>
                     <div className='text-sm text-gray-600 mb-1'>Bank</div>
-                    <div className='text-xl font-black text-[#043e75]'>BCA</div>
+                    <div className='text-xl font-black text-[#043e75]'>Bank Muamalat</div>
                   </div>
                   <div>
                     <div className='text-sm text-gray-600 mb-1'>Nomor Rekening</div>
-                    <div className='text-xl font-black text-[#043e75]'>1150014682682</div>
+                    <div className='text-xl font-black text-[#043e75]'>707.000.7500</div>
                   </div>
                   <div>
                     <div className='text-sm text-gray-600 mb-1'>Atas Nama</div>
-                    <div className='text-xl font-black text-[#043e75]'>Masjid Al Muhajirin</div>
+                    <div className='text-xl font-black text-[#043e75]'>LAZ Muhajirin Rewwin</div>
                   </div>
                 </div>
+                <div className='flex justify-center'>
+                  <button
+                    onClick={handleCopy}
+                    className='bg-[#043e75] text-white px-6 py-3 rounded-xl font-bold hover:bg-[#4e8fc0] transition-all duration-300 flex items-center gap-2 shadow-md'
+                  >
+                    {copied ? <Check className='h-5 w-5' /> : <Copy className='h-5 w-5' />}
+                    {copied ? 'Tersalin!' : 'Salin Nomor Rekening'}
+                  </button>
+                </div>
               </div>
-              <div className='flex flex-wrap gap-4 justify-center'>
-                <button
-                  onClick={handleCopy}
-                  className='bg-white text-[#043e75] px-6 py-3 rounded-xl font-bold hover:bg-gray-100 transition-all duration-300 flex items-center gap-2 shadow-md'
-                >
-                  {copied ? <Check className='h-5 w-5' /> : <Copy className='h-5 w-5' />}
-                  {copied ? 'Tersalin!' : 'Salin Nomor Rekening'}
-                </button>
+
+              {/* QRIS */}
+              <div className='bg-white rounded-xl p-6 border-2 border-[#043e75] mb-6 shadow-lg'>
+                <h4 className='text-lg font-bold text-center text-[#043e75] mb-4'>Scan QRIS</h4>
+                <div className='max-w-xs mx-auto'>
+                  <Image
+                    src='/images/laz/q-ris-lazmu.jpeg'
+                    alt='QRIS LAZMU'
+                    width={300}
+                    height={300}
+                    className='w-full h-auto rounded-lg'
+                  />
+                  <p className='text-center text-sm text-gray-600 mt-3'>Scan untuk pembayaran via QRIS</p>
+                </div>
+              </div>
+
+              <div className='flex justify-center'>
                 <button
                   onClick={handleWhatsApp}
-                  className='bg-[#043e75] text-white px-6 py-3 rounded-xl font-bold hover:bg-[#4e8fc0] transition-all duration-300 flex items-center gap-2 shadow-md'
+                  className='bg-[#043e75] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#4e8fc0] transition-all duration-300 flex items-center gap-3 shadow-md'
                 >
                   <Phone className='h-5 w-5' />
-                  Konfirmasi via WhatsApp
+                  Konfirmasi & Informasi: +62 812-5906-0690
+                  <ArrowRight className='h-5 w-5' />
                 </button>
               </div>
             </div>
@@ -1215,6 +1163,25 @@ export default function RunMadanPage() {
                   </span>
                 </li>
               </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Couple Jogging Image Section */}
+      <section className='py-16 bg-white'>
+        <div className='container mx-auto px-4'>
+          <div className='max-w-5xl mx-auto'>
+            <div className='relative aspect-[16/9] w-full rounded-3xl overflow-hidden shadow-2xl'>
+              <Image src='/images/events/pasangan-jogging.jpg' alt='Pasangan jogging bersama' fill className='object-cover' />
+              <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent' />
+              <div className='absolute bottom-0 left-0 right-0 p-8 md:p-12'>
+                <h3 className='text-3xl md:text-5xl font-black text-white mb-3 drop-shadow-xl'>Bukan Lomba, Tapi Kebersamaan</h3>
+                <p className='text-lg md:text-xl text-white/95 font-semibold drop-shadow-lg max-w-3xl'>
+                  Run-Madan adalah tentang membangun gaya hidup sehat bersama, bukan tentang siapa yang paling cepat. Mari berlari santai dan nikmati
+                  kebersamaan!
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -1299,7 +1266,7 @@ export default function RunMadanPage() {
           <div className='mt-12 flex flex-wrap justify-center gap-8 text-white/80'>
             <div className='flex items-center gap-2'>
               <Phone className='h-5 w-5' />
-              <span className='font-semibold'>0813-1407-3434</span>
+              <span className='font-semibold'>WhatsApp Only: +62 812-5906-0690</span>
             </div>
             <div className='flex items-center gap-2'>
               <MapPin className='h-5 w-5' />
