@@ -30,6 +30,10 @@ import {
   Building2,
   Star,
   ChevronRight,
+  Download,
+  QrCode,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 
 // Form types
@@ -99,6 +103,7 @@ export default function RunMadanPage() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [registrationData, setRegistrationData] = useState<RegistrationData | null>(null);
   const [formErrors, setFormErrors] = useState<string[]>([]);
+  const [showQrisInModal, setShowQrisInModal] = useState(false);
 
   // Countdown timer
   useEffect(() => {
@@ -150,6 +155,16 @@ export default function RunMadanPage() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  };
+
+  // Download QRIS image
+  const downloadQris = () => {
+    const link = document.createElement('a');
+    link.href = '/images/QRIS-BRI-AlMuhajirin.jpeg';
+    link.download = 'QRIS-BRI-AlMuhajirin.jpeg';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   // Add participant
@@ -1334,9 +1349,18 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                     alt='QRIS BRI Al Muhajirin'
                     width={400}
                     height={400}
-                    className='w-full h-auto rounded-lg'
+                    className='w-full h-auto rounded-lg shadow-md'
                   />
-                  <p className='text-center text-sm text-gray-600 mt-3'>Scan untuk pembayaran via QRIS</p>
+                  <p className='text-center text-sm text-gray-600 mt-3 mb-4'>Scan untuk pembayaran via QRIS</p>
+                  <div className='flex justify-center'>
+                    <button
+                      onClick={downloadQris}
+                      className='bg-[#043e75] text-white px-6 py-3 rounded-xl font-bold hover:bg-[#4e8fc0] transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-xl'
+                    >
+                      <Download className='h-5 w-5' />
+                      Download QRIS
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -1749,13 +1773,39 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                       Rp {registrationData.totalBiaya.toLocaleString('id-ID')}
                     </div>
                   </div>
-                  <div className='bg-white rounded-lg p-4 border border-yellow-300'>
-                    <div className='text-sm font-semibold text-yellow-800 mb-2'>
-                      Atau scan QRIS:
-                    </div>
-                    <div className='text-xs text-gray-600'>
-                      Lihat QR Code QRIS di bagian &quot;Cara Pendaftaran&quot; di atas
-                    </div>
+                  <div className='bg-white rounded-lg p-4 border-2 border-[#043e75]'>
+                    <button
+                      onClick={() => setShowQrisInModal(!showQrisInModal)}
+                      className='w-full flex items-center justify-between text-left font-semibold text-[#043e75] hover:text-[#4e8fc0] transition-colors duration-200'
+                    >
+                      <span className='flex items-center gap-2'>
+                        <QrCode className='h-5 w-5' />
+                        Atau scan QRIS
+                      </span>
+                      {showQrisInModal ? <ChevronUp className='h-5 w-5' /> : <ChevronDown className='h-5 w-5' />}
+                    </button>
+
+                    {showQrisInModal && (
+                      <div className='mt-4 space-y-3 animate-in fade-in duration-300'>
+                        <div className='bg-gray-50 rounded-lg p-4'>
+                          <Image
+                            src='/images/QRIS-BRI-AlMuhajirin.jpeg'
+                            alt='QRIS BRI Al Muhajirin'
+                            width={400}
+                            height={400}
+                            className='w-full h-auto rounded-lg shadow-lg'
+                          />
+                          <p className='text-center text-xs text-gray-600 mt-2'>Scan QR Code untuk pembayaran</p>
+                        </div>
+                        <button
+                          onClick={downloadQris}
+                          className='w-full bg-[#043e75] text-white px-4 py-3 rounded-lg font-bold hover:bg-[#4e8fc0] transition-all duration-300 flex items-center justify-center gap-2 shadow-md'
+                        >
+                          <Download className='h-5 w-5' />
+                          Download QRIS
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
