@@ -55,7 +55,7 @@ const Header = () => {
           <div className='flex items-center gap-4'>
             <Button asChild size='sm'>
               <Link href='https://guntar.vercel.app/' target='_blank'>
-                Manajemen Inovasi
+                Yayasan Al Muhajirin Rewwin
               </Link>
             </Button>
             <Profile />

@@ -87,23 +87,14 @@ export default function RunMadanPage() {
   const categories = [
     {
       id: '3K',
-      name: '3K Kids Run',
+      name: '3K Fun Run',
       distance: '3 Kilometer',
-      icon: Baby,
-      participants: 'Anak-anak (Maksimal usia SMP/15 tahun)',
+      icon: Users,
+      participants: 'Semua Usia - Anak-anak, Dewasa, Keluarga',
       price: 50000,
       cot: '60 Menit',
       color: 'from-[#72b4d7] to-[#4e8fc0]',
-    },
-    {
-      id: '5K',
-      name: '5K Run',
-      distance: '5 Kilometer',
-      icon: User,
-      participants: 'Dewasa (16 tahun ke atas)',
-      price: 100000,
-      cot: '90 Menit',
-      color: 'from-[#4e8fc0] to-[#043e75]',
+      note: 'Anak-anak wajib didampingi orang tua/wali',
     },
   ];
 
@@ -111,11 +102,12 @@ export default function RunMadanPage() {
   const allBenefits = [
     'Jersey Run-Madan eksklusif',
     'Race bib dengan nomor unik',
-    'Medali finisher (finish di bawah COT)',
+    'Medali finisher',
     'Sertifikat digital',
     'Doorprize menarik',
-    'Goodie bag berisi produk sponsor (5K)',
+    'Goodie bag berisi produk sponsor',
     'Snack & air mineral',
+    'Sesi edukasi kesehatan GRATIS',
   ];
 
   // Race day schedule
@@ -123,10 +115,9 @@ export default function RunMadanPage() {
     { time: '04:30 - 05:15', activity: 'Registrasi Ulang & Pengambilan Race Kit', icon: CheckCircle2 },
     { time: '05:15 - 05:25', activity: 'Senam Pemanasan Bersama', icon: DumbbellIcon },
     { time: '05:15 - 06:00', activity: 'Senam Terapi Kesehatan (Ibu-ibu & Lansia)', icon: HeartPulse },
-    { time: '05:30', activity: 'Start 5K Run', icon: Zap },
-    { time: '05:35', activity: 'Start 3K Kids Run', icon: Zap },
+    { time: '05:30', activity: 'Start 3K Fun Run', icon: Zap },
     { time: '06:30 - 08:00', activity: 'Finisher Area & Refreshment', icon: Gift },
-    { time: '08:00 - 08:30', activity: 'Pengumuman Pemenang & Doorprize', icon: Trophy },
+    { time: '08:00 - 08:30', activity: 'Pengumuman & Doorprize', icon: Trophy },
     { time: '08:30 - 09:00', activity: 'Foto Bersama & Closing', icon: Award },
   ];
 
@@ -177,20 +168,39 @@ export default function RunMadanPage() {
   // FAQ data
   const faqs = [
     {
+      question: 'Apakah Run-Madan ini lomba lari?',
+      answer:
+        'BUKAN! Run-Madan adalah Edu Run - kegiatan lari santai yang bersifat non-kompetitif dengan fokus pada edukasi kesehatan. Tidak ada klasemen waktu, tidak ada pemenang tercepat, dan tidak ada hadiah untuk yang tercepat. Ini adalah kegiatan untuk bersenang-senang sambil belajar tentang kesehatan.',
+    },
+    {
+      question: 'Saya belum pernah ikut lari sebelumnya, apakah boleh ikut?',
+      answer:
+        'Sangat boleh! Run-Madan dirancang khusus untuk pelari pemula dan keluarga. Jarak hanya 3K dengan rute datar, waktu COT sangat longgar, dan akan ada sesi edukasi kesehatan yang mengajarkan cara memulai lari dengan aman. Tidak ada tekanan untuk cepat - yang penting Anda bergerak dan bersenang-senang!',
+    },
+    {
       question: 'Apakah ada batas usia untuk mengikuti Run-Madan?',
-      answer: 'Kategori 3K untuk anak-anak maksimal usia SMP (15 tahun). Kategori 5K untuk dewasa (16 tahun ke atas). Tidak ada batas usia maksimal, namun peserta harus dalam kondisi sehat dan fit.',
+      answer:
+        'Semua usia boleh ikut! Dari anak-anak hingga lansia. Tidak ada batas usia maksimal, namun peserta harus dalam kondisi sehat dan fit. Anak-anak wajib didampingi orang tua/wali. Lansia sangat dipersilakan ikut - bahkan ada senam terapi kesehatan khusus untuk ibu-ibu dan lansia!',
     },
     {
       question: 'Apa yang saya dapatkan setelah mendaftar?',
-      answer: 'Peserta akan mendapatkan jersey eksklusif, race bib, medali (jika finish di bawah COT), sertifikat digital, snack, air mineral, dan kesempatan memenangkan doorprize.',
+      answer:
+        'Peserta akan mendapatkan jersey eksklusif, race bib, medali (jika finish di bawah COT), sertifikat digital, snack, air mineral, PLUS bonus sesi edukasi kesehatan GRATIS tentang "From Couch to 5K" dan "Terapi Running", serta kesempatan memenangkan doorprize.',
     },
     {
       question: 'Bagaimana cara pendaftaran?',
-      answer: 'Pendaftaran dilakukan dengan transfer ke rekening BCA 1150014682682 a.n. Masjid Al Muhajirin. Setelah transfer, konfirmasi via WhatsApp ke 0813-1407-3434 dengan melampirkan bukti transfer dan data peserta.',
+      answer:
+        'Pendaftaran dilakukan dengan transfer ke rekening BCA 1150014682682 a.n. Masjid Al Muhajirin. Setelah transfer, konfirmasi via WhatsApp ke 0813-1407-3434 dengan melampirkan bukti transfer dan data peserta.',
     },
     {
       question: 'Apakah ada COT (Cut Off Time)?',
-      answer: 'Ya. COT untuk 5K adalah 90 menit, COT untuk 3K adalah 60 menit. Peserta yang finish di bawah COT akan mendapatkan medali finisher.',
+      answer:
+        'Ya, tapi sangat longgar! COT untuk 3K adalah 60 menit (20 menit/km). Ini artinya Anda bisa jalan santai pun masih sempat finish. Medali diberikan untuk semua yang finish di bawah COT. Ingat, ini bukan lomba - tidak apa-apa berjalan kaki atau santai saja!',
+    },
+    {
+      question: 'Saya tidak kuat lari jauh, boleh jalan kaki saja?',
+      answer:
+        'Tentu saja boleh! Run-Madan adalah kegiatan santai dan non-kompetitif. Anda bisa kombinasi jalan dan lari, atau jalan kaki saja. Yang penting Anda aktif bergerak dan menikmati kebersamaan. COT sangat longgar sehingga jalan kaki pun masih bisa finish dengan tenang.',
     },
     {
       question: 'Bagaimana jika cuaca buruk?',
@@ -198,99 +208,95 @@ export default function RunMadanPage() {
     },
     {
       question: 'Apakah dana pendaftaran bisa dikembalikan?',
-      answer: 'Dana pendaftaran tidak dapat dikembalikan (non-refundable) karena telah dialokasikan untuk produksi jersey, medali, dan operasional event.',
+      answer:
+        'Dana pendaftaran tidak dapat dikembalikan (non-refundable) karena telah dialokasikan untuk produksi jersey, medali, dan operasional event.',
     },
     {
       question: 'Untuk apa dana pendaftaran digunakan?',
-      answer: 'Dana pendaftaran digunakan untuk operasional event (jersey, medali, dan konsumsi) serta sebagian disalurkan untuk mendukung operasional layanan ambulans dan poliklinik Al Muhajirin yang GRATIS untuk masyarakat, juga program sosial LAZMU. Uang pendaftaran TIDAK digunakan untuk pengadaan hadiah atau doorprize. Layanan kesehatan tetap gratis - donasi sukarela diterima untuk keberlanjutan program.',
+      answer:
+        'Dana pendaftaran digunakan untuk operasional event (jersey, medali, dan konsumsi) serta sebagian disalurkan untuk mendukung operasional layanan ambulans dan poliklinik Al Muhajirin yang GRATIS untuk masyarakat, juga program sosial LAZMU. Uang pendaftaran TIDAK digunakan untuk pengadaan hadiah atau doorprize. Layanan kesehatan tetap gratis - donasi sukarela diterima untuk keberlanjutan program.',
     },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className='min-h-screen bg-gradient-to-b from-slate-50 to-white'>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#043e75] via-[#4e8fc0] to-[#72b4d7] text-white">
+      <section className='relative overflow-hidden bg-gradient-to-br from-[#043e75] via-[#4e8fc0] to-[#72b4d7] text-white'>
         {/* Decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#addbf2]/20 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 -left-40 w-96 h-96 bg-[#72b4d7]/20 rounded-full blur-3xl" />
-          <div className="absolute -bottom-40 right-1/3 w-80 h-80 bg-[#4e8fc0]/20 rounded-full blur-3xl" />
+        <div className='absolute inset-0 overflow-hidden'>
+          <div className='absolute -top-40 -right-40 w-80 h-80 bg-[#addbf2]/20 rounded-full blur-3xl' />
+          <div className='absolute top-1/2 -left-40 w-96 h-96 bg-[#72b4d7]/20 rounded-full blur-3xl' />
+          <div className='absolute -bottom-40 right-1/3 w-80 h-80 bg-[#4e8fc0]/20 rounded-full blur-3xl' />
         </div>
 
-        <div className="relative container mx-auto px-4 py-16 md:py-24">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className='relative container mx-auto px-4 py-16 md:py-24'>
+          <div className='grid md:grid-cols-2 gap-12 items-center'>
             {/* Left: Event Info */}
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold">
-                <Zap className="h-4 w-4" />
+            <div className='space-y-6'>
+              <div className='inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold'>
+                <Zap className='h-4 w-4' />
                 Tarhib Ramadhan 1447H
               </div>
 
-              <h1 className="text-5xl md:text-7xl font-black tracking-tight text-[#addbf2]">
+              <h1 className='text-5xl md:text-7xl font-black tracking-tight text-[#addbf2]'>
                 RUN-MADAN
-                <span className="block text-3xl md:text-4xl font-bold text-white mt-2">
-                  2026
-                </span>
+                <span className='block text-3xl md:text-4xl font-bold text-white mt-2'>2026</span>
               </h1>
 
-              <p className="text-xl md:text-2xl text-white/90 font-medium">
-                Berlari Sehat, Berbagi Peduli
-              </p>
-              <p className="text-lg text-white/80">
-                Lari Amal Menyambut Ramadhan & Memperkenalkan Layanan Kesehatan Gratis
+              <p className='text-xl md:text-2xl text-white/90 font-medium'>Lari Santai Ramah Pemula, Edukasi Kesehatan</p>
+              <p className='text-lg text-white/80'>
+                Bukan Lomba! Ini adalah Edu Run untuk semua kalangan - Menyambut Ramadhan & Memperkenalkan Layanan Kesehatan Gratis
               </p>
 
-              <div className="flex flex-wrap gap-4 text-sm">
-                <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg">
-                  <Calendar className="h-5 w-5" />
-                  <span className="font-semibold">Minggu, 8 Februari 2026</span>
+              <div className='flex flex-wrap gap-4 text-sm'>
+                <div className='flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg'>
+                  <Calendar className='h-5 w-5' />
+                  <span className='font-semibold'>Minggu, 8 Februari 2026</span>
                 </div>
-                <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg">
-                  <Clock className="h-5 w-5" />
-                  <span className="font-semibold">Start 05:30 WIB</span>
+                <div className='flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg'>
+                  <Clock className='h-5 w-5' />
+                  <span className='font-semibold'>Start 05:30 WIB</span>
                 </div>
-                <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg">
-                  <MapPin className="h-5 w-5" />
-                  <span className="font-semibold">Masjid Al Muhajirin Rewwin</span>
+                <div className='flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg'>
+                  <MapPin className='h-5 w-5' />
+                  <span className='font-semibold'>Masjid Al Muhajirin Rewwin</span>
                 </div>
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-wrap gap-4 pt-4">
+              <div className='flex flex-wrap gap-4 pt-4'>
                 <button
                   onClick={handleWhatsApp}
-                  className="bg-white text-[#043e75] px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#addbf2] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center gap-2"
+                  className='bg-white text-[#043e75] px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#addbf2] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center gap-2'
                 >
-                  <Phone className="h-5 w-5" />
+                  <Phone className='h-5 w-5' />
                   Daftar Sekarang
-                  <ArrowRight className="h-5 w-5" />
+                  <ArrowRight className='h-5 w-5' />
                 </button>
                 <button
                   onClick={handleShare}
-                  className="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-2"
+                  className='bg-white/10 backdrop-blur-sm border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-2'
                 >
-                  <Share2 className="h-5 w-5" />
+                  <Share2 className='h-5 w-5' />
                   Share Event
                 </button>
               </div>
 
               {/* Countdown Timer */}
-              <div className="bg-black/20 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-                <h3 className="text-sm font-semibold mb-4 text-[#addbf2] uppercase tracking-wider">
-                  Event dimulai dalam:
-                </h3>
-                <div className="grid grid-cols-4 gap-3">
+              <div className='bg-black/20 backdrop-blur-md rounded-2xl p-6 border border-white/20'>
+                <h3 className='text-sm font-semibold mb-4 text-[#addbf2] uppercase tracking-wider'>Event dimulai dalam:</h3>
+                <div className='grid grid-cols-4 gap-3'>
                   {[
                     { label: 'Hari', value: timeLeft.days },
                     { label: 'Jam', value: timeLeft.hours },
                     { label: 'Menit', value: timeLeft.minutes },
                     { label: 'Detik', value: timeLeft.seconds },
                   ].map((item) => (
-                    <div key={item.label} className="text-center">
-                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 mb-2">
-                        <div className="text-3xl md:text-4xl font-black">{item.value}</div>
+                    <div key={item.label} className='text-center'>
+                      <div className='bg-white/10 backdrop-blur-sm rounded-xl p-3 mb-2'>
+                        <div className='text-3xl md:text-4xl font-black'>{item.value}</div>
                       </div>
-                      <div className="text-xs font-medium text-white/80">{item.label}</div>
+                      <div className='text-xs font-medium text-white/80'>{item.label}</div>
                     </div>
                   ))}
                 </div>
@@ -298,29 +304,29 @@ export default function RunMadanPage() {
             </div>
 
             {/* Right: Logo & Image */}
-            <div className="relative">
-              <div className="relative aspect-square max-w-md mx-auto">
+            <div className='relative'>
+              <div className='relative aspect-square max-w-md mx-auto'>
                 {/* Glowing background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#addbf2]/40 to-[#72b4d7]/40 rounded-full blur-3xl" />
+                <div className='absolute inset-0 bg-gradient-to-br from-[#addbf2]/40 to-[#72b4d7]/40 rounded-full blur-3xl' />
 
                 {/* Logo container with white gradient background */}
-                <div className="relative bg-gradient-to-br from-white via-white to-[#addbf2]/30 rounded-full p-8 shadow-2xl">
+                <div className='relative bg-gradient-to-br from-white via-white to-[#addbf2]/30 rounded-full p-8 shadow-2xl'>
                   <Image
-                    src="/images/masjid/logo-run-madan.png"
-                    alt="Run-Madan 2026 Logo"
+                    src='/images/masjid/logo-run-madan.png'
+                    alt='Run-Madan 2026 Logo'
                     width={500}
                     height={500}
-                    className="w-full h-auto drop-shadow-xl"
+                    className='w-full h-auto drop-shadow-xl'
                     priority
                   />
                 </div>
 
                 {/* Floating badges */}
-                <div className="absolute -top-4 -right-4 bg-[#addbf2] text-[#043e75] px-6 py-3 rounded-full font-black text-sm shadow-lg rotate-12">
-                  3K & 5K
+                <div className='absolute -top-4 -right-4 bg-[#addbf2] text-[#043e75] px-6 py-3 rounded-full font-black text-sm shadow-lg rotate-12'>
+                  3K Fun Run
                 </div>
-                <div className="absolute -bottom-4 -left-4 bg-white text-[#043e75] px-6 py-3 rounded-full font-black text-sm shadow-lg -rotate-12 border-2 border-[#043e75]">
-                  Charity Run
+                <div className='absolute -bottom-4 -left-4 bg-white text-[#043e75] px-6 py-3 rounded-full font-black text-sm shadow-lg -rotate-12 border-2 border-[#043e75]'>
+                  Edu Run
                 </div>
               </div>
             </div>
@@ -329,24 +335,24 @@ export default function RunMadanPage() {
       </section>
 
       {/* Quick Stats */}
-      <section className="py-12 bg-white border-b border-gray-200">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <section className='py-12 bg-white border-b border-gray-200'>
+        <div className='container mx-auto px-4'>
+          <div className='grid grid-cols-2 md:grid-cols-4 gap-6'>
             {[
-              { icon: Baby, label: '3K', value: 'Untuk Anak', color: 'from-[#72b4d7] to-[#4e8fc0]' },
-              { icon: User, label: '5K', value: 'Untuk Dewasa', color: 'from-[#4e8fc0] to-[#043e75]' },
-              { icon: Trophy, label: 'Hadiah', value: 'Trophy & Medali', color: 'from-[#addbf2] to-[#72b4d7]' },
-              { icon: Heart, label: 'Untuk Amal', value: '50%', color: 'from-[#043e75] to-[#4e8fc0]' },
+              { icon: Users, label: '3K Fun Run', value: 'Semua Usia', color: 'from-[#72b4d7] to-[#4e8fc0]' },
+              { icon: Activity, label: 'Non-Kompetitif', value: 'Santai Saja', color: 'from-[#4e8fc0] to-[#043e75]' },
+              { icon: HeartPulse, label: 'Edukasi', value: 'Gratis!', color: 'from-[#addbf2] to-[#72b4d7]' },
+              { icon: Heart, label: 'Amal Sosial', value: '50%', color: 'from-[#043e75] to-[#4e8fc0]' },
             ].map((stat, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 text-center border border-gray-200 hover:shadow-lg transition-shadow duration-300"
+                className='bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 text-center border border-gray-200 hover:shadow-lg transition-shadow duration-300'
               >
                 <div className={`w-14 h-14 mx-auto mb-4 rounded-xl bg-gradient-to-r ${stat.color} flex items-center justify-center`}>
-                  <stat.icon className="h-7 w-7 text-white" />
+                  <stat.icon className='h-7 w-7 text-white' />
                 </div>
-                <div className="text-3xl font-black text-gray-900 mb-1">{stat.value}</div>
-                <div className="text-xl font-bold text-gray-900">{stat.label}</div>
+                <div className='text-3xl font-black text-gray-900 mb-1'>{stat.value}</div>
+                <div className='text-xl font-bold text-gray-900'>{stat.label}</div>
               </div>
             ))}
           </div>
@@ -354,36 +360,35 @@ export default function RunMadanPage() {
       </section>
 
       {/* About Event */}
-      <section className="py-16 bg-gradient-to-b from-white to-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
-              Tentang Run-Madan 2026
-            </h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-4">
-              Run-Madan adalah event lari amal yang diselenggarakan oleh <strong>Masjid Al Muhajirin Rewwin</strong> untuk menyambut bulan suci Ramadhan 1447H. Event ini bukan hanya tentang berlari, tetapi juga tentang <strong>solidaritas, kesehatan, dan berbagi kebaikan</strong>.
+      <section className='py-16 bg-gradient-to-b from-white to-gray-50'>
+        <div className='container mx-auto px-4'>
+          <div className='max-w-4xl mx-auto text-center mb-12'>
+            <h2 className='text-4xl md:text-5xl font-black text-gray-900 mb-6'>Tentang Run-Madan 2026</h2>
+            <p className='text-lg text-gray-700 leading-relaxed mb-4'>
+              Run-Madan adalah event <strong>lari santai dan edukasi kesehatan</strong> yang diselenggarakan oleh{' '}
+              <strong>Masjid Al Muhajirin Rewwin</strong> untuk menyambut bulan suci Ramadhan 1447H.
             </p>
-            <p className="text-lg text-gray-700 leading-relaxed mb-8 bg-[#addbf2]/20 p-6 rounded-xl border-2 border-[#043e75]">
-              <strong className="text-[#043e75] text-xl">Lebih dari Sekadar Lari:</strong><br />
-              Run-Madan 2026 juga menjadi momentum untuk <strong>memperkenalkan layanan kesehatan gratis</strong> kami kepada seluruh warga Rewwin dan sekitarnya: <strong>Poliklinik Al Muhajirin</strong> dan <strong>Layanan Ambulans 24/7</strong>. Melalui event ini, kami ingin lebih banyak warga mengenal dan memanfaatkan layanan kesehatan yang telah kami sediakan untuk kesejahteraan bersama.
+
+            <p className='text-lg text-gray-700 leading-relaxed mb-8 bg-[#addbf2]/20 p-6 rounded-xl border-2 border-[#043e75]'>
+              <strong className='text-[#043e75] text-xl'>Media Edukasi & Sosialisasi:</strong>
+              <br />
+              Melalui pendekatan olahraga yang ringan dan ramah pemula, Run-Madan 2026 menjadi momentum untuk{' '}
+              <strong>memperkenalkan layanan kesehatan gratis</strong> kami kepada seluruh warga Rewwin dan sekitarnya:{' '}
+              <strong>Poliklinik Al Muhajirin</strong> dan <strong>Layanan Ambulans 24/7</strong>. Kami ingin meningkatkan kesadaran masyarakat
+              terhadap pentingnya kesehatan sekaligus memperkenalkan fasilitas yang telah tersedia di lingkungan masjid.
             </p>
 
             {/* Featured Image */}
-            <div className="relative aspect-[16/9] max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-2xl mb-12">
-              <Image
-                src="/images/masjid/pasangan-lari.jpg"
-                alt="Pasangan berlari bersama di Run-Madan"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 text-white">
-                <p className="text-xl font-bold drop-shadow-lg">Berlari Bersama, Berbagi Kebaikan</p>
+            <div className='relative aspect-[16/9] max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-2xl mb-12'>
+              <Image src='/images/masjid/pasangan-lari.jpg' alt='Pasangan berlari bersama di Run-Madan' fill className='object-cover' />
+              <div className='absolute inset-0 bg-gradient-to-t from-black/40 to-transparent' />
+              <div className='absolute bottom-6 left-6 right-6 text-white'>
+                <p className='text-xl font-bold drop-shadow-lg'>Berlari Bersama, Berbagi Kebaikan</p>
               </div>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className='grid md:grid-cols-3 gap-8 max-w-6xl mx-auto'>
             {[
               {
                 icon: HeartPulse,
@@ -404,15 +409,12 @@ export default function RunMadanPage() {
                 color: 'from-[#72b4d7] to-[#addbf2]',
               },
             ].map((item, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
-              >
+              <div key={index} className='bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100'>
                 <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${item.color} flex items-center justify-center mb-6`}>
-                  <item.icon className="h-8 w-8 text-white" />
+                  <item.icon className='h-8 w-8 text-white' />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                <h3 className='text-xl font-bold text-gray-900 mb-3'>{item.title}</h3>
+                <p className='text-gray-600 leading-relaxed'>{item.description}</p>
               </div>
             ))}
           </div>
@@ -420,108 +422,114 @@ export default function RunMadanPage() {
       </section>
 
       {/* Health Services Programs */}
-      <section className="py-16 bg-gradient-to-b from-white to-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-[#addbf2] text-[#043e75] px-4 py-2 rounded-full font-semibold mb-4">
-              <HeartPulse className="h-5 w-5" />
+      <section className='py-16 bg-gradient-to-b from-white to-gray-50'>
+        <div className='container mx-auto px-4'>
+          <div className='text-center mb-12'>
+            <div className='inline-flex items-center gap-2 bg-[#addbf2] text-[#043e75] px-4 py-2 rounded-full font-semibold mb-4'>
+              <HeartPulse className='h-5 w-5' />
               Program Layanan Kesehatan
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
-              Kenali Layanan Kesehatan Kami
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Run-Madan 2026 adalah kesempatan untuk mengenal lebih dekat layanan kesehatan gratis yang telah kami sediakan untuk warga Rewwin dan sekitarnya
+            <h2 className='text-4xl md:text-5xl font-black text-gray-900 mb-4'>Kenali Layanan Kesehatan Kami</h2>
+            <p className='text-lg text-gray-600 max-w-3xl mx-auto'>
+              Run-Madan 2026 adalah kesempatan untuk mengenal lebih dekat layanan kesehatan gratis yang telah kami sediakan untuk warga Rewwin dan
+              sekitarnya
             </p>
           </div>
 
           {/* Main Health Services */}
-          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 mb-12">
+          <div className='max-w-5xl mx-auto grid md:grid-cols-2 gap-8 mb-12'>
             {/* Poliklinik */}
-            <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-[#043e75]">
-              <div className="w-16 h-16 rounded-xl bg-gradient-to-r from-[#043e75] to-[#4e8fc0] flex items-center justify-center mb-6">
-                <Building2 className="h-8 w-8 text-white" />
+            <div className='bg-white rounded-2xl p-8 shadow-xl border-2 border-[#043e75]'>
+              <div className='w-16 h-16 rounded-xl bg-gradient-to-r from-[#043e75] to-[#4e8fc0] flex items-center justify-center mb-6'>
+                <Building2 className='h-8 w-8 text-white' />
               </div>
-              <h3 className="text-2xl font-black text-[#043e75] mb-4">Poliklinik Al Muhajirin</h3>
-              <p className="text-gray-700 mb-4">
+              <h3 className='text-2xl font-black text-[#043e75] mb-4'>Poliklinik Al Muhajirin</h3>
+              <p className='text-gray-700 mb-4'>
                 Layanan kesehatan umum yang <strong>GRATIS</strong> untuk seluruh warga Rewwin dan sekitarnya.
               </p>
-              <ul className="space-y-2 text-gray-600">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+              <ul className='space-y-2 text-gray-600'>
+                <li className='flex items-start gap-2'>
+                  <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
                   <span>Pemeriksaan kesehatan umum</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <li className='flex items-start gap-2'>
+                  <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
                   <span>Konsultasi kesehatan dengan dokter</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <li className='flex items-start gap-2'>
+                  <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
                   <span>Pelayanan ramah dan profesional</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span><strong>Gratis - Donasi Sukarela Diterima</strong></span>
+                <li className='flex items-start gap-2'>
+                  <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
+                  <span>
+                    <strong>Gratis - Donasi Sukarela Diterima</strong>
+                  </span>
                 </li>
               </ul>
             </div>
 
             {/* Ambulans */}
-            <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-[#043e75]">
-              <div className="w-16 h-16 rounded-xl bg-gradient-to-r from-[#4e8fc0] to-[#72b4d7] flex items-center justify-center mb-6">
-                <Ambulance className="h-8 w-8 text-white" />
+            <div className='bg-white rounded-2xl p-8 shadow-xl border-2 border-[#043e75]'>
+              <div className='w-16 h-16 rounded-xl bg-gradient-to-r from-[#4e8fc0] to-[#72b4d7] flex items-center justify-center mb-6'>
+                <Ambulance className='h-8 w-8 text-white' />
               </div>
-              <h3 className="text-2xl font-black text-[#043e75] mb-4">Layanan Ambulans 24/7</h3>
-              <p className="text-gray-700 mb-4">
+              <h3 className='text-2xl font-black text-[#043e75] mb-4'>Layanan Ambulans 24/7</h3>
+              <p className='text-gray-700 mb-4'>
                 Ambulans siaga <strong>24 jam</strong> untuk keadaan darurat warga Rewwin - <strong>GRATIS</strong>.
               </p>
-              <ul className="space-y-2 text-gray-600">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+              <ul className='space-y-2 text-gray-600'>
+                <li className='flex items-start gap-2'>
+                  <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
                   <span>Siaga 24 jam setiap hari</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <li className='flex items-start gap-2'>
+                  <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
                   <span>Respons cepat untuk keadaan darurat</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <li className='flex items-start gap-2'>
+                  <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
                   <span>Petugas terlatih dan berpengalaman</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span><strong>Gratis - Donasi Sukarela Diterima</strong></span>
+                <li className='flex items-start gap-2'>
+                  <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
+                  <span>
+                    <strong>Gratis - Donasi Sukarela Diterima</strong>
+                  </span>
                 </li>
               </ul>
             </div>
           </div>
 
           {/* Special Programs */}
-          <div className="max-w-5xl mx-auto space-y-8">
+          <div className='max-w-5xl mx-auto space-y-8'>
             {/* Data Registration */}
-            <div className="bg-gradient-to-br from-[#addbf2] to-white rounded-2xl p-8 border-2 border-[#043e75] shadow-lg">
-              <div className="flex items-start gap-6">
-                <div className="w-16 h-16 rounded-xl bg-[#043e75] flex items-center justify-center flex-shrink-0">
-                  <Users className="h-8 w-8 text-white" />
+            <div className='bg-gradient-to-br from-[#addbf2] to-white rounded-2xl p-8 border-2 border-[#043e75] shadow-lg'>
+              <div className='flex items-start gap-6'>
+                <div className='w-16 h-16 rounded-xl bg-[#043e75] flex items-center justify-center flex-shrink-0'>
+                  <Users className='h-8 w-8 text-white' />
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-black text-[#043e75] mb-3">Pendataan Peserta untuk Layanan Kesehatan</h3>
-                  <p className="text-gray-700 mb-4">
-                    <strong>Setelah event lari selesai</strong>, peserta akan mendapat kesempatan untuk mendaftar dan mendata informasi diri agar lebih mudah dikenali saat menggunakan layanan Poliklinik dan Ambulans di masa mendatang.
+                <div className='flex-1'>
+                  <h3 className='text-2xl font-black text-[#043e75] mb-3'>Pendataan Peserta untuk Layanan Kesehatan</h3>
+                  <p className='text-gray-700 mb-4'>
+                    <strong>Setelah event lari selesai</strong>, peserta akan mendapat kesempatan untuk mendaftar dan mendata informasi diri agar
+                    lebih mudah dikenali saat menggunakan layanan Poliklinik dan Ambulans di masa mendatang.
                   </p>
-                  <div className="bg-white rounded-xl p-4 border border-[#043e75]">
-                    <p className="text-sm text-gray-600 mb-2"><strong>Manfaat Pendataan:</strong></p>
-                    <ul className="space-y-2 text-sm text-gray-600">
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                  <div className='bg-white rounded-xl p-4 border border-[#043e75]'>
+                    <p className='text-sm text-gray-600 mb-2'>
+                      <strong>Manfaat Pendataan:</strong>
+                    </p>
+                    <ul className='space-y-2 text-sm text-gray-600'>
+                      <li className='flex items-start gap-2'>
+                        <CheckCircle2 className='h-4 w-4 text-green-600 mt-0.5 flex-shrink-0' />
                         <span>Rekam medis lebih terorganisir</span>
                       </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      <li className='flex items-start gap-2'>
+                        <CheckCircle2 className='h-4 w-4 text-green-600 mt-0.5 flex-shrink-0' />
                         <span>Pelayanan lebih cepat saat keadaan darurat</span>
                       </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      <li className='flex items-start gap-2'>
+                        <CheckCircle2 className='h-4 w-4 text-green-600 mt-0.5 flex-shrink-0' />
                         <span>Notifikasi program kesehatan khusus (lansia, ibu hamil, dll)</span>
                       </li>
                     </ul>
@@ -531,33 +539,34 @@ export default function RunMadanPage() {
             </div>
 
             {/* Elderly Check-up Program */}
-            <div className="bg-gradient-to-br from-white to-[#addbf2]/30 rounded-2xl p-8 border-2 border-[#4e8fc0] shadow-lg">
-              <div className="flex items-start gap-6">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-r from-[#4e8fc0] to-[#043e75] flex items-center justify-center flex-shrink-0">
-                  <HeartPulse className="h-8 w-8 text-white" />
+            <div className='bg-gradient-to-br from-white to-[#addbf2]/30 rounded-2xl p-8 border-2 border-[#4e8fc0] shadow-lg'>
+              <div className='flex items-start gap-6'>
+                <div className='w-16 h-16 rounded-xl bg-gradient-to-r from-[#4e8fc0] to-[#043e75] flex items-center justify-center flex-shrink-0'>
+                  <HeartPulse className='h-8 w-8 text-white' />
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-black text-[#043e75] mb-3">Program Check-Up Lansia</h3>
-                  <p className="text-gray-700 mb-4">
-                    Bagi lansia yang bersedia, kami menawarkan <strong>jadwal kunjungan check-up dan konsultasi kesehatan</strong> rutin di Poliklinik Al Muhajirin.
+                <div className='flex-1'>
+                  <h3 className='text-2xl font-black text-[#043e75] mb-3'>Program Check-Up Lansia</h3>
+                  <p className='text-gray-700 mb-4'>
+                    Bagi lansia yang bersedia, kami menawarkan <strong>jadwal kunjungan check-up dan konsultasi kesehatan</strong> rutin di Poliklinik
+                    Al Muhajirin.
                   </p>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="bg-white rounded-xl p-4 border border-[#043e75]">
-                      <p className="font-bold text-[#043e75] mb-2">Jadwal Layanan:</p>
-                      <ul className="space-y-1 text-sm text-gray-600">
-                        <li className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4 text-[#043e75]" />
+                  <div className='grid md:grid-cols-2 gap-4'>
+                    <div className='bg-white rounded-xl p-4 border border-[#043e75]'>
+                      <p className='font-bold text-[#043e75] mb-2'>Jadwal Layanan:</p>
+                      <ul className='space-y-1 text-sm text-gray-600'>
+                        <li className='flex items-center gap-2'>
+                          <Calendar className='h-4 w-4 text-[#043e75]' />
                           <span>Selasa & Kamis</span>
                         </li>
-                        <li className="flex items-center gap-2">
-                          <Clock className="h-4 w-4 text-[#043e75]" />
+                        <li className='flex items-center gap-2'>
+                          <Clock className='h-4 w-4 text-[#043e75]' />
                           <span>Setiap 3 bulan sekali</span>
                         </li>
                       </ul>
                     </div>
-                    <div className="bg-white rounded-xl p-4 border border-[#043e75]">
-                      <p className="font-bold text-[#043e75] mb-2">Layanan Meliputi:</p>
-                      <ul className="space-y-1 text-sm text-gray-600">
+                    <div className='bg-white rounded-xl p-4 border border-[#043e75]'>
+                      <p className='font-bold text-[#043e75] mb-2'>Layanan Meliputi:</p>
+                      <ul className='space-y-1 text-sm text-gray-600'>
                         <li>• Pemeriksaan tekanan darah</li>
                         <li>• Pemeriksaan gula darah</li>
                         <li>• Konsultasi kesehatan</li>
@@ -565,45 +574,46 @@ export default function RunMadanPage() {
                       </ul>
                     </div>
                   </div>
-                  <div className="mt-4 bg-[#addbf2] rounded-lg p-3 text-center">
-                    <p className="text-sm font-bold text-[#043e75]">✨ Gratis - Donasi Sukarela Diterima ✨</p>
+                  <div className='mt-4 bg-[#addbf2] rounded-lg p-3 text-center'>
+                    <p className='text-sm font-bold text-[#043e75]'>✨ Gratis - Donasi Sukarela Diterima ✨</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Aquatic Exercise Program */}
-            <div className="bg-gradient-to-br from-[#72b4d7]/20 to-white rounded-2xl p-8 border-2 border-[#72b4d7] shadow-lg">
-              <div className="flex items-start gap-6">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-r from-[#72b4d7] to-[#4e8fc0] flex items-center justify-center flex-shrink-0">
-                  <Activity className="h-8 w-8 text-white" />
+            <div className='bg-gradient-to-br from-[#72b4d7]/20 to-white rounded-2xl p-8 border-2 border-[#72b4d7] shadow-lg'>
+              <div className='flex items-start gap-6'>
+                <div className='w-16 h-16 rounded-xl bg-gradient-to-r from-[#72b4d7] to-[#4e8fc0] flex items-center justify-center flex-shrink-0'>
+                  <Activity className='h-8 w-8 text-white' />
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-black text-[#043e75] mb-3">Senam Air untuk Ibu-Ibu Lansia</h3>
-                  <p className="text-gray-700 mb-4">
-                    Program <strong>senam kesehatan di kolam renang</strong> (aqua aerobics/terapi air) khusus untuk ibu-ibu lansia. Aktivitas ini sangat baik untuk melatih dan mempertahankan kekuatan tulang tanpa membebani sendi.
+                <div className='flex-1'>
+                  <h3 className='text-2xl font-black text-[#043e75] mb-3'>Senam Air untuk Ibu-Ibu Lansia</h3>
+                  <p className='text-gray-700 mb-4'>
+                    Program <strong>senam kesehatan di kolam renang</strong> (aqua aerobics/terapi air) khusus untuk ibu-ibu lansia. Aktivitas ini
+                    sangat baik untuk melatih dan mempertahankan kekuatan tulang tanpa membebani sendi.
                   </p>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="bg-white rounded-xl p-4 border border-[#72b4d7]">
-                      <p className="font-bold text-[#043e75] mb-2">Detail Program:</p>
-                      <ul className="space-y-1 text-sm text-gray-600">
-                        <li className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                  <div className='grid md:grid-cols-2 gap-4'>
+                    <div className='bg-white rounded-xl p-4 border border-[#72b4d7]'>
+                      <p className='font-bold text-[#043e75] mb-2'>Detail Program:</p>
+                      <ul className='space-y-1 text-sm text-gray-600'>
+                        <li className='flex items-start gap-2'>
+                          <CheckCircle2 className='h-4 w-4 text-green-600 mt-0.5 flex-shrink-0' />
                           <span>Kolam kedalaman maksimal 90 cm</span>
                         </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                        <li className='flex items-start gap-2'>
+                          <CheckCircle2 className='h-4 w-4 text-green-600 mt-0.5 flex-shrink-0' />
                           <span>Lokasi: Kolam Renang Al Muhajirin</span>
                         </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                        <li className='flex items-start gap-2'>
+                          <CheckCircle2 className='h-4 w-4 text-green-600 mt-0.5 flex-shrink-0' />
                           <span>Dipandu instruktur berpengalaman</span>
                         </li>
                       </ul>
                     </div>
-                    <div className="bg-white rounded-xl p-4 border border-[#72b4d7]">
-                      <p className="font-bold text-[#043e75] mb-2">Manfaat Senam Air:</p>
-                      <ul className="space-y-1 text-sm text-gray-600">
+                    <div className='bg-white rounded-xl p-4 border border-[#72b4d7]'>
+                      <p className='font-bold text-[#043e75] mb-2'>Manfaat Senam Air:</p>
+                      <ul className='space-y-1 text-sm text-gray-600'>
                         <li>• Melatih kekuatan tulang</li>
                         <li>• Tidak membebani sendi</li>
                         <li>• Meningkatkan fleksibilitas</li>
@@ -611,8 +621,8 @@ export default function RunMadanPage() {
                       </ul>
                     </div>
                   </div>
-                  <div className="mt-4 bg-[#72b4d7]/30 rounded-lg p-3 text-center">
-                    <p className="text-sm font-bold text-[#043e75]">📋 Pendaftaran Setelah Event Lari Selesai</p>
+                  <div className='mt-4 bg-[#72b4d7]/30 rounded-lg p-3 text-center'>
+                    <p className='text-sm font-bold text-[#043e75]'>📋 Pendaftaran Setelah Event Lari Selesai</p>
                   </div>
                 </div>
               </div>
@@ -620,41 +630,38 @@ export default function RunMadanPage() {
           </div>
 
           {/* Call to Action */}
-          <div className="max-w-4xl mx-auto mt-12 bg-gradient-to-br from-[#043e75] to-[#4e8fc0] rounded-2xl p-8 text-white text-center">
-            <h3 className="text-2xl md:text-3xl font-black mb-4 text-[#addbf2]">Layanan Gratis, Donasi Sukarela Diterima</h3>
-            <p className="text-lg text-white/90 mb-6">
-              Semua layanan kesehatan kami bersifat <strong>GRATIS</strong> untuk masyarakat. Di sisi lain, kami juga membuka kesempatan bagi siapa saja yang ingin menjadi <strong>donatur tetap</strong> untuk mendukung keberlanjutan program layanan kesehatan ini.
+          <div className='max-w-4xl mx-auto mt-12 bg-gradient-to-br from-[#043e75] to-[#4e8fc0] rounded-2xl p-8 text-white text-center'>
+            <h3 className='text-2xl md:text-3xl font-black mb-4 text-[#addbf2]'>Layanan Gratis, Donasi Sukarela Diterima</h3>
+            <p className='text-lg text-white/90 mb-6'>
+              Semua layanan kesehatan kami bersifat <strong>GRATIS</strong> untuk masyarakat. Di sisi lain, kami juga membuka kesempatan bagi siapa
+              saja yang ingin menjadi <strong>donatur tetap</strong> untuk mendukung keberlanjutan program layanan kesehatan ini.
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className='flex flex-wrap gap-4 justify-center'>
               <a
-                href="https://lazmu.muhajirinrewwin.or.id"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white text-[#043e75] px-8 py-3 rounded-xl font-bold hover:bg-[#addbf2] transition-all duration-300 inline-flex items-center gap-2"
+                href='https://lazmu.muhajirinrewwin.or.id'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='bg-white text-[#043e75] px-8 py-3 rounded-xl font-bold hover:bg-[#addbf2] transition-all duration-300 inline-flex items-center gap-2'
               >
-                <Heart className="h-5 w-5" />
+                <Heart className='h-5 w-5' />
                 Jadi Donatur Tetap
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className='h-5 w-5' />
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Event Categories - Side by Side */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
-              Pilih Kategorimu
-            </h2>
-            <p className="text-lg text-gray-600">
-              Dua kategori lari untuk semua usia - pilih yang sesuai dengan kemampuanmu!
-            </p>
+      {/* Event Category */}
+      <section className='py-16 bg-white'>
+        <div className='container mx-auto px-4'>
+          <div className='text-center mb-12'>
+            <h2 className='text-4xl md:text-5xl font-black text-gray-900 mb-4'>Informasi Pendaftaran</h2>
+            <p className='text-lg text-gray-600'>Run-Madan 2026 - Lari santai 3K untuk semua usia!</p>
           </div>
 
-          {/* Both Categories Displayed */}
-          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 mb-12">
+          {/* Category Card */}
+          <div className='max-w-2xl mx-auto mb-12'>
             {categories.map((category) => {
               const IconComponent = category.icon;
               return (
@@ -663,67 +670,73 @@ export default function RunMadanPage() {
                   className={`bg-gradient-to-br ${category.color} rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300`}
                 >
                   {/* Category Header */}
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
-                      <IconComponent className="h-8 w-8 text-white" />
+                  <div className='flex items-center gap-4 mb-6'>
+                    <div className='w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0'>
+                      <IconComponent className='h-8 w-8 text-white' />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-black text-white">{category.name}</h3>
-                      <p className="text-lg text-white/90">{category.distance}</p>
+                      <h3 className='text-2xl font-black text-white'>{category.name}</h3>
+                      <p className='text-lg text-white/90'>{category.distance}</p>
                     </div>
                   </div>
 
                   {/* Category Details */}
-                  <div className="space-y-4 mb-6">
-                    <div className="flex items-start gap-3">
-                      <Users className="h-5 w-5 text-white mt-1 flex-shrink-0" />
+                  <div className='space-y-4 mb-6'>
+                    <div className='flex items-start gap-3'>
+                      <Users className='h-5 w-5 text-white mt-1 flex-shrink-0' />
                       <div>
-                        <div className="font-bold text-white text-sm">Peserta:</div>
-                        <div className="text-white/90 text-sm">{category.participants}</div>
+                        <div className='font-bold text-white text-sm'>Peserta:</div>
+                        <div className='text-white/90 text-sm'>{category.participants}</div>
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-3">
-                      <Wallet className="h-5 w-5 text-white mt-1 flex-shrink-0" />
+                    <div className='flex items-start gap-3'>
+                      <Wallet className='h-5 w-5 text-white mt-1 flex-shrink-0' />
                       <div>
-                        <div className="font-bold text-white text-sm">Biaya Pendaftaran:</div>
-                        <div className="text-3xl font-black text-white">
-                          Rp {category.price.toLocaleString('id-ID')}
-                        </div>
+                        <div className='font-bold text-white text-sm'>Biaya Pendaftaran:</div>
+                        <div className='text-3xl font-black text-white'>Rp {category.price.toLocaleString('id-ID')}</div>
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-3">
-                      <Timer className="h-5 w-5 text-white mt-1 flex-shrink-0" />
+                    <div className='flex items-start gap-3'>
+                      <Timer className='h-5 w-5 text-white mt-1 flex-shrink-0' />
                       <div>
-                        <div className="font-bold text-white text-sm">Cut Off Time (COT):</div>
-                        <div className="text-white/90 text-sm">{category.cot}</div>
+                        <div className='font-bold text-white text-sm'>Cut Off Time (COT):</div>
+                        <div className='text-white/90 text-sm'>{category.cot}</div>
                       </div>
                     </div>
                   </div>
 
+                  {/* Important Note for Kids */}
+                  {category.note && (
+                    <div className='bg-yellow-400/20 backdrop-blur-sm rounded-xl p-4 border-2 border-yellow-300 mb-6'>
+                      <div className='flex items-start gap-3'>
+                        <AlertCircle className='h-5 w-5 text-yellow-100 mt-0.5 flex-shrink-0' />
+                        <p className='text-sm font-bold text-yellow-50'>{category.note}</p>
+                      </div>
+                    </div>
+                  )}
+
                   {/* T-Shirt Image */}
-                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 mb-6">
+                  <div className='bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 mb-6'>
                     <Image
-                      src="/images/masjid/kaos-ranmadan.png"
-                      alt="Jersey Run-Madan"
+                      src='/images/masjid/kaos-ranmadan.png'
+                      alt='Jersey Run-Madan'
                       width={300}
                       height={300}
-                      className="w-full h-auto rounded-lg"
+                      className='w-full h-auto rounded-lg'
                     />
-                    <p className="text-center text-sm font-semibold text-white mt-2">
-                      Jersey Run-Madan Eksklusif
-                    </p>
+                    <p className='text-center text-sm font-semibold text-white mt-2'>Jersey Run-Madan Eksklusif</p>
                   </div>
 
                   {/* CTA Button */}
                   <button
                     onClick={handleWhatsApp}
-                    className="w-full bg-white text-[#043e75] px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/90 transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3"
+                    className='w-full bg-white text-[#043e75] px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/90 transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3'
                   >
-                    <Phone className="h-5 w-5" />
-                    Daftar {category.id}
-                    <ArrowRight className="h-5 w-5" />
+                    <Phone className='h-5 w-5' />
+                    Daftar Sekarang
+                    <ArrowRight className='h-5 w-5' />
                   </button>
                 </div>
               );
@@ -731,16 +744,16 @@ export default function RunMadanPage() {
           </div>
 
           {/* Unified Benefits Section */}
-          <div className="max-w-4xl mx-auto bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border-2 border-gray-200 shadow-lg">
-            <h3 className="text-2xl font-black text-gray-900 mb-6 flex items-center gap-3">
-              <Gift className="h-7 w-7 text-[#043e75]" />
+          <div className='max-w-4xl mx-auto bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border-2 border-gray-200 shadow-lg'>
+            <h3 className='text-2xl font-black text-gray-900 mb-6 flex items-center gap-3'>
+              <Gift className='h-7 w-7 text-[#043e75]' />
               Yang Kamu Dapatkan:
             </h3>
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className='grid md:grid-cols-2 gap-4'>
               {allBenefits.map((benefit, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-700 leading-relaxed">{benefit}</span>
+                <div key={index} className='flex items-start gap-3'>
+                  <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
+                  <span className='text-gray-700 leading-relaxed'>{benefit}</span>
                 </div>
               ))}
             </div>
@@ -749,59 +762,51 @@ export default function RunMadanPage() {
       </section>
 
       {/* Race Day Schedule */}
-      <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-[#addbf2] text-[#043e75] px-4 py-2 rounded-full font-semibold mb-4">
-              <Sunrise className="h-5 w-5" />
+      <section className='py-16 bg-gradient-to-b from-gray-50 to-white'>
+        <div className='container mx-auto px-4'>
+          <div className='text-center mb-12'>
+            <div className='inline-flex items-center gap-2 bg-[#addbf2] text-[#043e75] px-4 py-2 rounded-full font-semibold mb-4'>
+              <Sunrise className='h-5 w-5' />
               Race Day Schedule
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
-              Jadwal Hari H
-            </h2>
-            <p className="text-lg text-gray-600">
-              Minggu, 8 Februari 2026 - Mulai pukul 04:30 WIB
-            </p>
+            <h2 className='text-4xl md:text-5xl font-black text-gray-900 mb-4'>Jadwal Hari H</h2>
+            <p className='text-lg text-gray-600'>Minggu, 8 Februari 2026 - Mulai pukul 04:30 WIB</p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-4">
+          <div className='max-w-4xl mx-auto'>
+            <div className='space-y-4'>
               {schedule.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200 flex items-center gap-6"
+                  className='bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200 flex items-center gap-6'
                 >
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-[#4e8fc0] to-[#043e75] flex items-center justify-center flex-shrink-0">
-                    <item.icon className="h-7 w-7 text-white" />
+                  <div className='w-14 h-14 rounded-xl bg-gradient-to-r from-[#4e8fc0] to-[#043e75] flex items-center justify-center flex-shrink-0'>
+                    <item.icon className='h-7 w-7 text-white' />
                   </div>
-                  <div className="flex-1">
-                    <div className="font-black text-[#043e75] text-sm mb-1">{item.time}</div>
-                    <div className="text-lg font-bold text-gray-900">{item.activity}</div>
+                  <div className='flex-1'>
+                    <div className='font-black text-[#043e75] text-sm mb-1'>{item.time}</div>
+                    <div className='text-lg font-bold text-gray-900'>{item.activity}</div>
                   </div>
-                  <ChevronRight className="h-6 w-6 text-gray-400" />
+                  <ChevronRight className='h-6 w-6 text-gray-400' />
                 </div>
               ))}
             </div>
 
             {/* Special Event: Health Exercise */}
-            <div className="mt-8 bg-[#addbf2] rounded-2xl p-8 border-2 border-[#043e75]">
-              <div className="flex items-start gap-4">
-                <div className="w-16 h-16 rounded-xl bg-[#043e75] flex items-center justify-center flex-shrink-0">
-                  <HeartPulse className="h-8 w-8 text-white" />
+            <div className='mt-8 bg-[#addbf2] rounded-2xl p-8 border-2 border-[#043e75]'>
+              <div className='flex items-start gap-4'>
+                <div className='w-16 h-16 rounded-xl bg-[#043e75] flex items-center justify-center flex-shrink-0'>
+                  <HeartPulse className='h-8 w-8 text-white' />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-black mb-2 text-[#043e75]">Senam Terapi Kesehatan</h3>
-                  <p className="text-gray-700 mb-4">
-                    Khusus untuk Ibu-ibu dan Lansia yang ingin tetap aktif tanpa harus berlari.
-                    Senam dipandu oleh instruktur profesional dengan gerakan yang menyehatkan dan menyenangkan.
+                  <h3 className='text-2xl font-black mb-2 text-[#043e75]'>Senam Terapi Kesehatan</h3>
+                  <p className='text-gray-700 mb-4'>
+                    Khusus untuk Ibu-ibu dan Lansia yang ingin tetap aktif tanpa harus berlari. Senam dipandu oleh instruktur profesional dengan
+                    gerakan yang menyehatkan dan menyenangkan.
                   </p>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="bg-[#043e75] text-white px-4 py-2 rounded-lg text-sm font-semibold">
-                      GRATIS untuk peserta
-                    </span>
-                    <span className="bg-[#043e75] text-white px-4 py-2 rounded-lg text-sm font-semibold">
-                      Berlangsung selama event
-                    </span>
+                  <div className='flex flex-wrap gap-2'>
+                    <span className='bg-[#043e75] text-white px-4 py-2 rounded-lg text-sm font-semibold'>GRATIS untuk peserta</span>
+                    <span className='bg-[#043e75] text-white px-4 py-2 rounded-lg text-sm font-semibold'>Berlangsung selama event</span>
                   </div>
                 </div>
               </div>
@@ -810,58 +815,217 @@ export default function RunMadanPage() {
         </div>
       </section>
 
-      {/* Route Information */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
-              Informasi Rute
-            </h2>
-            <p className="text-lg text-gray-600">
-              Rute lari di lingkungan Perumahan Rewwin yang aman dan nyaman
+      {/* Edukasi & Sharing Session */}
+      <section className='py-16 bg-white'>
+        <div className='container mx-auto px-4'>
+          <div className='text-center mb-12'>
+            <div className='inline-flex items-center gap-2 bg-[#043e75] text-white px-4 py-2 rounded-full font-semibold mb-4'>
+              <Activity className='h-5 w-5' />
+              Bonus Edukasi Kesehatan
+            </div>
+            <h2 className='text-4xl md:text-5xl font-black text-gray-900 mb-4'>Edukasi & Sharing Session</h2>
+            <p className='text-lg text-gray-600 max-w-3xl mx-auto'>
+              Setelah selesai lari, peserta akan mendapatkan <strong>sesi edukasi kesehatan GRATIS</strong> dengan materi praktis dan aplikatif dari
+              para ahli
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-8 mb-12">
+          <div className='max-w-5xl mx-auto space-y-8'>
+            {/* From Couch to 5K */}
+            <div className='bg-gradient-to-br from-[#4e8fc0]/10 to-white rounded-2xl p-8 border-2 border-[#4e8fc0] shadow-lg hover:shadow-xl transition-shadow duration-300'>
+              <div className='flex items-start gap-6'>
+                <div className='w-16 h-16 rounded-xl bg-gradient-to-r from-[#4e8fc0] to-[#043e75] flex items-center justify-center flex-shrink-0'>
+                  <Target className='h-8 w-8 text-white' />
+                </div>
+                <div className='flex-1'>
+                  <h3 className='text-2xl font-black text-[#043e75] mb-3'>&quot;From Couch to 5K&quot;</h3>
+                  <p className='text-lg text-gray-700 mb-4'>
+                    <strong>Pengenalan tahapan berlari yang aman bagi pemula.</strong> Pelajari bagaimana memulai kebiasaan lari dari nol hingga bisa
+                    menyelesaikan 5 kilometer dengan aman dan nyaman.
+                  </p>
+                  <div className='bg-white rounded-xl p-5 border border-[#4e8fc0]'>
+                    <p className='font-bold text-[#043e75] mb-3'>Materi yang akan dibahas:</p>
+                    <div className='grid md:grid-cols-2 gap-3'>
+                      <div className='flex items-start gap-2'>
+                        <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
+                        <span className='text-sm text-gray-700'>Tahapan memulai lari untuk pemula</span>
+                      </div>
+                      <div className='flex items-start gap-2'>
+                        <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
+                        <span className='text-sm text-gray-700'>Program latihan bertahap 0-5K</span>
+                      </div>
+                      <div className='flex items-start gap-2'>
+                        <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
+                        <span className='text-sm text-gray-700'>Cara menghindari overtraining</span>
+                      </div>
+                      <div className='flex items-start gap-2'>
+                        <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
+                        <span className='text-sm text-gray-700'>Tips membangun konsistensi lari</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Terapi Running */}
+            <div className='bg-gradient-to-br from-[#72b4d7]/10 to-white rounded-2xl p-8 border-2 border-[#72b4d7] shadow-lg hover:shadow-xl transition-shadow duration-300'>
+              <div className='flex items-start gap-6'>
+                <div className='w-16 h-16 rounded-xl bg-gradient-to-r from-[#72b4d7] to-[#4e8fc0] flex items-center justify-center flex-shrink-0'>
+                  <HeartPulse className='h-8 w-8 text-white' />
+                </div>
+                <div className='flex-1'>
+                  <h3 className='text-2xl font-black text-[#043e75] mb-3'>&quot;Terapi Running untuk Pemulihan Kesehatan&quot;</h3>
+                  <p className='text-lg text-gray-700 mb-4'>
+                    <strong>Pemanfaatan lari sebagai bagian dari pemulihan kebugaran dan kesehatan mental.</strong> Pahami manfaat lari untuk
+                    kesehatan fisik dan mental, serta cara memanfaatkannya dengan benar.
+                  </p>
+                  <div className='bg-white rounded-xl p-5 border border-[#72b4d7]'>
+                    <p className='font-bold text-[#043e75] mb-3'>Materi yang akan dibahas:</p>
+                    <div className='grid md:grid-cols-2 gap-3'>
+                      <div className='flex items-start gap-2'>
+                        <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
+                        <span className='text-sm text-gray-700'>Lari untuk kesehatan jantung</span>
+                      </div>
+                      <div className='flex items-start gap-2'>
+                        <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
+                        <span className='text-sm text-gray-700'>Lari untuk kesehatan mental</span>
+                      </div>
+                      <div className='flex items-start gap-2'>
+                        <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
+                        <span className='text-sm text-gray-700'>Pemulihan pasca sakit dengan lari</span>
+                      </div>
+                      <div className='flex items-start gap-2'>
+                        <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
+                        <span className='text-sm text-gray-700'>Manajemen stres melalui lari</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Diskusi Ringan */}
+            <div className='bg-gradient-to-br from-[#addbf2]/20 to-white rounded-2xl p-8 border-2 border-[#addbf2] shadow-lg'>
+              <div className='flex items-start gap-6'>
+                <div className='w-16 h-16 rounded-xl bg-gradient-to-r from-[#addbf2] to-[#72b4d7] flex items-center justify-center flex-shrink-0'>
+                  <Users className='h-8 w-8 text-white' />
+                </div>
+                <div className='flex-1'>
+                  <h3 className='text-2xl font-black text-[#043e75] mb-3'>Diskusi & Tanya Jawab Ringan</h3>
+                  <p className='text-lg text-gray-700 mb-4'>
+                    Sesi interaktif dengan para ahli untuk membahas topik kesehatan praktis seputar lari dan olahraga
+                  </p>
+                  <div className='grid md:grid-cols-2 gap-4'>
+                    <div className='bg-white rounded-xl p-4 border border-[#addbf2]'>
+                      <p className='font-bold text-[#043e75] mb-2 text-sm'>Topik Diskusi:</p>
+                      <ul className='space-y-2 text-sm text-gray-700'>
+                        <li className='flex items-start gap-2'>
+                          <ChevronRight className='h-4 w-4 text-[#043e75] mt-0.5 flex-shrink-0' />
+                          <span>Pencegahan cedera saat lari</span>
+                        </li>
+                        <li className='flex items-start gap-2'>
+                          <ChevronRight className='h-4 w-4 text-[#043e75] mt-0.5 flex-shrink-0' />
+                          <span>Teknik pernapasan yang benar</span>
+                        </li>
+                        <li className='flex items-start gap-2'>
+                          <ChevronRight className='h-4 w-4 text-[#043e75] mt-0.5 flex-shrink-0' />
+                          <span>Kebiasaan lari yang sehat</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className='bg-white rounded-xl p-4 border border-[#addbf2]'>
+                      <p className='font-bold text-[#043e75] mb-2 text-sm'>Yang Sering Ditanyakan:</p>
+                      <ul className='space-y-2 text-sm text-gray-700'>
+                        <li className='flex items-start gap-2'>
+                          <ChevronRight className='h-4 w-4 text-[#043e75] mt-0.5 flex-shrink-0' />
+                          <span>Kesalahan umum pelari pemula</span>
+                        </li>
+                        <li className='flex items-start gap-2'>
+                          <ChevronRight className='h-4 w-4 text-[#043e75] mt-0.5 flex-shrink-0' />
+                          <span>Kapan waktu terbaik untuk lari?</span>
+                        </li>
+                        <li className='flex items-start gap-2'>
+                          <ChevronRight className='h-4 w-4 text-[#043e75] mt-0.5 flex-shrink-0' />
+                          <span>Nutrisi untuk pelari pemula</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA for Education */}
+          <div className='max-w-4xl mx-auto mt-12 bg-gradient-to-br from-[#043e75] to-[#4e8fc0] rounded-2xl p-8 text-white text-center'>
+            <h3 className='text-2xl md:text-3xl font-black mb-4 text-[#addbf2]'>Materi Sederhana & Aplikatif</h3>
+            <p className='text-lg text-white/90'>
+              Semua materi disampaikan dengan bahasa yang mudah dipahami dan langsung bisa dipraktikkan.{' '}
+              <strong>GRATIS untuk semua peserta Run-Madan 2026!</strong>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Route Information */}
+      <section className='py-16 bg-white'>
+        <div className='container mx-auto px-4'>
+          <div className='text-center mb-12'>
+            <h2 className='text-4xl md:text-5xl font-black text-gray-900 mb-4'>Informasi Rute</h2>
+            <p className='text-lg text-gray-600'>Rute lari di lingkungan Perumahan Rewwin yang aman dan nyaman</p>
+          </div>
+
+          <div className='max-w-4xl mx-auto grid md:grid-cols-3 gap-8 mb-12'>
             {routeDetails.map((detail, index) => (
               <div
                 key={index}
-                className="text-center bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border-2 border-gray-200 hover:shadow-lg transition-shadow duration-300"
+                className='text-center bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border-2 border-gray-200 hover:shadow-lg transition-shadow duration-300'
               >
                 <div className={`w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-r ${detail.color} flex items-center justify-center`}>
-                  <detail.icon className="h-10 w-10 text-white" />
+                  <detail.icon className='h-10 w-10 text-white' />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{detail.title}</h3>
-                <p className="text-gray-600">{detail.description}</p>
+                <h3 className='text-xl font-bold text-gray-900 mb-2'>{detail.title}</h3>
+                <p className='text-gray-600'>{detail.description}</p>
               </div>
             ))}
           </div>
 
-          <div className="max-w-3xl mx-auto bg-[#addbf2]/20 rounded-2xl p-8 border border-[#72b4d7]">
-            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <AlertCircle className="h-6 w-6 text-[#043e75]" />
+          <div className='max-w-3xl mx-auto bg-[#addbf2]/20 rounded-2xl p-8 border border-[#72b4d7]'>
+            <h3 className='text-xl font-bold text-gray-900 mb-4 flex items-center gap-2'>
+              <AlertCircle className='h-6 w-6 text-[#043e75]' />
               Detail Rute:
             </h3>
-            <ul className="space-y-3 text-gray-700">
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                <span><strong>Permukaan:</strong> Jalan beraspal halus dan rata</span>
+            <ul className='space-y-3 text-gray-700'>
+              <li className='flex items-start gap-3'>
+                <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
+                <span>
+                  <strong>Permukaan:</strong> Jalan beraspal halus dan rata
+                </span>
               </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                <span><strong>Kontur:</strong> Relatif datar dengan beberapa tanjakan ringan</span>
+              <li className='flex items-start gap-3'>
+                <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
+                <span>
+                  <strong>Kontur:</strong> Relatif datar dengan beberapa tanjakan ringan
+                </span>
               </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                <span><strong>Keamanan:</strong> Jalur ditutup untuk kendaraan selama event, dijaga petugas</span>
+              <li className='flex items-start gap-3'>
+                <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
+                <span>
+                  <strong>Keamanan:</strong> Jalur ditutup untuk kendaraan selama event, dijaga petugas
+                </span>
               </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                <span><strong>Pos Air:</strong> Tersedia di beberapa titik sepanjang rute</span>
+              <li className='flex items-start gap-3'>
+                <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
+                <span>
+                  <strong>Pos Air:</strong> Tersedia di beberapa titik sepanjang rute
+                </span>
               </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                <span><strong>Marshal:</strong> Petugas penunjuk arah di setiap simpang</span>
+              <li className='flex items-start gap-3'>
+                <CheckCircle2 className='h-5 w-5 text-green-600 mt-0.5 flex-shrink-0' />
+                <span>
+                  <strong>Marshal:</strong> Petugas penunjuk arah di setiap simpang
+                </span>
               </li>
             </ul>
           </div>
@@ -869,57 +1033,58 @@ export default function RunMadanPage() {
       </section>
 
       {/* Charity Impact */}
-      <section className="py-16 bg-gradient-to-br from-[#043e75] via-[#4e8fc0] to-[#72b4d7] text-white relative overflow-hidden">
+      <section className='py-16 bg-gradient-to-br from-[#043e75] via-[#4e8fc0] to-[#72b4d7] text-white relative overflow-hidden'>
         {/* Decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#addbf2]/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+        <div className='absolute inset-0 overflow-hidden'>
+          <div className='absolute top-0 right-0 w-96 h-96 bg-[#addbf2]/20 rounded-full blur-3xl' />
+          <div className='absolute bottom-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl' />
         </div>
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-semibold mb-4">
-              <Heart className="h-5 w-5" />
+        <div className='container mx-auto px-4 relative z-10'>
+          <div className='text-center mb-12'>
+            <div className='inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full font-semibold mb-4'>
+              <Heart className='h-5 w-5' />
               Charity Impact
             </div>
-            <h2 className="text-4xl md:text-5xl font-black mb-4 text-[#addbf2]">
-              Dana untuk Kebaikan
-            </h2>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              50% dana pendaftaran disalurkan untuk mendukung operasional layanan kesehatan <strong>GRATIS</strong> dan program sosial masyarakat. Layanan ambulans dan poliklinik tetap gratis - donasi sukarela sangat dihargai untuk keberlanjutan program.
+            <h2 className='text-4xl md:text-5xl font-black mb-4 text-[#addbf2]'>Dana untuk Kebaikan</h2>
+            <p className='text-xl text-white/90 max-w-3xl mx-auto'>
+              50% dana pendaftaran disalurkan untuk mendukung operasional layanan kesehatan <strong>GRATIS</strong> dan program sosial masyarakat.
+              Layanan ambulans dan poliklinik tetap gratis - donasi sukarela sangat dihargai untuk keberlanjutan program.
             </p>
           </div>
 
-          <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 mb-12">
+          <div className='max-w-5xl mx-auto grid md:grid-cols-3 gap-8 mb-12'>
             {charityImpacts.map((impact, index) => (
               <div
                 key={index}
-                className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300"
+                className='bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300'
               >
                 <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${impact.color} flex items-center justify-center mb-6`}>
-                  <impact.icon className="h-8 w-8 text-white" />
+                  <impact.icon className='h-8 w-8 text-white' />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-white">{impact.title}</h3>
-                <p className="text-white/90">{impact.description}</p>
+                <h3 className='text-xl font-bold mb-3 text-white'>{impact.title}</h3>
+                <p className='text-white/90'>{impact.description}</p>
               </div>
             ))}
           </div>
 
           {/* LAZMU Partnership */}
-          <div className="max-w-3xl mx-auto bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 text-center">
-            <h3 className="text-2xl font-bold mb-4 text-white">Partnership dengan LAZMU</h3>
-            <p className="text-white/90 mb-6">
-              Run-Madan 2026 didukung oleh <strong>LAZ Muhajirin (LAZMU)</strong>, lembaga zakat terpercaya yang telah berpengalaman dalam penyaluran dana amal untuk masyarakat. Semua layanan kesehatan kami bersifat <strong>GRATIS</strong> - kami sangat menghargai donasi sukarela untuk keberlanjutan program.
+          <div className='max-w-3xl mx-auto bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 text-center'>
+            <h3 className='text-2xl font-bold mb-4 text-white'>Partnership dengan LAZMU</h3>
+            <p className='text-white/90 mb-6'>
+              Run-Madan 2026 didukung oleh <strong>LAZ Muhajirin (LAZMU)</strong>, lembaga zakat terpercaya yang telah berpengalaman dalam penyaluran
+              dana amal untuk masyarakat. Semua layanan kesehatan kami bersifat <strong>GRATIS</strong> - kami sangat menghargai donasi sukarela untuk
+              keberlanjutan program.
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className='flex flex-wrap gap-4 justify-center'>
               <a
-                href="https://lazmu.muhajirinrewwin.or.id"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white text-[#043e75] px-6 py-3 rounded-xl font-bold hover:bg-[#addbf2] transition-all duration-300"
+                href='https://lazmu.muhajirinrewwin.or.id'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='inline-flex items-center gap-2 bg-white text-[#043e75] px-6 py-3 rounded-xl font-bold hover:bg-[#addbf2] transition-all duration-300'
               >
                 Pelajari Lebih Lanjut tentang LAZMU
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className='h-5 w-5' />
               </a>
             </div>
           </div>
@@ -927,37 +1092,33 @@ export default function RunMadanPage() {
       </section>
 
       {/* Registration Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
-                Cara Pendaftaran
-              </h2>
-              <p className="text-lg text-gray-600">
-                Ikuti langkah-langkah mudah berikut untuk mendaftar Run-Madan 2026
-              </p>
+      <section className='py-16 bg-white'>
+        <div className='container mx-auto px-4'>
+          <div className='max-w-4xl mx-auto'>
+            <div className='text-center mb-12'>
+              <h2 className='text-4xl md:text-5xl font-black text-gray-900 mb-4'>Cara Pendaftaran</h2>
+              <p className='text-lg text-gray-600'>Ikuti langkah-langkah mudah berikut untuk mendaftar Run-Madan 2026</p>
             </div>
 
             {/* Steps */}
-            <div className="space-y-6 mb-12">
+            <div className='space-y-6 mb-12'>
               {[
                 {
                   step: 1,
-                  title: 'Pilih Kategori',
-                  description: 'Tentukan kategori yang ingin kamu ikuti: 3K (anak-anak) atau 5K (dewasa)',
-                  icon: Route,
+                  title: 'Siapkan Data Peserta',
+                  description: 'Siapkan data peserta: nama lengkap, usia, nomor HP, ukuran jersey (S, M, L, XL, XXL)',
+                  icon: Users,
                 },
                 {
                   step: 2,
                   title: 'Transfer Biaya Pendaftaran',
-                  description: 'Transfer sesuai kategori ke rekening BCA 1150014682682 a.n. Masjid Al Muhajirin',
+                  description: 'Transfer Rp 50.000 ke rekening BCA 1150014682682 a.n. Masjid Al Muhajirin',
                   icon: Wallet,
                 },
                 {
                   step: 3,
                   title: 'Konfirmasi via WhatsApp',
-                  description: 'Kirim bukti transfer + data peserta (nama, usia, kategori, ukuran jersey) ke WhatsApp',
+                  description: 'Kirim bukti transfer + data peserta (nama, usia, ukuran jersey) ke WhatsApp 0813-1407-3434',
                   icon: Phone,
                 },
                 {
@@ -969,81 +1130,89 @@ export default function RunMadanPage() {
               ].map((item) => (
                 <div
                   key={item.step}
-                  className="flex gap-6 items-start bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border-2 border-gray-200 hover:shadow-lg transition-all duration-300"
+                  className='flex gap-6 items-start bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border-2 border-gray-200 hover:shadow-lg transition-all duration-300'
                 >
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-[#4e8fc0] to-[#043e75] flex items-center justify-center flex-shrink-0">
-                    <span className="text-2xl font-black text-white">{item.step}</span>
+                  <div className='w-14 h-14 rounded-xl bg-gradient-to-r from-[#4e8fc0] to-[#043e75] flex items-center justify-center flex-shrink-0'>
+                    <span className='text-2xl font-black text-white'>{item.step}</span>
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <item.icon className="h-6 w-6 text-[#043e75]" />
-                      <h3 className="text-xl font-bold text-gray-900">{item.title}</h3>
+                  <div className='flex-1'>
+                    <div className='flex items-center gap-3 mb-2'>
+                      <item.icon className='h-6 w-6 text-[#043e75]' />
+                      <h3 className='text-xl font-bold text-gray-900'>{item.title}</h3>
                     </div>
-                    <p className="text-gray-600">{item.description}</p>
+                    <p className='text-gray-600'>{item.description}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Bank Account */}
-            <div className="bg-[#addbf2] rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-6 text-center text-[#043e75]">Rekening Pendaftaran</h3>
-              <div className="bg-white rounded-xl p-6 border-2 border-[#043e75] mb-6 shadow-lg">
-                <div className="grid md:grid-cols-3 gap-4 text-center">
+            <div className='bg-[#addbf2] rounded-2xl p-8'>
+              <h3 className='text-2xl font-bold mb-6 text-center text-[#043e75]'>Rekening Pendaftaran</h3>
+              <div className='bg-white rounded-xl p-6 border-2 border-[#043e75] mb-6 shadow-lg'>
+                <div className='grid md:grid-cols-3 gap-4 text-center'>
                   <div>
-                    <div className="text-sm text-gray-600 mb-1">Bank</div>
-                    <div className="text-xl font-black text-[#043e75]">BCA</div>
+                    <div className='text-sm text-gray-600 mb-1'>Bank</div>
+                    <div className='text-xl font-black text-[#043e75]'>BCA</div>
                   </div>
                   <div>
-                    <div className="text-sm text-gray-600 mb-1">Nomor Rekening</div>
-                    <div className="text-xl font-black text-[#043e75]">1150014682682</div>
+                    <div className='text-sm text-gray-600 mb-1'>Nomor Rekening</div>
+                    <div className='text-xl font-black text-[#043e75]'>1150014682682</div>
                   </div>
                   <div>
-                    <div className="text-sm text-gray-600 mb-1">Atas Nama</div>
-                    <div className="text-xl font-black text-[#043e75]">Masjid Al Muhajirin</div>
+                    <div className='text-sm text-gray-600 mb-1'>Atas Nama</div>
+                    <div className='text-xl font-black text-[#043e75]'>Masjid Al Muhajirin</div>
                   </div>
                 </div>
               </div>
-              <div className="flex flex-wrap gap-4 justify-center">
+              <div className='flex flex-wrap gap-4 justify-center'>
                 <button
                   onClick={handleCopy}
-                  className="bg-white text-[#043e75] px-6 py-3 rounded-xl font-bold hover:bg-gray-100 transition-all duration-300 flex items-center gap-2 shadow-md"
+                  className='bg-white text-[#043e75] px-6 py-3 rounded-xl font-bold hover:bg-gray-100 transition-all duration-300 flex items-center gap-2 shadow-md'
                 >
-                  {copied ? <Check className="h-5 w-5" /> : <Copy className="h-5 w-5" />}
+                  {copied ? <Check className='h-5 w-5' /> : <Copy className='h-5 w-5' />}
                   {copied ? 'Tersalin!' : 'Salin Nomor Rekening'}
                 </button>
                 <button
                   onClick={handleWhatsApp}
-                  className="bg-[#043e75] text-white px-6 py-3 rounded-xl font-bold hover:bg-[#4e8fc0] transition-all duration-300 flex items-center gap-2 shadow-md"
+                  className='bg-[#043e75] text-white px-6 py-3 rounded-xl font-bold hover:bg-[#4e8fc0] transition-all duration-300 flex items-center gap-2 shadow-md'
                 >
-                  <Phone className="h-5 w-5" />
+                  <Phone className='h-5 w-5' />
                   Konfirmasi via WhatsApp
                 </button>
               </div>
             </div>
 
             {/* Important Notes */}
-            <div className="mt-8 bg-yellow-50 rounded-2xl p-8 border border-yellow-200">
-              <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <AlertCircle className="h-6 w-6 text-yellow-600" />
+            <div className='mt-8 bg-yellow-50 rounded-2xl p-8 border border-yellow-200'>
+              <h3 className='text-xl font-bold text-gray-900 mb-4 flex items-center gap-2'>
+                <AlertCircle className='h-6 w-6 text-yellow-600' />
                 Informasi Penting:
               </h3>
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start gap-2">
-                  <Star className="h-5 w-5 text-yellow-600 mt-0.5 flex-shrink-0" />
-                  <span>Pendaftaran ditutup <strong>5 Februari 2026</strong> atau jika kuota terpenuhi</span>
+              <ul className='space-y-2 text-gray-700'>
+                <li className='flex items-start gap-2'>
+                  <Star className='h-5 w-5 text-yellow-600 mt-0.5 flex-shrink-0' />
+                  <span>
+                    Pendaftaran ditutup <strong>5 Februari 2026</strong> atau jika kuota terpenuhi
+                  </span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <Star className="h-5 w-5 text-yellow-600 mt-0.5 flex-shrink-0" />
-                  <span>Jersey dan race kit akan dibagikan saat <strong>registrasi ulang</strong> pada race day</span>
+                <li className='flex items-start gap-2'>
+                  <Star className='h-5 w-5 text-yellow-600 mt-0.5 flex-shrink-0' />
+                  <span>
+                    Jersey dan race kit akan dibagikan saat <strong>registrasi ulang</strong> pada race day
+                  </span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <Star className="h-5 w-5 text-yellow-600 mt-0.5 flex-shrink-0" />
-                  <span>Biaya pendaftaran <strong>tidak dapat dikembalikan</strong> (non-refundable)</span>
+                <li className='flex items-start gap-2'>
+                  <Star className='h-5 w-5 text-yellow-600 mt-0.5 flex-shrink-0' />
+                  <span>
+                    Biaya pendaftaran <strong>tidak dapat dikembalikan</strong> (non-refundable)
+                  </span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <Star className="h-5 w-5 text-yellow-600 mt-0.5 flex-shrink-0" />
-                  <span>Peserta wajib dalam kondisi <strong>sehat dan fit</strong> pada hari H</span>
+                <li className='flex items-start gap-2'>
+                  <Star className='h-5 w-5 text-yellow-600 mt-0.5 flex-shrink-0' />
+                  <span>
+                    Peserta wajib dalam kondisi <strong>sehat dan fit</strong> pada hari H
+                  </span>
                 </li>
               </ul>
             </div>
@@ -1052,41 +1221,37 @@ export default function RunMadanPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
-                Pertanyaan yang Sering Diajukan
-              </h2>
-              <p className="text-lg text-gray-600">
-                Temukan jawaban atas pertanyaan umummu di sini
-              </p>
+      <section className='py-16 bg-gray-50'>
+        <div className='container mx-auto px-4'>
+          <div className='max-w-4xl mx-auto'>
+            <div className='text-center mb-12'>
+              <h2 className='text-4xl md:text-5xl font-black text-gray-900 mb-4'>Pertanyaan yang Sering Diajukan</h2>
+              <p className='text-lg text-gray-600'>Temukan jawaban atas pertanyaan umummu di sini</p>
             </div>
 
-            <div className="space-y-4">
+            <div className='space-y-4'>
               {faqs.map((faq, index) => {
                 const isHighlighted = index === faqs.length - 1; // Last FAQ (about dana)
                 return (
                   <details
                     key={index}
                     className={`rounded-xl p-6 border-2 hover:shadow-lg transition-all duration-300 group ${
-                      isHighlighted
-                        ? 'bg-[#addbf2]/30 border-[#043e75]'
-                        : 'bg-white border-gray-200'
+                      isHighlighted ? 'bg-[#addbf2]/30 border-[#043e75]' : 'bg-white border-gray-200'
                     }`}
                   >
-                    <summary className={`font-bold cursor-pointer list-none flex items-center justify-between ${
-                      isHighlighted ? 'text-[#043e75]' : 'text-gray-900'
-                    }`}>
-                      <span className="flex-1">{faq.question}</span>
-                      <ChevronRight className={`h-5 w-5 group-open:rotate-90 transition-transform duration-300 ${
-                        isHighlighted ? 'text-[#043e75]' : 'text-gray-400'
-                      }`} />
+                    <summary
+                      className={`font-bold cursor-pointer list-none flex items-center justify-between ${
+                        isHighlighted ? 'text-[#043e75]' : 'text-gray-900'
+                      }`}
+                    >
+                      <span className='flex-1'>{faq.question}</span>
+                      <ChevronRight
+                        className={`h-5 w-5 group-open:rotate-90 transition-transform duration-300 ${
+                          isHighlighted ? 'text-[#043e75]' : 'text-gray-400'
+                        }`}
+                      />
                     </summary>
-                    <p className={`mt-4 leading-relaxed font-medium ${
-                      isHighlighted ? 'text-gray-900' : 'text-gray-600'
-                    }`}>{faq.answer}</p>
+                    <p className={`mt-4 leading-relaxed font-medium ${isHighlighted ? 'text-gray-900' : 'text-gray-600'}`}>{faq.answer}</p>
                   </details>
                 );
               })}
@@ -1096,68 +1261,64 @@ export default function RunMadanPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 bg-gradient-to-br from-[#043e75] via-[#4e8fc0] to-[#72b4d7] text-white relative overflow-hidden">
+      <section className='py-20 bg-gradient-to-br from-[#043e75] via-[#4e8fc0] to-[#72b4d7] text-white relative overflow-hidden'>
         {/* Decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-[#addbf2]/20 rounded-full blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+        <div className='absolute inset-0 overflow-hidden'>
+          <div className='absolute -top-40 -right-40 w-96 h-96 bg-[#addbf2]/20 rounded-full blur-3xl' />
+          <div className='absolute -bottom-40 -left-40 w-96 h-96 bg-white/10 rounded-full blur-3xl' />
         </div>
 
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <h2 className="text-4xl md:text-6xl font-black mb-6 text-[#addbf2]">
-            Siap Berlari untuk Kebaikan?
-          </h2>
-          <p className="text-xl md:text-2xl text-white/90 mb-4 max-w-3xl mx-auto">
+        <div className='container mx-auto px-4 relative z-10 text-center'>
+          <h2 className='text-4xl md:text-6xl font-black mb-6 text-[#addbf2]'>Siap Berlari untuk Kebaikan?</h2>
+          <p className='text-xl md:text-2xl text-white/90 mb-4 max-w-3xl mx-auto'>
             Daftarkan dirimu sekarang dan jadilah bagian dari Run-Madan 2026!
           </p>
-          <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+          <p className='text-lg text-white/80 mb-8 max-w-2xl mx-auto'>
             Berlari sehat, berbagi kebaikan, dan kenali layanan kesehatan gratis untuk warga Rewwin
           </p>
 
-          <div className="flex flex-wrap gap-6 justify-center items-center">
+          <div className='flex flex-wrap gap-6 justify-center items-center'>
             <button
               onClick={handleWhatsApp}
-              className="bg-white text-[#043e75] px-10 py-5 rounded-xl font-black text-xl hover:bg-[#addbf2] transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 flex items-center gap-3"
+              className='bg-white text-[#043e75] px-10 py-5 rounded-xl font-black text-xl hover:bg-[#addbf2] transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 flex items-center gap-3'
             >
-              <Phone className="h-6 w-6" />
+              <Phone className='h-6 w-6' />
               Daftar Sekarang
-              <ArrowRight className="h-6 w-6" />
+              <ArrowRight className='h-6 w-6' />
             </button>
 
             <button
               onClick={handleShare}
-              className="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-10 py-5 rounded-xl font-black text-xl hover:bg-white/20 transition-all duration-300 flex items-center gap-3"
+              className='bg-white/10 backdrop-blur-sm border-2 border-white text-white px-10 py-5 rounded-xl font-black text-xl hover:bg-white/20 transition-all duration-300 flex items-center gap-3'
             >
-              <Share2 className="h-6 w-6" />
+              <Share2 className='h-6 w-6' />
               Bagikan Event Ini
             </button>
           </div>
 
-          <div className="mt-12 flex flex-wrap justify-center gap-8 text-white/80">
-            <div className="flex items-center gap-2">
-              <Phone className="h-5 w-5" />
-              <span className="font-semibold">0813-1407-3434</span>
+          <div className='mt-12 flex flex-wrap justify-center gap-8 text-white/80'>
+            <div className='flex items-center gap-2'>
+              <Phone className='h-5 w-5' />
+              <span className='font-semibold'>0813-1407-3434</span>
             </div>
-            <div className="flex items-center gap-2">
-              <MapPin className="h-5 w-5" />
-              <span className="font-semibold">Masjid Al Muhajirin Rewwin</span>
+            <div className='flex items-center gap-2'>
+              <MapPin className='h-5 w-5' />
+              <span className='font-semibold'>Masjid Al Muhajirin Rewwin</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-gray-400">
+      <footer className='bg-gray-900 text-white py-8'>
+        <div className='container mx-auto px-4 text-center'>
+          <p className='text-gray-400'>
             &copy; 2026 Masjid Al Muhajirin Rewwin. Supported by{' '}
-            <a href="/units/lazmu" className="text-[#72b4d7] hover:text-[#addbf2] font-semibold">
+            <a href='/units/lazmu' className='text-[#72b4d7] hover:text-[#addbf2] font-semibold'>
               LAZ Muhajirin (LAZMU)
             </a>
           </p>
-          <p className="text-gray-500 text-sm mt-2">
-            #RunMadan2026 #TarhibRamadhan #LariAmal #MasjidAlMuhajirin
-          </p>
+          <p className='text-gray-500 text-sm mt-2'>#RunMadan2026 #TarhibRamadhan #LariAmal #MasjidAlMuhajirin</p>
         </div>
       </footer>
     </div>

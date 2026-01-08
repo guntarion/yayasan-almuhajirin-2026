@@ -29,16 +29,16 @@ export function middleware(request: NextRequest) {
   }
 
   // Ekstrak subdomain dari hostname
-  // Format: subdomain.muhajirinrewwin.or.id atau subdomain.localhost:3000
+  // Format: subdomain.muhajirinrewwin.or.id, subdomain.localhost:3000, atau subdomain.almuhajirin.local:3000
   const hostParts = hostname.split('.');
 
-  // Jika di localhost, ambil bagian pertama sebelum .localhost
+  // Jika di localhost atau almuhajirin.local, ambil bagian pertama sebelum domain
   // Jika di production, ambil bagian pertama sebelum .muhajirinrewwin
   let subdomain = '';
 
-  if (hostname.includes('localhost')) {
-    // localhost:3000 atau subdomain.localhost:3000
-    if (hostParts.length >= 2 && hostParts[0] !== 'localhost') {
+  if (hostname.includes('localhost') || hostname.includes('almuhajirin.local')) {
+    // localhost:3000, subdomain.localhost:3000, almuhajirin.local:3000, atau subdomain.almuhajirin.local:3000
+    if (hostParts.length >= 2 && hostParts[0] !== 'localhost' && hostParts[0] !== 'almuhajirin') {
       subdomain = hostParts[0];
     }
   } else {

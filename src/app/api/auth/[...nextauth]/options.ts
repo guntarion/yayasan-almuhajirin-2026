@@ -63,7 +63,48 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
-  // Rest of the code remains the same...
+  // Configure cookies to work across all subdomains
+  cookies: {
+    sessionToken: {
+      name: process.env.NODE_ENV === 'production'
+        ? '__Secure-next-auth.session-token'
+        : 'next-auth.session-token',
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        // Set domain to root domain to enable cross-subdomain authentication
+        domain: process.env.NODE_ENV === 'production'
+          ? '.muhajirinrewwin.or.id'
+          : '.almuhajirin.local', // Custom local domain for cross-subdomain testing
+        secure: process.env.NODE_ENV === 'production',
+      },
+    },
+    callbackUrl: {
+      name: process.env.NODE_ENV === 'production'
+        ? '__Secure-next-auth.callback-url'
+        : 'next-auth.callback-url',
+      options: {
+        sameSite: 'lax',
+        path: '/',
+        domain: process.env.NODE_ENV === 'production'
+          ? '.muhajirinrewwin.or.id'
+          : '.almuhajirin.local', // Custom local domain for cross-subdomain testing
+        secure: process.env.NODE_ENV === 'production',
+      },
+    },
+    csrfToken: {
+      name: process.env.NODE_ENV === 'production'
+        ? '__Host-next-auth.csrf-token'
+        : 'next-auth.csrf-token',
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        secure: process.env.NODE_ENV === 'production',
+      },
+    },
+  },
   callbacks: {
     async signIn({ user }) {
       // When a user signs in, ensure they have a role

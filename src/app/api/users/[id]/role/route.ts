@@ -29,15 +29,23 @@ export async function PUT(request: NextRequest) {
     // Parse request body
     const { role } = await request.json();
 
-    // Validate role
-    const validRoles: Array<'admin' | 'member' | 'moderator' | 'editor' | 'viewer' | 'guest'> = [
+    // Validate role - includes all roles from Prisma schema
+    const validRoles = [
       'admin',
+      'pengurus',
+      'pengawas',
+      'pembina',
+      'kepalabidang',
+      'kepalaunit',
+      'operatorunit',
+      'sekretariat',
       'member',
       'moderator',
       'editor',
       'viewer',
       'guest',
-    ];
+    ] as const;
+
     if (!validRoles.includes(role)) {
       return NextResponse.json({ message: 'Invalid role' }, { status: 400 });
     }

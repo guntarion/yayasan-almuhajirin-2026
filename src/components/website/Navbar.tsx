@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Phone, MapPin, MessageCircle, ChevronDown } from 'lucide-react';
+import { Menu, X, Phone, MapPin, MessageCircle, ChevronDown, LogOut, User, Wallet } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 
 /**
@@ -16,8 +16,9 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const pathname = usePathname();
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading, user, logout } = useAuth();
 
   // Handle scroll effect for sticky navbar
   useEffect(() => {
@@ -29,8 +30,48 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close user menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (userMenuOpen && !target.closest('.user-menu-container')) {
+        setUserMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [userMenuOpen]);
+
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/6282126380665?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20Yayasan%20Al%20Muhajirin%20Rewwin', '_blank');
+  };
+
+  // Check if user has access to keuangan module
+  const hasKeuanganAccess = () => {
+    if (!user?.role) return false;
+    const keuanganRoles = ['admin', 'pengurus', 'pengawas', 'pembina', 'sekretariat', 'kepalabidang', 'kepalaunit'];
+    return keuanganRoles.includes(user.role);
+  };
+
+  // Get keuangan URL based on environment
+  const getKeuanganUrl = () => {
+    if (typeof window === 'undefined') return '/';
+    const hostname = window.location.hostname;
+    const port = window.location.port;
+
+    // Check if using custom local domain (almuhajirin.local)
+    if (hostname.includes('almuhajirin.local')) {
+      return `http://keuangan.almuhajirin.local:${port || 3000}`;
+    }
+
+    // Check if using localhost
+    if (hostname === 'localhost' || hostname.includes('.localhost')) {
+      return `http://keuangan.localhost:${port || 3000}`;
+    }
+
+    // Production
+    return 'https://keuangan.muhajirinrewwin.or.id';
   };
 
   const navItems = [
@@ -152,6 +193,55 @@ export function Navbar() {
                 >
                   Login
                 </Link>
+              ) : !isLoading && isAuthenticated ? (
+                <div className="relative user-menu-container">
+                  <button
+                    onClick={() => setUserMenuOpen(!userMenuOpen)}
+                    className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-[#006064] hover:text-[#00BCD4] transition-colors rounded-lg hover:bg-[#00BCD4]/5"
+                  >
+                    <User className="h-4 w-4" />
+                    <span>{user?.name || user?.email}</span>
+                    <ChevronDown className="h-4 w-4" />
+                  </button>
+
+                  {/* User Dropdown Menu */}
+                  {userMenuOpen && (
+                    <div className="absolute top-full right-0 mt-1 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
+                      <div className="px-4 py-3 border-b border-gray-100">
+                        <p className="text-sm font-medium text-gray-900">{user?.name}</p>
+                        <p className="text-xs text-gray-500">{user?.email}</p>
+                        {user?.role && (
+                          <p className="text-xs text-[#00838F] font-medium mt-1">
+                            Role: {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Keuangan Link - Only for authorized roles */}
+                      {hasKeuanganAccess() && (
+                        <a
+                          href={getKeuanganUrl()}
+                          className="w-full flex items-center space-x-2 px-4 py-2.5 text-gray-700 hover:text-[#00BCD4] hover:bg-[#B2EBF2]/20 transition-colors"
+                          onClick={() => setUserMenuOpen(false)}
+                        >
+                          <Wallet className="h-4 w-4" />
+                          <span>Keuangan</span>
+                        </a>
+                      )}
+
+                      <button
+                        onClick={() => {
+                          logout();
+                          setUserMenuOpen(false);
+                        }}
+                        className="w-full flex items-center space-x-2 px-4 py-2.5 text-gray-700 hover:text-red-600 hover:bg-red-50 transition-colors"
+                      >
+                        <LogOut className="h-4 w-4" />
+                        <span>Logout</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
               ) : null}
               <button
                 onClick={handleWhatsAppClick}
@@ -223,6 +313,42 @@ export function Navbar() {
                   >
                     Login
                   </Link>
+                )}
+                {!isLoading && isAuthenticated && (
+                  <>
+                    <div className="px-4 py-3 border border-gray-200 rounded-lg bg-gray-50">
+                      <p className="text-sm font-medium text-gray-900">{user?.name}</p>
+                      <p className="text-xs text-gray-500">{user?.email}</p>
+                      {user?.role && (
+                        <p className="text-xs text-[#00838F] font-medium mt-1">
+                          Role: {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Keuangan Link - Only for authorized roles */}
+                    {hasKeuanganAccess() && (
+                      <a
+                        href={getKeuanganUrl()}
+                        className="w-full flex items-center justify-center space-x-2 px-4 py-2 text-[#00BCD4] border border-[#00BCD4] rounded-full font-medium hover:bg-[#B2EBF2]/20 transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        <Wallet className="h-4 w-4" />
+                        <span>Keuangan</span>
+                      </a>
+                    )}
+
+                    <button
+                      onClick={() => {
+                        logout();
+                        setMobileMenuOpen(false);
+                      }}
+                      className="w-full flex items-center justify-center space-x-2 px-4 py-2 text-red-600 border border-red-600 rounded-full font-medium hover:bg-red-50 transition-colors"
+                    >
+                      <LogOut className="h-4 w-4" />
+                      <span>Logout</span>
+                    </button>
+                  </>
                 )}
                 <button
                   onClick={() => {
