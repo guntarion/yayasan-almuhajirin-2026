@@ -15,8 +15,13 @@ import {
   Shield,
   Trash2,
   RefreshCw,
+  MessageCircle,
+  Copy,
+  Check,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
+import ConfirmationModal from '@/components/modals/ConfirmationModal';
+import Toast from '@/components/notifications/Toast';
 
 interface Participant {
   id: string;
@@ -79,6 +84,44 @@ export default function RegistrasiRunMadanPage() {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
 
+  // Modal states
+  const [deleteModal, setDeleteModal] = useState<{
+    isOpen: boolean;
+    registrantId: string | null;
+    registrantName: string | null;
+  }>({
+    isOpen: false,
+    registrantId: null,
+    registrantName: null,
+  });
+
+  const [statusModal, setStatusModal] = useState<{
+    isOpen: boolean;
+    registrantId: string | null;
+    registrantName: string | null;
+    newStatus: string | null;
+    statusLabel: string | null;
+  }>({
+    isOpen: false,
+    registrantId: null,
+    registrantName: null,
+    newStatus: null,
+    statusLabel: null,
+  });
+
+  const [toast, setToast] = useState<{
+    isOpen: boolean;
+    message: string;
+    type: 'success' | 'error' | 'warning' | 'info';
+  }>({
+    isOpen: false,
+    message: '',
+    type: 'info',
+  });
+
+  const [isActionLoading, setIsActionLoading] = useState(false);
+  const [copiedMessageId, setCopiedMessageId] = useState<string | null>(null);
+
   useEffect(() => {
     fetchRegistrants();
   }, []);
@@ -100,54 +143,141 @@ export default function RegistrasiRunMadanPage() {
     }
   };
 
+  // Show toast notification
+  const showToast = (message: string, type: 'success' | 'error' | 'warning' | 'info' = 'info') => {
+    setToast({ isOpen: true, message, type });
+  };
+
+  // Open delete confirmation modal
+  const openDeleteModal = (id: string, name: string) => {
+    setDeleteModal({
+      isOpen: true,
+      registrantId: id,
+      registrantName: name,
+    });
+  };
+
+  // Open status update confirmation modal
+  const openStatusModal = (id: string, name: string, newStatus: string, statusLabel: string) => {
+    setStatusModal({
+      isOpen: true,
+      registrantId: id,
+      registrantName: name,
+      newStatus,
+      statusLabel,
+    });
+  };
+
   // Admin: Delete registration
-  const deleteRegistration = async (id: string) => {
-    if (!isAdmin) return;
+  const confirmDeleteRegistration = async () => {
+    if (!isAdmin || !deleteModal.registrantId) return;
 
-    if (!confirm('Apakah Anda yakin ingin menghapus data pendaftaran ini?')) {
-      return;
-    }
-
+    setIsActionLoading(true);
     try {
-      const response = await fetch(`/api/run-madan/registrants/${id}`, {
+      const response = await fetch(`/api/run-madan/registrants/${deleteModal.registrantId}`, {
         method: 'DELETE',
       });
 
       if (response.ok) {
-        alert('Data berhasil dihapus');
+        showToast('Data pendaftaran berhasil dihapus', 'success');
         fetchRegistrants();
+        setDeleteModal({ isOpen: false, registrantId: null, registrantName: null });
       } else {
-        alert('Gagal menghapus data');
+        showToast('Gagal menghapus data pendaftaran', 'error');
       }
     } catch (error) {
       console.error('Error deleting registration:', error);
-      alert('Terjadi kesalahan saat menghapus data');
+      showToast('Terjadi kesalahan saat menghapus data', 'error');
+    } finally {
+      setIsActionLoading(false);
     }
   };
 
   // Admin: Update payment status
-  const updatePaymentStatus = async (id: string, newStatus: string) => {
-    if (!isAdmin) return;
+  const confirmUpdatePaymentStatus = async () => {
+    if (!isAdmin || !statusModal.registrantId || !statusModal.newStatus) return;
 
+    setIsActionLoading(true);
     try {
-      const response = await fetch(`/api/run-madan/registrants/${id}`, {
+      const response = await fetch(`/api/run-madan/registrants/${statusModal.registrantId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ statusPembayaran: newStatus }),
+        body: JSON.stringify({ statusPembayaran: statusModal.newStatus }),
       });
 
       if (response.ok) {
-        alert('Status pembayaran berhasil diupdate');
+        showToast(`Status pembayaran berhasil diubah menjadi "${statusModal.statusLabel}"`, 'success');
         fetchRegistrants();
+        setStatusModal({
+          isOpen: false,
+          registrantId: null,
+          registrantName: null,
+          newStatus: null,
+          statusLabel: null,
+        });
       } else {
-        alert('Gagal mengupdate status pembayaran');
+        showToast('Gagal mengupdate status pembayaran', 'error');
       }
     } catch (error) {
       console.error('Error updating payment status:', error);
-      alert('Terjadi kesalahan saat mengupdate status');
+      showToast('Terjadi kesalahan saat mengupdate status', 'error');
+    } finally {
+      setIsActionLoading(false);
     }
+  };
+
+  // Generate WhatsApp confirmation message
+  const generateWhatsAppMessage = (registrant: Registrant): string => {
+    // Format participant names with BIB numbers
+    const participantsList = registrant.participants
+      .map((p) => {
+        if (p.nomorBib) {
+          return `${p.namaLengkap} (BIB: ${p.nomorBib})`;
+        }
+        return p.namaLengkap;
+      })
+      .join(', ');
+
+    const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh
+
+Terima kasih atas pendaftaran dan pembayarannya untuk partisipasi RUN-MADAN 2026 a.n ${participantsList} dengan nomor registrasi ${registrant.nomorRegistrasi}.
+
+Semoga Allah berikan kesehatan dan kebarokahan senantiasa. Aamiin.
+
+Jazakumullahu khairan.
+
+_Tim RUN-MADAN 2026_
+_Masjid Al Muhajirin Rewwin_`;
+
+    return message;
+  };
+
+  // Copy WhatsApp message to clipboard
+  const handleCopyMessage = async (registrant: Registrant) => {
+    const message = generateWhatsAppMessage(registrant);
+    try {
+      await navigator.clipboard.writeText(message);
+      setCopiedMessageId(registrant.id);
+      showToast('Pesan berhasil disalin ke clipboard', 'success');
+
+      // Reset copied state after 2 seconds
+      setTimeout(() => {
+        setCopiedMessageId(null);
+      }, 2000);
+    } catch (error) {
+      console.error('Error copying to clipboard:', error);
+      showToast('Gagal menyalin pesan', 'error');
+    }
+  };
+
+  // Open WhatsApp with pre-filled message
+  const handleSendWhatsApp = (registrant: Registrant) => {
+    const message = generateWhatsAppMessage(registrant);
+    const phoneNumber = registrant.nomorHP.replace(/^0/, '62').replace(/[^0-9]/g, '');
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   // Filter registrants by search term
@@ -459,30 +589,44 @@ export default function RegistrasiRunMadanPage() {
                             <label className='text-sm font-semibold text-gray-700 mb-2 block'>Status Pembayaran:</label>
                             <div className='flex flex-wrap gap-2'>
                               <button
-                                onClick={() => updatePaymentStatus(registrant.id, 'belum_bayar')}
+                                onClick={() =>
+                                  openStatusModal(registrant.id, registrant.nama, 'belum_bayar', 'Belum Bayar')
+                                }
+                                disabled={registrant.statusPembayaran === 'belum_bayar'}
                                 className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
                                   registrant.statusPembayaran === 'belum_bayar'
-                                    ? 'bg-red-100 text-red-700 border-2 border-red-300'
+                                    ? 'bg-red-100 text-red-700 border-2 border-red-300 cursor-not-allowed'
                                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200 border-2 border-transparent'
                                 }`}
                               >
                                 Belum Bayar
                               </button>
                               <button
-                                onClick={() => updatePaymentStatus(registrant.id, 'menunggu_konfirmasi')}
+                                onClick={() =>
+                                  openStatusModal(
+                                    registrant.id,
+                                    registrant.nama,
+                                    'menunggu_konfirmasi',
+                                    'Sudah Transfer'
+                                  )
+                                }
+                                disabled={registrant.statusPembayaran === 'menunggu_konfirmasi'}
                                 className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
                                   registrant.statusPembayaran === 'menunggu_konfirmasi'
-                                    ? 'bg-blue-100 text-blue-700 border-2 border-blue-300'
+                                    ? 'bg-blue-100 text-blue-700 border-2 border-blue-300 cursor-not-allowed'
                                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200 border-2 border-transparent'
                                 }`}
                               >
                                 Sudah Transfer
                               </button>
                               <button
-                                onClick={() => updatePaymentStatus(registrant.id, 'lunas')}
+                                onClick={() =>
+                                  openStatusModal(registrant.id, registrant.nama, 'lunas', 'Valid')
+                                }
+                                disabled={registrant.statusPembayaran === 'lunas'}
                                 className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
                                   registrant.statusPembayaran === 'lunas'
-                                    ? 'bg-green-100 text-green-700 border-2 border-green-300'
+                                    ? 'bg-green-100 text-green-700 border-2 border-green-300 cursor-not-allowed'
                                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200 border-2 border-transparent'
                                 }`}
                               >
@@ -492,13 +636,59 @@ export default function RegistrasiRunMadanPage() {
                           </div>
                           <div>
                             <button
-                              onClick={() => deleteRegistration(registrant.id)}
+                              onClick={() => openDeleteModal(registrant.id, registrant.nama)}
                               className='px-4 py-2 rounded-lg bg-red-100 hover:bg-red-200 text-red-700 font-semibold text-sm transition-all flex items-center gap-2'
                             >
                               <Trash2 className='h-4 w-4' />
                               Hapus Pendaftaran
                             </button>
                           </div>
+
+                          {/* WhatsApp Notification - Only show for paid/confirmed registrations */}
+                          {(registrant.statusPembayaran === 'menunggu_konfirmasi' ||
+                            registrant.statusPembayaran === 'lunas') && (
+                            <div className='border-t border-gray-200 pt-4 mt-4'>
+                              <label className='text-sm font-semibold text-gray-700 mb-2 block'>
+                                Notifikasi WhatsApp:
+                              </label>
+                              <div className='bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-lg p-4'>
+                                <div className='flex items-start gap-2 mb-3'>
+                                  <MessageCircle className='h-5 w-5 text-green-600 flex-shrink-0 mt-0.5' />
+                                  <div className='flex-1 text-sm text-gray-700'>
+                                    <p className='font-semibold mb-1'>Pesan Konfirmasi:</p>
+                                    <p className='text-xs whitespace-pre-line bg-white p-3 rounded border border-green-200'>
+                                      {generateWhatsAppMessage(registrant)}
+                                    </p>
+                                  </div>
+                                </div>
+                                <div className='flex gap-2'>
+                                  <button
+                                    onClick={() => handleCopyMessage(registrant)}
+                                    className='flex-1 px-4 py-2 rounded-lg bg-white hover:bg-gray-50 text-gray-700 font-semibold text-sm transition-all flex items-center justify-center gap-2 border-2 border-gray-300'
+                                  >
+                                    {copiedMessageId === registrant.id ? (
+                                      <>
+                                        <Check className='h-4 w-4 text-green-600' />
+                                        Tersalin!
+                                      </>
+                                    ) : (
+                                      <>
+                                        <Copy className='h-4 w-4' />
+                                        Salin Pesan
+                                      </>
+                                    )}
+                                  </button>
+                                  <button
+                                    onClick={() => handleSendWhatsApp(registrant)}
+                                    className='flex-1 px-4 py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white font-semibold text-sm transition-all flex items-center justify-center gap-2'
+                                  >
+                                    <MessageCircle className='h-4 w-4' />
+                                    Kirim WhatsApp
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
                     )}
@@ -539,6 +729,54 @@ export default function RegistrasiRunMadanPage() {
           </div>
         </div>
       </section>
+
+      {/* Modals */}
+      <ConfirmationModal
+        isOpen={deleteModal.isOpen}
+        onClose={() => setDeleteModal({ isOpen: false, registrantId: null, registrantName: null })}
+        onConfirm={confirmDeleteRegistration}
+        title='Hapus Pendaftaran'
+        message={`Apakah Anda yakin ingin menghapus data pendaftaran atas nama "${deleteModal.registrantName}"? Tindakan ini tidak dapat dibatalkan.`}
+        confirmText='Hapus'
+        cancelText='Batal'
+        type='danger'
+        isLoading={isActionLoading}
+      />
+
+      <ConfirmationModal
+        isOpen={statusModal.isOpen}
+        onClose={() =>
+          setStatusModal({
+            isOpen: false,
+            registrantId: null,
+            registrantName: null,
+            newStatus: null,
+            statusLabel: null,
+          })
+        }
+        onConfirm={confirmUpdatePaymentStatus}
+        title='Ubah Status Pembayaran'
+        message={`Apakah Anda yakin ingin mengubah status pembayaran pendaftaran atas nama "${statusModal.registrantName}" menjadi "${statusModal.statusLabel}"?`}
+        confirmText='Ubah Status'
+        cancelText='Batal'
+        type={
+          statusModal.newStatus === 'lunas'
+            ? 'success'
+            : statusModal.newStatus === 'belum_bayar'
+            ? 'danger'
+            : 'info'
+        }
+        isLoading={isActionLoading}
+      />
+
+      {/* Toast Notification */}
+      <Toast
+        isOpen={toast.isOpen}
+        onClose={() => setToast({ ...toast, isOpen: false })}
+        message={toast.message}
+        type={toast.type}
+        duration={3000}
+      />
     </div>
   );
 }

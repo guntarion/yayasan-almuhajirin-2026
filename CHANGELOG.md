@@ -1,3 +1,9 @@
+## 2026-01-09 08:55:04
+
+feat(masjid): add automatic BIB assignment and WhatsApp notification for Run-Madan registrations
+
+---
+
 ## 2026-01-08 21:39:41
 
 feat(masjid): add prominent Islamic dress code requirements for Run-Madan event

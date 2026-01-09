@@ -116,6 +116,55 @@ export async function PATCH(
       },
     });
 
+    // Auto-assign BIB numbers when status becomes 'lunas'
+    if (statusPembayaran === 'lunas' && updatedRegistration.participants.length > 0) {
+      // Extract registration sequence number from nomorRegistrasi (e.g., "RM-2026-0005" -> "0005")
+      const regNumberMatch = updatedRegistration.nomorRegistrasi.match(/\d{4}$/);
+      const regSequence = regNumberMatch ? regNumberMatch[0] : '0000';
+
+      // Assign BIB numbers to participants that don't have one yet
+      const bibAssignments = updatedRegistration.participants
+        .filter(p => !p.nomorBib) // Only assign to participants without BIB
+        .map((participant) => {
+          const participantNumber = updatedRegistration.participants.indexOf(participant) + 1;
+          const nomorBib = `${regSequence}-${participantNumber}`;
+
+          return prisma.runMadanParticipant.update({
+            where: { id: participant.id },
+            data: { nomorBib },
+          });
+        });
+
+      // Execute all BIB assignments
+      if (bibAssignments.length > 0) {
+        await Promise.all(bibAssignments);
+      }
+
+      // Refresh registration data with updated BIB numbers
+      const finalRegistration = await prisma.runMadanRegistrant.findUnique({
+        where: { id },
+        include: { participants: true },
+      });
+
+      return NextResponse.json({
+        success: true,
+        message: 'Status pembayaran berhasil diupdate dan nomor BIB telah ditetapkan',
+        data: {
+          id: finalRegistration!.id,
+          nomorRegistrasi: finalRegistration!.nomorRegistrasi,
+          nama: finalRegistration!.nama,
+          statusPembayaran: finalRegistration!.statusPembayaran,
+          tanggalBayar: finalRegistration!.tanggalBayar,
+          participants: finalRegistration!.participants.map(p => ({
+            namaLengkap: p.namaLengkap,
+            nomorBib: p.nomorBib,
+          })),
+          updatedBy: session.user.email,
+          updatedAt: new Date(),
+        },
+      });
+    }
+
     return NextResponse.json({
       success: true,
       message: 'Status pembayaran berhasil diupdate',
