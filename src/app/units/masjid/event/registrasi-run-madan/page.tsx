@@ -1,7 +1,22 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Users, Activity, Trophy, Award, MapPin, TrendingUp, User } from 'lucide-react';
+import Image from 'next/image';
+import {
+  Users,
+  Activity,
+  Trophy,
+  Award,
+  MapPin,
+  TrendingUp,
+  User,
+  LogIn,
+  LogOut,
+  Shield,
+  Trash2,
+  RefreshCw,
+} from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
 
 interface Participant {
   id: string;
@@ -55,6 +70,10 @@ interface Statistics {
 }
 
 export default function RegistrasiRunMadanPage() {
+  // Auth
+  const { user, isAuthenticated, isLoading: authLoading, loginWithGoogle, logout, hasRole } = useAuth();
+  const isAdmin = hasRole(['admin', 'sekretariat', 'moderator']);
+
   const [registrants, setRegistrants] = useState<Registrant[]>([]);
   const [statistics, setStatistics] = useState<Statistics | null>(null);
   const [loading, setLoading] = useState(true);
@@ -65,6 +84,7 @@ export default function RegistrasiRunMadanPage() {
   }, []);
 
   const fetchRegistrants = async () => {
+    setLoading(true);
     try {
       const response = await fetch('/api/run-madan/registrants');
       const data = await response.json();
@@ -77,6 +97,56 @@ export default function RegistrasiRunMadanPage() {
       console.error('Error fetching registrants:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Admin: Delete registration
+  const deleteRegistration = async (id: string) => {
+    if (!isAdmin) return;
+
+    if (!confirm('Apakah Anda yakin ingin menghapus data pendaftaran ini?')) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/run-madan/registrants/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        alert('Data berhasil dihapus');
+        fetchRegistrants();
+      } else {
+        alert('Gagal menghapus data');
+      }
+    } catch (error) {
+      console.error('Error deleting registration:', error);
+      alert('Terjadi kesalahan saat menghapus data');
+    }
+  };
+
+  // Admin: Update payment status
+  const updatePaymentStatus = async (id: string, newStatus: string) => {
+    if (!isAdmin) return;
+
+    try {
+      const response = await fetch(`/api/run-madan/registrants/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ statusPembayaran: newStatus }),
+      });
+
+      if (response.ok) {
+        alert('Status pembayaran berhasil diupdate');
+        fetchRegistrants();
+      } else {
+        alert('Gagal mengupdate status pembayaran');
+      }
+    } catch (error) {
+      console.error('Error updating payment status:', error);
+      alert('Terjadi kesalahan saat mengupdate status');
     }
   };
 
@@ -132,6 +202,53 @@ export default function RegistrasiRunMadanPage() {
 
   return (
     <div className='min-h-screen bg-gradient-to-b from-gray-50 to-white'>
+      {/* Authentication Bar */}
+      <div className='bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm'>
+        <div className='container mx-auto px-4 py-3'>
+          <div className='flex justify-between items-center'>
+            <div className='flex items-center gap-2'>
+              <Image src='/images/Logo-YAMR.png' alt='Logo Al Muhajirin' width={40} height={40} className='rounded-full' />
+              <span className='text-sm font-semibold text-[#00BCD4]'>Run-Madan 2026 - Data Pendaftaran</span>
+            </div>
+            <div className='flex items-center gap-3'>
+              {!authLoading && (
+                <>
+                  {isAuthenticated && user ? (
+                    <>
+                      <div className='flex items-center gap-2 bg-[#B2EBF2]/20 px-3 py-1.5 rounded-lg'>
+                        <User className='h-4 w-4 text-[#00BCD4]' />
+                        <span className='text-sm font-medium text-[#006064]'>{user.name}</span>
+                        {isAdmin && (
+                          <span className='text-xs bg-[#00BCD4] text-white px-2 py-0.5 rounded-full flex items-center gap-1'>
+                            <Shield className='h-3 w-3' />
+                            Admin
+                          </span>
+                        )}
+                      </div>
+                      <button
+                        onClick={logout}
+                        className='px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold text-sm transition-all duration-200 flex items-center gap-2'
+                      >
+                        <LogOut className='h-4 w-4' />
+                        Keluar
+                      </button>
+                    </>
+                  ) : (
+                    <button
+                      onClick={() => loginWithGoogle(window.location.pathname)}
+                      className='px-4 py-2 rounded-lg bg-[#00BCD4] hover:bg-[#00838F] text-white font-semibold text-sm transition-all duration-200 flex items-center gap-2'
+                    >
+                      <LogIn className='h-4 w-4' />
+                      Login
+                    </button>
+                  )}
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section className='relative overflow-hidden bg-gradient-to-br from-[#00BCD4] via-[#00838F] to-[#006064] text-white py-16'>
         <div className='absolute inset-0 overflow-hidden'>
@@ -274,6 +391,14 @@ export default function RegistrasiRunMadanPage() {
               <h2 className='text-2xl font-black text-gray-900'>
                 Daftar Pendaftar ({filteredRegistrants.length})
               </h2>
+              <button
+                onClick={fetchRegistrants}
+                disabled={loading}
+                className='px-4 py-2 rounded-lg bg-[#00BCD4] hover:bg-[#00838F] text-white font-semibold text-sm transition-all duration-200 flex items-center gap-2 disabled:opacity-50'
+              >
+                <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+                Refresh
+              </button>
             </div>
 
             {/* Registrants */}
@@ -293,7 +418,7 @@ export default function RegistrasiRunMadanPage() {
                   >
                     <div className='flex flex-wrap items-start justify-between gap-4 mb-4'>
                       <div className='flex-1'>
-                        <div className='flex items-center gap-3 mb-2'>
+                        <div className='flex items-center gap-3 mb-2 flex-wrap'>
                           <h3 className='text-xl font-black text-gray-900'>{registrant.nama}</h3>
                           {getStatusBadge(registrant.statusPembayaran)}
                         </div>
@@ -325,6 +450,58 @@ export default function RegistrasiRunMadanPage() {
                         </div>
                       </div>
                     </div>
+
+                    {/* Admin Controls */}
+                    {isAdmin && (
+                      <div className='border-t border-gray-200 pt-4 mb-4'>
+                        <div className='flex flex-col gap-3'>
+                          <div>
+                            <label className='text-sm font-semibold text-gray-700 mb-2 block'>Status Pembayaran:</label>
+                            <div className='flex flex-wrap gap-2'>
+                              <button
+                                onClick={() => updatePaymentStatus(registrant.id, 'belum_bayar')}
+                                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                                  registrant.statusPembayaran === 'belum_bayar'
+                                    ? 'bg-red-100 text-red-700 border-2 border-red-300'
+                                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200 border-2 border-transparent'
+                                }`}
+                              >
+                                Belum Bayar
+                              </button>
+                              <button
+                                onClick={() => updatePaymentStatus(registrant.id, 'menunggu_konfirmasi')}
+                                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                                  registrant.statusPembayaran === 'menunggu_konfirmasi'
+                                    ? 'bg-blue-100 text-blue-700 border-2 border-blue-300'
+                                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200 border-2 border-transparent'
+                                }`}
+                              >
+                                Sudah Transfer
+                              </button>
+                              <button
+                                onClick={() => updatePaymentStatus(registrant.id, 'lunas')}
+                                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                                  registrant.statusPembayaran === 'lunas'
+                                    ? 'bg-green-100 text-green-700 border-2 border-green-300'
+                                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200 border-2 border-transparent'
+                                }`}
+                              >
+                                Valid
+                              </button>
+                            </div>
+                          </div>
+                          <div>
+                            <button
+                              onClick={() => deleteRegistration(registrant.id)}
+                              className='px-4 py-2 rounded-lg bg-red-100 hover:bg-red-200 text-red-700 font-semibold text-sm transition-all flex items-center gap-2'
+                            >
+                              <Trash2 className='h-4 w-4' />
+                              Hapus Pendaftaran
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
 
                     {/* Participants */}
                     <div className='border-t border-gray-200 pt-4'>
