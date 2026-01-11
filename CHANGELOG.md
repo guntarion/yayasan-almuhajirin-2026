@@ -1,3 +1,9 @@
+## 2026-01-11 19:47:46
+
+feat(masjid): add printable Ramadhan 1447H donation proposal with cover letter and reusable A4 document skill
+
+---
+
 ## 2026-01-09 08:55:04
 
 feat(masjid): add automatic BIB assignment and WhatsApp notification for Run-Madan registrations

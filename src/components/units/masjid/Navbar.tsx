@@ -68,7 +68,7 @@ export function MasjidNavbar() {
   return (
     <>
       {/* Top Bar */}
-      <div className="bg-gradient-to-r from-[#006064] to-[#00838F] text-white py-2 text-sm hidden md:block">
+      <div className="bg-gradient-to-r from-[#006064] to-[#00838F] text-white py-2 text-sm hidden md:block print:hidden">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-2">
@@ -89,7 +89,7 @@ export function MasjidNavbar() {
 
       {/* Main Navigation */}
       <nav
-        className={`sticky top-0 z-50 transition-all duration-300 ${
+        className={`sticky top-0 z-50 transition-all duration-300 print:hidden ${
           isScrolled
             ? 'bg-white/95 backdrop-blur-md shadow-lg'
             : 'bg-white'

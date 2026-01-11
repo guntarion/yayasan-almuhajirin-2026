@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dokumen A4 - Template</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: #f3f4f6;
+      color: #1f2937;
+    }
+
+    /* Print Styles */
+    @media print {
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      body {
+        background-color: white;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      .page-break {
+        page-break-after: always;
+      }
+    }
+
+    /* A4 Page Container */
+    .a4-page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 15mm 20mm;
+      margin: 0 auto;
+      background: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media screen {
+      .a4-page {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        margin-bottom: 20px;
+        margin-top: 20px;
+      }
+    }
+
+    /* Decorative Elements */
+    .decor-top-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3mm;
+      background: linear-gradient(to right, #00BCD4, #006064, #00BCD4);
+    }
+
+    .decor-bottom-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3mm;
+      background: linear-gradient(to right, #00BCD4, #006064, #00BCD4);
+    }
+
+    .decor-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+    }
+
+    .decor-blob-1 {
+      top: 16mm;
+      right: 0;
+      width: 48mm;
+      height: 48mm;
+      background-color: #B2EBF2;
+      opacity: 0.4;
+    }
+
+    .decor-blob-2 {
+      bottom: 16mm;
+      left: 0;
+      width: 56mm;
+      height: 56mm;
+      background-color: #80DEEA;
+      opacity: 0.4;
+    }
+
+    .decor-blob-subtle {
+      opacity: 0.15;
+    }
+
+    /* Content Layer */
+    .content {
+      position: relative;
+      z-index: 10;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Typography */
+    .text-primary { color: #006064; }
+    .text-secondary { color: #00838F; }
+    .text-accent { color: #00BCD4; }
+    .text-gray { color: #6b7280; }
+    .text-center { text-align: center; }
+    .text-justify { text-align: justify; }
+    .font-bold { font-weight: 700; }
+    .font-semibold { font-weight: 600; }
+
+    /* Spacing */
+    .mb-2 { margin-bottom: 8px; }
+    .mb-4 { margin-bottom: 16px; }
+    .mb-6 { margin-bottom: 24px; }
+    .mb-8 { margin-bottom: 32px; }
+    .mt-auto { margin-top: auto; }
+    .p-4 { padding: 16px; }
+    .p-6 { padding: 24px; }
+
+    /* Flexbox */
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .flex-1 { flex: 1; }
+    .items-center { align-items: center; }
+    .justify-center { justify-content: center; }
+    .gap-2 { gap: 8px; }
+    .gap-4 { gap: 16px; }
+
+    /* Borders */
+    .border-b { border-bottom: 2px solid #B2EBF2; }
+    .border-t { border-top: 2px solid #B2EBF2; }
+
+    /* Components */
+    .logo-container {
+      display: inline-block;
+      padding: 16px;
+      background: white;
+      border-radius: 16px;
+      border: 1px solid #B2EBF2;
+    }
+
+    .logo-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 12px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(to right, #B2EBF2, #80DEEA);
+      padding: 8px 24px;
+      border-radius: 50px;
+    }
+
+    .title-box {
+      background: linear-gradient(to right, #006064, #00838F);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 16px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .info-box {
+      background: #F8FAFC;
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid #B2EBF2;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #B2EBF2;
+    }
+
+    .section-bar {
+      width: 6px;
+      height: 32px;
+      background: linear-gradient(to bottom, #00BCD4, #006064);
+      border-radius: 50px;
+    }
+
+    .signature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 32px;
+    }
+
+    .signature-block {
+      text-align: center;
+    }
+
+    .signature-space {
+      height: 64px;
+      margin-bottom: 8px;
+    }
+
+    .signature-line {
+      border-top: 1px solid #9ca3af;
+      padding-top: 8px;
+    }
+
+    /* Print Button */
+    .print-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(to right, #00BCD4, #006064);
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    .print-button:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Print Button -->
+  <button class="print-button no-print" onclick="window.print()">
+    Cetak Dokumen
+  </button>
+
+  <!-- ========== PAGE 1: COVER ========== -->
+  <div class="a4-page page-break">
+    <!-- Decorative Elements -->
+    <div class="decor-top-bar"></div>
+    <div class="decor-bottom-bar"></div>
+    <div class="decor-blob decor-blob-1"></div>
+    <div class="decor-blob decor-blob-2"></div>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- Logo -->
+      <div class="text-center" style="padding-top: 32px;">
+        <div class="logo-container">
+          <img src="logo.png" alt="Logo" class="logo-img">
+        </div>
+      </div>
+
+      <!-- Title Section -->
+      <div class="flex-1 flex flex-col justify-center text-center" style="padding: 0 32px;">
+        <p class="text-secondary mb-4" style="font-size: 18px;">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+
+        <div class="badge mb-6" style="margin: 0 auto 24px auto;">
+          <span class="text-primary font-semibold">1 Ramadhan - 1 Syawal 1447 H</span>
+        </div>
+
+        <h1 class="text-primary font-bold mb-2" style="font-size: 36px;">PROPOSAL DONASI</h1>
+        <h2 class="text-accent font-bold mb-6" style="font-size: 28px;">PROGRAM RAMADHAN 1447 H</h2>
+
+        <div class="title-box">
+          <p style="font-size: 20px; font-weight: 600; margin-bottom: 4px;">"MADRASAH KITA"</p>
+          <p style="font-size: 14px; color: #B2EBF2;">Membangun Pribadi Taqwa, Mewujudkan Kontribusi Mulia</p>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center" style="padding-bottom: 32px;">
+        <div class="info-box">
+          <h3 class="text-primary font-bold mb-2" style="font-size: 20px;">PANITIA RAMADHAN 1447 H</h3>
+          <p class="text-secondary font-semibold">TAKMIR MASJID AL-MUHAJIRIN REWWIN</p>
+          <p class="text-gray" style="margin-top: 12px; font-size: 14px;">
+            Jl. Rajawali No. 207 REWWIN, Waru, Sidoarjo
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== PAGE 2: CONTENT ========== -->
+  <div class="a4-page page-break">
+    <!-- Subtle Decorations -->
+    <div class="decor-blob decor-blob-subtle" style="top: 0; right: 0; width: 40mm; height: 40mm; background-color: #B2EBF2;"></div>
+    <div class="decor-blob decor-blob-subtle" style="bottom: 20mm; left: 0; width: 48mm; height: 48mm; background-color: #80DEEA;"></div>
+
+    <div class="content">
+      <!-- Section Header -->
+      <div class="section-header">
+        <div class="section-bar"></div>
+        <h2 class="text-primary font-bold" style="font-size: 24px;">Latar Belakang & Tujuan</h2>
+      </div>
+
+      <!-- Content -->
+      <div class="mb-8">
+        <h3 class="text-primary font-bold mb-4" style="font-size: 18px;">Latar Belakang</h3>
+        <p class="text-justify" style="line-height: 1.6;">
+          <span class="text-primary font-semibold">Bulan Suci Ramadhan</span> adalah momentum agung yang dinantikan oleh seluruh umat Muslim. Di bulan penuh berkah ini, pintu rahmat dan maghfirah Allah SWT dibuka lebar-lebar.
+        </p>
+      </div>
+
+      <div class="mb-8">
+        <h3 class="text-primary font-bold mb-4" style="font-size: 18px;">Tujuan Program</h3>
+        <ul style="list-style: disc; padding-left: 24px; line-height: 2;">
+          <li>Meningkatkan kualitas keimanan dan ibadah</li>
+          <li>Mempererat persaudaraan (ukhuwah islamiyah)</li>
+          <li>Mengoptimalkan fungsi masjid sebagai pusat edukasi</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== PAGE 3: LAST PAGE ========== -->
+  <div class="a4-page">
+    <!-- Subtle Decorations -->
+    <div class="decor-blob decor-blob-subtle" style="top: 12mm; right: 0; width: 40mm; height: 40mm; background-color: #B2EBF2;"></div>
+    <div class="decor-blob decor-blob-subtle" style="bottom: 24mm; left: 0; width: 48mm; height: 48mm; background-color: #80DEEA;"></div>
+
+    <div class="content">
+      <!-- Section Header -->
+      <div class="section-header">
+        <div class="section-bar"></div>
+        <h2 class="text-primary font-bold" style="font-size: 24px;">Informasi Donasi</h2>
+      </div>
+
+      <!-- Bank Info -->
+      <div class="info-box mb-6">
+        <p class="font-semibold" style="color: #0066AE;">Bank BRI</p>
+        <p class="text-primary font-bold" style="font-size: 24px; margin-top: 8px;">0211.01.004859.53.6</p>
+        <p class="text-gray" style="margin-top: 8px;">a/n. <span class="font-semibold">Al Muhajirin Rewwin</span></p>
+      </div>
+
+      <!-- Closing -->
+      <div class="mb-6">
+        <p class="text-justify" style="line-height: 1.6;">
+          Demikian proposal ini kami sampaikan. Atas perhatian dan partisipasi Bapak/Ibu, kami mengucapkan <span class="text-primary font-semibold">Jazakumullahu Khairan Katsiran</span>.
+        </p>
+      </div>
+
+      <!-- Signatures -->
+      <div class="border-t" style="padding-top: 24px; margin-top: auto;">
+        <p class="text-gray mb-6" style="font-size: 14px;">Sidoarjo, Januari 2026</p>
+
+        <div class="signature-grid">
+          <div class="signature-block">
+            <p class="text-gray" style="font-size: 14px;">Ketua Yayasan<br>Al Muhajirin Rewwin</p>
+            <div class="signature-space"></div>
+            <p class="text-primary font-bold signature-line">H. CAHYO HUSNI TAMRIN, ST, MM</p>
+          </div>
+          <div class="signature-block">
+            <p class="text-gray" style="font-size: 14px;">Ketua Panitia Ramadhan 1447H<br>Masjid Al Muhajirin Rewwin</p>
+            <div class="signature-space"></div>
+            <p class="text-primary font-bold signature-line">ARIF BUDI SANTOSO</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
