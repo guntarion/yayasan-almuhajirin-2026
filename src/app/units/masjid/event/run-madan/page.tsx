@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { track } from '@vercel/analytics';
 import {
   Calendar,
   Clock,
@@ -131,17 +132,20 @@ export default function RunMadanPage() {
   }, []);
 
   const handleCopy = () => {
+    track('RunMadan Copy Account');
     navigator.clipboard.writeText('021101004859536');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   const handleWhatsApp = () => {
+    track('RunMadan WhatsApp Click', { action: 'contact' });
     window.open('https://wa.me/628125906069?text=Halo,%20saya%20ingin%20mendaftar%20Run-Madan%202026', '_blank');
   };
 
   const handleShare = () => {
     if (navigator.share) {
+      track('RunMadan Share', { method: 'native' });
       navigator.share({
         title: 'Run-Madan 2026',
         text: 'Yuk ikutan Run-Madan 2026! Lari amal menyambut Ramadhan & kenali layanan kesehatan gratis Al Muhajirin',
@@ -152,6 +156,7 @@ export default function RunMadanPage() {
 
   // Scroll to registration form
   const scrollToRegistration = () => {
+    track('RunMadan CTA Click', { action: 'scroll_to_form' });
     const element = document.getElementById('registration-form');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -160,6 +165,7 @@ export default function RunMadanPage() {
 
   // Download QRIS image
   const downloadQris = () => {
+    track('RunMadan QRIS Download');
     const link = document.createElement('a');
     link.href = '/images/QRIS-BRI-AlMuhajirin.jpeg';
     link.download = 'QRIS-BRI-AlMuhajirin.jpeg';
@@ -254,6 +260,13 @@ export default function RunMadanPage() {
       setRegistrationData(data.data);
       setShowSuccessModal(true);
 
+      // Track successful registration
+      track('RunMadan Registration', {
+        participants: data.data.jumlahPeserta,
+        totalCost: data.data.totalBiaya,
+        registrationNumber: data.data.nomorRegistrasi,
+      });
+
       // Scroll to top to see the modal
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -280,6 +293,11 @@ export default function RunMadanPage() {
   // Send payment confirmation via WhatsApp
   const sendWhatsAppConfirmation = () => {
     if (!registrationData) return;
+
+    track('RunMadan WhatsApp Click', {
+      action: 'payment_confirmation',
+      registrationNumber: registrationData.nomorRegistrasi,
+    });
 
     const message = `Halo, saya ingin konfirmasi pendaftaran Run-Madan 2026
 
