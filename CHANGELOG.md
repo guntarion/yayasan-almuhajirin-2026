@@ -1,3 +1,9 @@
+## 2026-01-12 14:35:19
+
+feat: add Facebook Pixel and Conversions API integration for tracking
+
+---
+
 ## 2026-01-11 19:47:46
 
 feat(masjid): add printable Ramadhan 1447H donation proposal with cover letter and reusable A4 document skill
