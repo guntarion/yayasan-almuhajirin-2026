@@ -1857,3 +1857,85 @@ model RunMadanParticipant {
   @@index([nomorBib])
   @@map("run_madan_participants")
 }
+
+// ===========================================
+// EVENT TENANT: ENUMS
+// ===========================================
+
+enum JenisProdukTenant {
+  MAKANAN
+  MINUMAN
+  PRODUK_UMKM
+  PRODUK_KESEHATAN
+  LAINNYA
+}
+
+enum KegiatanEventTenant {
+  SENAM_PAGI
+  FUN_RUN
+  KEDUANYA
+}
+
+enum StatusTenant {
+  PENDING          // Baru mendaftar
+  DISETUJUI        // Pendaftaran disetujui
+  DITOLAK          // Pendaftaran ditolak
+  AKTIF            // Sedang berpartisipasi di event
+  SELESAI          // Event selesai
+}
+
+// ===========================================
+// EVENT TENANT: MODEL PENDAFTARAN TENANT/STAN
+// ===========================================
+
+model EventTenant {
+  id                    String              @id @default(cuid())
+  nomorRegistrasi       String              @unique  // Auto-generated: TN-YYYYMM-XXXX
+
+  // Event Information (reusable for various events)
+  namaEvent             String              // e.g., "Tarhib Ramadhan 2026"
+
+  // A. Informasi Tenant
+  namaTenant            String              // Nama Tenant / Usaha
+  namaPenanggungJawab   String              // Nama Penanggung Jawab
+  alamat                String              @db.Text
+  nomorTelepon          String              // Nomor Telepon / WhatsApp
+  email                 String?
+
+  // B. Informasi Produk
+  jenisProduk           JenisProdukTenant[]
+  jenisProdukLainnya    String?             // Jika memilih "Lainnya"
+  namaProdukUtama       String
+  deskripsiProduk       String?             @db.Text  // max 2-3 baris
+
+  // C. Kebutuhan Stan (Opsional)
+  butuhListrik          Boolean             @default(false)
+  kebutuhanListrik      String?             // Untuk apa listriknya
+  perlengkapanDibawa    String?             @db.Text  // Meja, tenda kecil, banner, dll
+
+  // D. Waktu & Kegiatan
+  kegiatanDiikuti       KegiatanEventTenant @default(KEDUANYA)
+
+  // E. Pernyataan Kesediaan
+  tanggalPernyataan     DateTime            @default(now())
+  setujuSyaratKetentuan Boolean             @default(false)
+
+  // Payment Status (same as RunMadanRegistrant)
+  statusPembayaran      StatusPembayaran    @default(belum_bayar)
+  tanggalBayar          DateTime?
+
+  // Admin Fields
+  status                StatusTenant        @default(PENDING)
+  lokasiStan            String?             // Penempatan stan oleh panitia
+  catatanPanitia        String?             @db.Text
+
+  createdAt             DateTime            @default(now())
+  updatedAt             DateTime            @updatedAt
+
+  @@index([namaEvent])
+  @@index([status])
+  @@index([statusPembayaran])
+  @@index([namaTenant])
+  @@index([createdAt])
+  @@map("event_tenants")
+}

@@ -1,3 +1,9 @@
+## 2026-01-12 20:02:46
+
+feat(masjid): add tenant/stan registration form and management for Tarhib Ramadhan event
+
+---
+
 ## 2026-01-12 17:44:34
 
 feat(masjid): add Vercel Analytics event tracking for Run-Madan registration
