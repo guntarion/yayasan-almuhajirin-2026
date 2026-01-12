@@ -14,4 +14,7 @@ export const metadata: Metadata = {
     description: '',
     siteName: 'Al Muhajirin Rewwin',
   },
+  other: {
+    'facebook-domain-verification': 'o2ni1a3ygzsluj2s2n8frsl3vn9vto',
+  },
 };
