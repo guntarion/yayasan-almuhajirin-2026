@@ -1,3 +1,9 @@
+## 2026-01-13 10:57:08
+
+chore(tenant): hide Kebutuhan Listrik field from registration form
+
+---
+
 ## 2026-01-13 10:48:32
 
 fix: add prisma generate to build script for Vercel deployment

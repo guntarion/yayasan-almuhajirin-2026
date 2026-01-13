@@ -140,11 +140,6 @@ export default function RegistrasiTenantPage() {
     }
     if (!formData.namaProdukUtama.trim()) errors.push('Nama Produk Utama harus diisi');
 
-    // C. Kebutuhan Stan
-    if (formData.butuhListrik && !formData.kebutuhanListrik.trim()) {
-      errors.push('Sebutkan kebutuhan listrik untuk apa');
-    }
-
     // E. Pernyataan - handle separately for inline display
     const hasPernyataanError = !formData.setujuSyaratKetentuan;
     setPernyataanError(hasPernyataanError);
@@ -508,56 +503,6 @@ Mohon konfirmasi pendaftaran saya.`;
               </h2>
             </div>
             <div className="p-6 space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Kebutuhan Listrik</label>
-                <div className="flex gap-4">
-                  <label
-                    className={`flex items-center gap-2 p-3 rounded-xl border cursor-pointer transition-all flex-1 ${
-                      !formData.butuhListrik
-                        ? 'border-emerald-500 bg-emerald-50'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                  >
-                    <input
-                      type="radio"
-                      name="butuhListrik"
-                      checked={!formData.butuhListrik}
-                      onChange={() => handleInputChange('butuhListrik', false)}
-                      className="w-5 h-5 text-emerald-600 border-gray-300 focus:ring-emerald-500"
-                    />
-                    <span className="font-medium text-gray-700">Tidak</span>
-                  </label>
-                  <label
-                    className={`flex items-center gap-2 p-3 rounded-xl border cursor-pointer transition-all flex-1 ${
-                      formData.butuhListrik
-                        ? 'border-emerald-500 bg-emerald-50'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                  >
-                    <input
-                      type="radio"
-                      name="butuhListrik"
-                      checked={formData.butuhListrik}
-                      onChange={() => handleInputChange('butuhListrik', true)}
-                      className="w-5 h-5 text-emerald-600 border-gray-300 focus:ring-emerald-500"
-                    />
-                    <span className="font-medium text-gray-700">Ya</span>
-                  </label>
-                </div>
-
-                {formData.butuhListrik && (
-                  <div className="mt-3">
-                    <input
-                      type="text"
-                      value={formData.kebutuhanListrik}
-                      onChange={(e) => handleInputChange('kebutuhanListrik', e.target.value)}
-                      placeholder="Untuk apa? (contoh: blender, rice cooker, lampu)"
-                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
-                    />
-                  </div>
-                )}
-              </div>
-
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Perlengkapan yang Dibawa Sendiri
