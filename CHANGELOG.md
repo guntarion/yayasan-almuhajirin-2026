@@ -1,3 +1,9 @@
+## 2026-01-13 10:48:32
+
+fix: add prisma generate to build script for Vercel deployment
+
+---
+
 ## 2026-01-12 20:02:46
 
 feat(masjid): add tenant/stan registration form and management for Tarhib Ramadhan event
