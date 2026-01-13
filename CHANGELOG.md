@@ -1,3 +1,9 @@
+## 2026-01-13 11:04:15
+
+chore(tenant): update WhatsApp contact number for tenant registration
+
+---
+
 ## 2026-01-13 10:57:08
 
 chore(tenant): hide Kebutuhan Listrik field from registration form

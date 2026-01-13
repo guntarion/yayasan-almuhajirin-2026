@@ -232,7 +232,7 @@ Penanggung Jawab: ${registrationResult.namaPenanggungJawab}
 
 Mohon konfirmasi pendaftaran saya.`;
 
-    const whatsappUrl = `https://wa.me/628125906069?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/628873303012?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -652,12 +652,12 @@ Mohon konfirmasi pendaftaran saya.`;
         <div className="mt-8 text-center text-sm text-gray-500">
           <p>Butuh bantuan? Hubungi panitia via WhatsApp:</p>
           <a
-            href="https://wa.me/628125906069"
+            href="https://wa.me/628873303012"
             target="_blank"
             rel="noopener noreferrer"
             className="text-emerald-600 hover:text-emerald-700 font-medium"
           >
-            +62 812-5906-069
+            +62 887-3303-012
           </a>
         </div>
       </main>
