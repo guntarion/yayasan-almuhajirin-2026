@@ -1,3 +1,9 @@
+## 2026-01-13 12:44:47
+
+feat(tenant): add cleaning fee (infaq kebersihan) info to terms section
+
+---
+
 ## 2026-01-13 11:04:15
 
 chore(tenant): update WhatsApp contact number for tenant registration

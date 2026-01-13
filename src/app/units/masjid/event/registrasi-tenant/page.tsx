@@ -572,6 +572,29 @@ Mohon konfirmasi pendaftaran saya.`;
                   <li key={index} className="text-sm leading-relaxed">{item}</li>
                 ))}
               </ol>
+
+              {/* Info Infaq Kebersihan - Prominent */}
+              <div className="bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl p-5 mb-4 text-white shadow-lg">
+                <div className="flex items-start gap-3">
+                  <div className="bg-white/20 rounded-full p-2 flex-shrink-0">
+                    <Zap className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg mb-2">Infaq Kebersihan</h3>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <span className="bg-white/20 px-3 py-1 rounded-full text-sm font-semibold">Rp 30.000</span>
+                        <span className="text-white/90">untuk tenant umum</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="bg-white/30 px-3 py-1 rounded-full text-sm font-bold">Rp 10.000</span>
+                        <span className="text-white/90">jika tenant / anggotanya turut serta kegiatan Run-Madan</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4">
                 <p className="text-sm text-yellow-800 font-medium">
                   Panitia berhak menolak atau menghentikan aktivitas tenant apabila terjadi pelanggaran terhadap ketentuan di atas.
