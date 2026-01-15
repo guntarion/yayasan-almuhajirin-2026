@@ -37,6 +37,16 @@ import {
   ChevronUp,
 } from 'lucide-react';
 
+// Import components
+import {
+  EventTabs,
+  SenamInfo,
+  SenamRegistration,
+  SenamSuccessModal,
+  EventTab,
+  SenamRegistrationData,
+} from './components';
+
 // Form types
 interface Participant {
   id: string;
@@ -78,9 +88,15 @@ interface RegistrationData {
 }
 
 export default function RunMadanPage() {
+  // Tab state
+  const [activeTab, setActiveTab] = useState<EventTab>('fun-run');
 
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [copied, setCopied] = useState(false);
+
+  // Senam state
+  const [showSenamSuccessModal, setShowSenamSuccessModal] = useState(false);
+  const [senamRegistrationData, setSenamRegistrationData] = useState<SenamRegistrationData | null>(null);
 
   // Registration form state
   const [registrant, setRegistrant] = useState<Registrant>({
@@ -161,6 +177,22 @@ export default function RunMadanPage() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  };
+
+  // Scroll to senam registration form
+  const scrollToSenamRegistration = () => {
+    track('Senam CTA Click', { action: 'scroll_to_form' });
+    const element = document.getElementById('senam-registration');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // Handle senam registration success
+  const handleSenamSuccess = (data: SenamRegistrationData) => {
+    setSenamRegistrationData(data);
+    setShowSenamSuccessModal(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Download QRIS image
@@ -464,10 +496,48 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                 <span className='block text-xl sm:text-2xl md:text-4xl font-bold text-white mt-2'>2026</span>
               </h1>
 
-              <p className='text-xl md:text-2xl text-white/90 font-medium'>Lari Santai Ramah Pemula, Edukasi Kesehatan</p>
+              <p className='text-xl md:text-2xl text-white/90 font-medium'>Lari, Jalan Sehat & Senam Pagi</p>
               <p className='text-lg text-white/80'>
-                Bukan Lomba! Ini adalah Edu Run untuk semua kalangan - Menyambut Ramadhan & Memperkenalkan Layanan Kesehatan Gratis
+                Bukan Lomba! Event olahraga santai untuk semua kalangan. Pilih aktivitasmu: <strong>Fun Run/Walk 3K</strong> atau <strong>Senam Sehat GRATIS</strong>. Menyambut Ramadhan & memperkenalkan layanan kesehatan gratis.
               </p>
+
+              {/* Activity Choice Highlight */}
+              <div className='grid grid-cols-2 gap-3'>
+                <button
+                  onClick={() => setActiveTab('fun-run')}
+                  className={`p-4 rounded-xl text-left transition-all duration-300 border-2 ${
+                    activeTab === 'fun-run'
+                      ? 'bg-white text-[#043e75] border-white shadow-lg'
+                      : 'bg-white/10 text-white border-white/30 hover:bg-white/20'
+                  }`}
+                >
+                  <div className='flex items-center gap-2 mb-1'>
+                    <Zap className='h-5 w-5' />
+                    <span className='font-black'>Fun Run/Walk 3K</span>
+                  </div>
+                  <p className='text-xs opacity-80'>Lari atau jalan santai, pilih sesuai kemampuanmu</p>
+                  <div className={`text-xs font-bold mt-2 ${activeTab === 'fun-run' ? 'text-[#043e75]' : 'text-[#addbf2]'}`}>
+                    Rp 100.000 + Jersey
+                  </div>
+                </button>
+                <button
+                  onClick={() => setActiveTab('senam')}
+                  className={`p-4 rounded-xl text-left transition-all duration-300 border-2 ${
+                    activeTab === 'senam'
+                      ? 'bg-[#4CAF50] text-white border-[#4CAF50] shadow-lg'
+                      : 'bg-white/10 text-white border-white/30 hover:bg-white/20'
+                  }`}
+                >
+                  <div className='flex items-center gap-2 mb-1'>
+                    <HeartPulse className='h-5 w-5' />
+                    <span className='font-black'>Senam Sehat</span>
+                  </div>
+                  <p className='text-xs opacity-80'>Olahraga ringan untuk semua usia</p>
+                  <div className={`text-xs font-black mt-2 ${activeTab === 'senam' ? 'text-white' : 'text-[#4CAF50]'}`}>
+                    100% GRATIS!
+                  </div>
+                </button>
+              </div>
 
               <div className='flex flex-wrap gap-4 text-sm'>
                 <div className='flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg'>
@@ -487,11 +557,11 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
               {/* CTA Buttons */}
               <div className='flex flex-col sm:flex-row sm:flex-wrap gap-3 md:gap-4 pt-4'>
                 <button
-                  onClick={scrollToRegistration}
+                  onClick={activeTab === 'senam' ? scrollToSenamRegistration : scrollToRegistration}
                   className='bg-white text-[#043e75] px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-base md:text-lg hover:bg-[#addbf2] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2 min-h-[48px]'
                 >
                   <Users className='h-5 w-5' />
-                  Daftar Sekarang
+                  {activeTab === 'senam' ? 'Daftar Senam GRATIS' : 'Daftar Fun Run/Walk'}
                   <ArrowRight className='h-5 w-5' />
                 </button>
                 <button
@@ -555,6 +625,20 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
         </div>
       </section>
 
+      {/* Event Tabs */}
+      <EventTabs activeTab={activeTab} onTabChange={setActiveTab} />
+
+      {/* Senam Content */}
+      {activeTab === 'senam' && (
+        <>
+          <SenamInfo onScrollToRegistration={scrollToSenamRegistration} />
+          <SenamRegistration onSuccess={handleSenamSuccess} />
+        </>
+      )}
+
+      {/* Fun Run Content */}
+      {activeTab === 'fun-run' && (
+        <>
       {/* Family Jogging Banner */}
       <section className='relative py-0 bg-white'>
         <div className='relative aspect-[21/9] w-full overflow-hidden'>
@@ -2027,9 +2111,19 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
               LAZ Muhajirin (LAZMU)
             </a>
           </p>
-          <p className='text-gray-500 text-sm mt-2'>#RunMadan2026 #TarhibRamadhan #LariAmal #MasjidAlMuhajirin</p>
+          <p className='text-gray-500 text-sm mt-2'>#RunMadan2026 #TarhibRamadhan #LariAmal #MasjidAlMuhajirin #SenamSehat</p>
         </div>
       </footer>
+        </>
+      )}
+
+      {/* Senam Success Modal */}
+      {showSenamSuccessModal && senamRegistrationData && (
+        <SenamSuccessModal
+          data={senamRegistrationData}
+          onClose={() => setShowSenamSuccessModal(false)}
+        />
+      )}
     </div>
   );
 }

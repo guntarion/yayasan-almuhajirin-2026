@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X, ChevronDown, Phone, Mail, Clock, MessageCircle } from 'lucide-react';
+import { Menu, X, ChevronDown, Phone, Clock, MessageCircle } from 'lucide-react';
 
 export function KBTKNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +20,7 @@ export function KBTKNavbar() {
   }, []);
 
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/6281314661918?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20KBTK%20Al%20Muhajirin%20Rewwin', '_blank');
+    window.open('https://wa.me/6281292359103?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20KBTK%20Al%20Muhajirin%20Rewwin', '_blank');
   };
 
   const navLinks = [
@@ -60,15 +60,9 @@ export function KBTKNavbar() {
       {/* Top Bar */}
       <div className="bg-gradient-to-r from-[#006064] to-[#00838F] text-white py-2 text-sm hidden md:block">
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className="flex items-center space-x-6">
-            <div className="flex items-center space-x-2">
-              <Phone className="h-4 w-4" />
-              <span>0813-1466-1918</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Mail className="h-4 w-4" />
-              <span>kbtk@muhajirinrewwin.or.id</span>
-            </div>
+          <div className="flex items-center space-x-2">
+            <Phone className="h-4 w-4" />
+            <span>+62 812-9235-9103</span>
           </div>
           <div className="flex items-center space-x-2">
             <Clock className="h-4 w-4" />
@@ -122,16 +116,19 @@ export function KBTKNavbar() {
 
                   {/* Dropdown Menu */}
                   {link.dropdown && activeDropdown === link.name && (
-                    <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
-                      {link.dropdown.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="block px-4 py-2.5 text-gray-700 hover:text-[#00BCD4] hover:bg-[#00BCD4]/5 transition-colors"
-                        >
-                          {item.name}
-                        </Link>
-                      ))}
+                    <div className="absolute top-full left-0 pt-2 z-50">
+                      {/* Invisible bridge to maintain hover */}
+                      <div className="w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2">
+                        {link.dropdown.map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            className="block px-4 py-2.5 text-gray-700 hover:text-[#00BCD4] hover:bg-[#00BCD4]/5 transition-colors"
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>

@@ -1,6 +1,6 @@
 // src/app/units/kbtk/layout.tsx
 import { Metadata } from 'next';
-import { KBTKNavbar, KBTKFooter } from '@/components/units/kbtk';
+import { KBTKConditionalLayout } from '@/components/units/kbtk';
 
 export const metadata: Metadata = {
   title: {
@@ -25,11 +25,5 @@ export default function KBTKLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div className="min-h-screen bg-white flex flex-col">
-      <KBTKNavbar />
-      <main className="flex-1">{children}</main>
-      <KBTKFooter />
-    </div>
-  );
+  return <KBTKConditionalLayout>{children}</KBTKConditionalLayout>;
 }

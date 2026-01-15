@@ -6,7 +6,6 @@ import Link from 'next/link';
 import {
   MapPin,
   Phone,
-  Mail,
   Clock,
   MessageCircle,
   Facebook,
@@ -18,7 +17,7 @@ import {
 
 export default function KontakPage() {
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/6281314661918?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20KBTK%20Al%20Muhajirin', '_blank');
+    window.open('https://wa.me/6281292359103?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20KBTK%20Al%20Muhajirin', '_blank');
   };
 
   const handleMapsClick = () => {
@@ -29,18 +28,10 @@ export default function KontakPage() {
     {
       icon: Phone,
       title: 'Telepon / WhatsApp',
-      value: '0813-1466-1918',
+      value: '+62 812-9235-9103',
       action: handleWhatsAppClick,
       actionText: 'Chat via WhatsApp',
       color: 'from-[#25D366] to-[#128C7E]',
-    },
-    {
-      icon: Mail,
-      title: 'Email',
-      value: 'kbtk@muhajirinrewwin.or.id',
-      action: () => window.location.href = 'mailto:kbtk@muhajirinrewwin.or.id',
-      actionText: 'Kirim Email',
-      color: 'from-[#00BCD4] to-[#006064]',
     },
     {
       icon: MapPin,
@@ -237,7 +228,7 @@ export default function KontakPage() {
                 <span>Chat via WhatsApp</span>
               </button>
               <a
-                href="tel:+6281314661918"
+                href="tel:+6281292359103"
                 className="flex items-center justify-center space-x-2 bg-[#006064] hover:bg-[#004D40] text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all"
               >
                 <Phone className="h-5 w-5" />

@@ -8,7 +8,7 @@ import { Users, GraduationCap, Heart, Quote, ArrowRight, MessageCircle } from 'l
 
 export default function TimPengajarPage() {
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/6281314661918?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20KBTK%20Al%20Muhajirin', '_blank');
+    window.open('https://wa.me/6281292359103?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20KBTK%20Al%20Muhajirin', '_blank');
   };
 
   const teachers = [
@@ -170,7 +170,7 @@ export default function TimPengajarPage() {
                   {teacher.pesan && (
                     <div className="mt-4 p-4 bg-gradient-to-r from-[#00BCD4]/5 to-[#006064]/5 rounded-xl">
                       <Quote className="h-5 w-5 text-[#00BCD4] mb-2" />
-                      <p className="text-gray-600 text-sm italic leading-relaxed line-clamp-4">
+                      <p className="text-gray-600 text-sm italic leading-relaxed">
                         &quot;{teacher.pesan}&quot;
                       </p>
                     </div>

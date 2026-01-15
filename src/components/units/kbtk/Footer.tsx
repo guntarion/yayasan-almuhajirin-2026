@@ -4,13 +4,13 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Facebook, Instagram, Youtube, MessageCircle, Phone, MapPin, Clock, Mail, Heart, GraduationCap } from 'lucide-react';
+import { Facebook, Instagram, Youtube, MessageCircle, Phone, MapPin, Clock, Heart, GraduationCap } from 'lucide-react';
 
 export function KBTKFooter() {
   const currentYear = new Date().getFullYear();
 
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/6281314661918?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20KBTK%20Al%20Muhajirin%20Rewwin', '_blank');
+    window.open('https://wa.me/6281292359103?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20KBTK%20Al%20Muhajirin%20Rewwin', '_blank');
   };
 
   const quickLinks = [
@@ -149,20 +149,8 @@ export function KBTKFooter() {
                     onClick={handleWhatsAppClick}
                     className="text-white hover:text-[#80DEEA] transition-colors"
                   >
-                    0813-1466-1918
+                    +62 812-9235-9103
                   </button>
-                </div>
-              </li>
-              <li className="flex items-start space-x-3 text-sm">
-                <Mail className="h-4 w-4 text-[#4CAF50] mt-0.5 flex-shrink-0" />
-                <div>
-                  <p className="text-[#B2EBF2]">Email:</p>
-                  <a
-                    href="mailto:kbtk@muhajirinrewwin.or.id"
-                    className="text-white hover:text-[#80DEEA] transition-colors"
-                  >
-                    kbtk@muhajirinrewwin.or.id
-                  </a>
                 </div>
               </li>
               <li className="flex items-start space-x-3 text-sm">

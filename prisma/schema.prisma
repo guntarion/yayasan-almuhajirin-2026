@@ -1859,6 +1859,105 @@ model RunMadanParticipant {
 }
 
 // ===========================================
+// RUN-MADAN 2026: SENAM SEHAT
+// ===========================================
+
+// Minat Komunitas Sehat (multiple choice)
+enum MinatKomunitasSehat {
+  SENAM_SEHAT           // Senam Sehat
+  SENAM_AQUATIK_LANSIA  // Senam Aquatik Lansia (kolam)
+  LINE_DANCE            // Line Dance
+  POUND_FITNESS         // Senam Stick (Pound Fitness)
+}
+
+// Kondisi Kesehatan (for health profiling)
+enum KondisiKesehatan {
+  HIPERTENSI            // Tekanan darah tinggi
+  DIABETES              // Diabetes/Gula darah
+  ASAM_URAT             // Asam urat
+  KOLESTEROL            // Kolesterol tinggi
+  JANTUNG               // Gangguan jantung
+  ASMA                  // Asma/Sesak nafas
+  STROKE                // Riwayat stroke
+  NYERI_SENDI           // Nyeri sendi/Arthritis
+  OSTEOPOROSIS          // Pengeroposan tulang
+  VERTIGO               // Vertigo/Pusing berputar
+  LAINNYA               // Kondisi lainnya
+  TIDAK_ADA             // Tidak ada keluhan
+}
+
+// Status Konfirmasi untuk Senam (karena GRATIS, hanya perlu konfirmasi panitia)
+enum StatusKonfirmasi {
+  belum_terkonfirmasi
+  terkonfirmasi
+}
+
+model SenamRegistrant {
+  id              String            @id @default(cuid())
+  nomorRegistrasi String            @unique  // Auto-generated: SM-2026-XXXX
+
+  // Contact Information (Penanggung Jawab)
+  nama            String
+  nomorHP         String
+  email           String?
+  alamat          String            @db.Text
+
+  // Confirmation Status (GRATIS event - no payment, just confirmation)
+  statusKonfirmasi StatusKonfirmasi @default(belum_terkonfirmasi)
+  tanggalKonfirmasi DateTime?
+
+  // Admin notes
+  catatan         String?           @db.Text
+
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  // Relations
+  participants    SenamParticipant[]
+
+  @@index([nomorHP])
+  @@index([statusKonfirmasi])
+  @@index([createdAt])
+  @@map("senam_registrants")
+}
+
+model SenamParticipant {
+  id                  String              @id @default(cuid())
+  registrantId        String
+  nomorKupon          String?             @unique  // Nomor kupon doorprize, assigned after registration
+
+  // Participant Information
+  namaLengkap         String
+  jenisKelamin        Gender
+  tanggalLahir        DateTime
+  usia                Int?                // Calculated from tanggalLahir
+
+  // Health Profile
+  kondisiKesehatan    String              @db.Text  // JSON array of KondisiKesehatan
+  kondisiLainnya      String?             // Detail jika pilih LAINNYA
+
+  // Community Interest (multiple choice)
+  minatKomunitas      String              @db.Text  // JSON array of MinatKomunitasSehat
+
+  // Event participation
+  sudahHadir          Boolean             @default(false)
+
+  // Notes
+  catatan             String?             @db.Text
+
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+
+  // Relations
+  registrant          SenamRegistrant     @relation(fields: [registrantId], references: [id], onDelete: Cascade)
+
+  @@index([registrantId])
+  @@index([namaLengkap])
+  @@index([nomorKupon])
+  @@map("senam_participants")
+}
+
+// ===========================================
 // EVENT TENANT: ENUMS
 // ===========================================
 

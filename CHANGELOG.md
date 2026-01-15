@@ -1,3 +1,9 @@
+## 2026-01-15 15:11:39
+
+feat(masjid): add senam sehat registration system for Run-Madan 2026
+
+---
+
 ## 2026-01-13 12:44:47
 
 feat(tenant): add cleaning fee (infaq kebersihan) info to terms section

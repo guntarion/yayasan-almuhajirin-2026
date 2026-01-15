@@ -132,16 +132,19 @@ export function MasjidNavbar() {
 
                   {/* Dropdown Menu */}
                   {link.dropdown && activeDropdown === link.name && (
-                    <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
-                      {link.dropdown.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="block px-4 py-2.5 text-gray-700 hover:text-[#00BCD4] hover:bg-[#00BCD4]/5 transition-colors"
-                        >
-                          {item.name}
-                        </Link>
-                      ))}
+                    <div className="absolute top-full left-0 pt-2 z-50">
+                      {/* Invisible bridge to maintain hover */}
+                      <div className="w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2">
+                        {link.dropdown.map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            className="block px-4 py-2.5 text-gray-700 hover:text-[#00BCD4] hover:bg-[#00BCD4]/5 transition-colors"
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>

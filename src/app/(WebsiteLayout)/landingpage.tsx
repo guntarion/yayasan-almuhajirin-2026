@@ -57,7 +57,7 @@ export default function LandingPage() {
       color: 'from-[#9C27B0] to-[#6A1B9A]',
       bgColor: 'bg-[#9C27B0]/10',
       href: 'https://kbtk.muhajirinrewwin.or.id',
-      contact: '0813-1466-1918',
+      contact: '+62 812-9235-9103',
     },
     {
       icon: HandHeart,

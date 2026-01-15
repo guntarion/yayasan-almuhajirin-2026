@@ -17,7 +17,7 @@ import {
 
 export default function PendaftaranPage() {
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/6281314661918?text=Assalamualaikum,%20saya%20ingin%20mendaftarkan%20anak%20saya%20di%20KBTK%20Al%20Muhajirin', '_blank');
+    window.open('https://wa.me/6281292359103?text=Assalamualaikum,%20saya%20ingin%20mendaftarkan%20anak%20saya%20di%20KBTK%20Al%20Muhajirin', '_blank');
   };
 
   const syaratPendaftaran = [
@@ -283,11 +283,11 @@ export default function PendaftaranPage() {
                 <span>Daftar via WhatsApp</span>
               </button>
               <a
-                href="tel:+6281314661918"
+                href="tel:+6281292359103"
                 className="flex items-center justify-center space-x-2 bg-[#006064] hover:bg-[#004D40] text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all"
               >
                 <Phone className="h-5 w-5" />
-                <span>Telepon: 0813-1466-1918</span>
+                <span>Telepon: +62 812-9235-9103</span>
               </a>
             </div>
           </div>
