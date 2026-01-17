@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { track } from '@vercel/analytics';
 import {
   Store,
@@ -305,6 +306,30 @@ Mohon konfirmasi pendaftaran saya.`;
 
       {/* Main Content */}
       <main className="max-w-3xl mx-auto px-4 py-8">
+        {/* Denah Rute Run-Madan */}
+        <section className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-8">
+          <div className="bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-4">
+            <h2 className="text-lg font-bold text-white flex items-center gap-2">
+              <MapPin className="w-5 h-5" />
+              Denah Acara Run-Madan 2026
+            </h2>
+          </div>
+          <div className="p-4">
+            <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
+              <Image
+                src="/images/masjid/events/denah-acara-run-madan.jpeg"
+                alt="Denah Rute Lari Run-Madan 2026"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            <p className="text-sm text-gray-600 text-center mt-3">
+              Denah kegiatan Run-Madan 2026
+            </p>
+          </div>
+        </section>
+
         {/* Error Messages */}
         {formErrors.length > 0 && (
           <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
