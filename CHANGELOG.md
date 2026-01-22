@@ -1,3 +1,16 @@
+## 2026-01-22 13:13:44
+
+feat(masjid): add CSV export for Running event registration
+
+- Create new API endpoint (/api/run-madan/registrants/export) to export all Running registrants and participants to CSV format
+- Add handleExportRunningCSV() function to registration page
+- Add "Export CSV" button to Running registrants list section with admin-only visibility
+- CSV includes registration info (number, name, phone, email, address), payment status, and participant details
+- Export file uses UTF-8 BOM for Excel compatibility with Indonesian localization
+- Feature matches existing Senam registration CSV export functionality
+
+---
+
 ## 2026-01-15 15:11:39
 
 feat(masjid): add senam sehat registration system for Run-Madan 2026

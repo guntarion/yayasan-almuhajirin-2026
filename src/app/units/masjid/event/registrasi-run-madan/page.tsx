@@ -619,6 +619,11 @@ _Masjid Al Muhajirin Rewwin_`;
     window.open(whatsappUrl, '_blank');
   };
 
+  // Export running registrants to CSV
+  const handleExportRunningCSV = () => {
+    window.open('/api/run-madan/registrants/export', '_blank');
+  };
+
   // Export senam registrants to CSV
   const handleExportSenamCSV = () => {
     window.open('/api/run-madan/senam/registrants/export', '_blank');
@@ -968,15 +973,24 @@ _Masjid Al Muhajirin Rewwin_`;
       <section className='py-12'>
         <div className='container mx-auto px-4'>
           <div className='max-w-6xl mx-auto'>
-            {/* Search */}
-            <div className='mb-8'>
+            {/* Search and Export */}
+            <div className='mb-8 flex flex-col md:flex-row gap-4'>
               <input
                 type='text'
                 placeholder='Cari nama pendaftar, nomor registrasi, atau nama peserta...'
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className='w-full px-6 py-4 rounded-xl border-2 border-gray-300 focus:border-[#00BCD4] focus:outline-none text-lg'
+                className='flex-1 px-6 py-4 rounded-xl border-2 border-gray-300 focus:border-[#00BCD4] focus:outline-none text-lg'
               />
+              {isAdmin && (
+                <button
+                  onClick={handleExportRunningCSV}
+                  className='px-6 py-4 rounded-xl bg-[#00BCD4] hover:bg-[#00838F] text-white font-bold text-lg transition-all flex items-center justify-center gap-2'
+                >
+                  <Download className='h-5 w-5' />
+                  Export CSV
+                </button>
+              )}
             </div>
 
             {/* List Header */}
