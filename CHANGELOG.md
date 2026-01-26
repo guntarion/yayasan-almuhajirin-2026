@@ -1,3 +1,16 @@
+## 2026-01-26 13:52:01
+
+feat(masjid): update Run-Madan registration with new pricing tiers
+
+- Mark 3K Fun Run Rp 100k as SOLD OUT (quota habis) with greyed styling
+- Add new 3K Fun Run Rp 50k option without jersey
+- Set deadline: Sunday, February 1, 2026
+- Update submit button to reflect Rp 50k pricing
+- Update benefits section to show jersey exclusion for 50k package
+- Fix nested JSX comment issue in Race Day Schedule section
+
+---
+
 ## 2026-01-22 13:13:44
 
 feat(masjid): add CSV export for Running event registration
