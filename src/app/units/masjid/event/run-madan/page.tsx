@@ -142,7 +142,7 @@ export default function RunMadanPage() {
 
   const handleCopy = () => {
     track('RunMadan Copy Account');
-    navigator.clipboard.writeText('021101004859536');
+    navigator.clipboard.writeText('021101004869536');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -1509,7 +1509,7 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                     {
                       step: 2,
                       title: 'Transfer Biaya Pendaftaran',
-                      description: 'Transfer Rp 50.000 ke rekening BRI 0211.01.004859.53.6 a.n. Al Muhajirin Rewwin',
+                      description: 'Transfer Rp 50.000 ke rekening BRI 0211.01.004869.53.6 a.n. Al Muhajirin Rewwin',
                       icon: Wallet,
                     },
                     {
@@ -1557,7 +1557,7 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                       </div>
                       <div>
                         <div className='text-sm text-gray-600 mb-1'>Nomor Rekening</div>
-                        <div className='text-xl font-black text-[#043e75]'>0211.01.004859.53.6</div>
+                        <div className='text-xl font-black text-[#043e75]'>0211.01.004869.53.6</div>
                       </div>
                       <div>
                         <div className='text-sm text-gray-600 mb-1'>Atas Nama</div>
@@ -2006,7 +2006,7 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                     <div className='space-y-3 text-gray-700'>
                       <div>
                         <div className='text-sm font-semibold'>Transfer ke:</div>
-                        <div className='text-lg font-bold text-[#043e75]'>BRI - 0211.01.004859.53.6</div>
+                        <div className='text-lg font-bold text-[#043e75]'>BRI - 0211.01.004869.53.6</div>
                         <div className='text-sm'>a.n. Al Muhajirin Rewwin</div>
                       </div>
                       <div>

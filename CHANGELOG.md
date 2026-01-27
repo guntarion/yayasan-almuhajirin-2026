@@ -1,3 +1,15 @@
+## 2026-01-27 15:30:52
+
+fix(masjid): correct BRI account number for Run-Madan event
+
+Update BRI account number from 0211.01.004859.53.6 to 0211.01.004869.53.6
+across all instances in Run-Madan event page including:
+- Clipboard copy function
+- Registration instructions
+- Payment display sections
+
+---
+
 ## 2026-01-27 12:15:24
 
 fix(masjid): update Run-Madan registration price from Rp 100.000 to Rp 50.000
