@@ -1,3 +1,15 @@
+## 2026-01-27 12:15:24
+
+fix(masjid): update Run-Madan registration price from Rp 100.000 to Rp 50.000
+
+- Update API calculation to Rp 50.000 per participant
+- Fix payment instruction text in registration steps
+- Fix price display in participant form summary
+
+The new open registration (without jersey) uses the Rp 50.000 pricing tier.
+
+---
+
 ## 2026-01-26 13:52:01
 
 feat(masjid): update Run-Madan registration with new pricing tiers

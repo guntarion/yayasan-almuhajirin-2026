@@ -98,8 +98,8 @@ export async function POST(request: NextRequest) {
     // Generate registration number
     const nomorRegistrasi = await generateRegistrationNumber();
 
-    // Calculate total cost (Rp 100,000 per participant)
-    const totalBiaya = data.participants.length * 100000;
+    // Calculate total cost (Rp 50,000 per participant)
+    const totalBiaya = data.participants.length * 50000;
 
     // Create registrant and participants in a transaction
     const result = await prisma.runMadanRegistrant.create({

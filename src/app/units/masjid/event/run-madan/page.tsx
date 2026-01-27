@@ -1509,7 +1509,7 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                     {
                       step: 2,
                       title: 'Transfer Biaya Pendaftaran',
-                      description: 'Transfer Rp 100.000 ke rekening BRI 0211.01.004859.53.6 a.n. Al Muhajirin Rewwin',
+                      description: 'Transfer Rp 50.000 ke rekening BRI 0211.01.004859.53.6 a.n. Al Muhajirin Rewwin',
                       icon: Wallet,
                     },
                     {
@@ -1784,7 +1784,7 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                         Data Peserta Lari
                       </h3>
                       <span className='text-sm font-bold text-gray-600'>
-                        {participants.length} Peserta × Rp 100.000 = Rp {(participants.length * 100000).toLocaleString('id-ID')}
+                        {participants.length} Peserta × Rp 50.000 = Rp {(participants.length * 50000).toLocaleString('id-ID')}
                       </span>
                     </div>
 
