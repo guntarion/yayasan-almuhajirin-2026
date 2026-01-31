@@ -1,3 +1,17 @@
+## 2026-01-31 15:01:26
+
+feat(units): add poliklinik and ambulans profile pages with printable brochures
+
+- Add comprehensive profile documents for Poliklinik and Ambulans units
+- Create poliklinik printable A4 brochure (2 pages, front and back)
+- Create ambulans unit pages (main page, layout, printable brochure)
+- Add poliklinik images (cek-tekanan-darah, memberi-obat)
+- Add QRIS images for LAZ donation
+- Support large text for A5 printing
+- Include donation info with Bank Muamalat and QRIS
+
+---
+
 ## 2026-01-27 15:30:52
 
 fix(masjid): correct BRI account number for Run-Madan event
