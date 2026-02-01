@@ -3,27 +3,27 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Ambulance, MapPin, Phone, Globe, Heart, Users, CheckCircle2, CircleDot, Building2, Clock, Siren, Hospital, Truck } from 'lucide-react';
+import { Ambulance, MapPin, Phone, Heart, CheckCircle2, Building2, Clock, Siren, Hospital, AlertTriangle, Stethoscope, Wind, Thermometer } from 'lucide-react';
 
 export default function ProfilCetakAmbulans() {
-  const layanan = [
-    'Evakuasi Medis Darurat',
-    'Antar Pasien ke Rumah Sakit',
-    'Antar Pasien Cuci Darah',
-    'Transportasi Jenazah',
-    'Standby Acara',
-    'Tanggap Bencana',
-  ];
+  const layananDarurat = ['Serangan Jantung', 'Stroke', 'Kecelakaan', 'Kondisi Gawat Darurat'];
 
-  const alurPelayanan = [
-    { step: '1', title: 'Hubungi', desc: 'Hotline 24 jam' },
-    { step: '2', title: 'Verifikasi', desc: 'Lokasi & kondisi' },
-    { step: '3', title: 'Dispatch', desc: 'Tim berangkat' },
-    { step: '4', title: 'Evakuasi', desc: 'Penanganan pasien' },
-    { step: '5', title: 'Antar', desc: 'Ke RS tujuan' },
-  ];
+  const layananNonDarurat = ['Antar ke RS (Rawat Jalan)', 'Antar Pulang dari RS', 'Antar Cuci Darah', 'Rujukan Antar RS'];
 
-  const wilayah = ['Kec. Waru, Sidoarjo', 'Kec. Gedangan, Sidoarjo', 'Kec. Sedati, Sidoarjo', 'Seluruh Sidoarjo & Surabaya'];
+  const layananLain = ['Transportasi Jenazah', 'Standby Acara', 'Tanggap Bencana'];
+
+  const infoHubungi = ['Nama & No. HP pelapor', 'Lokasi lengkap + patokan', 'Kondisi pasien singkat', 'Tujuan RS (jika ada)'];
+
+  const wilayah = ['Kec. Waru', 'Kec. Gedangan', 'Kec. Sedati', 'Kec. Taman'];
+
+  const rsRujukan = ['RS Siti Khodijah Sepanjang', 'RSU Waru', 'RS Mitra Keluarga Waru', 'RSUD Sidoarjo', 'RS Premier Surabaya'];
+
+  const peralatan = [
+    { nama: 'Brankar', icon: Hospital },
+    { nama: 'Tabung O2', icon: Wind },
+    { nama: 'Tensimeter', icon: Stethoscope },
+    { nama: 'P3K Lengkap', icon: AlertTriangle },
+  ];
 
   return (
     <div className='bg-gray-200 min-h-screen'>
@@ -71,7 +71,8 @@ export default function ProfilCetakAmbulans() {
       <div className='no-print fixed top-4 right-4 z-50 flex gap-3'>
         <button
           onClick={() => window.print()}
-          className='bg-gradient-to-r from-red-600 to-orange-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all flex items-center gap-2'
+          className='text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all flex items-center gap-2'
+          style={{ background: 'linear-gradient(to right, #2b438a, #004aad)' }}
         >
           <svg className='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
             <path
@@ -88,48 +89,68 @@ export default function ProfilCetakAmbulans() {
       {/* ========== PAGE 1: COVER/FRONT ========== */}
       <div className='a4-page page-break'>
         {/* Decorative Curved Shape - Bottom Right */}
-        <div className='absolute right-0 bottom-[6%] w-[65%] h-[40%]'>
-          <div className='absolute inset-0 bg-gradient-to-tl from-red-600 to-red-500 rounded-tl-[100px]'></div>
+        <div className='absolute right-0 bottom-[6%] w-[60%] h-[38%]'>
+          <div className='absolute inset-0 rounded-tl-[100px]' style={{ background: 'linear-gradient(to top left, #2b438a, #004aad)' }}></div>
         </div>
 
+        {/* Yellow accent stripe */}
+        <div className='absolute left-0 bottom-[44%] w-[45%] h-[35px]' style={{ backgroundColor: '#fdc801' }}></div>
+
+        {/* Top decorative bar */}
+        <div className='absolute top-0 left-0 right-0 h-2' style={{ backgroundColor: '#004aad' }}></div>
+
         {/* Medical Cross / Plus Decorations */}
-        <div className='absolute top-[6%] left-[42%] text-red-400 text-6xl font-bold opacity-50'>+</div>
-        <div className='absolute top-[4%] right-[18%] text-red-500 text-7xl font-bold'>+</div>
-        <div className='absolute bottom-[44%] right-[2%] text-red-400 text-5xl font-bold'>+</div>
+        <div className='absolute top-[6%] left-[40%] text-6xl font-bold opacity-50' style={{ color: '#004aad' }}>+</div>
+        <div className='absolute top-[4%] right-[18%] text-7xl font-bold' style={{ color: '#2b438a' }}>+</div>
+        <div className='absolute bottom-[42%] right-[2%] text-5xl font-bold' style={{ color: '#004aad' }}>+</div>
 
         {/* Header - Logo & Tagline */}
         <div className='absolute top-8 left-8 flex items-center gap-4 z-20'>
-          <div className='w-16 h-16 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl flex items-center justify-center'>
+          <div className='w-16 h-16 rounded-xl flex items-center justify-center' style={{ background: 'linear-gradient(to bottom right, #2b438a, #004aad)' }}>
             <Ambulance className='w-9 h-9 text-white' />
           </div>
           <div>
-            <p className='font-bold text-red-700 text-2xl'>Al Muhajirin</p>
-            <p className='text-red-600 text-lg'>Respon Cepat, Layanan Amanah</p>
+            <p className='font-bold text-2xl' style={{ color: '#2b438a' }}>Al Muhajirin</p>
+            <p className='text-lg' style={{ color: '#004aad' }}>Respon Cepat, Layanan Amanah</p>
           </div>
         </div>
 
         {/* Ambulance Image - Large */}
-        <div className='absolute left-4 top-[14%] w-[55%] h-[42%] z-10'>
+        <div className='absolute left-2 top-[13%] w-[58%] h-[40%] z-10'>
           <div className='relative w-full h-full'>
             <Image src='/images/laz/ambulance-almuhajirin.png' alt='Ambulans Al Muhajirin' fill className='object-contain' />
           </div>
         </div>
 
         {/* Main Title - Right Side */}
-        <div className='absolute top-[14%] right-[4%] w-[42%] z-20'>
-          <div className='bg-gradient-to-r from-red-600 to-orange-600 px-8 py-4 rounded-xl inline-block mb-4'>
+        <div className='absolute top-[13%] right-[4%] w-[40%] z-20'>
+          <div className='px-6 py-3 rounded-xl inline-block mb-3' style={{ background: 'linear-gradient(to right, #2b438a, #004aad)' }}>
             <h1 className='text-4xl font-black text-white tracking-wide'>AMBULANS</h1>
           </div>
-          <h2 className='text-5xl font-bold text-red-800 mb-4'>Al Muhajirin</h2>
+          <h2 className='text-5xl font-bold mb-3' style={{ color: '#fdc801' }}>Al Muhajirin</h2>
           <p className='text-gray-600 text-xl leading-relaxed'>
-            Layanan transportasi medis darurat <strong className='text-red-700'>24 JAM</strong> untuk masyarakat Sidoarjo dan sekitarnya.
+            Layanan transportasi medis <strong style={{ color: '#2b438a' }}>24 JAM</strong> untuk masyarakat Sidoarjo dan sekitarnya.
           </p>
+
+          {/* Spesifikasi Singkat */}
+          <div className='mt-4 rounded-xl p-3 border-2' style={{ backgroundColor: '#f0f4ff', borderColor: '#004aad' }}>
+            <p className='font-bold mb-2' style={{ color: '#2b438a' }}>Spesifikasi Armada:</p>
+            <ul className='text-gray-700 space-y-1 text-base'>
+              <li>• Ambulans Transportasi</li>
+              <li>• Kapasitas: 1 pasien + pendamping</li>
+              <li>• Sirene & Lampu Darurat</li>
+              <li>• Full AC</li>
+            </ul>
+          </div>
         </div>
 
         {/* Hotline Badge - Large & Prominent */}
-        <div className='absolute left-[4%] bottom-[20%] z-20'>
-          <div className='bg-white rounded-2xl p-5 shadow-2xl border-4 border-red-500'>
-            <p className='text-red-600 font-bold text-xl mb-1'>HOTLINE 24 JAM</p>
+        <div className='absolute left-[4%] bottom-[18%] z-20'>
+          <div className='bg-white rounded-2xl p-5 shadow-2xl border-4' style={{ borderColor: '#2b438a' }}>
+            <div className='flex items-center gap-2 mb-1'>
+              <Siren className='w-6 h-6' style={{ color: '#fdc801' }} />
+              <p className='font-bold text-xl' style={{ color: '#2b438a' }}>HOTLINE 24 JAM</p>
+            </div>
             <p className='text-5xl font-black text-gray-900'>0859-1807-79439</p>
             <p className='text-gray-500 mt-1 text-lg'>Telepon / WhatsApp</p>
           </div>
@@ -137,34 +158,43 @@ export default function ProfilCetakAmbulans() {
 
         {/* Location Badge */}
         <div className='absolute left-[4%] bottom-[8%] z-20'>
-          <div className='bg-white border-2 border-red-300 rounded-full px-6 py-3 flex items-center gap-3 shadow-xl'>
-            <MapPin className='w-6 h-6 text-red-600' />
-            <span className='text-gray-700 font-semibold text-lg'>Jl. Rajawali No. 207, Rewwin, Waru, Sidoarjo</span>
+          <div className='bg-white border-2 rounded-full px-5 py-2 flex items-center gap-2 shadow-xl' style={{ borderColor: '#004aad' }}>
+            <MapPin className='w-5 h-5' style={{ color: '#fdc801' }} />
+            <span className='text-gray-700 font-semibold'>Jl. Rajawali No. 207, Rewwin, Waru, Sidoarjo</span>
           </div>
         </div>
 
-        {/* Services List */}
-        <div className='absolute right-[4%] bottom-[10%] w-[55%] z-20'>
-          <h3 className='text-3xl font-bold text-white mb-5'>Layanan Kami :</h3>
-          <div className='grid grid-cols-2 gap-3'>
-            {layanan.map((item, index) => (
-              <div key={index} className='flex items-center gap-3'>
-                <CheckCircle2 className='w-6 h-6 text-red-200 flex-shrink-0' />
-                <span className='text-white text-lg font-semibold'>{item}</span>
+        {/* Layanan - Right Side on Blue Area */}
+        <div className='absolute right-[4%] bottom-[10%] w-[52%] z-20'>
+          <h3 className='text-2xl font-bold text-white mb-3'>Layanan Darurat:</h3>
+          <div className='grid grid-cols-2 gap-2 mb-4'>
+            {layananDarurat.map((item, index) => (
+              <div key={index} className='flex items-center gap-2'>
+                <CheckCircle2 className='w-5 h-5 flex-shrink-0' style={{ color: '#fdc801' }} />
+                <span className='text-white text-lg font-medium'>{item}</span>
+              </div>
+            ))}
+          </div>
+          <h3 className='text-2xl font-bold text-white mb-3'>Layanan Non-Darurat:</h3>
+          <div className='grid grid-cols-2 gap-2'>
+            {layananNonDarurat.map((item, index) => (
+              <div key={index} className='flex items-center gap-2'>
+                <CheckCircle2 className='w-5 h-5 flex-shrink-0' style={{ color: '#fdc801' }} />
+                <span className='text-white text-lg font-medium'>{item}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Footer Contact Bar */}
-        <div className='absolute bottom-0 left-0 right-0 bg-white py-4 px-8 flex items-center justify-center gap-12 border-t-2 border-gray-200 z-30'>
-          <div className='flex items-center gap-3'>
-            <Phone className='w-6 h-6 text-red-600' />
-            <span className='text-gray-700 font-bold text-2xl'>0859-1807-79439</span>
+        <div className='absolute bottom-0 left-0 right-0 bg-white py-3 px-8 flex items-center justify-center gap-10 border-t-2 border-gray-200 z-30'>
+          <div className='flex items-center gap-2'>
+            <Phone className='w-5 h-5' style={{ color: '#fdc801' }} />
+            <span className='font-bold text-2xl' style={{ color: '#2b438a' }}>0859-1807-79439</span>
           </div>
-          <div className='flex items-center gap-3'>
-            <Globe className='w-6 h-6 text-red-600' />
-            <span className='text-gray-700 font-semibold text-xl'>ambulans.muhajirinrewwin.or.id</span>
+          <div className='flex items-center gap-2'>
+            <Clock className='w-5 h-5' style={{ color: '#fdc801' }} />
+            <span className='font-semibold text-lg' style={{ color: '#2b438a' }}>Siaga 24 Jam</span>
           </div>
         </div>
       </div>
@@ -172,29 +202,29 @@ export default function ProfilCetakAmbulans() {
       {/* ========== PAGE 2: BACK/DETAILS ========== */}
       <div className='a4-page relative overflow-hidden'>
         {/* Decorative Elements */}
-        <div className='absolute top-0 left-0 w-full h-4 bg-gradient-to-r from-red-500 via-orange-500 to-red-500'></div>
-        <div className='absolute bottom-0 left-0 w-full h-4 bg-gradient-to-r from-red-500 via-orange-500 to-red-500'></div>
-        <div className='absolute top-24 right-0 w-48 h-48 bg-red-100 rounded-full opacity-40 blur-3xl'></div>
-        <div className='absolute bottom-40 left-0 w-56 h-56 bg-orange-100 rounded-full opacity-40 blur-3xl'></div>
-        <div className='absolute top-[12%] left-[40%] text-red-300 text-4xl font-bold opacity-40'>+</div>
-        <div className='absolute bottom-[20%] right-[8%] text-red-300 text-5xl font-bold opacity-30'>+</div>
+        <div className='absolute top-0 left-0 w-full h-4' style={{ background: 'linear-gradient(to right, #2b438a, #004aad, #2b438a)' }}></div>
+        <div className='absolute bottom-0 left-0 w-full h-4' style={{ background: 'linear-gradient(to right, #2b438a, #004aad, #2b438a)' }}></div>
+        <div className='absolute top-24 right-0 w-48 h-48 rounded-full opacity-40 blur-3xl' style={{ backgroundColor: '#e0e7ff' }}></div>
+        <div className='absolute bottom-40 left-0 w-56 h-56 rounded-full opacity-40 blur-3xl' style={{ backgroundColor: '#fef3c7' }}></div>
+        <div className='absolute top-[10%] left-[38%] text-4xl font-bold opacity-40' style={{ color: '#004aad' }}>+</div>
+        <div className='absolute bottom-[18%] right-[6%] text-5xl font-bold opacity-30' style={{ color: '#004aad' }}>+</div>
 
         <div className='relative z-10 h-full flex flex-col p-6 pt-5'>
           {/* Header */}
           <div className='flex items-center justify-between mb-4'>
             <div className='flex items-center gap-3'>
-              <div className='w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl flex items-center justify-center'>
+              <div className='w-12 h-12 rounded-xl flex items-center justify-center' style={{ background: 'linear-gradient(to bottom right, #2b438a, #004aad)' }}>
                 <Ambulance className='w-7 h-7 text-white' />
               </div>
               <div>
-                <p className='font-bold text-red-700 text-xl'>Ambulans Al Muhajirin</p>
-                <p className='text-red-600'>Informasi Lengkap</p>
+                <p className='font-bold text-xl' style={{ color: '#2b438a' }}>Ambulans Al Muhajirin</p>
+                <p style={{ color: '#004aad' }}>Unit Ambulans dan Tanggap Bencana</p>
               </div>
             </div>
           </div>
 
           {/* Bayar Seikhlasnya Highlight */}
-          <div className='rounded-2xl p-4 mb-4 text-white text-center' style={{ backgroundColor: '#dc2626' }}>
+          <div className='rounded-2xl p-4 mb-4 text-white text-center' style={{ backgroundColor: '#2b438a' }}>
             <p className='text-4xl font-black mb-1'>BAYAR SEIKHLASNYA</p>
             <p className='text-xl font-medium'>GRATIS untuk Masyarakat Tidak Mampu</p>
           </div>
@@ -203,91 +233,103 @@ export default function ProfilCetakAmbulans() {
           <div className='flex-1 grid grid-cols-2 gap-5'>
             {/* Left Column */}
             <div className='space-y-4'>
-              {/* Alur Pelayanan */}
-              <div>
+              {/* Info Saat Menghubungi */}
+              <div className='rounded-2xl p-4 border-2' style={{ backgroundColor: '#f0f4ff', borderColor: '#004aad' }}>
                 <div className='flex items-center gap-2 mb-3'>
-                  <div className='w-1.5 h-7 bg-gradient-to-b from-red-500 to-orange-500 rounded-full'></div>
-                  <h3 className='text-xl font-bold text-red-800'>ALUR LAYANAN</h3>
-                </div>
-                <div className='space-y-2'>
-                  {alurPelayanan.map((item, index) => (
-                    <div key={index} className='flex items-center gap-3'>
-                      <div className='w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center text-white font-bold text-lg flex-shrink-0'>
-                        {item.step}
-                      </div>
-                      <div className='flex-1 bg-red-50 rounded-xl px-3 py-2 border-2 border-red-100'>
-                        <p className='font-bold text-red-800 text-lg'>{item.title}</p>
-                        <p className='text-red-600'>{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Wilayah Layanan */}
-              <div className='bg-red-50 rounded-2xl p-4 border-2 border-red-200'>
-                <div className='flex items-center gap-2 mb-3'>
-                  <MapPin className='w-6 h-6 text-red-600' />
-                  <h3 className='text-xl font-bold text-red-800'>WILAYAH LAYANAN</h3>
+                  <Phone className='w-6 h-6' style={{ color: '#fdc801' }} />
+                  <h3 className='text-xl font-bold' style={{ color: '#2b438a' }}>SAAT MENGHUBUNGI, SAMPAIKAN:</h3>
                 </div>
                 <ul className='space-y-2'>
-                  {wilayah.map((item, index) => (
-                    <li key={index} className='flex items-center gap-2 text-red-700'>
-                      <CircleDot className='w-4 h-4 text-red-500 flex-shrink-0' />
+                  {infoHubungi.map((item, index) => (
+                    <li key={index} className='flex items-center gap-2' style={{ color: '#2b438a' }}>
+                      <div className='w-6 h-6 rounded-full text-white flex items-center justify-center font-bold text-sm flex-shrink-0' style={{ backgroundColor: '#fdc801' }}>
+                        {index + 1}
+                      </div>
                       <span className='font-semibold text-lg'>{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
+
+              {/* Layanan Lain */}
+              <div className='bg-white rounded-2xl p-4 border-2' style={{ borderColor: '#004aad' }}>
+                <h3 className='text-xl font-bold mb-3' style={{ color: '#2b438a' }}>LAYANAN LAINNYA:</h3>
+                <ul className='space-y-2'>
+                  {layananLain.map((item, index) => (
+                    <li key={index} className='flex items-center gap-2 text-gray-700'>
+                      <CheckCircle2 className='w-5 h-5 flex-shrink-0' style={{ color: '#fdc801' }} />
+                      <span className='font-semibold text-lg'>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Peralatan Medis */}
+              <div className='rounded-2xl p-4 border-2' style={{ backgroundColor: '#f0f4ff', borderColor: '#004aad' }}>
+                <h3 className='text-xl font-bold mb-3' style={{ color: '#2b438a' }}>PERALATAN MEDIS:</h3>
+                <div className='grid grid-cols-2 gap-2'>
+                  {peralatan.map((item, index) => (
+                    <div key={index} className='flex items-center gap-2 bg-white rounded-lg p-2 border' style={{ borderColor: '#e0e7ff' }}>
+                      <item.icon className='w-5 h-5' style={{ color: '#fdc801' }} />
+                      <span className='font-medium text-gray-700'>{item.nama}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Right Column */}
             <div className='space-y-4'>
-              {/* Gallery Placeholder - 4 Images Grid */}
-              <div className='grid grid-cols-2 gap-2'>
-                {[1, 2, 3, 4].map((num) => (
-                  <div key={num} className='relative h-24 rounded-xl overflow-hidden bg-gradient-to-br from-red-100 to-orange-100 border-2 border-red-200'>
-                    <div className='absolute inset-0 flex items-center justify-center'>
-                      <div className='text-center'>
-                        <Truck className='w-8 h-8 text-red-400 mx-auto' />
-                        <p className='text-red-500 text-xs font-medium mt-1'>Foto #{num}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Lokasi */}
-              <div className='bg-white rounded-2xl p-4 border-2 border-red-200'>
+              {/* Wilayah & RS Rujukan */}
+              <div className='bg-white rounded-2xl p-4 border-2' style={{ borderColor: '#004aad' }}>
                 <div className='flex items-center gap-2 mb-2'>
-                  <Hospital className='w-6 h-6 text-red-600' />
-                  <h3 className='text-xl font-bold text-red-800'>LOKASI POOL</h3>
+                  <MapPin className='w-6 h-6' style={{ color: '#fdc801' }} />
+                  <h3 className='text-xl font-bold' style={{ color: '#2b438a' }}>WILAYAH LAYANAN</h3>
                 </div>
-                <p className='font-bold text-gray-800 text-lg mb-1'>Masjid Al Muhajirin Rewwin</p>
-                <p className='text-gray-600'>Jl. Rajawali No. 207, Ngeni, Kepuhkiriman, Kec. Waru, Sidoarjo 61256</p>
+                <div className='flex flex-wrap gap-2 mb-3'>
+                  {wilayah.map((item, index) => (
+                    <span key={index} className='px-3 py-1 rounded-full text-sm font-semibold' style={{ backgroundColor: '#f0f4ff', color: '#2b438a' }}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+                <p className='text-gray-600 text-sm mb-3'>+ Seluruh Sidoarjo, Surabaya & wilayah lain (koordinasi)</p>
+
+                <div className='border-t pt-3' style={{ borderColor: '#e0e7ff' }}>
+                  <div className='flex items-center gap-2 mb-2'>
+                    <Hospital className='w-5 h-5' style={{ color: '#fdc801' }} />
+                    <h4 className='font-bold' style={{ color: '#2b438a' }}>RS Rujukan Terdekat:</h4>
+                  </div>
+                  <ul className='text-gray-600 text-sm space-y-1'>
+                    {rsRujukan.map((rs, index) => (
+                      <li key={index}>• {rs}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
               {/* Donasi */}
-              <div className='bg-gradient-to-br from-red-600 to-orange-600 rounded-2xl p-4 text-white'>
+              <div className='rounded-2xl p-4 text-white' style={{ background: 'linear-gradient(to bottom right, #2b438a, #004aad)' }}>
                 <div className='flex items-center gap-2 mb-2'>
-                  <Heart className='w-6 h-6 text-white' />
+                  <Heart className='w-6 h-6' style={{ color: '#fdc801' }} />
                   <h3 className='text-xl font-bold text-white'>DUKUNG LAYANAN INI</h3>
                 </div>
-                <p className='text-red-100 text-base mb-3'>Donasi melalui LAZ Muhajirin Rewwin</p>
+                <p className='text-sm mb-3' style={{ color: '#c7d2fe' }}>Donasi untuk BBM, perawatan kendaraan, peralatan medis & logistik bencana</p>
                 <div className='flex gap-3 items-center'>
                   {/* Bank Info */}
                   <div className='flex-1 bg-white/20 backdrop-blur rounded-xl p-3'>
                     <div className='flex items-center gap-2 mb-1'>
-                      <span className='font-semibold text-red-100'>Bank Muamalat</span>
-                      <Building2 className='w-4 h-4 text-red-200' />
+                      <span className='font-semibold' style={{ color: '#fdc801' }}>Bank Muamalat</span>
+                      <Building2 className='w-4 h-4' style={{ color: '#fdc801' }} />
                     </div>
                     <p className='font-bold text-2xl tracking-wider'>7070007500</p>
-                    <p className='text-red-200 text-sm mt-1'>
+                    <p className='text-sm mt-1' style={{ color: '#c7d2fe' }}>
                       a/n. <strong>LAZ Muhajirin Rewwin</strong>
                     </p>
+                    <p className='text-xs mt-1' style={{ color: '#c7d2fe' }}>Ket: DONASI AMBULANS</p>
                   </div>
                   {/* QRIS */}
-                  <div className='w-32 h-32 bg-white rounded-xl p-2 flex-shrink-0'>
+                  <div className='w-28 h-28 bg-white rounded-xl p-1.5 flex-shrink-0'>
                     <div className='relative w-full h-full'>
                       <Image src='/images/q-ris-laz-box.jpeg' alt='QRIS LAZ Muhajirin' fill className='object-contain rounded-lg' />
                     </div>
@@ -296,34 +338,35 @@ export default function ProfilCetakAmbulans() {
               </div>
 
               {/* Kontak - Large */}
-              <div className='bg-red-50 rounded-2xl p-4 border-2 border-red-200'>
+              <div className='rounded-2xl p-4 border-2' style={{ backgroundColor: '#f0f4ff', borderColor: '#004aad' }}>
                 <div className='flex items-center gap-2 mb-2'>
-                  <Phone className='w-6 h-6 text-red-600' />
-                  <h3 className='text-xl font-bold text-red-800'>HUBUNGI KAMI</h3>
+                  <Siren className='w-6 h-6' style={{ color: '#fdc801' }} />
+                  <h3 className='text-xl font-bold' style={{ color: '#2b438a' }}>HUBUNGI SEKARANG</h3>
                 </div>
                 <div className='flex items-center gap-3'>
-                  <div className='bg-green-500 text-white px-3 py-1.5 rounded-full text-base font-bold'>WhatsApp</div>
-                  <span className='text-3xl font-black text-red-800'>0859-1807-79439</span>
+                  <div className='bg-green-500 text-white px-3 py-1 rounded-full text-base font-bold'>WhatsApp</div>
+                  <span className='text-3xl font-black' style={{ color: '#2b438a' }}>0859-1807-79439</span>
                 </div>
+                <p className='text-sm mt-2' style={{ color: '#004aad' }}>Telepon langsung atau chat WhatsApp</p>
               </div>
             </div>
           </div>
 
           {/* Footer */}
-          <div className='mt-3 pt-3 border-t-2 border-red-200'>
+          <div className='mt-3 pt-3 border-t-2' style={{ borderColor: '#e0e7ff' }}>
             <div className='flex items-center justify-between'>
               <div className='flex items-center gap-3'>
-                <div className='w-10 h-10 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl flex items-center justify-center'>
+                <div className='w-10 h-10 rounded-xl flex items-center justify-center' style={{ background: 'linear-gradient(to bottom right, #2b438a, #004aad)' }}>
                   <Ambulance className='w-6 h-6 text-white' />
                 </div>
                 <div>
-                  <p className='font-bold text-red-800 text-lg'>Unit Ambulans</p>
-                  <p className='text-red-600 text-sm'>Yayasan Al Muhajirin Rewwin</p>
+                  <p className='font-bold text-lg' style={{ color: '#2b438a' }}>Unit Ambulans Al Muhajirin</p>
+                  <p className='text-sm' style={{ color: '#004aad' }}>Yayasan Al Muhajirin Rewwin</p>
                 </div>
               </div>
-              <div className='text-right max-w-[55%]'>
-                <p className='text-red-700 italic'>&ldquo;Barangsiapa meringankan kesulitan seorang mukmin, Allah akan meringankan kesulitannya&rdquo;</p>
-                <p className='text-red-500 text-sm'>(HR. Muslim)</p>
+              <div className='text-right max-w-[50%]'>
+                <p className='italic text-sm' style={{ color: '#2b438a' }}>&ldquo;Barangsiapa meringankan kesulitan seorang mukmin, Allah akan meringankan kesulitannya&rdquo;</p>
+                <p className='text-xs' style={{ color: '#004aad' }}>(HR. Muslim)</p>
               </div>
             </div>
           </div>
