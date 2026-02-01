@@ -629,6 +629,11 @@ _Masjid Al Muhajirin Rewwin_`;
     window.open('/api/run-madan/senam/registrants/export', '_blank');
   };
 
+  // Export tenants to CSV
+  const handleExportTenantCSV = () => {
+    window.open('/api/event-tenant/tenants/export', '_blank');
+  };
+
   // Generate WhatsApp confirmation message for tenant
   const generateTenantWhatsAppMessage = (tenant: Tenant): string => {
     const productTypes = tenant.jenisProduk.map((p) => {
@@ -1714,15 +1719,24 @@ _Masjid Al Muhajirin Rewwin_`;
           <section className='py-12'>
             <div className='container mx-auto px-4'>
               <div className='max-w-6xl mx-auto'>
-                {/* Search */}
-                <div className='mb-8'>
+                {/* Search and Export */}
+                <div className='mb-8 flex flex-col md:flex-row gap-4'>
                   <input
                     type='text'
                     placeholder='Cari nama tenant, nomor registrasi, atau nama produk...'
                     value={tenantSearchTerm}
                     onChange={(e) => setTenantSearchTerm(e.target.value)}
-                    className='w-full px-6 py-4 rounded-xl border-2 border-gray-300 focus:border-emerald-500 focus:outline-none text-lg'
+                    className='flex-1 px-6 py-4 rounded-xl border-2 border-gray-300 focus:border-emerald-500 focus:outline-none text-lg'
                   />
+                  {isAdmin && (
+                    <button
+                      onClick={handleExportTenantCSV}
+                      className='px-6 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg transition-all flex items-center justify-center gap-2'
+                    >
+                      <Download className='h-5 w-5' />
+                      Export CSV
+                    </button>
+                  )}
                 </div>
 
                 {/* List Header */}

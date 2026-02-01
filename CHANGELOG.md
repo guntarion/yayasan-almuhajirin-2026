@@ -1,3 +1,14 @@
+## 2026-02-01 10:36:12
+
+feat(masjid): add CSV export for tenant registrations
+
+- Add new API endpoint at /api/event-tenant/tenants/export for CSV export
+- Add Export CSV button in tenant tab (admin only)
+- Export includes all tenant fields: registration number, tenant name, contact info, product types, electricity needs, payment status
+- Matches existing CSV export functionality for running and senam participants
+
+---
+
 ## 2026-01-31 15:01:26
 
 feat(units): add poliklinik and ambulans profile pages with printable brochures
