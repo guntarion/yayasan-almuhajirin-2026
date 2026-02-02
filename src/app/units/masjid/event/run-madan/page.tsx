@@ -634,6 +634,110 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
       {/* Fun Run Content */}
       {activeTab === 'fun-run' && (
         <>
+          {/* RACE PACK PICKUP NOTICE - VERY PROMINENT */}
+          <section className='py-8 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 relative overflow-hidden'>
+            {/* Animated background pattern */}
+            <div className='absolute inset-0 opacity-20'>
+              <div className='absolute inset-0' style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px)' }} />
+            </div>
+
+            <div className='container mx-auto px-4 relative z-10'>
+              <div className='max-w-5xl mx-auto'>
+                {/* Main Alert Card */}
+                <div className='bg-white rounded-3xl shadow-2xl overflow-hidden border-4 border-amber-300'>
+                  {/* Header */}
+                  <div className='bg-gradient-to-r from-[#043e75] to-[#4e8fc0] text-white p-4 md:p-6'>
+                    <div className='flex items-center justify-center gap-3'>
+                      <div className='w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 flex items-center justify-center animate-pulse'>
+                        <Gift className='h-6 w-6 md:h-8 md:w-8 text-amber-300' />
+                      </div>
+                      <div className='text-center'>
+                        <h2 className='text-2xl md:text-4xl font-black text-amber-300'>PENGAMBILAN RACE PACK</h2>
+                        <p className='text-white/90 font-semibold text-sm md:text-base'>Untuk Peserta yang Sudah Terdaftar</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className='p-6 md:p-8'>
+                    <div className='grid md:grid-cols-2 gap-6'>
+                      {/* Date & Time */}
+                      <div className='bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 border-2 border-amber-200'>
+                        <div className='flex items-start gap-4'>
+                          <div className='w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center flex-shrink-0 shadow-lg'>
+                            <Calendar className='h-7 w-7 text-white' />
+                          </div>
+                          <div>
+                            <h3 className='text-lg font-black text-gray-900 mb-1'>Waktu Pengambilan</h3>
+                            <p className='text-2xl md:text-3xl font-black text-amber-600'>Sabtu, 7 Februari 2026</p>
+                            <div className='flex items-center gap-2 mt-2'>
+                              <Clock className='h-5 w-5 text-orange-500' />
+                              <p className='text-xl font-bold text-orange-600'>09.00 - 13.00 WIB</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Location */}
+                      <div className='bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 border-2 border-blue-200'>
+                        <div className='flex items-start gap-4'>
+                          <div className='w-14 h-14 rounded-xl bg-gradient-to-br from-[#043e75] to-[#4e8fc0] flex items-center justify-center flex-shrink-0 shadow-lg'>
+                            <MapPin className='h-7 w-7 text-white' />
+                          </div>
+                          <div>
+                            <h3 className='text-lg font-black text-gray-900 mb-1'>Lokasi Pengambilan</h3>
+                            <p className='text-lg font-bold text-[#043e75]'>Kantor Sekretariat Yayasan Al Muhajirin Rewwin</p>
+                            <p className='text-sm text-gray-600 mt-1'>Jl. Rajawali No.207, Ngeni, Kepuhkiriman, Kec. Waru, Kabupaten Sidoarjo, Jawa Timur 61256</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Requirements */}
+                    <div className='mt-6 bg-gradient-to-r from-red-50 to-pink-50 rounded-2xl p-6 border-2 border-red-200'>
+                      <h3 className='text-xl font-black text-red-700 mb-4 flex items-center gap-2'>
+                        <AlertCircle className='h-6 w-6' />
+                        WAJIB DIBAWA:
+                      </h3>
+                      <div className='grid md:grid-cols-2 gap-4'>
+                        <div className='flex items-center gap-3 bg-white rounded-xl p-4 shadow-md border border-red-100'>
+                          <div className='w-10 h-10 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0'>
+                            <User className='h-5 w-5 text-red-600' />
+                          </div>
+                          <div>
+                            <p className='font-bold text-gray-900'>KTP / Kartu Identitas</p>
+                            <p className='text-sm text-gray-600'>Atau kartu pengenal sejenis</p>
+                          </div>
+                        </div>
+                        <div className='flex items-center gap-3 bg-white rounded-xl p-4 shadow-md border border-red-100'>
+                          <div className='w-10 h-10 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0'>
+                            <CheckCircle2 className='h-5 w-5 text-red-600' />
+                          </div>
+                          <div>
+                            <p className='font-bold text-gray-900'>Bukti Pendaftaran</p>
+                            <p className='text-sm text-gray-600'>Screenshot / nomor registrasi</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Contact for questions */}
+                    <div className='mt-6 text-center'>
+                      <p className='text-gray-600 mb-3'>Ada pertanyaan tentang pengambilan race pack?</p>
+                      <button
+                        onClick={handleWhatsApp}
+                        className='bg-green-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-green-600 transition-all duration-300 inline-flex items-center gap-2 shadow-lg'
+                      >
+                        <Phone className='h-5 w-5' />
+                        Hubungi Panitia: +62 812-5906-069
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Family Jogging Banner */}
           <section className='relative py-0 bg-white'>
             <div className='relative aspect-[21/9] w-full overflow-hidden'>
