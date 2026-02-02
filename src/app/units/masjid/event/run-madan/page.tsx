@@ -163,15 +163,6 @@ export default function RunMadanPage() {
     }
   };
 
-  // Scroll to registration form
-  const scrollToRegistration = () => {
-    track('RunMadan CTA Click', { action: 'scroll_to_form' });
-    const element = document.getElementById('registration-form');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
   // Scroll to senam registration form
   const scrollToSenamRegistration = () => {
     track('Senam CTA Click', { action: 'scroll_to_form' });
@@ -499,18 +490,22 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
               <div className='grid grid-cols-2 gap-3'>
                 <button
                   onClick={() => setActiveTab('fun-run')}
-                  className={`p-4 rounded-xl text-left transition-all duration-300 border-2 ${
+                  className={`p-4 rounded-xl text-left transition-all duration-300 border-2 relative ${
                     activeTab === 'fun-run'
-                      ? 'bg-white text-[#043e75] border-white shadow-lg'
-                      : 'bg-white/10 text-white border-white/30 hover:bg-white/20'
+                      ? 'bg-gray-200 text-gray-600 border-gray-300 shadow-lg'
+                      : 'bg-white/10 text-white/60 border-white/30'
                   }`}
                 >
-                  <div className='flex items-center gap-2 mb-1'>
-                    <Zap className='h-5 w-5' />
-                    <span className='font-black'>Fun Run/Walk 3K</span>
+                  {/* CLOSED Badge */}
+                  <div className='absolute -top-2 -right-2 bg-red-600 text-white px-2 py-0.5 rounded-full font-black text-[10px] uppercase tracking-wide shadow-lg'>
+                    DITUTUP
                   </div>
-                  <p className='text-xs opacity-80'>Lari atau jalan santai, pilih sesuai kemampuanmu</p>
-                  <div className={`text-xs font-bold mt-2 ${activeTab === 'fun-run' ? 'text-[#043e75]' : 'text-[#addbf2]'}`}>Rp 100.000 + Jersey</div>
+                  <div className='flex items-center gap-2 mb-1'>
+                    <Zap className='h-5 w-5 opacity-60' />
+                    <span className='font-black line-through'>Fun Run/Walk 3K</span>
+                  </div>
+                  <p className='text-xs opacity-60'>Pendaftaran sudah ditutup</p>
+                  <div className={`text-xs font-bold mt-2 text-red-500`}>PENDAFTARAN DITUTUP</div>
                 </button>
                 <button
                   onClick={() => setActiveTab('senam')}
@@ -546,14 +541,24 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
 
               {/* CTA Buttons */}
               <div className='flex flex-col sm:flex-row sm:flex-wrap gap-3 md:gap-4 pt-4'>
-                <button
-                  onClick={activeTab === 'senam' ? scrollToSenamRegistration : scrollToRegistration}
-                  className='bg-white text-[#043e75] px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-base md:text-lg hover:bg-[#addbf2] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2 min-h-[48px]'
-                >
-                  <Users className='h-5 w-5' />
-                  {activeTab === 'senam' ? 'Daftar Senam GRATIS' : 'Daftar Fun Run/Walk'}
-                  <ArrowRight className='h-5 w-5' />
-                </button>
+                {activeTab === 'senam' ? (
+                  <button
+                    onClick={scrollToSenamRegistration}
+                    className='bg-white text-[#043e75] px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-base md:text-lg hover:bg-[#addbf2] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2 min-h-[48px]'
+                  >
+                    <Users className='h-5 w-5' />
+                    Daftar Senam GRATIS
+                    <ArrowRight className='h-5 w-5' />
+                  </button>
+                ) : (
+                  <button
+                    disabled
+                    className='bg-gray-300 text-gray-500 px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-base md:text-lg cursor-not-allowed flex items-center justify-center gap-2 min-h-[48px]'
+                  >
+                    <AlertCircle className='h-5 w-5' />
+                    Pendaftaran Fun Run Ditutup
+                  </button>
+                )}
                 <button
                   onClick={handleShare}
                   className='bg-white/10 backdrop-blur-sm border-2 border-white text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-base md:text-lg hover:bg-white/20 transition-all duration-300 flex items-center justify-center gap-2 min-h-[48px]'
@@ -1015,63 +1020,59 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                   </div>
                 </div>
 
-                {/* OPEN: 3K Fun Run Rp 50.000 */}
-                <div className='bg-gradient-to-br from-[#72b4d7] via-[#4e8fc0] to-[#043e75] rounded-3xl p-6 md:p-8 shadow-2xl text-white text-center relative overflow-hidden group ring-4 ring-green-400 ring-offset-4'>
-                  {/* NEW Badge */}
-                  <div className='absolute top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-full font-black text-sm uppercase tracking-wide shadow-lg animate-pulse'>
-                    BARU DIBUKA!
+                {/* CLOSED: 3K Fun Run Rp 50.000 */}
+                <div className='bg-gradient-to-br from-gray-400 via-gray-500 to-gray-600 rounded-3xl p-6 md:p-8 shadow-xl text-white text-center relative overflow-hidden opacity-75'>
+                  {/* SOLD OUT Badge */}
+                  <div className='absolute top-4 right-4 bg-red-600 text-white px-4 py-2 rounded-full font-black text-sm uppercase tracking-wide shadow-lg transform rotate-12'>
+                    DITUTUP
                   </div>
 
-                  {/* Animated gradient overlay */}
-                  <div className='absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
-
                   <div className='relative z-10'>
-                    <div className='w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center transition-transform duration-300 group-hover:scale-110'>
-                      <Users className='h-8 w-8 md:h-10 md:w-10 text-white' />
+                    <div className='w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center'>
+                      <Users className='h-8 w-8 md:h-10 md:w-10 text-white/60' />
                     </div>
 
-                    <h3 className='text-2xl md:text-3xl font-black mb-2'>3K Fun Run</h3>
-                    <p className='text-lg md:text-xl text-white/90 mb-2'>Semua Usia - Anak-anak, Dewasa, Keluarga</p>
-                    <p className='text-sm text-yellow-300 font-bold mb-6'>Tanpa Jersey</p>
+                    <h3 className='text-2xl md:text-3xl font-black mb-2 line-through decoration-red-500 decoration-4'>3K Fun Run</h3>
+                    <p className='text-lg md:text-xl text-white/70 mb-2'>Semua Usia - Anak-anak, Dewasa, Keluarga</p>
+                    <p className='text-sm text-yellow-300/60 font-bold mb-6'>Tanpa Jersey</p>
 
-                    <div className='bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-6 mb-4 border border-white/20 transition-all duration-300 group-hover:bg-white/15'>
-                      <div className='text-xs md:text-sm font-bold text-white/80 mb-2'>Biaya Pendaftaran:</div>
-                      <div className='text-4xl md:text-5xl font-black text-white'>Rp 50.000</div>
+                    <div className='bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-6 mb-6 border border-white/20'>
+                      <div className='text-xs md:text-sm font-bold text-white/60 mb-2'>Biaya Pendaftaran:</div>
+                      <div className='text-4xl md:text-5xl font-black text-white/50 line-through decoration-red-500 decoration-4'>Rp 50.000</div>
                     </div>
 
-                    <div className='bg-orange-400/20 backdrop-blur-sm rounded-xl p-3 md:p-4 border-2 border-orange-300 mb-4'>
+                    <div className='bg-red-600/30 backdrop-blur-sm rounded-xl p-3 md:p-4 border-2 border-red-400 mb-6'>
                       <div className='flex items-start gap-3 justify-center'>
-                        <Clock className='h-5 w-5 text-orange-100 mt-0.5 flex-shrink-0' />
-                        <p className='text-xs md:text-sm font-bold text-orange-50'>Pendaftaran ditutup: Minggu, 1 Februari 2026</p>
-                      </div>
-                    </div>
-
-                    <div className='bg-yellow-400/20 backdrop-blur-sm rounded-xl p-3 md:p-4 border-2 border-yellow-300 mb-6'>
-                      <div className='flex items-start gap-3 justify-center'>
-                        <AlertCircle className='h-5 w-5 text-yellow-100 mt-0.5 flex-shrink-0' />
-                        <p className='text-xs md:text-sm font-bold text-yellow-50'>Anak-anak wajib didampingi orang tua/wali</p>
+                        <AlertCircle className='h-5 w-5 text-red-200 mt-0.5 flex-shrink-0' />
+                        <p className='text-xs md:text-sm font-bold text-red-100'>Pendaftaran telah DITUTUP!</p>
                       </div>
                     </div>
 
                     <button
-                      onClick={scrollToRegistration}
-                      className='w-full bg-white text-[#043e75] px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-base md:text-lg hover:bg-[#addbf2] transition-all duration-300 hover:scale-105 hover:shadow-2xl flex items-center justify-center gap-3 min-h-[48px]'
+                      disabled
+                      className='w-full bg-gray-400 text-gray-600 px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-base md:text-lg cursor-not-allowed flex items-center justify-center gap-3 min-h-[48px]'
                     >
                       <Users className='h-5 w-5' />
-                      Daftar Sekarang
-                      <ArrowRight className='h-5 w-5' />
+                      Pendaftaran Ditutup
                     </button>
                   </div>
                 </div>
               </div>
 
-              {/* Unified Benefits Section */}
-              <div className='max-w-4xl mx-auto bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border-2 border-gray-200 shadow-lg'>
+              {/* Benefits Section - Registration Closed Notice */}
+              <div className='max-w-4xl mx-auto bg-gradient-to-br from-red-50 to-white rounded-2xl p-8 border-2 border-red-300 shadow-lg'>
+                <div className='text-center mb-6'>
+                  <div className='inline-flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-full font-bold mb-4'>
+                    <AlertCircle className='h-5 w-5' />
+                    PENDAFTARAN FUN RUN TELAH DITUTUP
+                  </div>
+                  <p className='text-gray-600'>Terima kasih atas antusiasme Anda! Pendaftaran untuk Fun Run 3K telah ditutup.</p>
+                </div>
                 <h3 className='text-2xl font-black text-gray-900 mb-6 flex items-center gap-3'>
                   <Gift className='h-7 w-7 text-[#043e75]' />
-                  Yang Kamu Dapatkan (Paket Rp 50.000):
+                  Yang Peserta Terdaftar Dapatkan:
                 </h3>
-                <div className='grid md:grid-cols-2 gap-4'>
+                <div className='grid md:grid-cols-2 gap-4 opacity-60'>
                   {allBenefits.map((benefit, index) => {
                     const isJersey = benefit.toLowerCase().includes('jersey');
                     return (
@@ -1083,16 +1084,16 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                         )}
                         <span className={`leading-relaxed ${isJersey ? 'text-gray-400 line-through' : 'text-gray-700'}`}>
                           {benefit}
-                          {isJersey && ' (tidak termasuk)'}
+                          {isJersey && ' (tidak termasuk paket Rp 50.000)'}
                         </span>
                       </div>
                     );
                   })}
                 </div>
-                <div className='mt-4 bg-yellow-50 border border-yellow-300 rounded-xl p-4'>
-                  <p className='text-sm text-yellow-800 font-medium'>
-                    <AlertCircle className='h-4 w-4 inline mr-2' />
-                    Paket Rp 50.000 tidak termasuk Jersey Run-Madan eksklusif
+                <div className='mt-6 bg-green-50 border border-green-300 rounded-xl p-4'>
+                  <p className='text-sm text-green-800 font-medium'>
+                    <HeartPulse className='h-4 w-4 inline mr-2' />
+                    Senam Sehat GRATIS masih terbuka untuk pendaftaran! Klik tab &quot;Senam Sehat&quot; di atas.
                   </p>
                 </div>
               </div>
@@ -1492,9 +1493,18 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
           <section className='py-16 bg-white'>
             <div className='container mx-auto px-4'>
               <div className='max-w-4xl mx-auto'>
+                {/* Registration Closed Notice */}
+                <div className='bg-red-50 border-2 border-red-400 rounded-2xl p-6 mb-8'>
+                  <div className='flex items-center gap-3 justify-center'>
+                    <AlertCircle className='h-8 w-8 text-red-600' />
+                    <p className='text-xl font-black text-red-700'>PENDAFTARAN FUN RUN 3K TELAH DITUTUP</p>
+                  </div>
+                  <p className='text-center text-gray-600 mt-2'>Informasi di bawah ini sebagai referensi peserta yang sudah terdaftar.</p>
+                </div>
                 <div className='text-center mb-12'>
                   <h2 className='text-4xl md:text-5xl font-black text-gray-900 mb-4'>Cara Pendaftaran</h2>
-                  <p className='text-lg text-gray-600'>Ikuti langkah-langkah mudah berikut untuk mendaftar Run-Madan 2026</p>
+                  <p className='text-lg text-gray-600 line-through'>Ikuti langkah-langkah mudah berikut untuk mendaftar Run-Madan 2026</p>
+                  <p className='text-lg text-red-600 font-semibold mt-2'>Pendaftaran sudah ditutup</p>
                 </div>
 
                 {/* Steps */}
@@ -1628,10 +1638,10 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                         dahulu.
                       </span>
                     </li>
-                    <li className='flex items-start gap-2'>
-                      <Star className='h-5 w-5 text-yellow-600 mt-0.5 flex-shrink-0' />
-                      <span>
-                        Pendaftaran ditutup <strong>5 Februari 2026</strong> atau jika kuota terpenuhi
+                    <li className='flex items-start gap-2 bg-red-100 p-3 rounded-lg border border-red-300'>
+                      <AlertCircle className='h-5 w-5 text-red-600 mt-0.5 flex-shrink-0' />
+                      <span className='text-red-700 font-semibold'>
+                        <strong>Pendaftaran Fun Run 3K telah DITUTUP</strong>
                       </span>
                     </li>
                     <li className='flex items-start gap-2'>
@@ -1677,43 +1687,66 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
             </div>
           </section>
 
-          {/* Registration Form Section */}
+          {/* Registration Form Section - CLOSED */}
           <section id='registration-form' className='py-20 bg-gradient-to-b from-white to-gray-50'>
             <div className='container mx-auto px-4'>
               <div className='max-w-5xl mx-auto'>
-                {/* Header */}
+                {/* Registration Closed Notice */}
                 <div className='text-center mb-12'>
-                  <div className='inline-flex items-center gap-2 bg-[#043e75] text-white px-4 py-2 rounded-full font-semibold mb-4'>
-                    <Users className='h-5 w-5' />
-                    Formulir Pendaftaran Online
+                  <div className='inline-flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-full font-semibold mb-4'>
+                    <AlertCircle className='h-5 w-5' />
+                    Pendaftaran Ditutup
                   </div>
-                  <h2 className='text-4xl md:text-5xl font-black text-gray-900 mb-4'>Daftar Run-Madan 2026</h2>
+                  <h2 className='text-4xl md:text-5xl font-black text-gray-900 mb-4'>Pendaftaran Fun Run 3K Telah Ditutup</h2>
                   <p className='text-lg text-gray-600 max-w-3xl mx-auto'>
-                    Isi formulir di bawah ini untuk mendaftar. Anda dapat mendaftarkan beberapa peserta sekaligus (diri sendiri, keluarga, atau
-                    teman).
+                    Terima kasih atas antusiasme yang luar biasa! Pendaftaran untuk Fun Run 3K Run-Madan 2026 telah resmi ditutup.
                   </p>
                 </div>
 
-                {/* Form Errors */}
-                {formErrors.length > 0 && (
-                  <div className='mb-8 bg-red-50 border-2 border-red-500 rounded-xl p-6'>
-                    <div className='flex items-start gap-3'>
-                      <AlertCircle className='h-6 w-6 text-red-600 flex-shrink-0 mt-0.5' />
-                      <div className='flex-1'>
-                        <h3 className='text-lg font-bold text-red-900 mb-2'>Mohon lengkapi data berikut:</h3>
-                        <ul className='space-y-1'>
-                          {formErrors.map((error, index) => (
-                            <li key={index} className='text-red-700'>
-                              • {error}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
+                {/* Closed Message Card */}
+                <div className='bg-gradient-to-br from-gray-100 to-white rounded-2xl p-8 shadow-lg border-2 border-gray-300 text-center'>
+                  <div className='w-24 h-24 mx-auto mb-6 rounded-full bg-red-100 flex items-center justify-center'>
+                    <AlertCircle className='h-12 w-12 text-red-600' />
                   </div>
-                )}
+                  <h3 className='text-2xl font-black text-gray-800 mb-4'>Pendaftaran Online Telah Ditutup</h3>
+                  <p className='text-gray-600 mb-6 max-w-2xl mx-auto'>
+                    Bagi yang sudah terdaftar, silakan datang pada hari H (Minggu, 8 Februari 2026) pukul 05:00 WIB untuk registrasi ulang dan pengambilan race kit.
+                  </p>
 
-                <form onSubmit={handleSubmit} className='space-y-8'>
+                  <div className='bg-green-50 border border-green-300 rounded-xl p-6 mb-6'>
+                    <h4 className='text-lg font-bold text-green-800 mb-2 flex items-center justify-center gap-2'>
+                      <HeartPulse className='h-5 w-5' />
+                      Senam Sehat GRATIS Masih Terbuka!
+                    </h4>
+                    <p className='text-green-700 mb-4'>
+                      Anda masih bisa ikut Senam Sehat GRATIS pada acara Run-Madan 2026. Tidak perlu biaya apapun!
+                    </p>
+                    <button
+                      onClick={() => {
+                        setActiveTab('senam');
+                        scrollToSenamRegistration();
+                      }}
+                      className='bg-green-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-green-700 transition-all duration-300 flex items-center justify-center gap-2 mx-auto'
+                    >
+                      <HeartPulse className='h-5 w-5' />
+                      Daftar Senam GRATIS
+                      <ArrowRight className='h-5 w-5' />
+                    </button>
+                  </div>
+
+                  <div className='bg-blue-50 border border-blue-300 rounded-xl p-4'>
+                    <p className='text-blue-800 text-sm'>
+                      <Phone className='h-4 w-4 inline mr-2' />
+                      Ada pertanyaan? Hubungi panitia via WhatsApp:{' '}
+                      <button onClick={handleWhatsApp} className='font-bold underline hover:text-blue-600'>
+                        +62 812-5906-069
+                      </button>
+                    </p>
+                  </div>
+                </div>
+
+                {/* Hidden form for state management - not displayed */}
+                <form onSubmit={handleSubmit} className='hidden'>
                   {/* Registrant Information */}
                   <div className='bg-white rounded-2xl p-8 shadow-lg border-2 border-[#043e75]'>
                     <h3 className='text-2xl font-black text-[#043e75] mb-6 flex items-center gap-3'>
@@ -2127,21 +2160,30 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
             </div>
 
             <div className='container mx-auto px-4 relative z-10 text-center'>
-              <h2 className='text-4xl md:text-6xl font-black mb-6 text-[#addbf2]'>Siap Berlari untuk Kebaikan?</h2>
+              <div className='bg-red-500/20 backdrop-blur-sm border-2 border-red-300 rounded-2xl p-4 mb-6 inline-block'>
+                <p className='text-red-100 font-bold flex items-center gap-2'>
+                  <AlertCircle className='h-5 w-5' />
+                  Pendaftaran Fun Run 3K Telah Ditutup
+                </p>
+              </div>
+              <h2 className='text-4xl md:text-6xl font-black mb-6 text-[#addbf2]'>Masih Ingin Ikut Run-Madan 2026?</h2>
               <p className='text-xl md:text-2xl text-white/90 mb-4 max-w-3xl mx-auto'>
-                Daftarkan dirimu sekarang dan jadilah bagian dari Run-Madan 2026!
+                Senam Sehat GRATIS masih terbuka untuk pendaftaran!
               </p>
               <p className='text-lg text-white/80 mb-8 max-w-2xl mx-auto'>
-                Berlari sehat, berbagi kebaikan, dan kenali layanan kesehatan gratis untuk warga Rewwin
+                Olahraga ringan untuk semua usia, tanpa biaya sama sekali. Daftar sekarang!
               </p>
 
               <div className='flex flex-wrap gap-6 justify-center items-center'>
                 <button
-                  onClick={scrollToRegistration}
-                  className='bg-white text-[#043e75] px-10 py-5 rounded-xl font-black text-xl hover:bg-[#addbf2] transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 flex items-center gap-3'
+                  onClick={() => {
+                    setActiveTab('senam');
+                    scrollToSenamRegistration();
+                  }}
+                  className='bg-green-500 text-white px-10 py-5 rounded-xl font-black text-xl hover:bg-green-600 transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 flex items-center gap-3'
                 >
-                  <Users className='h-6 w-6' />
-                  Daftar Sekarang
+                  <HeartPulse className='h-6 w-6' />
+                  Daftar Senam GRATIS
                   <ArrowRight className='h-6 w-6' />
                 </button>
 
