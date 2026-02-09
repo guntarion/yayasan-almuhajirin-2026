@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { track } from '@vercel/analytics';
 import {
   Calendar,
@@ -2298,6 +2299,14 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
                   <Share2 className='h-6 w-6' />
                   Bagikan Event Ini
                 </button>
+
+                <Link
+                  href='/event/sertifikat-runmadan'
+                  className='bg-white/10 backdrop-blur-sm border-2 border-[#addbf2] text-[#addbf2] px-10 py-5 rounded-xl font-black text-xl hover:bg-white/20 transition-all duration-300 flex items-center gap-3'
+                >
+                  <Award className='h-6 w-6' />
+                  Cek Sertifikat
+                </Link>
               </div>
 
               <div className='mt-12 flex flex-wrap justify-center gap-8 text-white/80'>
