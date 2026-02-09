@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { Search, Download, ArrowLeft, Loader2, Award, ChevronLeft, ChevronRight } from 'lucide-react';
 import { toPng } from 'html-to-image';
@@ -81,6 +81,16 @@ export default function SertifikatRunMadanPage() {
   };
 
   const participant = participants[activeIndex];
+
+  // Dynamic font size: scale down for longer names to prevent overflow
+  const nameFontSize = useMemo(() => {
+    if (!participant) return 48;
+    const len = participant.namaLengkap.length;
+    if (len <= 25) return 48;
+    if (len <= 35) return 40;
+    if (len <= 45) return 34;
+    return 28;
+  }, [participant]);
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-[#E0F7FA] via-white to-[#B2EBF2]'>
@@ -209,7 +219,7 @@ export default function SertifikatRunMadanPage() {
                 }}
               />
 
-              {/* Overlay: Participant Name */}
+              {/* Overlay: Participant Name + Registration Number */}
               <div
                 style={{
                   position: 'absolute',
@@ -217,33 +227,26 @@ export default function SertifikatRunMadanPage() {
                   left: 150,
                   right: 150,
                   textAlign: 'center',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 8,
                 }}
               >
                 <h2
                   style={{
-                    fontSize: 48,
+                    fontSize: nameFontSize,
                     fontWeight: 700,
                     color: '#1a5276',
                     margin: 0,
                     fontStyle: 'italic',
                     lineHeight: 1.2,
                     textShadow: '1px 1px 2px rgba(0,0,0,0.05)',
+                    wordBreak: 'break-word',
                   }}
                 >
                   {participant.namaLengkap}
                 </h2>
-              </div>
-
-              {/* Overlay: Registration Number */}
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 385,
-                  left: 0,
-                  right: 0,
-                  textAlign: 'center',
-                }}
-              >
                 <span style={{ fontSize: 20, fontWeight: 700, color: '#1a5276', letterSpacing: 1 }}>{participant.nomorRegistrasi}</span>
               </div>
             </div>

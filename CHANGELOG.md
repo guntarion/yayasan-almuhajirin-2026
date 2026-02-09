@@ -1,3 +1,13 @@
+## 2026-02-09 13:04:46
+
+fix(masjid): add dynamic font sizing for certificate names
+
+- Scale font size based on name length to prevent overflow
+- Use flex column layout so registration number flows below name
+- Add wordBreak safety net for extremely long names
+
+---
+
 ## 2026-02-09 09:23:11
 
 feat(masjid): implement phone-based certificate lookup with ready template
