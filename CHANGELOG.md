@@ -1,3 +1,36 @@
+## 2026-02-09 09:23:11
+
+feat(masjid): implement phone-based certificate lookup with ready template
+
+Implement digital certificate system for Run-Madan 2026 event with simplified
+phone number search and ready-made certificate template.
+
+Key changes:
+- Replace BIB/registration number search with phone number lookup
+- Add intelligent phone normalization (handles 0/62 prefix variants)
+- Switch to ready-made certificate template (Sertifikat-Digital-Runmadan.jpg)
+- Simplify certificate overlay to show only name and registration number
+- Add prominent certificate announcement banner on Run-Madan event page
+- Update certificate positioning for better name/number placement
+
+API Changes:
+- Certificate API now accepts phone parameter instead of bib/reg
+- Implement normalizePhoneNumber() for flexible phone format matching
+- Search registrants by phone with multiple format variants
+
+Certificate Page:
+- Single phone number input field with example format
+- Uses ready template with minimal text overlay
+- Name positioned at top: 310px with 48px font
+- Registration number below at 385px with 20px bold font
+
+Event Page:
+- Add eye-catching emerald-teal gradient announcement banner
+- Display "Terima Kasih Peserta Run-Madan 2026" message
+- CTA button linking to certificate download page
+
+---
+
 ## 2026-02-01 10:36:12
 
 feat(masjid): add CSV export for tenant registrations

@@ -621,6 +621,61 @@ Saya sudah melakukan transfer. Mohon konfirmasi pendaftaran saya.`;
         </div>
       </section>
 
+      {/* Certificate Announcement Banner */}
+      <section className='relative bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 py-8 md:py-12'>
+        <div className='absolute inset-0 overflow-hidden'>
+          <div className='absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl' />
+          <div className='absolute -bottom-20 -left-20 w-64 h-64 bg-white/10 rounded-full blur-3xl' />
+        </div>
+
+        <div className='relative container mx-auto px-4'>
+          <div className='bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 md:p-8 lg:p-10 border-2 border-white'>
+            <div className='flex flex-col md:flex-row items-center gap-6 md:gap-8'>
+              {/* Icon */}
+              <div className='flex-shrink-0'>
+                <div className='relative'>
+                  <div className='absolute inset-0 bg-gradient-to-br from-emerald-400 to-cyan-500 rounded-full blur-xl opacity-50 animate-pulse' />
+                  <div className='relative bg-gradient-to-br from-emerald-500 to-cyan-600 p-6 rounded-full'>
+                    <Award className='h-12 w-12 md:h-16 md:w-16 text-white' />
+                  </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className='flex-1 text-center md:text-left'>
+                <div className='inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white px-4 py-1.5 rounded-full text-xs md:text-sm font-bold mb-3'>
+                  <Star className='h-3 w-3 md:h-4 md:w-4' />
+                  PENGUMUMAN PENTING
+                </div>
+                <h3 className='text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 mb-3'>
+                  Terima Kasih Peserta Run-Madan 2026! 🎉
+                </h3>
+                <p className='text-base md:text-lg text-gray-700 mb-2 leading-relaxed'>
+                  <strong className='text-emerald-600'>Sertifikat Kesertaan Digital</strong> kini sudah tersedia untuk diunduh!
+                </p>
+                <p className='text-sm md:text-base text-gray-600 leading-relaxed'>
+                  Lihat dan unduh sertifikat kesertaan Anda secara online dengan memasukkan{' '}
+                  <strong className='text-cyan-600'>nomor telepon</strong> yang digunakan saat registrasi.
+                </p>
+              </div>
+
+              {/* CTA Button */}
+              <div className='flex-shrink-0 w-full md:w-auto'>
+                <Link
+                  href='/event/sertifikat-runmadan'
+                  className='group relative bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white px-6 md:px-8 py-4 md:py-5 rounded-xl font-bold text-base md:text-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden'
+                >
+                  <div className='absolute inset-0 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
+                  <Download className='h-5 w-5 md:h-6 md:w-6 relative z-10 group-hover:animate-bounce' />
+                  <span className='relative z-10'>Lihat Sertifikat</span>
+                  <ChevronRight className='h-5 w-5 md:h-6 md:w-6 relative z-10 group-hover:translate-x-1 transition-transform' />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Event Tabs */}
       <EventTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
