@@ -71,7 +71,7 @@ This theme guide provides the color palette and styling patterns used in the A4 
 <span class="text-sm font-semibold text-white bg-[#0066AE] px-3 py-1 rounded-full">Bank BRI</span>
 
 <!-- Account number -->
-<p class="text-3xl font-bold text-[#006064] tracking-wider">0211.01.004859.53.6</p>
+<p class="text-3xl font-bold text-[#006064] tracking-wider">0211.01.004869.53.6</p>
 ```
 
 ### Signature Section

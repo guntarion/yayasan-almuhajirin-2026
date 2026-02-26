@@ -198,7 +198,7 @@ export default function PrintableDocumentTemplate() {
               <span className="text-lg font-bold text-[#006064]">Rekening</span>
               <span className="text-sm font-semibold text-white bg-[#0066AE] px-3 py-1 rounded-full">Bank BRI</span>
             </div>
-            <p className="text-3xl font-bold text-[#006064] tracking-wider">0211.01.004859.53.6</p>
+            <p className="text-3xl font-bold text-[#006064] tracking-wider">0211.01.004869.53.6</p>
             <p className="text-gray-600 mt-2">a/n. <span className="font-semibold">Nama Rekening</span></p>
           </div>
         </div>

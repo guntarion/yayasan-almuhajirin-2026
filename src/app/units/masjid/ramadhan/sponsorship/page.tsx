@@ -623,7 +623,7 @@ export default function SponsorshipRunMadanPage() {
             <div className='bg-gradient-to-r from-[#BBDEFB]/30 to-[#90CAF9]/20 rounded-xl p-3'>
               <p className='font-semibold text-[#0D47A1] mb-1'>Transfer Sponsorship:</p>
               <p className='text-sm font-semibold text-[#0066AE]'>Bank BRI</p>
-              <p className='text-lg font-bold text-[#0D47A1]'>0211.01.004859.53.6</p>
+              <p className='text-lg font-bold text-[#0D47A1]'>0211.01.004869.53.6</p>
               <p className='text-sm text-gray-600'>a/n. Al Muhajirin Rewwin</p>
             </div>
           </div>

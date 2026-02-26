@@ -97,7 +97,7 @@ export default function ProposalRamadhanPage() {
         .a4-page {
           width: 210mm;
           min-height: 297mm;
-          padding: 15mm 20mm;
+          padding: 12mm 18mm;
           margin: 0 auto;
           background: white;
           box-sizing: border-box;
@@ -143,7 +143,7 @@ export default function ProposalRamadhanPage() {
 
         <div className="relative z-10 h-full flex flex-col">
           {/* Header with Logo */}
-          <div className="text-center pt-8">
+          <div className="text-center pt-4">
             <div className="inline-block p-4 bg-white rounded-2xl border border-[#B2EBF2]">
               <Image
                 src="/images/logo-masjid-almuhajirin.jpg"
@@ -187,7 +187,7 @@ export default function ProposalRamadhanPage() {
           </div>
 
           {/* Footer */}
-          <div className="text-center pb-8">
+          <div className="text-center pb-4">
             <div className="bg-[#F8FAFC] rounded-2xl p-6 border border-[#B2EBF2]">
               <h3 className="text-xl font-bold text-[#006064] mb-2">
                 PANITIA RAMADHAN 1447 H
@@ -213,13 +213,13 @@ export default function ProposalRamadhanPage() {
         <div className="absolute bottom-1/3 -left-8 w-32 h-32 bg-[#006064] rounded-full opacity-10 blur-2xl"></div>
 
         {/* Header Bar */}
-        <div className="relative z-10 flex items-center gap-3 mb-6 pb-4 border-b-2 border-[#B2EBF2]">
+        <div className="relative z-10 flex items-center gap-3 mb-4 pb-3 border-b-2 border-[#B2EBF2]">
           <div className="w-1.5 h-8 bg-gradient-to-b from-[#00BCD4] to-[#006064] rounded-full"></div>
           <h2 className="text-2xl font-bold text-[#006064]">Latar Belakang & Tujuan</h2>
         </div>
 
         {/* Latar Belakang */}
-        <div className="relative z-10 mb-8">
+        <div className="relative z-10 mb-5">
           <div className="flex items-center gap-2 mb-4">
             <div className="p-2 rounded-lg bg-[#B2EBF2]">
               <BookOpen className="h-5 w-5 text-[#006064]" />
@@ -244,7 +244,7 @@ export default function ProposalRamadhanPage() {
         </div>
 
         {/* Tujuan */}
-        <div className="relative z-10 mb-6">
+        <div className="relative z-10 mb-4">
           <div className="flex items-center gap-2 mb-4">
             <div className="p-2 rounded-lg bg-[#B2EBF2]">
               <Target className="h-5 w-5 text-[#006064]" />
@@ -252,7 +252,7 @@ export default function ProposalRamadhanPage() {
             <h3 className="text-lg font-bold text-[#006064]">Tujuan Program</h3>
           </div>
 
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 gap-3">
             <div className="flex items-start gap-4 p-4 bg-white rounded-xl border border-[#B2EBF2] hover:border-[#00BCD4] transition-colors">
               <div className="p-3 rounded-xl bg-gradient-to-br from-[#00BCD4] to-[#006064]">
                 <Heart className="h-6 w-6 text-white" />
@@ -286,14 +286,14 @@ export default function ProposalRamadhanPage() {
         </div>
 
         {/* Event Pra-Ramadhan */}
-        <div className="relative z-10 bg-gradient-to-r from-[#006064] to-[#00838F] rounded-2xl p-5">
+        <div className="relative z-10 bg-gradient-to-r from-[#006064] to-[#00838F] rounded-2xl p-4">
           <h4 className="font-bold text-white mb-3 flex items-center gap-2">
             <Calendar className="h-5 w-5 text-white" />
             <span className="text-white">Event Pra-Ramadhan &ldquo;Sambut Ramadhan&rdquo;</span>
           </h4>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 gap-2">
             {events.map((event, index) => (
-              <div key={index} className="bg-white/20 rounded-xl p-3 text-center">
+              <div key={index} className="bg-white/20 rounded-xl p-2 text-center text-sm">
                 <p className="font-semibold text-sm text-white">{event.name}</p>
                 <p className="text-xs text-[#B2EBF2] mt-1">{event.date}</p>
               </div>
@@ -311,24 +311,24 @@ export default function ProposalRamadhanPage() {
         <div className="absolute bottom-1/4 -left-6 w-24 h-24 bg-[#006064] rounded-full opacity-10 blur-2xl"></div>
 
         {/* Header Bar */}
-        <div className="relative z-10 flex items-center gap-3 mb-6 pb-4 border-b-2 border-[#B2EBF2]">
+        <div className="relative z-10 flex items-center gap-3 mb-4 pb-3 border-b-2 border-[#B2EBF2]">
           <div className="w-1.5 h-8 bg-gradient-to-b from-[#00BCD4] to-[#006064] rounded-full"></div>
           <h2 className="text-2xl font-bold text-[#006064]">Program & Kebutuhan Dana</h2>
         </div>
 
         {/* Program Grid */}
-        <div className="relative z-10 mb-6">
+        <div className="relative z-10 mb-4">
           <h3 className="text-lg font-bold text-[#006064] mb-4">Program Utama Ramadhan</h3>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
             {programs.map((program, index) => (
-              <div key={index} className="bg-gradient-to-br from-[#F8FAFC] to-[#B2EBF2]/20 rounded-xl p-4 border border-[#B2EBF2]">
+              <div key={index} className="bg-gradient-to-br from-[#F8FAFC] to-[#B2EBF2]/20 rounded-xl p-3 border border-[#B2EBF2]">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="p-2 rounded-lg bg-gradient-to-br from-[#00BCD4] to-[#006064]">
                     <program.icon className="h-5 w-5 text-white" />
                   </div>
                   <h4 className="font-bold text-[#006064]">{program.title}</h4>
                 </div>
-                <ul className="space-y-1.5">
+                <ul className="space-y-1">
                   {program.items.map((item, idx) => (
                     <li key={idx} className="flex items-center gap-2 text-sm text-gray-700">
                       <CheckCircle className="h-4 w-4 text-[#4CAF50] flex-shrink-0" />
@@ -342,7 +342,7 @@ export default function ProposalRamadhanPage() {
         </div>
 
         {/* Rincian Kebutuhan Dana */}
-        <div className="relative z-10">
+        <div className="relative z-10 text-sm">
           <h3 className="text-lg font-bold text-[#006064] mb-4">Rincian Kebutuhan Dana</h3>
 
           <div className="border-2 border-[#B2EBF2] rounded-2xl overflow-hidden">
@@ -377,7 +377,7 @@ export default function ProposalRamadhanPage() {
             </table>
           </div>
 
-          <div className="mt-4 bg-[#FFF8E1] border border-[#FFB300] rounded-xl p-4">
+          <div className="mt-3 bg-[#FFF8E1] border border-[#FFB300] rounded-xl p-3">
             <p className="text-sm text-[#E65100]">
               <span className="font-bold">Catatan:</span> Anggaran di atas merupakan estimasi kebutuhan operasional. Jumlah aktual dapat disesuaikan dengan donasi yang terkumpul. Laporan keuangan akan dipublikasikan secara transparan setelah Ramadhan.
             </p>
@@ -394,13 +394,13 @@ export default function ProposalRamadhanPage() {
         <div className="absolute bottom-1/2 right-0 w-32 h-32 bg-[#006064] rounded-full opacity-10 blur-2xl"></div>
 
         {/* Header Bar */}
-        <div className="relative z-10 flex items-center gap-3 mb-6 pb-4 border-b-2 border-[#B2EBF2]">
+        <div className="relative z-10 flex items-center gap-3 mb-4 pb-3 border-b-2 border-[#B2EBF2]">
           <div className="w-1.5 h-8 bg-gradient-to-b from-[#00BCD4] to-[#006064] rounded-full"></div>
           <h2 className="text-2xl font-bold text-[#006064]">Informasi Donasi</h2>
         </div>
 
         {/* Ajakan Donasi */}
-        <div className="relative z-10 bg-gradient-to-br from-[#006064] to-[#00838F] rounded-2xl p-6 mb-6">
+        <div className="relative z-10 bg-gradient-to-br from-[#006064] to-[#00838F] rounded-2xl p-5 mb-4">
           <h3 className="text-xl font-bold text-white mb-3">Mari Bersama Memakmurkan Ramadhan</h3>
           <p className="text-[#B2EBF2] leading-relaxed">
             Setiap rupiah yang Bapak/Ibu donasikan adalah investasi pahala yang akan terus mengalir sepanjang Ramadhan. Jadilah bagian dari kebaikan ini dan raih keberkahan bersama.
@@ -412,7 +412,7 @@ export default function ProposalRamadhanPage() {
         </div>
 
         {/* Rekening Donasi */}
-        <div className="relative z-10 bg-white border-2 border-[#00BCD4] rounded-2xl p-6 mb-6">
+        <div className="relative z-10 bg-white border-2 border-[#00BCD4] rounded-2xl p-5 mb-4">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 rounded-lg bg-[#B2EBF2]">
               <Landmark className="h-6 w-6 text-[#006064]" />
@@ -420,7 +420,7 @@ export default function ProposalRamadhanPage() {
             <h3 className="text-lg font-bold text-[#006064]">Rekening Donasi</h3>
           </div>
 
-          <div className="bg-gradient-to-r from-[#B2EBF2]/30 to-[#80DEEA]/20 rounded-xl p-5">
+          <div className="bg-gradient-to-r from-[#B2EBF2]/30 to-[#80DEEA]/20 rounded-xl p-4">
             <div className="flex items-center justify-between mb-4">
               <Image
                 src="/images/Logo-Yayasan-AlMuhajirin.png"
@@ -431,7 +431,7 @@ export default function ProposalRamadhanPage() {
               />
               <span className="text-sm font-semibold text-white bg-[#0066AE] px-3 py-1 rounded-full">Bank BRI</span>
             </div>
-            <p className="text-3xl font-bold text-[#006064] tracking-wider">0211.01.004859.53.6</p>
+            <p className="text-3xl font-bold text-[#006064] tracking-wider">0211.01.004869.53.6</p>
             <p className="text-gray-600 mt-2">a/n. <span className="font-semibold">Al Muhajirin Rewwin</span></p>
           </div>
 
@@ -445,30 +445,30 @@ export default function ProposalRamadhanPage() {
         </div>
 
         {/* Penutup */}
-        <div className="relative z-10 mb-6">
+        <div className="relative z-10 mb-4 text-sm">
           <p className="text-gray-700 leading-relaxed text-justify">
             Demikian proposal ini kami sampaikan. Atas perhatian, kepercayaan, dan partisipasi Bapak/Ibu dalam mendukung program Ramadhan 1447 H, kami mengucapkan <span className="font-semibold text-[#006064]">Jazakumullahu Khairan Katsiran</span>. Semoga Allah SWT membalas setiap kebaikan dengan pahala yang berlipat ganda.
           </p>
         </div>
 
         {/* Tanda Tangan */}
-        <div className="relative z-10 border-t-2 border-[#B2EBF2] pt-6">
-          <p className="text-sm text-gray-600 mb-6">Sidoarjo, Januari 2026</p>
+        <div className="relative z-10 border-t-2 border-[#B2EBF2] pt-4">
+          <p className="text-sm text-gray-600 mb-4">Sidoarjo, Januari 2026</p>
 
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-2 gap-6">
             <div className="text-center">
-              <p className="text-sm text-gray-600 mb-16">Ketua Yayasan<br/>Al Muhajirin Rewwin</p>
+              <p className="text-sm text-gray-600 mb-12">Ketua Yayasan<br/>Al Muhajirin Rewwin</p>
               <p className="font-bold text-[#006064] border-t border-gray-300 pt-2">H. CAHYO HUSNI TAMRIN, ST, MM</p>
             </div>
             <div className="text-center">
-              <p className="text-sm text-gray-600 mb-16">Ketua Panitia Ramadhan 1447H<br/>Masjid Al Muhajirin Rewwin</p>
+              <p className="text-sm text-gray-600 mb-12">Ketua Panitia Ramadhan 1447H<br/>Masjid Al Muhajirin Rewwin</p>
               <p className="font-bold text-[#006064] border-t border-gray-300 pt-2">ARIF BUDI SANTOSO</p>
             </div>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="relative z-10 mt-8 pt-4 border-t border-[#B2EBF2]">
+        <div className="relative z-10 mt-6 pt-3 border-t border-[#B2EBF2]">
           <div className="flex items-center justify-center gap-6 text-xs text-gray-500">
             <div className="flex items-center gap-1">
               <MapPin className="h-3 w-3" />

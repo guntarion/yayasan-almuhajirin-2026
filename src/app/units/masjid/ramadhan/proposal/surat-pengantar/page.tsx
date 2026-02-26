@@ -144,7 +144,7 @@ export default function SuratPengantarPage() {
 
           <div className="bg-[#F8FAFC] border border-[#B2EBF2] rounded-lg p-4 my-4">
             <p className="font-semibold text-[#0066AE]">Bank BRI</p>
-            <p className="text-lg font-bold text-[#006064]">0211.01.004859.53.6</p>
+            <p className="text-lg font-bold text-[#006064]">0211.01.004869.53.6</p>
             <p className="text-gray-600">a/n. Al Muhajirin Rewwin</p>
             <p className="text-xs text-gray-500 mt-2">Konfirmasi: 0812-5906-069 (Bendahara)</p>
           </div>

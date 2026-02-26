@@ -148,7 +148,7 @@ export async function POST(request: NextRequest) {
         })),
         instruksiPembayaran: {
           bank: 'BRI',
-          nomorRekening: '0211.01.004859.53.6',
+          nomorRekening: '0211.01.004869.53.6',
           atasNama: 'Al Muhajirin Rewwin',
           nominal: totalBiaya,
           whatsapp: '+62 812-5906-069',

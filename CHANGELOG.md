@@ -1,3 +1,19 @@
+## 2026-02-26 09:50:04
+
+feat(masjid): add TV dashboard for Ramadhan donation display
+
+- Add new TV display page at /units/masjid/ramadhan/tv optimized for smart TV (16:9)
+- Show real-time clock, date, and Ramadhan day counter in header
+- Display Total Infaq progress bar with amount and percentage
+- Add 4 program donation progress cards: Ifthar, Air Mineral, Kurma, Sahur (Qiyamul Lail)
+- Add rotating Jazakumullah Khairan appreciation messages with large readable text
+- Add Infaq Harian bar chart with taller bars for visibility
+- Add Donatur Terkini rotating list and Mari Berdonasi bank info card
+- Use YAMR logo in header, sky-blue color scheme for titles
+- Remove Penerimaan Barang card and Tadarrus program per requirements
+
+---
+
 ## 2026-02-09 13:04:46
 
 fix(masjid): add dynamic font sizing for certificate names
@@ -70,7 +86,7 @@ feat(units): add poliklinik and ambulans profile pages with printable brochures
 
 fix(masjid): correct BRI account number for Run-Madan event
 
-Update BRI account number from 0211.01.004859.53.6 to 0211.01.004869.53.6
+Update BRI account number from 0211.01.004869.53.6 to 0211.01.004869.53.6
 across all instances in Run-Madan event page including:
 - Clipboard copy function
 - Registration instructions
