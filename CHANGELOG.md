@@ -1,3 +1,23 @@
+## 2026-02-26 16:26:13
+
+feat(masjid): update TV Ramadhan dashboard with real data and UX improvements
+
+- Change title from "Dashboard Donasi Ramadhan 1447H" to "Dashboard Ramadhan 1447H"
+- Reduce Jazakumullah text size (title text-4xl→text-2xl, body text-3xl→text-lg)
+- Move Total Infaq Terkumpul to right column, alternating with Infaq Harian chart every 6s
+- Hide Rp 8.000.000 header when Total Infaq view is active
+- Compact Infaq Harian bar chart height
+- Remove Jazakumullah footer from Mari Berdonasi card
+- Inline a.n. Al Muhajirin Rewwin with rekening number
+- Update INFAQ_HARIAN to 8 actual days of data (1.7jt–650rb)
+- Update HARI_RAMADHAN to day 8
+- Update TOTAL_INFAQ: terkumpul 71.605.517, target 132.500.000, progress 54.04%
+- Replace all donor names with real data from laporan keuangan
+- Obfuscate donor names (keep 2 chars front + asterisks + 1 char end per word)
+- Replace UCAPAN_DOA_LIST with personalized doa per donatur
+
+---
+
 ## 2026-02-26 09:50:04
 
 feat(masjid): add TV dashboard for Ramadhan donation display

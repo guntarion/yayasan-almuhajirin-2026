@@ -11,12 +11,12 @@ import { Heart, Star, Gift, Calendar, CreditCard, Phone, Moon, Droplets, Leaf } 
 // DATA MOCKUP (ganti dengan API call nantinya)
 // ─────────────────────────────────────────────
 
-const HARI_RAMADHAN = 6; // Hari ke-berapa Ramadhan saat ini (dari 30)
+const HARI_RAMADHAN = 8; // Hari ke-berapa Ramadhan saat ini (dari 30)
 
 const TOTAL_INFAQ = {
-  terkumpul: 34_300_000,
-  target: 54_400_000,
-  progress: 63.05,
+  terkumpul: 71_605_517,
+  target: 132_500_000,
+  progress: 54.04,
 };
 
 const PROGRAM_DATA = [
@@ -74,59 +74,99 @@ const PROGRAM_DATA = [
   },
 ];
 
-// Total 34.300.000 dalam 6 hari
+// Total 8.000.000 dalam 8 hari (data aktual Tarawih 1447H)
 const INFAQ_HARIAN = [
-  { hari: 1, jumlah: 7_500_000 },
-  { hari: 2, jumlah: 6_200_000 },
-  { hari: 3, jumlah: 5_800_000 },
-  { hari: 4, jumlah: 5_100_000 },
-  { hari: 5, jumlah: 4_700_000 },
-  { hari: 6, jumlah: 5_000_000 },
+  { hari: 1, jumlah: 1_700_000 },
+  { hari: 2, jumlah: 1_600_000 },
+  { hari: 3, jumlah:   950_000 },
+  { hari: 4, jumlah: 1_050_000 },
+  { hari: 5, jumlah:   650_000 },
+  { hari: 6, jumlah:   650_000 },
+  { hari: 7, jumlah:   750_000 },
+  { hari: 8, jumlah:   650_000 },
 ];
 
 const DONATUR_LIST = [
-  { nama: 'P****** D', program: 'Ifthar', jumlah: 450_000 },
-  { nama: 'R*** S', program: 'Tadarrus', jumlah: 200_000 },
-  { nama: 'Keluarga A****', program: 'Air Mineral', jumlah: 350_000 },
-  { nama: 'Hamba A****', program: 'Ifthar', jumlah: 900_000 },
-  { nama: 'F***** Z', program: 'Tadarrus', jumlah: 100_000 },
-  { nama: 'H**** S', program: 'Ifthar', jumlah: 180_000 },
-  { nama: 'S***** R', program: 'Kurma', jumlah: 500_000 },
-  { nama: 'Ummi K******', program: 'Air Mineral', jumlah: 280_000 },
-  { nama: 'M***** Al H', program: 'Ifthar', jumlah: 360_000 },
-  { nama: 'Kel. B*** S', program: 'Kurma', jumlah: 1_000_000 },
+  { nama: 'Bpk. Pa***u Na******a', program: 'Tadarrus',    jumlah:   300_000 },
+  { nama: 'Ibu. Ok**o',            program: 'Ifthar',      jumlah: 1_800_000 },
+  { nama: 'Bpk. Ar**f Bu****n',    program: 'Ifthar',      jumlah: 1_000_000 },
+  { nama: 'Bpk. A. Gu***r',        program: 'Ifthar',      jumlah:   900_000 },
+  { nama: 'Ibu Da****o',           program: 'Ifthar',      jumlah:   500_000 },
+  { nama: 'Bpk. Ba****g W',        program: 'Air Mineral', jumlah:   350_000 },
+  { nama: 'Dr. Ri**l',             program: 'Air Mineral', jumlah:   250_000 },
+  { nama: 'Ibu An*a Mu****r',      program: 'Ifthar',      jumlah:   200_000 },
+  { nama: 'Bpk. Bu*i Pr*******o',  program: 'Ifthar',      jumlah:   200_000 },
+  { nama: 'Ibu Wi***u',            program: 'Ifthar',      jumlah:   200_000 },
+  { nama: 'Bpk. Bu*i P',           program: 'Ifthar',      jumlah:   100_000 },
+  { nama: 'Ibu Su***g',            program: 'Ifthar',      jumlah:   100_000 },
+  { nama: 'Ibu Ar*f',              program: 'Ifthar',      jumlah:   100_000 },
 ];
 
 const UCAPAN_DOA_LIST = [
   {
-    nama: 'Pak Djatmiko',
-    program: 'Ifthar',
-    doa: 'Semoga Allah memberikan kebarokahan pada harta dan keluarganya.',
-  },
-  {
-    nama: 'Bu Rini',
+    nama: 'Bpk. Pandhu Narwatama',
     program: 'Tadarrus',
-    doa: "Semoga putra putrinya menjadi penghafal Al Qur'an yang shaleh dan shalehah.",
+    doa: "Semoga menjadi amal jariyah yang mengalirkan pahala, dan dimudahkan segala urusannya oleh Allah SWT.",
   },
   {
-    nama: 'Keluarga Ahmad',
+    nama: 'Ibu. Oktio',
+    program: 'Ifthar',
+    doa: 'Semoga Allah melipatgandakan rezekinya, memanjangkan umurnya dalam kebaikan, dan meridhoi setiap langkahnya.',
+  },
+  {
+    nama: 'Bpk. Arief Budiman',
+    program: 'Ifthar',
+    doa: 'Semoga keluarganya senantiasa dalam lindungan Allah, hartanya diberkahi, dan doanya dikabulkan.',
+  },
+  {
+    nama: 'Bpk. A. Guntar',
+    program: 'Ifthar',
+    doa: 'Semoga dijauhkan dari segala musibah, diberikan kesehatan yang sempurna dan kebahagiaan dunia akhirat.',
+  },
+  {
+    nama: 'Ibu Darsono',
+    program: 'Ifthar',
+    doa: 'Semoga Allah mengampuni dosa-dosanya, meluaskan rizkinya, dan menjadikan Ramadhan ini penuh keberkahan.',
+  },
+  {
+    nama: 'Bpk. Bambang W',
     program: 'Air Mineral',
-    doa: 'Semoga selalu diberikan keberkahan, keharmonisan, dan kebahagiaan.',
+    doa: 'Semoga keluarganya diberikan kesehatan, keselamatan, dan kemuliaan di sisi Allah SWT.',
   },
   {
-    nama: 'Bapak Hasan',
-    program: 'Kurma',
-    doa: 'Semoga dilipatgandakan pahalanya dan diampuni segala dosanya oleh Allah SWT.',
+    nama: 'Dr. Rizal',
+    program: 'Air Mineral',
+    doa: 'Semoga ilmu dan amalnya bermanfaat bagi umat, serta diberikan keberkahan dalam setiap pekerjaannya.',
   },
   {
-    nama: 'Ibu Fatimah',
-    program: 'Tadarrus',
-    doa: 'Semoga mendapatkan ampunan di bulan suci Ramadhan dan diberikan keberkahan rezeki.',
-  },
-  {
-    nama: 'Ustadz Ibrahim',
+    nama: 'Ibu Anna Muchtar',
     program: 'Ifthar',
-    doa: 'Semoga menjadi amal jariyah yang mengalir pahalanya dan diberikan umur yang panjang dan barokah.',
+    doa: 'Semoga segala kebaikannya dibalas berlipat ganda oleh Allah dan menjadi bekal di hari akhirat.',
+  },
+  {
+    nama: 'Bpk. Budi Prihantono',
+    program: 'Ifthar',
+    doa: 'Semoga infaqnya menjadi cahaya di hari kiamat dan keluarganya senantiasa dalam ridho Allah.',
+  },
+  {
+    nama: 'Ibu Winantu',
+    program: 'Ifthar',
+    doa: 'Semoga Allah membalas dengan kebaikan yang berlipat dan dimudahkan segala hajatnya.',
+  },
+  {
+    nama: 'Bpk. Budi P',
+    program: 'Ifthar',
+    doa: 'Semoga Ramadhan ini menjadi momentum terbaik untuk meraih ampunan dan ridho Allah SWT.',
+  },
+  {
+    nama: 'Ibu Sugeng',
+    program: 'Ifthar',
+    doa: 'Semoga keluarganya selalu rukun, sehat, dan senantiasa berada dalam keberkahan Allah SWT.',
+  },
+  {
+    nama: 'Ibu Arif',
+    program: 'Ifthar',
+    doa: 'Semoga amal ibadahnya di bulan Ramadhan ini diterima Allah dan doanya diijabah.',
   },
 ];
 
@@ -169,18 +209,20 @@ function ProgramIcon({ name, color }: { name: IconName; color: string }) {
 // KOMPONEN: Bar Chart Infaq Harian (CSS murni)
 // ─────────────────────────────────────────────
 
-function InfaqBarChart({ data }: { data: typeof INFAQ_HARIAN }) {
+function InfaqBarChart({ data, compact = false }: { data: typeof INFAQ_HARIAN; compact?: boolean }) {
   const maxJumlah = Math.max(...data.map((d) => d.jumlah));
+  const barH = compact ? 52 : 88;
+  const containerH = compact ? 'h-20' : 'h-36';
   return (
-    <div className="flex items-end justify-around gap-2 h-36">
+    <div className={`flex items-end justify-around gap-2 ${containerH}`}>
       {data.map((item) => {
         const pct = Math.round((item.jumlah / maxJumlah) * 100);
         return (
-          <div key={item.hari} className="flex flex-col items-center gap-1 flex-1">
+          <div key={item.hari} className="flex flex-col items-center gap-0.5 flex-1">
             <span className="text-xs font-bold text-green-700">
               {(item.jumlah / 1_000_000).toFixed(1)}jt
             </span>
-            <div className="w-full bg-gray-100 rounded-t relative" style={{ height: '88px' }}>
+            <div className="w-full bg-gray-100 rounded-t relative" style={{ height: `${barH}px` }}>
               <div
                 className="absolute bottom-0 left-0 right-0 rounded-t transition-all duration-700"
                 style={{ height: `${pct}%`, backgroundColor: '#059669' }}
@@ -203,6 +245,7 @@ export default function TVDisplayPage() {
   const [time, setTime] = useState('');
   const [doaIndex, setDoaIndex] = useState(0);
   const [donaturIndex, setDonaturIndex] = useState(0);
+  const [showInfaqTotal, setShowInfaqTotal] = useState(false);
 
   const totalInfaqHarian = INFAQ_HARIAN.reduce((s, d) => s + d.jumlah, 0);
 
@@ -227,6 +270,12 @@ export default function TVDisplayPage() {
   // Rotasi donatur setiap 4 detik
   useEffect(() => {
     const id = setInterval(() => setDonaturIndex((i) => (i + 1) % (DONATUR_LIST.length - 2)), 4000);
+    return () => clearInterval(id);
+  }, []);
+
+  // Alternatif tampilan Infaq Harian / Total Infaq setiap 6 detik
+  useEffect(() => {
+    const id = setInterval(() => setShowInfaqTotal((v) => !v), 6000);
     return () => clearInterval(id);
   }, []);
 
@@ -266,7 +315,7 @@ export default function TVDisplayPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/images/Logo-YAMR.png" alt="Logo YAMR" className="w-14 h-14 object-contain" />
             <div>
-              <h1 className="text-3xl font-extrabold leading-tight text-sky-300">Dashboard Donasi Ramadhan 1447H</h1>
+              <h1 className="text-3xl font-extrabold leading-tight text-sky-300">Dashboard Ramadhan 1447H</h1>
               <p className="text-base text-green-300">Masjid Al Muhajirin Rewwin • RAMADHAN MADRASAH KITA</p>
             </div>
           </div>
@@ -290,12 +339,12 @@ export default function TVDisplayPage() {
               <div className="absolute -right-4 -top-4 opacity-10">
                 <Heart className="w-36 h-36" />
               </div>
-              <div className="flex items-center gap-3 mb-4">
-                <Heart className="w-10 h-10 text-pink-300" />
-                <h2 className="text-4xl font-bold text-sky-300">Jazakumullah Khairan</h2>
+              <div className="flex items-center gap-3 mb-3">
+                <Heart className="w-7 h-7 text-pink-300" />
+                <h2 className="text-2xl font-bold text-sky-300">Jazakumullah Khairan</h2>
               </div>
               <div key={doaIndex} className="tv-fade-in">
-                <p className="text-3xl leading-relaxed">
+                <p className="text-lg leading-relaxed">
                   Terima kasih,{' '}
                   <span className="font-bold text-yellow-200">{UCAPAN_DOA_LIST[doaIndex].nama}</span>,
                   atas donasi program{' '}
@@ -316,19 +365,6 @@ export default function TVDisplayPage() {
 
             {/* Card: Progress 4 Program — 2x2 Grid, shrink-0 agar tinggi sesuai konten */}
             <div className="bg-white rounded-xl shadow-xl p-4 shrink-0">
-              {/* Total Infaq ringkas di atas grid */}
-              <div className="flex items-center gap-3 mb-2 px-1">
-                <span className="text-sm font-semibold text-gray-600">Total Infaq Terkumpul:</span>
-                <span className="text-base font-extrabold text-green-700">{formatRupiah(TOTAL_INFAQ.terkumpul)}</span>
-                <div className="flex-1 bg-gray-200 rounded-full h-2.5">
-                  <div
-                    className="h-2.5 rounded-full bg-yellow-400 transition-all duration-1000"
-                    style={{ width: `${TOTAL_INFAQ.progress}%` }}
-                  />
-                </div>
-                <span className="text-sm font-bold text-yellow-600">{TOTAL_INFAQ.progress}%</span>
-                <span className="text-xs text-gray-400">dari {formatRupiah(TOTAL_INFAQ.target)}</span>
-              </div>
               <h2 className="text-base font-bold mb-2 text-gray-700">Progress Donasi Program</h2>
               <div className="grid grid-cols-2 gap-2">
                 {PROGRAM_DATA.map((p) => (
@@ -402,34 +438,53 @@ export default function TVDisplayPage() {
               </div>
             </div>
 
-            {/* Card: Infaq Harian */}
+            {/* Card: Infaq Harian / Total Infaq (alternating) */}
             <div className="bg-white rounded-xl shadow-xl p-4 shrink-0">
-              <div className="flex justify-between items-center mb-3">
-                <h2 className="text-lg font-bold text-gray-800">Infaq Harian</h2>
-                <span className="text-base font-bold text-green-700">{formatRupiah(totalInfaqHarian)}</span>
+              <div className="flex justify-between items-center mb-2">
+                <h2 className="text-base font-bold text-gray-800">
+                  {showInfaqTotal ? 'Total Infaq Terkumpul' : 'Infaq Harian'}
+                </h2>
+                {!showInfaqTotal && (
+                  <span className="text-sm font-bold text-green-700">{formatRupiah(totalInfaqHarian)}</span>
+                )}
               </div>
-              <InfaqBarChart data={INFAQ_HARIAN} />
+              {showInfaqTotal ? (
+                <div key="total" className="tv-fade-in flex flex-col gap-2 py-1">
+                  <div className="text-2xl font-extrabold text-green-700">{formatRupiah(TOTAL_INFAQ.terkumpul)}</div>
+                  <div className="w-full bg-gray-200 rounded-full h-3">
+                    <div
+                      className="h-3 rounded-full bg-yellow-400 transition-all duration-1000"
+                      style={{ width: `${TOTAL_INFAQ.progress}%` }}
+                    />
+                  </div>
+                  <div className="flex justify-between text-xs text-gray-500">
+                    <span className="font-bold text-yellow-600">{TOTAL_INFAQ.progress}% terkumpul</span>
+                    <span>Target: {formatRupiah(TOTAL_INFAQ.target)}</span>
+                  </div>
+                </div>
+              ) : (
+                <div key="harian" className="tv-fade-in">
+                  <InfaqBarChart data={INFAQ_HARIAN} compact />
+                </div>
+              )}
             </div>
 
             {/* Card: Ajakan Donasi */}
             <div className="tv-pulse bg-gradient-to-br from-green-700 to-blue-800 rounded-xl shadow-xl p-4 text-white shrink-0">
               <h2 className="text-base font-bold mb-2 text-sky-300">Mari Berdonasi</h2>
               <div className="space-y-1.5 text-sm">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   <CreditCard className="w-4 h-4 shrink-0 opacity-80" />
                   <span className="opacity-80">Bank BRI:</span>
                   <span className="font-bold">0211.01.004869.53.6</span>
+                  <span className="text-xs opacity-75">a.n. Al Muhajirin Rewwin</span>
                 </div>
-                <p className="pl-6 text-xs opacity-75">a.n. Al Muhajirin Rewwin</p>
                 <div className="flex items-center gap-2">
                   <Phone className="w-4 h-4 shrink-0 opacity-80" />
                   <span className="opacity-80">Konfirmasi WA:</span>
                   <span className="font-bold">0812-2334-3416</span>
                 </div>
               </div>
-              <p className="mt-2 text-xs italic opacity-70">
-                Jazaakumullaahu khairan wa Baarakallaah fiikum wa Amwaalikum
-              </p>
             </div>
           </div>
         </main>
