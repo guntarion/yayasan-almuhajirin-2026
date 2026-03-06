@@ -11,11 +11,11 @@ import { Heart, Star, Gift, Calendar, CreditCard, Phone, Moon, Droplets, Leaf } 
 // DATA MOCKUP (ganti dengan API call nantinya)
 // ─────────────────────────────────────────────
 
-const HARI_RAMADHAN = 8; // Hari ke-berapa Ramadhan saat ini (dari 30)
+const HARI_RAMADHAN = 16; // Hari ke-berapa Ramadhan saat ini (dari 30)
 
 const TOTAL_INFAQ = {
-  terkumpul: 71_605_517,
-  target: 132_500_000,
+  terkumpul: 81_465_517,
+  target: 139_500_000,
   progress: 54.04,
 };
 
@@ -36,10 +36,10 @@ const PROGRAM_DATA = [
   {
     nama: 'Air Mineral',
     kategori: 'Takjil',
-    terkumpul: 12,
+    terkumpul: 26,
     totalTarget: 30,
     satuan: 'hari',
-    progress: 40,
+    progress: 87,
     kebutuhanPerHari: null,
     color: '#0EA5E9',
     bgColor: 'rgba(14, 165, 233, 0.08)',
@@ -49,10 +49,10 @@ const PROGRAM_DATA = [
   {
     nama: 'Kurma',
     kategori: 'Takjil',
-    terkumpul: 7,
+    terkumpul: 18,
     totalTarget: 30,
     satuan: 'hari',
-    progress: 23,
+    progress: 60,
     kebutuhanPerHari: null,
     color: '#D97706',
     bgColor: 'rgba(217, 119, 6, 0.08)',
@@ -62,10 +62,10 @@ const PROGRAM_DATA = [
   {
     nama: 'Sahur (Qiyamul Lail)',
     kategori: 'Ibadah',
-    terkumpul: 8,
-    totalTarget: 30,
+    terkumpul: 0,
+    totalTarget: 10,
     satuan: 'hari',
-    progress: 27,
+    progress: 0,
     kebutuhanPerHari: null,
     color: '#8B5CF6',
     bgColor: 'rgba(139, 92, 246, 0.08)',
@@ -78,35 +78,120 @@ const PROGRAM_DATA = [
 const INFAQ_HARIAN = [
   { hari: 1, jumlah: 1_700_000 },
   { hari: 2, jumlah: 1_600_000 },
-  { hari: 3, jumlah:   950_000 },
+  { hari: 3, jumlah: 950_000 },
   { hari: 4, jumlah: 1_050_000 },
-  { hari: 5, jumlah:   650_000 },
-  { hari: 6, jumlah:   650_000 },
-  { hari: 7, jumlah:   750_000 },
-  { hari: 8, jumlah:   650_000 },
+  { hari: 5, jumlah: 650_000 },
+  { hari: 6, jumlah: 650_000 },
+  { hari: 7, jumlah: 750_000 },
+  { hari: 8, jumlah: 650_000 },
+  { hari: 9, jumlah: 400_000 },
+  { hari: 10, jumlah: 500_000 },
+  { hari: 11, jumlah: 600_000 },
+  { hari: 12, jumlah: 350_000 },
+  { hari: 13, jumlah: 600_000 },
+  { hari: 14, jumlah: 500_000 },
+  { hari: 15, jumlah: 450_000 },
 ];
 
 const DONATUR_LIST = [
-  { nama: 'Bpk. Pa***u Na******a', program: 'Tadarrus',    jumlah:   300_000 },
-  { nama: 'Ibu. Ok**o',            program: 'Ifthar',      jumlah: 1_800_000 },
-  { nama: 'Bpk. Ar**f Bu****n',    program: 'Ifthar',      jumlah: 1_000_000 },
-  { nama: 'Bpk. A. Gu***r',        program: 'Ifthar',      jumlah:   900_000 },
-  { nama: 'Ibu Da****o',           program: 'Ifthar',      jumlah:   500_000 },
-  { nama: 'Bpk. Ba****g W',        program: 'Air Mineral', jumlah:   350_000 },
-  { nama: 'Dr. Ri**l',             program: 'Air Mineral', jumlah:   250_000 },
-  { nama: 'Ibu An*a Mu****r',      program: 'Ifthar',      jumlah:   200_000 },
-  { nama: 'Bpk. Bu*i Pr*******o',  program: 'Ifthar',      jumlah:   200_000 },
-  { nama: 'Ibu Wi***u',            program: 'Ifthar',      jumlah:   200_000 },
-  { nama: 'Bpk. Bu*i P',           program: 'Ifthar',      jumlah:   100_000 },
-  { nama: 'Ibu Su***g',            program: 'Ifthar',      jumlah:   100_000 },
-  { nama: 'Ibu Ar*f',              program: 'Ifthar',      jumlah:   100_000 },
+  { nama: 'Ibu Am****a', program: 'Air Mineral', jumlah: 660_000 },
+  { nama: 'Ibu Su***o', program: 'Ifthar', jumlah: 300_000 },
+  { nama: 'Ibu Ur***a In**h S**i', program: 'Ifthar', jumlah: 300_000 },
+  { nama: 'Ibu Lu***n', program: 'Air Mineral', jumlah: 250_000 },
+  { nama: 'Bpk. Ab***n', program: 'Ifthar', jumlah: 150_000 },
+  { nama: 'Ibu. Ta****i', program: 'Ifthar', jumlah: 100_000 },
+  { nama: 'Ibu Nu**l E*i', program: 'Ifthar', jumlah: 100_000 },
+  { nama: 'Ibu Ir***m', program: 'Ifthar', jumlah: 100_000 },
+  { nama: 'Bu Ba****g', program: 'Ifthar', jumlah: 100_000 },
+  { nama: 'Bu Su***i', program: 'Ifthar', jumlah: 100_000 },
+  { nama: 'Ibu Ad**i S', program: 'Ifthar', jumlah: 100_000 },
+  { nama: 'Ibu Ti*o', program: 'Ifthar', jumlah: 100_000 },
+  { nama: 'Ibu Da***m', program: 'Ifthar', jumlah: 50_000 },
+  { nama: 'Bpk. Pa***u Na******a', program: 'Tadarrus', jumlah: 300_000 },
+  { nama: 'Ibu. Ok**o', program: 'Ifthar', jumlah: 1_800_000 },
+  { nama: 'Bpk. Ar**f Bu****n', program: 'Ifthar', jumlah: 1_000_000 },
+  { nama: 'Bpk. A. Gu***r', program: 'Ifthar', jumlah: 900_000 },
+  { nama: 'Ibu Da****o', program: 'Ifthar', jumlah: 500_000 },
+  { nama: 'Bpk. Ba****g W', program: 'Air Mineral', jumlah: 350_000 },
+  { nama: 'Dr. Ri**l', program: 'Air Mineral', jumlah: 250_000 },
+  { nama: 'Ibu An*a Mu****r', program: 'Ifthar', jumlah: 200_000 },
+  { nama: 'Bpk. Bu*i Pr*******o', program: 'Ifthar', jumlah: 200_000 },
+  { nama: 'Ibu Wi***u', program: 'Ifthar', jumlah: 200_000 },
+  { nama: 'Bpk. Bu*i P', program: 'Ifthar', jumlah: 100_000 },
+  { nama: 'Ibu Su***g', program: 'Ifthar', jumlah: 100_000 },
+  { nama: 'Ibu Ar*f', program: 'Ifthar', jumlah: 100_000 },
 ];
 
 const UCAPAN_DOA_LIST = [
   {
+    nama: 'Ibu Ameilia',
+    program: 'Air Mineral',
+    doa: 'Semoga Allah membalas kebaikannya dengan rezeki yang berlimpah dan keberkahan dalam setiap langkahnya.',
+  },
+  {
+    nama: 'Ibu Suwoto',
+    program: 'Ifthar',
+    doa: 'Semoga keluarganya senantiasa dalam lindungan Allah, diberikan kesehatan dan kebahagiaan dunia akhirat.',
+  },
+  {
+    nama: 'Ibu Urifia Indah Sari',
+    program: 'Ifthar',
+    doa: 'Semoga Allah melipatgandakan pahalanya, meluaskan rezekinya, dan menjadikan Ramadhan ini penuh berkah.',
+  },
+  {
+    nama: 'Ibu Lukman',
+    program: 'Air Mineral',
+    doa: 'Semoga sedekahnya menjadi peneduh di hari kiamat dan keluarganya selalu dalam rahmat Allah SWT.',
+  },
+  {
+    nama: 'Bpk. Abidin',
+    program: 'Ifthar',
+    doa: 'Semoga Allah menerima amal ibadahnya, mengampuni dosa-dosanya, dan memberikan kemuliaan di sisi-Nya.',
+  },
+  {
+    nama: 'Ibu Tantowi',
+    program: 'Ifthar',
+    doa: 'Semoga Allah membalas dengan kebaikan berlipat ganda dan dimudahkan segala urusannya.',
+  },
+  {
+    nama: 'Ibu Nurul Edi',
+    program: 'Ifthar',
+    doa: 'Semoga infaqnya menjadi cahaya di hari akhirat dan keluarganya senantiasa dalam ridho Allah.',
+  },
+  {
+    nama: 'Ibu Irsyam',
+    program: 'Ifthar',
+    doa: 'Semoga Allah memberikan kesehatan, keselamatan, dan keberkahan dalam setiap aktivitasnya.',
+  },
+  {
+    nama: 'Bu Bambang',
+    program: 'Ifthar',
+    doa: 'Semoga kebaikannya dicatat sebagai amal jariyah dan dibalas dengan surga-Nya.',
+  },
+  {
+    nama: 'Bu Suhari',
+    program: 'Ifthar',
+    doa: 'Semoga Allah senantiasa melindungi keluarganya dan memberikan kebahagiaan di dunia dan akhirat.',
+  },
+  {
+    nama: 'Ibu Addhi S',
+    program: 'Ifthar',
+    doa: 'Semoga Ramadhan ini menjadi wasilah meraih ampunan Allah dan derajat yang tinggi di sisi-Nya.',
+  },
+  {
+    nama: 'Ibu Daslim',
+    program: 'Ifthar',
+    doa: 'Semoga setiap rupiah yang diinfaqkan menjadi pemberat timbangan kebaikan di yaumil akhir.',
+  },
+  {
+    nama: 'Ibu Tino',
+    program: 'Ifthar',
+    doa: 'Semoga Allah memudahkan segala hajatnya, menyembuhkan sakitnya, dan memberkahi hidupnya.',
+  },
+  {
     nama: 'Bpk. Pandhu Narwatama',
     program: 'Tadarrus',
-    doa: "Semoga menjadi amal jariyah yang mengalirkan pahala, dan dimudahkan segala urusannya oleh Allah SWT.",
+    doa: 'Semoga menjadi amal jariyah yang mengalirkan pahala, dan dimudahkan segala urusannya oleh Allah SWT.',
   },
   {
     nama: 'Ibu. Oktio',
@@ -185,11 +270,16 @@ function formatRupiah(amount: number): string {
 
 function getProgramColor(program: string): string {
   switch (program) {
-    case 'Ifthar':     return '#10B981';
-    case 'Air Mineral': return '#0EA5E9';
-    case 'Kurma':      return '#D97706';
-    case 'Tadarrus':   return '#F59E0B';
-    default:           return '#6B7280';
+    case 'Ifthar':
+      return '#10B981';
+    case 'Air Mineral':
+      return '#0EA5E9';
+    case 'Kurma':
+      return '#D97706';
+    case 'Tadarrus':
+      return '#F59E0B';
+    default:
+      return '#6B7280';
   }
 }
 
@@ -197,11 +287,11 @@ type IconName = 'gift' | 'star' | 'calendar' | 'droplets' | 'leaf' | 'moon';
 
 function ProgramIcon({ name, color }: { name: IconName; color: string }) {
   const cls = 'w-8 h-8 shrink-0';
-  if (name === 'gift')     return <Gift      className={cls} style={{ color }} />;
-  if (name === 'star')     return <Star      className={cls} style={{ color }} />;
-  if (name === 'droplets') return <Droplets  className={cls} style={{ color }} />;
-  if (name === 'leaf')     return <Leaf      className={cls} style={{ color }} />;
-  if (name === 'moon')     return <Moon      className={cls} style={{ color }} />;
+  if (name === 'gift') return <Gift className={cls} style={{ color }} />;
+  if (name === 'star') return <Star className={cls} style={{ color }} />;
+  if (name === 'droplets') return <Droplets className={cls} style={{ color }} />;
+  if (name === 'leaf') return <Leaf className={cls} style={{ color }} />;
+  if (name === 'moon') return <Moon className={cls} style={{ color }} />;
   return <Calendar className={cls} style={{ color }} />;
 }
 
@@ -218,17 +308,15 @@ function InfaqBarChart({ data, compact = false }: { data: typeof INFAQ_HARIAN; c
       {data.map((item) => {
         const pct = Math.round((item.jumlah / maxJumlah) * 100);
         return (
-          <div key={item.hari} className="flex flex-col items-center gap-0.5 flex-1">
-            <span className="text-xs font-bold text-green-700">
-              {(item.jumlah / 1_000_000).toFixed(1)}jt
-            </span>
-            <div className="w-full bg-gray-100 rounded-t relative" style={{ height: `${barH}px` }}>
+          <div key={item.hari} className='flex flex-col items-center gap-0.5 flex-1'>
+            <span className='text-xs font-bold text-green-700'>{(item.jumlah / 1_000_000).toFixed(1)}jt</span>
+            <div className='w-full bg-gray-100 rounded-t relative' style={{ height: `${barH}px` }}>
               <div
-                className="absolute bottom-0 left-0 right-0 rounded-t transition-all duration-700"
+                className='absolute bottom-0 left-0 right-0 rounded-t transition-all duration-700'
                 style={{ height: `${pct}%`, backgroundColor: '#059669' }}
               />
             </div>
-            <span className="text-xs text-gray-400">H-{item.hari}</span>
+            <span className='text-xs text-gray-400'>H-{item.hari}</span>
           </div>
         );
       })}
@@ -282,10 +370,7 @@ export default function TVDisplayPage() {
   return (
     <>
       {/* Overlay fixed: menutupi navbar & footer parent layout */}
-      <div
-        className="fixed inset-0 z-[9999] overflow-hidden flex flex-col"
-        style={{ backgroundColor: '#F0FDF4' }}
-      >
+      <div className='fixed inset-0 z-[9999] overflow-hidden flex flex-col' style={{ backgroundColor: '#F0FDF4' }}>
         <style>{`
           @keyframes fadeSlideIn {
             from { opacity: 0; transform: translateY(8px); }
@@ -310,53 +395,48 @@ export default function TVDisplayPage() {
         `}</style>
 
         {/* ══ HEADER ══ */}
-        <header className="bg-green-800 text-white px-8 py-3 flex justify-between items-center shadow-xl shrink-0">
-          <div className="flex items-center gap-4">
+        <header className='bg-green-800 text-white px-8 py-3 flex justify-between items-center shadow-xl shrink-0'>
+          <div className='flex items-center gap-4'>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/Logo-YAMR.png" alt="Logo YAMR" className="w-14 h-14 object-contain" />
+            <img src='/images/Logo-YAMR.png' alt='Logo YAMR' className='w-14 h-14 object-contain' />
             <div>
-              <h1 className="text-3xl font-extrabold leading-tight text-sky-300">Dashboard Ramadhan 1447H</h1>
-              <p className="text-base text-green-300">Masjid Al Muhajirin Rewwin • RAMADHAN MADRASAH KITA</p>
+              <h1 className='text-3xl font-extrabold leading-tight text-sky-300'>Dashboard Ramadhan 1447H</h1>
+              <p className='text-base text-green-300'>Masjid Al Muhajirin Rewwin • RAMADHAN MADRASAH KITA</p>
             </div>
           </div>
-          <div className="flex flex-col items-end gap-0.5">
-            <div className="text-3xl font-bold tabular-nums">{time}</div>
-            <div className="text-sm text-green-300">{date}</div>
-            <div className="mt-1 bg-green-700 border border-green-500 px-3 py-0.5 rounded-full text-sm font-semibold">
+          <div className='flex flex-col items-end gap-0.5'>
+            <div className='text-3xl font-bold tabular-nums'>{time}</div>
+            <div className='text-sm text-green-300'>{date}</div>
+            <div className='mt-1 bg-green-700 border border-green-500 px-3 py-0.5 rounded-full text-sm font-semibold'>
               Hari ke-{HARI_RAMADHAN} Ramadhan
             </div>
           </div>
         </header>
 
         {/* ══ MAIN CONTENT ══ */}
-        <main className="flex-1 grid grid-cols-12 gap-4 px-6 py-4 overflow-hidden">
-
+        <main className='flex-1 grid grid-cols-12 gap-4 px-6 py-4 overflow-hidden'>
           {/* ── KOLOM KIRI (7/12) ── */}
-          <div className="col-span-7 flex flex-col gap-4 overflow-hidden">
-
+          <div className='col-span-7 flex flex-col gap-4 overflow-hidden'>
             {/* Card: Jazakumullah Khairan — flex-1 agar isi sisa ruang */}
-            <div className="tv-gradient rounded-xl shadow-xl p-5 text-white relative overflow-hidden flex-1">
-              <div className="absolute -right-4 -top-4 opacity-10">
-                <Heart className="w-36 h-36" />
+            <div className='tv-gradient rounded-xl shadow-xl p-5 text-white relative overflow-hidden flex-1'>
+              <div className='absolute -right-4 -top-4 opacity-10'>
+                <Heart className='w-36 h-36' />
               </div>
-              <div className="flex items-center gap-3 mb-3">
-                <Heart className="w-7 h-7 text-pink-300" />
-                <h2 className="text-2xl font-bold text-sky-300">Jazakumullah Khairan</h2>
+              <div className='flex items-center gap-3 mb-3'>
+                <Heart className='w-7 h-7 text-pink-300' />
+                <h2 className='text-2xl font-bold text-sky-300'>Jazakumullah Khairan</h2>
               </div>
-              <div key={doaIndex} className="tv-fade-in">
-                <p className="text-lg leading-relaxed">
-                  Terima kasih,{' '}
-                  <span className="font-bold text-yellow-200">{UCAPAN_DOA_LIST[doaIndex].nama}</span>,
-                  atas donasi program{' '}
-                  <span className="italic">{UCAPAN_DOA_LIST[doaIndex].program}</span>-nya.{' '}
-                  {UCAPAN_DOA_LIST[doaIndex].doa} Aamiin.
+              <div key={doaIndex} className='tv-fade-in'>
+                <p className='text-lg leading-relaxed'>
+                  Terima kasih, <span className='font-bold text-yellow-200'>{UCAPAN_DOA_LIST[doaIndex].nama}</span>, atas donasi program{' '}
+                  <span className='italic'>{UCAPAN_DOA_LIST[doaIndex].program}</span>-nya. {UCAPAN_DOA_LIST[doaIndex].doa} Aamiin.
                 </p>
               </div>
-              <div className="flex gap-1.5 mt-3">
+              <div className='flex gap-1.5 mt-3'>
                 {UCAPAN_DOA_LIST.map((_, i) => (
                   <span
                     key={i}
-                    className="block h-2 w-2 rounded-full transition-all"
+                    className='block h-2 w-2 rounded-full transition-all'
                     style={{ backgroundColor: i === doaIndex ? 'white' : 'rgba(255,255,255,0.3)' }}
                   />
                 ))}
@@ -364,41 +444,41 @@ export default function TVDisplayPage() {
             </div>
 
             {/* Card: Progress 4 Program — 2x2 Grid, shrink-0 agar tinggi sesuai konten */}
-            <div className="bg-white rounded-xl shadow-xl p-4 shrink-0">
-              <h2 className="text-base font-bold mb-2 text-gray-700">Progress Donasi Program</h2>
-              <div className="grid grid-cols-2 gap-2">
+            <div className='bg-white rounded-xl shadow-xl p-4 shrink-0'>
+              <h2 className='text-base font-bold mb-2 text-gray-700'>Progress Donasi Program</h2>
+              <div className='grid grid-cols-2 gap-2'>
                 {PROGRAM_DATA.map((p) => (
                   <div
                     key={p.nama}
-                    className="rounded-lg p-3 flex flex-col gap-2"
+                    className='rounded-lg p-3 flex flex-col gap-2'
                     style={{ borderLeft: `5px solid ${p.borderColor}`, backgroundColor: p.bgColor }}
                   >
                     {/* Header program */}
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
+                    <div className='flex items-center justify-between'>
+                      <div className='flex items-center gap-2'>
                         <ProgramIcon name={p.iconName} color={p.color} />
                         <div>
-                          <div className="font-bold text-gray-800 text-sm leading-tight">{p.nama}</div>
-                          <div className="text-xs text-gray-500">{p.kategori}</div>
+                          <div className='font-bold text-gray-800 text-sm leading-tight'>{p.nama}</div>
+                          <div className='text-xs text-gray-500'>{p.kategori}</div>
                         </div>
                       </div>
-                      <span className="text-2xl font-extrabold" style={{ color: p.color }}>
+                      <span className='text-2xl font-extrabold' style={{ color: p.color }}>
                         {p.progress}%
                       </span>
                     </div>
                     {/* Progress bar */}
                     <div>
-                      <div className="w-full bg-gray-200 rounded-full h-5 mb-1">
+                      <div className='w-full bg-gray-200 rounded-full h-5 mb-1'>
                         <div
-                          className="h-5 rounded-full transition-all duration-1000"
+                          className='h-5 rounded-full transition-all duration-1000'
                           style={{ width: `${p.progress}%`, backgroundColor: p.color }}
                         />
                       </div>
-                      <div className="flex justify-between text-xs text-gray-600">
-                        <span>{p.terkumpul}/{p.totalTarget} {p.satuan} terpenuhi</span>
-                        {p.kebutuhanPerHari && (
-                          <span className="opacity-70">{formatRupiah(p.kebutuhanPerHari)}/hari</span>
-                        )}
+                      <div className='flex justify-between text-xs text-gray-600'>
+                        <span>
+                          {p.terkumpul}/{p.totalTarget} {p.satuan} terpenuhi
+                        </span>
+                        {p.kebutuhanPerHari && <span className='opacity-70'>{formatRupiah(p.kebutuhanPerHari)}/hari</span>}
                       </div>
                     </div>
                   </div>
@@ -408,29 +488,28 @@ export default function TVDisplayPage() {
           </div>
 
           {/* ── KOLOM KANAN (5/12) ── */}
-          <div className="col-span-5 flex flex-col gap-4 overflow-hidden">
-
+          <div className='col-span-5 flex flex-col gap-4 overflow-hidden'>
             {/* Card: Donatur Terkini */}
-            <div className="bg-white rounded-xl shadow-xl p-4 flex-1 overflow-hidden">
-              <h2 className="text-lg font-bold mb-3 flex items-center gap-2 text-gray-800">
-                <Star className="w-5 h-5 text-yellow-500" />
+            <div className='bg-white rounded-xl shadow-xl p-4 flex-1 overflow-hidden'>
+              <h2 className='text-lg font-bold mb-3 flex items-center gap-2 text-gray-800'>
+                <Star className='w-5 h-5 text-yellow-500' />
                 Donatur Terkini
               </h2>
-              <div className="flex flex-col gap-1.5">
+              <div className='flex flex-col gap-1.5'>
                 {DONATUR_LIST.slice(donaturIndex, donaturIndex + 4).map((d, idx) => (
                   <div
                     key={`${d.nama}-${idx}`}
-                    className="tv-fade-in flex justify-between items-center px-3 py-2 rounded-lg bg-gray-50 border-l-4"
+                    className='tv-fade-in flex justify-between items-center px-3 py-2 rounded-lg bg-gray-50 border-l-4'
                     style={{
                       borderColor: getProgramColor(d.program),
                       animationDelay: `${idx * 0.12}s`,
                     }}
                   >
                     <div>
-                      <span className="font-semibold text-sm text-gray-800">{d.nama}</span>
-                      <span className="text-xs ml-1.5 text-gray-500">({d.program})</span>
+                      <span className='font-semibold text-sm text-gray-800'>{d.nama}</span>
+                      <span className='text-xs ml-1.5 text-gray-500'>({d.program})</span>
                     </div>
-                    <span className="font-bold text-sm" style={{ color: getProgramColor(d.program) }}>
+                    <span className='font-bold text-sm' style={{ color: getProgramColor(d.program) }}>
                       {formatRupiah(d.jumlah)}
                     </span>
                   </div>
@@ -439,50 +518,43 @@ export default function TVDisplayPage() {
             </div>
 
             {/* Card: Infaq Harian / Total Infaq (alternating) */}
-            <div className="bg-white rounded-xl shadow-xl p-4 shrink-0">
-              <div className="flex justify-between items-center mb-2">
-                <h2 className="text-base font-bold text-gray-800">
-                  {showInfaqTotal ? 'Total Infaq Terkumpul' : 'Infaq Harian'}
-                </h2>
-                {!showInfaqTotal && (
-                  <span className="text-sm font-bold text-green-700">{formatRupiah(totalInfaqHarian)}</span>
-                )}
+            <div className='bg-white rounded-xl shadow-xl p-4 shrink-0'>
+              <div className='flex justify-between items-center mb-2'>
+                <h2 className='text-base font-bold text-gray-800'>{showInfaqTotal ? 'Kekurangan Dana' : 'Infaq Harian'}</h2>
+                {!showInfaqTotal && <span className='text-sm font-bold text-green-700'>{formatRupiah(totalInfaqHarian)}</span>}
               </div>
               {showInfaqTotal ? (
-                <div key="total" className="tv-fade-in flex flex-col gap-2 py-1">
-                  <div className="text-2xl font-extrabold text-green-700">{formatRupiah(TOTAL_INFAQ.terkumpul)}</div>
-                  <div className="w-full bg-gray-200 rounded-full h-3">
-                    <div
-                      className="h-3 rounded-full bg-yellow-400 transition-all duration-1000"
-                      style={{ width: `${TOTAL_INFAQ.progress}%` }}
-                    />
+                <div key='total' className='tv-fade-in flex flex-col gap-2 py-1'>
+                  <div className='text-2xl font-extrabold text-red-600'>{formatRupiah(TOTAL_INFAQ.target - TOTAL_INFAQ.terkumpul)}</div>
+                  <div className='w-full bg-gray-200 rounded-full h-3'>
+                    <div className='h-3 rounded-full bg-yellow-400 transition-all duration-1000' style={{ width: `${TOTAL_INFAQ.progress}%` }} />
                   </div>
-                  <div className="flex justify-between text-xs text-gray-500">
-                    <span className="font-bold text-yellow-600">{TOTAL_INFAQ.progress}% terkumpul</span>
+                  <div className='flex justify-between text-xs text-gray-500'>
+                    <span className='font-bold text-red-500'>{(100 - TOTAL_INFAQ.progress).toFixed(2)}% masih kurang</span>
                     <span>Target: {formatRupiah(TOTAL_INFAQ.target)}</span>
                   </div>
                 </div>
               ) : (
-                <div key="harian" className="tv-fade-in">
+                <div key='harian' className='tv-fade-in'>
                   <InfaqBarChart data={INFAQ_HARIAN} compact />
                 </div>
               )}
             </div>
 
             {/* Card: Ajakan Donasi */}
-            <div className="tv-pulse bg-gradient-to-br from-green-700 to-blue-800 rounded-xl shadow-xl p-4 text-white shrink-0">
-              <h2 className="text-base font-bold mb-2 text-sky-300">Mari Berdonasi</h2>
-              <div className="space-y-1.5 text-sm">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <CreditCard className="w-4 h-4 shrink-0 opacity-80" />
-                  <span className="opacity-80">Bank BRI:</span>
-                  <span className="font-bold">0211.01.004869.53.6</span>
-                  <span className="text-xs opacity-75">a.n. Al Muhajirin Rewwin</span>
+            <div className='tv-pulse bg-gradient-to-br from-green-700 to-blue-800 rounded-xl shadow-xl p-4 text-white shrink-0'>
+              <h2 className='text-base font-bold mb-2 text-sky-300'>Mari Berdonasi</h2>
+              <div className='space-y-1.5 text-sm'>
+                <div className='flex items-center gap-2 flex-wrap'>
+                  <CreditCard className='w-4 h-4 shrink-0 opacity-80' />
+                  <span className='opacity-80'>Bank BRI:</span>
+                  <span className='font-bold'>0211.01.004869.53.6</span>
+                  <span className='text-xs opacity-75'>a.n. Al Muhajirin Rewwin</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 shrink-0 opacity-80" />
-                  <span className="opacity-80">Konfirmasi WA:</span>
-                  <span className="font-bold">0812-2334-3416</span>
+                <div className='flex items-center gap-2'>
+                  <Phone className='w-4 h-4 shrink-0 opacity-80' />
+                  <span className='opacity-80'>Konfirmasi WA:</span>
+                  <span className='font-bold'>0812-2334-3416</span>
                 </div>
               </div>
             </div>

@@ -1,3 +1,14 @@
+## 2026-03-06 17:42:09
+
+feat(masjid): update TV Ramadhan dashboard data and display
+
+- Show remaining donation deficit instead of collected total
+- Fix program progress percentages to match actual data
+- Add 14 new donors to donatur and doa lists
+- Update Ramadhan day counter to day 16
+
+---
+
 ## 2026-02-26 16:26:13
 
 feat(masjid): update TV Ramadhan dashboard with real data and UX improvements
